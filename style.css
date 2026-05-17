@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --preto: #070707;
+  --preto-secundario: #111111;
+  --vermelho: #b51624;
+  --vermelho-claro: #ff3045;
+  --amarelo: #f2c14e;
+  --roxo: #7b2cff;
+  --texto: #f1e8dc;
+  --texto-fraco: #a89f94;
+}
+
+body {
+  background: var(--preto);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  padding: 24px 40px;
+  background: var(--preto-secundario);
+  border-bottom: 2px solid var(--vermelho);
+}
+
+header h1 {
+  color: var(--amarelo);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+header p {
+  color: var(--texto-fraco);
+  margin-top: 6px;
+}
+
+main {
+  padding: 60px 40px;
+}
+
+.hero {
+  border: 1px solid rgba(181, 22, 36, 0.5);
+  background: linear-gradient(
+    135deg,
+    rgba(181, 22, 36, 0.18),
+    rgba(123, 44, 255, 0.13),
+    rgba(7, 7, 7, 1)
+  );
+  padding: 48px;
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(123, 44, 255, 0.15);
+}
+
+.classificacao {
+  color: var(--vermelho-claro);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hero h2 {
+  font-size: 48px;
+  color: var(--texto);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero p {
+  max-width: 700px;
+  color: var(--texto-fraco);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.cards {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: var(--preto-secundario);
+  border: 1px solid rgba(242, 193, 78, 0.25);
+  padding: 28px;
+  border-radius: 16px;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--amarelo);
+  box-shadow: 0 0 25px rgba(242, 193, 78, 0.13);
+}
+
+.card span {
+  color: var(--roxo);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.card h3 {
+  color: var(--amarelo);
+  margin: 16px 0 10px;
+  font-size: 24px;
+}
+
+.card p {
+  color: var(--texto-fraco);
+  line-height: 1.5;
+}
+
+footer {
+  padding: 28px 40px;
+  color: var(--texto-fraco);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
