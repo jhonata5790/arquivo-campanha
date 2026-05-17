@@ -46,9 +46,9 @@
     }
 
     .locais-pagina::after {
-      content: "MAPEAMENTO // LOCAIS // ORDO REALITAS";
+      content: "MAPEAMENTO // LOCAIS // ARQUIVO DA CAMPANHA";
       position: absolute;
-      right: -120px;
+      right: -155px;
       top: 50%;
       transform: rotate(90deg);
       color: rgba(216, 189, 116, 0.12);
@@ -63,7 +63,7 @@
     }
 
     .locais-hero {
-      min-height: 460px;
+      min-height: 420px;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
@@ -128,7 +128,7 @@
     .locais-selo {
       border: 1px solid rgba(216, 189, 116, 0.18);
       border-radius: 22px;
-      min-height: 420px;
+      min-height: 400px;
       background:
         radial-gradient(circle at center, rgba(181,22,36,0.16), transparent 34%),
         radial-gradient(circle at center, rgba(139,77,255,0.14), transparent 58%),
@@ -196,6 +196,66 @@
       color: var(--locais-amarelo);
       font-size: 13px;
       text-transform: uppercase;
+    }
+
+    .abas-locais {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(0,0,0,0.26);
+    }
+
+    .aba-local {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.035);
+      color: var(--locais-texto);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .aba-local:hover {
+      color: var(--locais-amarelo);
+      border-color: var(--locais-amarelo);
+      transform: translateY(-2px);
+    }
+
+    .aba-local.ativa {
+      color: var(--locais-amarelo);
+      border-color: rgba(181, 22, 36, 0.65);
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.24), rgba(139,77,255,0.10)),
+        rgba(0,0,0,0.30);
+      box-shadow: 0 0 18px rgba(181, 22, 36, 0.16);
+    }
+
+    .conteudo-local {
+      display: none;
+    }
+
+    .conteudo-local.ativo {
+      display: block;
+      animation: aparecerLocal 0.35s ease;
+    }
+
+    @keyframes aparecerLocal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .locais-secao {
@@ -465,6 +525,55 @@
       line-height: 1.62;
     }
 
+    .placeholder-mapa {
+      margin-top: 24px;
+      min-height: 500px;
+      border: 1px dashed rgba(216, 189, 116, 0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(139,77,255,0.16), transparent 36%),
+        radial-gradient(circle at 15% 20%, rgba(181,22,36,0.14), transparent 32%),
+        rgba(0,0,0,0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder-mapa::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      box-shadow:
+        0 0 0 42px rgba(181, 22, 36, 0.035),
+        0 0 0 82px rgba(139, 77, 255, 0.025);
+    }
+
+    .placeholder-mapa div {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .placeholder-mapa h3 {
+      color: var(--locais-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(30px, 5vw, 58px);
+      margin-bottom: 16px;
+    }
+
+    .placeholder-mapa p {
+      color: var(--locais-fraco);
+      line-height: 1.7;
+    }
+
     .aviso-local {
       margin-top: 28px;
       border: 1px solid rgba(181, 22, 36, 0.32);
@@ -534,6 +643,14 @@
       .locais-grid {
         grid-template-columns: 1fr;
       }
+
+      .abas-locais {
+        flex-direction: column;
+      }
+
+      .aba-local {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -575,16 +692,16 @@
           </p>
 
           <p>
-            O primeiro local documentado é a área interna da Ordo Realitas, incluindo
-            seus setores principais, áreas restritas e zonas de suporte operacional.
+            Os mapas são separados por abas para facilitar a navegação entre a base da
+            Ordo Realitas, Santa Luzia e outros espaços importantes da campanha.
           </p>
         </div>
 
         <div class="locais-selo">
           <div class="locais-selo-dados">
             <div class="local-mini-dado">
-              <span>Mapa</span>
-              <strong>Interno</strong>
+              <span>Mapas</span>
+              <strong>Separados</strong>
             </div>
 
             <div class="local-mini-dado">
@@ -593,208 +710,246 @@
             </div>
 
             <div class="local-mini-dado">
-              <span>Base</span>
-              <strong>Ordem</strong>
+              <span>Arquivo</span>
+              <strong>Ativo</strong>
             </div>
           </div>
         </div>
 
       </section>
 
-      <section class="locais-secao">
-        <p class="classificacao">Local principal // área da Ordo Realitas</p>
-        <h2>Base da Ordo Realitas</h2>
+      <div class="abas-locais">
+        <button class="aba-local ativa" data-local="base-ordo">Base da Ordo</button>
+        <button class="aba-local" data-local="santa-luzia">Santa Luzia</button>
+        <button class="aba-local" data-local="locais-restritos">Locais Restritos</button>
+      </div>
 
-        <p>
-          A base da Ordem funciona como centro de operações, abrigo, arquivo, sala de
-          comando e ponto de contenção. Por fora, não deveria chamar atenção. Por dentro,
-          cada corredor carrega o peso de decisões que não aparecem em relatórios públicos.
-        </p>
+      <section class="conteudo-local ativo" id="base-ordo">
 
-        <div class="mapa-ordo">
+        <section class="locais-secao">
+          <p class="classificacao">Local principal // área da Ordo Realitas</p>
+          <h2>Base da Ordo Realitas</h2>
 
-          <button
-            class="setor-mapa suporte"
-            data-titulo="Entrada / Recepção"
-            data-imagem="salas/recepcao.png"
-            data-texto="A entrada da base é discreta e funcional. Não parece grandiosa, e essa é exatamente a intenção.||Agentes entram e saem por aqui, mas visitantes sem autorização raramente passam do primeiro controle."
-          >
-            <img src="salas/recepcao.png" alt="Entrada e recepção da Ordo Realitas" class="miniatura-setor">
-            <span>Acesso inicial</span>
-            <strong>Recepção</strong>
-            <p>Controle de entrada, identificação e triagem básica.</p>
-          </button>
+          <p>
+            A base da Ordem funciona como centro de operações, abrigo, arquivo, sala de
+            comando e ponto de contenção. Por fora, não deveria chamar atenção. Por dentro,
+            cada corredor carrega o peso de decisões que não aparecem em relatórios públicos.
+          </p>
 
-          <button
-            class="setor-mapa setor-principal restrito"
-            data-titulo="Sala de Comando"
-            data-imagem="salas/sala-comando.png"
-            data-texto="A Sala de Comando é o coração operacional da base. É onde missões são revisadas, agentes são enviados e decisões difíceis são tomadas.||Klint costuma passar tempo demais aqui, cercado por relatórios, mapas, nomes e baixas que nunca somem de verdade."
-          >
-            <img src="salas/sala-comando.png" alt="Sala de Comando da Ordo Realitas" class="miniatura-setor">
-            <span>Núcleo operacional</span>
-            <strong>Sala de Comando</strong>
-            <p>Centro de decisões da Ordem e ponto principal de organização das missões.</p>
-          </button>
+          <div class="mapa-ordo">
 
-          <button
-            class="setor-mapa suporte"
-            data-titulo="Sala de Reuniões"
-            data-imagem="salas/sala-reunioes.png"
-            data-texto="A Sala de Reuniões é usada para briefings, interrogatórios leves, revisão de relatórios e conversas que não deveriam ser ouvidas por agentes despreparados.||A mesa central carrega marcas de café, documentos riscados e decisões tomadas rápido demais."
-          >
-            <img src="salas/sala-reunioes.png" alt="Sala de Reuniões da Ordo Realitas" class="miniatura-setor">
-            <span>Briefing</span>
-            <strong>Reuniões</strong>
-            <p>Onde agentes recebem instruções antes de partir.</p>
-          </button>
+            <button class="setor-mapa suporte" data-titulo="Entrada / Recepção" data-imagem="salas/recepcao.png" data-texto="A entrada da base é discreta e funcional. Não parece grandiosa, e essa é exatamente a intenção.||Agentes entram e saem por aqui, mas visitantes sem autorização raramente passam do primeiro controle.">
+              <img src="salas/recepcao.png" alt="Entrada e recepção da Ordo Realitas" class="miniatura-setor">
+              <span>Acesso inicial</span>
+              <strong>Recepção</strong>
+              <p>Controle de entrada, identificação e triagem básica.</p>
+            </button>
 
-          <button
-            class="setor-mapa ocultista"
-            data-titulo="Ala Ocultista"
-            data-imagem="salas/ala-ocultista.png"
-            data-texto="A Ala Ocultista concentra registros paranormais, símbolos, estudos de rituais e artefatos sensíveis.||É uma das áreas mais silenciosas da base. Mesmo agentes experientes evitam tocar em qualquer coisa sem autorização.||Yuna costuma trabalhar isolada nesse setor."
-          >
-            <img src="salas/ala-ocultista.png" alt="Ala Ocultista da Ordo Realitas" class="miniatura-setor">
-            <span>Setor Yuna</span>
-            <strong>Ala Ocultista</strong>
-            <p>Estudo de rituais, símbolos, entidades e artefatos.</p>
-          </button>
+            <button class="setor-mapa setor-principal restrito" data-titulo="Sala de Comando" data-imagem="salas/sala-comando.png" data-texto="A Sala de Comando é o coração operacional da base. É onde missões são revisadas, agentes são enviados e decisões difíceis são tomadas.||Klint costuma passar tempo demais aqui, cercado por relatórios, mapas, nomes e baixas que nunca somem de verdade.">
+              <img src="salas/sala-comando.png" alt="Sala de Comando da Ordo Realitas" class="miniatura-setor">
+              <span>Núcleo operacional</span>
+              <strong>Sala de Comando</strong>
+              <p>Centro de decisões da Ordem e ponto principal de organização das missões.</p>
+            </button>
 
-          <button
-            class="setor-mapa especialista"
-            data-titulo="Ala Especialista"
-            data-imagem="salas/ala-especialista.png"
-            data-texto="A Ala Especialista reúne investigação, arquivos de campo, rotas, análises, planos de infiltração e equipamentos técnicos.||É o setor mais movimentado da base. Lisa costuma coordenar agentes daqui, ajustando missões antes que virem desastre."
-          >
-            <img src="salas/ala-especialista.png" alt="Ala Especialista da Ordo Realitas" class="miniatura-setor">
-            <span>Setor Lisa</span>
-            <strong>Ala Especialista</strong>
-            <p>Investigação, infiltração, suporte e análise de risco.</p>
-          </button>
+            <button class="setor-mapa suporte" data-titulo="Sala de Reuniões" data-imagem="salas/sala-reunioes.png" data-texto="A Sala de Reuniões é usada para briefings, interrogatórios leves, revisão de relatórios e conversas que não deveriam ser ouvidas por agentes despreparados.||A mesa central carrega marcas de café, documentos riscados e decisões tomadas rápido demais.">
+              <img src="salas/sala-reunioes.png" alt="Sala de Reuniões da Ordo Realitas" class="miniatura-setor">
+              <span>Briefing</span>
+              <strong>Reuniões</strong>
+              <p>Onde agentes recebem instruções antes de partir.</p>
+            </button>
 
-          <button
-            class="setor-mapa combatente"
-            data-titulo="Ala Combatente"
-            data-imagem="salas/ala-combatente.png"
-            data-texto="A Ala Combatente é formada por salas de treino, áreas de simulação, equipamentos pesados e espaços para preparação física.||Blender costuma transformar esse setor em um caos barulhento, mas os agentes que treinam ali voltam mais preparados."
-          >
-            <img src="salas/ala-combatente.png" alt="Ala Combatente da Ordo Realitas" class="miniatura-setor">
-            <span>Setor Blender</span>
-            <strong>Ala Combatente</strong>
-            <p>Treinamento, contenção física e preparação de campo.</p>
-          </button>
+            <button class="setor-mapa ocultista" data-titulo="Ala Ocultista" data-imagem="salas/ala-ocultista.png" data-texto="A Ala Ocultista concentra registros paranormais, símbolos, estudos de rituais e artefatos sensíveis.||É uma das áreas mais silenciosas da base. Mesmo agentes experientes evitam tocar em qualquer coisa sem autorização.||Yuna costuma trabalhar isolada nesse setor.">
+              <img src="salas/ala-ocultista.png" alt="Ala Ocultista da Ordo Realitas" class="miniatura-setor">
+              <span>Setor Yuna</span>
+              <strong>Ala Ocultista</strong>
+              <p>Estudo de rituais, símbolos, entidades e artefatos.</p>
+            </button>
 
-          <button
-            class="setor-mapa suporte"
-            data-titulo="Enfermaria"
-            data-imagem="salas/enfermaria.png"
-            data-texto="A Enfermaria trata ferimentos físicos, exaustão e os danos que ainda podem ser chamados de médicos.||Nem todo trauma cabe em uma ficha clínica, mas a equipe tenta manter os agentes vivos o bastante para continuarem."
-          >
-            <img src="salas/enfermaria.png" alt="Enfermaria da Ordo Realitas" class="miniatura-setor">
-            <span>Suporte médico</span>
-            <strong>Enfermaria</strong>
-            <p>Tratamento físico e estabilização após missões.</p>
-          </button>
+            <button class="setor-mapa especialista" data-titulo="Ala Especialista" data-imagem="salas/ala-especialista.png" data-texto="A Ala Especialista reúne investigação, arquivos de campo, rotas, análises, planos de infiltração e equipamentos técnicos.||É o setor mais movimentado da base. Lisa costuma coordenar agentes daqui, ajustando missões antes que virem desastre.">
+              <img src="salas/ala-especialista.png" alt="Ala Especialista da Ordo Realitas" class="miniatura-setor">
+              <span>Setor Lisa</span>
+              <strong>Ala Especialista</strong>
+              <p>Investigação, infiltração, suporte e análise de risco.</p>
+            </button>
 
-          <button
-            class="setor-mapa suporte"
-            data-titulo="Arsenal"
-            data-imagem="salas/arsenal.png"
-            data-texto="O Arsenal guarda armas, equipamentos de contenção, munição, proteção e ferramentas usadas em missões de campo.||O acesso é controlado. Alguns agentes acham isso exagero. A Ordem chama de sobrevivência."
-          >
-            <img src="salas/arsenal.png" alt="Arsenal da Ordo Realitas" class="miniatura-setor">
-            <span>Equipamento</span>
-            <strong>Arsenal</strong>
-            <p>Armas, proteção e recursos de missão.</p>
-          </button>
+            <button class="setor-mapa combatente" data-titulo="Ala Combatente" data-imagem="salas/ala-combatente.png" data-texto="A Ala Combatente é formada por salas de treino, áreas de simulação, equipamentos pesados e espaços para preparação física.||Blender costuma transformar esse setor em um caos barulhento, mas os agentes que treinam ali voltam mais preparados.">
+              <img src="salas/ala-combatente.png" alt="Ala Combatente da Ordo Realitas" class="miniatura-setor">
+              <span>Setor Blender</span>
+              <strong>Ala Combatente</strong>
+              <p>Treinamento, contenção física e preparação de campo.</p>
+            </button>
 
-          <button
-            class="setor-mapa restrito"
-            data-titulo="Arquivo Morto"
-            data-imagem="salas/arquivo-morto.png"
-            data-texto="O Arquivo Morto guarda relatórios encerrados, casos antigos, registros censurados e documentos que a Ordem prefere não abrir sem necessidade.||Alguns arquivos estão incompletos. Outros estão completos demais."
-          >
-            <img src="salas/arquivo-morto.png" alt="Arquivo Morto da Ordo Realitas" class="miniatura-setor">
-            <span>Restrito</span>
-            <strong>Arquivo Morto</strong>
-            <p>Registros antigos, censurados e perigosos.</p>
-          </button>
+            <button class="setor-mapa suporte" data-titulo="Enfermaria" data-imagem="salas/enfermaria.png" data-texto="A Enfermaria trata ferimentos físicos, exaustão e os danos que ainda podem ser chamados de médicos.||Nem todo trauma cabe em uma ficha clínica, mas a equipe tenta manter os agentes vivos o bastante para continuarem.">
+              <img src="salas/enfermaria.png" alt="Enfermaria da Ordo Realitas" class="miniatura-setor">
+              <span>Suporte médico</span>
+              <strong>Enfermaria</strong>
+              <p>Tratamento físico e estabilização após missões.</p>
+            </button>
 
-          <button
-            class="setor-mapa setor-subsolo restrito"
-            data-titulo="Prisão Subterrânea"
-            data-imagem="salas/prisao-subterranea.png"
-            data-texto="A Prisão Subterrânea fica abaixo da base principal e só pode ser acessada por um elevador controlado.||O setor é usado para contenção temporária de ameaças, interrogatórios de alto risco e isolamento de indivíduos afetados pelo Paranormal.||Nem todo mundo que desce volta imediatamente."
-          >
-            <img src="salas/prisao-subterranea.png" alt="Prisão Subterrânea da Ordo Realitas" class="miniatura-setor">
-            <span>Subsolo // contenção</span>
-            <strong>Prisão Subterrânea</strong>
-            <p>Área isolada abaixo da base, acessada por elevador de segurança.</p>
-          </button>
+            <button class="setor-mapa suporte" data-titulo="Arsenal" data-imagem="salas/arsenal.png" data-texto="O Arsenal guarda armas, equipamentos de contenção, munição, proteção e ferramentas usadas em missões de campo.||O acesso é controlado. Alguns agentes acham isso exagero. A Ordem chama de sobrevivência.">
+              <img src="salas/arsenal.png" alt="Arsenal da Ordo Realitas" class="miniatura-setor">
+              <span>Equipamento</span>
+              <strong>Arsenal</strong>
+              <p>Armas, proteção e recursos de missão.</p>
+            </button>
 
-        </div>
+            <button class="setor-mapa restrito" data-titulo="Arquivo Morto" data-imagem="salas/arquivo-morto.png" data-texto="O Arquivo Morto guarda relatórios encerrados, casos antigos, registros censurados e documentos que a Ordem prefere não abrir sem necessidade.||Alguns arquivos estão incompletos. Outros estão completos demais.">
+              <img src="salas/arquivo-morto.png" alt="Arquivo Morto da Ordo Realitas" class="miniatura-setor">
+              <span>Restrito</span>
+              <strong>Arquivo Morto</strong>
+              <p>Registros antigos, censurados e perigosos.</p>
+            </button>
 
-        <div class="detalhe-local" id="detalhe-local">
-          <h3>Nenhum setor selecionado</h3>
-          <p>Clique em uma área do mapa interno da Ordo Realitas para abrir a imagem e a descrição do setor.</p>
-        </div>
+            <button class="setor-mapa setor-subsolo restrito" data-titulo="Prisão Subterrânea" data-imagem="salas/prisao-subterranea.png" data-texto="A Prisão Subterrânea fica abaixo da base principal e só pode ser acessada por um elevador controlado.||O setor é usado para contenção temporária de ameaças, interrogatórios de alto risco e isolamento de indivíduos afetados pelo Paranormal.||Nem todo mundo que desce volta imediatamente.">
+              <img src="salas/prisao-subterranea.png" alt="Prisão Subterrânea da Ordo Realitas" class="miniatura-setor">
+              <span>Subsolo // contenção</span>
+              <strong>Prisão Subterrânea</strong>
+              <p>Área isolada abaixo da base, acessada por elevador de segurança.</p>
+            </button>
+
+          </div>
+
+          <div class="detalhe-local" id="detalhe-local">
+            <h3>Nenhum setor selecionado</h3>
+            <p>Clique em uma área do mapa interno da Ordo Realitas para abrir a imagem e a descrição do setor.</p>
+          </div>
+        </section>
+
+        <section class="locais-secao">
+          <p class="classificacao">Resumo de setores // leitura rápida</p>
+          <h2>Áreas Importantes</h2>
+
+          <p>
+            Estes são os setores mais relevantes da base no momento. Novas áreas podem ser
+            adicionadas conforme a campanha revelar outros espaços.
+          </p>
+
+          <div class="locais-grid">
+
+            <article class="local-card">
+              <span>Área central</span>
+              <h3>Sala de Comando</h3>
+              <p>Onde Klint e a liderança analisam missões, riscos, baixas e decisões estratégicas.</p>
+            </article>
+
+            <article class="local-card">
+              <span>Área paranormal</span>
+              <h3>Ala Ocultista</h3>
+              <p>Setor de estudo de rituais, manifestações e artefatos ligados ao Outro Lado.</p>
+            </article>
+
+            <article class="local-card">
+              <span>Área tática</span>
+              <h3>Ala Especialista</h3>
+              <p>Centro de análise, infiltração, suporte, organização e planejamento de missão.</p>
+            </article>
+
+            <article class="local-card">
+              <span>Área de combate</span>
+              <h3>Ala Combatente</h3>
+              <p>Treinamento físico, simulações, combate direto e preparação de contenção.</p>
+            </article>
+
+            <article class="local-card">
+              <span>Área médica</span>
+              <h3>Enfermaria</h3>
+              <p>Tratamento de agentes feridos e estabilização após contato com ameaças.</p>
+            </article>
+
+            <article class="local-card">
+              <span>Área restrita</span>
+              <h3>Prisão Subterrânea</h3>
+              <p>Zona de contenção abaixo da base, acessada por elevador e protocolos de segurança.</p>
+            </article>
+
+          </div>
+        </section>
+
       </section>
 
-      <section class="locais-secao">
-        <p class="classificacao">Resumo de setores // leitura rápida</p>
-        <h2>Áreas Importantes</h2>
+      <section class="conteudo-local" id="santa-luzia">
 
-        <p>
-          Estes são os setores mais relevantes da base no momento. Novas áreas podem ser
-          adicionadas conforme a campanha revelar outros espaços.
-        </p>
+        <section class="locais-secao">
+          <p class="classificacao">Mapa urbano // cidade principal</p>
+          <h2>Santa Luzia</h2>
 
-        <div class="locais-grid">
+          <p>
+            Santa Luzia será registrada como o mapa urbano principal da campanha. Aqui podem
+            entrar bairros, ruas importantes, áreas contaminadas, pontos de encontro,
+            locais investigados e regiões onde o Paranormal deixou marcas.
+          </p>
 
-          <article class="local-card">
-            <span>Área central</span>
-            <h3>Sala de Comando</h3>
-            <p>Onde Klint e a liderança analisam missões, riscos, baixas e decisões estratégicas.</p>
-          </article>
+          <div class="placeholder-mapa">
+            <div>
+              <h3>Mapa de Santa Luzia</h3>
+              <p>
+                Área aguardando imagem oficial do mapa. Quando o mapa estiver pronto,
+                esta aba pode receber uma imagem grande, pontos clicáveis e descrições
+                separadas por região.
+              </p>
+            </div>
+          </div>
+        </section>
 
-          <article class="local-card">
-            <span>Área paranormal</span>
-            <h3>Ala Ocultista</h3>
-            <p>Setor de estudo de rituais, manifestações e artefatos ligados ao Outro Lado.</p>
-          </article>
+        <section class="locais-secao">
+          <p class="classificacao">Regiões futuras // estrutura inicial</p>
+          <h2>Possíveis Áreas</h2>
 
-          <article class="local-card">
-            <span>Área tática</span>
-            <h3>Ala Especialista</h3>
-            <p>Centro de análise, infiltração, suporte, organização e planejamento de missão.</p>
-          </article>
+          <div class="locais-grid">
 
-          <article class="local-card">
-            <span>Área de combate</span>
-            <h3>Ala Combatente</h3>
-            <p>Treinamento físico, simulações, combate direto e preparação de contenção.</p>
-          </article>
+            <article class="local-card">
+              <span>Centro urbano</span>
+              <h3>Centro</h3>
+              <p>Região de maior movimento, comércio, ruas principais e pontos de encontro.</p>
+            </article>
 
-          <article class="local-card">
-            <span>Área médica</span>
-            <h3>Enfermaria</h3>
-            <p>Tratamento de agentes feridos e estabilização após contato com ameaças.</p>
-          </article>
+            <article class="local-card">
+              <span>Investigação</span>
+              <h3>Área Residencial</h3>
+              <p>Casas, vizinhanças, relatos estranhos e possíveis desaparecimentos.</p>
+            </article>
 
-          <article class="local-card">
-            <span>Área restrita</span>
-            <h3>Prisão Subterrânea</h3>
-            <p>Zona de contenção abaixo da base, acessada por elevador e protocolos de segurança.</p>
-          </article>
+            <article class="local-card">
+              <span>Risco</span>
+              <h3>Zona Contaminada</h3>
+              <p>Área marcada por influência paranormal, isolamento ou registros incompletos.</p>
+            </article>
 
-        </div>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-local" id="locais-restritos">
+
+        <section class="locais-secao">
+          <p class="classificacao">Acesso negado // registros incompletos</p>
+          <h2>Locais Restritos</h2>
+
+          <p>
+            Esta aba guarda locais que ainda não devem aparecer completamente no arquivo.
+            Pode servir para áreas secretas, mapas bloqueados, locais corrompidos ou regiões
+            que só serão reveladas depois de eventos importantes da campanha.
+          </p>
+
+          <div class="placeholder-mapa">
+            <div>
+              <h3>Registro Bloqueado</h3>
+              <p>
+                O conteúdo desta área ainda não foi liberado. Algumas coordenadas existem,
+                mas foram removidas do arquivo por segurança operacional.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </section>
 
       <section class="aviso-local">
         <span>Registro interno // aviso de segurança</span>
         <p>
-          A planta completa da base não está disponível neste arquivo. Algumas áreas foram
+          A planta completa dos locais não está disponível neste arquivo. Algumas áreas foram
           omitidas, deslocadas ou registradas de forma incompleta por segurança operacional.
           Se um agente encontrar uma porta que não consta no mapa, deve se afastar e comunicar
           a liderança imediatamente.
@@ -812,6 +967,25 @@
   </footer>
 
   <script>
+    const abasLocais = document.querySelectorAll(".aba-local");
+    const conteudosLocais = document.querySelectorAll(".conteudo-local");
+
+    abasLocais.forEach((aba) => {
+      aba.addEventListener("click", () => {
+        const alvo = aba.dataset.local;
+
+        abasLocais.forEach((item) => item.classList.remove("ativa"));
+        conteudosLocais.forEach((conteudo) => conteudo.classList.remove("ativo"));
+
+        aba.classList.add("ativa");
+
+        const conteudoAtivo = document.getElementById(alvo);
+        if (conteudoAtivo) {
+          conteudoAtivo.classList.add("ativo");
+        }
+      });
+    });
+
     const setores = document.querySelectorAll(".setor-mapa");
     const detalheLocal = document.querySelector("#detalhe-local");
 
