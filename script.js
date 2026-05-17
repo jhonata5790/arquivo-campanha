@@ -6,9 +6,9 @@ function formatarTexto(texto) {
 
   return texto
     .split("||")
-    .map(paragrafo => paragrafo.trim())
-    .filter(paragrafo => paragrafo.length > 0)
-    .map(paragrafo => `<p>${paragrafo}</p>`)
+    .map((paragrafo) => paragrafo.trim())
+    .filter((paragrafo) => paragrafo.length > 0)
+    .map((paragrafo) => `<p>${paragrafo}</p>`)
     .join("");
 }
 
@@ -20,7 +20,12 @@ abas.forEach((aba) => {
     conteudos.forEach((conteudo) => conteudo.classList.remove("ativo"));
 
     aba.classList.add("ativa");
-    document.getElementById(alvo).classList.add("ativo");
+
+    const conteudoAlvo = document.getElementById(alvo);
+
+    if (conteudoAlvo) {
+      conteudoAlvo.classList.add("ativo");
+    }
   });
 });
 
@@ -35,12 +40,14 @@ atributos.forEach((atributo) => {
     atributos.forEach((item) => item.classList.remove("selecionado"));
     atributo.classList.add("selecionado");
 
-    detalheAtributo.innerHTML = `
-      <h4>${titulo}</h4>
-      <div class="texto-formatado">
-        ${formatarTexto(texto)}
-      </div>
-    `;
+    if (detalheAtributo) {
+      detalheAtributo.innerHTML = `
+        <h4>${titulo}</h4>
+        <div class="texto-formatado">
+          ${formatarTexto(texto)}
+        </div>
+      `;
+    }
   });
 });
 
@@ -52,18 +59,23 @@ itensInterativos.forEach((item) => {
     const texto = item.dataset.texto;
 
     const areaAtual = item.closest(".conteudo-aba");
-    const caixaDetalhe = areaAtual.querySelector(".detalhe-lista");
 
+    if (!areaAtual) return;
+
+    const caixaDetalhe = areaAtual.querySelector(".detalhe-lista");
     const itensDaArea = areaAtual.querySelectorAll(".item-interativo");
+
     itensDaArea.forEach((botao) => botao.classList.remove("selecionado"));
 
     item.classList.add("selecionado");
 
-    caixaDetalhe.innerHTML = `
-      <h4>${titulo}</h4>
-      <div class="texto-formatado">
-        ${formatarTexto(texto)}
-      </div>
-    `;
+    if (caixaDetalhe) {
+      caixaDetalhe.innerHTML = `
+        <h4>${titulo}</h4>
+        <div class="texto-formatado">
+          ${formatarTexto(texto)}
+        </div>
+      `;
+    }
   });
 });
