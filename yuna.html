@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yuna | Arquivo da Campanha</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="fundo-paranormal"></div>
+
+  <header>
+    <div>
+      <h1>Arquivo da Campanha</h1>
+      <p>Ficha interativa de agente</p>
+    </div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="locais.html">Locais</a>
+      <a href="personagens.html">Personagens</a>
+      <a href="missoes.html">Missões</a>
+      <a href="documentos.html">Documentos</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="ficha-personagem yuna-theme">
+
+      <div class="ficha-topo">
+        <div>
+          <p class="classificacao">Registro de agente // acesso controlado</p>
+          <h2>Yuna</h2>
+          <p class="subtitulo-ficha">Ocultista — NEX 60% — Semi-Líder da classe Ocultista</p>
+        </div>
+
+        <div class="selo-ficha">
+          ORDO<br>REALITAS
+        </div>
+      </div>
+
+      <div class="ficha-layout">
+
+        <aside class="painel-personagem">
+          <div class="personagem-placeholder">
+            <span>Imagem da Yuna</span>
+          </div>
+
+          <div class="status-operacional">
+            <span>Status operacional</span>
+            <strong>Observação Paranormal</strong>
+          </div>
+        </aside>
+
+        <section class="painel-ficha">
+
+          <div class="abas-ficha">
+            <button class="aba ativa" data-aba="informacoes">Informações</button>
+            <button class="aba" data-aba="atributos">Atributos</button>
+            <button class="aba" data-aba="habilidades">Habilidades</button>
+            <button class="aba" data-aba="rituais">Rituais</button>
+            <button class="aba" data-aba="inventario">Inventário</button>
+            <button class="aba" data-aba="descricao">Descrição</button>
+          </div>
+
+          <div class="conteudo-ficha">
+
+            <div class="conteudo-aba ativo" id="informacoes">
+              <h3>Informações</h3>
+
+              <div class="info-grid">
+                <div class="info-card">
+                  <span>Nome</span>
+                  <strong>Yuna</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Classe</span>
+                  <strong>Ocultista</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Origem</span>
+                  <strong>Desconhecida</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>NEX</span>
+                  <strong>60%</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Rank</span>
+                  <strong>Semi-Líder Ocultista</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Jogador(a)</span>
+                  <strong>???</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="atributos">
+              <h3>Atributos</h3>
+              <p class="texto-apoio">Clique em um atributo para ver o que ele representa dentro da ficha.</p>
+
+              <div class="atributos-grid">
+
+                <button class="atributo-card" data-titulo="FOR — Força" data-texto="Força representa potência física, capacidade de erguer peso, causar impacto corpo a corpo e resistir em situações que exigem poder bruto.">
+                  <span>FOR</span>
+                  <strong>1</strong>
+                </button>
+
+                <button class="atributo-card" data-titulo="AGI — Agilidade" data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade, esquiva e precisão em movimentos rápidos.">
+                  <span>AGI</span>
+                  <strong>2</strong>
+                </button>
+
+                <button class="atributo-card" data-titulo="INT — Intelecto" data-texto="Intelecto representa raciocínio, investigação, conhecimento técnico, estudo ocultista e capacidade de compreender padrões complexos.">
+                  <span>INT</span>
+                  <strong>4</strong>
+                </button>
+
+                <button class="atributo-card" data-titulo="PRE — Presença" data-texto="Presença representa força de vontade, influência, intimidação, conexão emocional e resistência mental diante do paranormal.">
+                  <span>PRE</span>
+                  <strong>3</strong>
+                </button>
+
+                <button class="atributo-card" data-titulo="VIG — Vigor" data-texto="Vigor representa saúde, resistência física, fôlego, tolerância à dor e capacidade de continuar de pé em situações extremas.">
+                  <span>VIG</span>
+                  <strong>2</strong>
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe" id="detalhe-atributo">
+                <h4>Nenhum atributo selecionado</h4>
+                <p>Clique em FOR, AGI, INT, PRE ou VIG para revelar a descrição.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="habilidades">
+              <h3>Habilidades</h3>
+              <p class="texto-apoio">Clique em uma habilidade para abrir o registro completo.</p>
+
+              <div class="lista-interativa">
+
+                <button class="item-interativo" data-titulo="Eclético" data-texto="Permite que a personagem tenha maior flexibilidade em situações variadas, adaptando-se melhor a desafios fora de sua especialidade principal.">
+                  Eclético
+                </button>
+
+                <button class="item-interativo" data-titulo="Perito" data-texto="Representa treinamento refinado em áreas específicas, aumentando a confiabilidade da personagem em testes importantes.">
+                  Perito
+                </button>
+
+                <button class="item-interativo" data-titulo="Ocultismo Avançado" data-texto="Indica domínio superior sobre símbolos, rituais, manifestações e interpretações ligadas ao Outro Lado.">
+                  Ocultismo Avançado
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione uma habilidade</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="rituais">
+              <h3>Rituais</h3>
+              <p class="texto-apoio">Clique em um ritual para consultar suas informações.</p>
+
+              <div class="lista-interativa">
+
+                <button class="item-interativo" data-titulo="Ritual não registrado" data-texto="Este espaço será usado para registrar os rituais oficiais da Yuna quando forem definidos.">
+                  Ritual não registrado
+                </button>
+
+                <button class="item-interativo" data-titulo="Manifestação Paranormal" data-texto="Registro temporário para manifestações ocultistas associadas à personagem.">
+                  Manifestação Paranormal
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um ritual</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="inventario">
+              <h3>Inventário</h3>
+              <p class="texto-apoio">Clique em um item para abrir sua descrição.</p>
+
+              <div class="lista-interativa">
+
+                <button class="item-interativo" data-titulo="Item não registrado" data-texto="Este espaço será usado para registrar itens da personagem quando o inventário oficial for definido.">
+                  Item não registrado
+                </button>
+
+                <button class="item-interativo" data-titulo="Objeto ritualístico" data-texto="Registro temporário para itens ligados ao ocultismo, símbolos, componentes ou ferramentas paranormais.">
+                  Objeto ritualístico
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um item</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="descricao">
+              <h3>Descrição</h3>
+
+              <div class="descricao-bloco">
+                <p>
+                  Yuna possui uma presença silenciosa e paranormal, como se carregasse
+                  algo que não precisa ser explicado para ser sentido. Sua postura transmite
+                  controle, distância e uma ligação profunda com forças ocultas.
+                </p>
+
+                <p>
+                  Dentro da Ordem, ela ocupa uma posição de respeito entre ocultistas,
+                  sendo tratada como uma figura importante, mas ainda cercada por lacunas,
+                  observações e informações incompletas.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Ficha de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
