@@ -11,6 +11,7 @@
       --maisie-roxo: #8f52ff;
       --maisie-roxo-2: #5f2fcf;
       --maisie-energia: #c6adff;
+      --maisie-azul: #46aaff;
       --maisie-preto: #07070a;
       --maisie-cinza: #a8a0b8;
       --maisie-texto: #ece7f8;
@@ -30,6 +31,7 @@
         inset 0 0 70px rgba(0, 0, 0, 0.7);
       position: relative;
       overflow: hidden;
+      animation: entradaArquivoMaisie 0.9s ease both;
     }
 
     .ficha-maisie::before {
@@ -42,6 +44,7 @@
       background-size: 34px 34px;
       opacity: 0.18;
       pointer-events: none;
+      animation: gradeEnergiaMaisie 12s linear infinite;
     }
 
     .ficha-maisie::after {
@@ -59,6 +62,30 @@
     .ficha-maisie > * {
       position: relative;
       z-index: 1;
+    }
+
+    @keyframes entradaArquivoMaisie {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.985);
+        filter: blur(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes gradeEnergiaMaisie {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 34px 34px;
+      }
     }
 
     .classificacao-maisie {
@@ -89,6 +116,42 @@
         rgba(0,0,0,0.38);
       overflow: hidden;
       box-shadow: inset 0 0 24px rgba(143, 82, 255, 0.08);
+      position: relative;
+      animation: subirMaisie 0.75s ease both;
+      animation-delay: 0.14s;
+    }
+
+    .maisie-retrato-box::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        conic-gradient(
+          from 0deg,
+          transparent,
+          rgba(143, 82, 255, 0.16),
+          transparent,
+          rgba(70, 170, 255, 0.10),
+          transparent
+        );
+      animation: girarEnergiaRetrato 8s linear infinite;
+      z-index: 0;
+    }
+
+    .maisie-retrato-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          rgba(143, 82, 255, 0.07),
+          transparent
+        );
+      animation: scanMaisie 3.5s linear infinite;
+      pointer-events: none;
+      z-index: 2;
     }
 
     .maisie-retrato-box img {
@@ -98,6 +161,43 @@
       object-fit: cover;
       object-position: top center;
       background: #000;
+      position: relative;
+      z-index: 1;
+      transition: 0.35s ease;
+    }
+
+    .maisie-retrato-box:hover img {
+      transform: scale(1.025);
+      filter:
+        saturate(1.08)
+        contrast(1.08)
+        drop-shadow(0 0 18px rgba(143, 82, 255, 0.18));
+    }
+
+    @keyframes girarEnergiaRetrato {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes scanMaisie {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      18% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
     }
 
     .maisie-status-box {
@@ -107,6 +207,8 @@
       background:
         linear-gradient(135deg, rgba(143,82,255,0.08), rgba(197,52,79,0.08)),
         rgba(0,0,0,0.28);
+      animation: subirMaisie 0.75s ease both;
+      animation-delay: 0.22s;
     }
 
     .maisie-status-box span {
@@ -123,6 +225,19 @@
       font-size: 28px;
       line-height: 1;
       text-transform: uppercase;
+      animation: pulsoStatusMaisie 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulsoStatusMaisie {
+      0%, 100% {
+        text-shadow: 0 0 10px rgba(197, 52, 79, 0.25);
+      }
+
+      50% {
+        text-shadow:
+          0 0 16px rgba(197, 52, 79, 0.55),
+          0 0 28px rgba(143, 82, 255, 0.35);
+      }
     }
 
     .maisie-painel {
@@ -133,6 +248,20 @@
         linear-gradient(135deg, rgba(255,255,255,0.03), rgba(143,82,255,0.05)),
         rgba(0,0,0,0.24);
       min-height: 100%;
+      animation: subirMaisie 0.75s ease both;
+      animation-delay: 0.08s;
+    }
+
+    @keyframes subirMaisie {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .maisie-cabecalho {
@@ -156,6 +285,22 @@
         0 0 16px rgba(143, 82, 255, 0.28),
         0 0 28px rgba(143, 82, 255, 0.18);
       margin-bottom: 10px;
+      animation: tituloMaisie 3.2s ease-in-out infinite;
+    }
+
+    @keyframes tituloMaisie {
+      0%, 100% {
+        text-shadow:
+          0 0 16px rgba(143, 82, 255, 0.28),
+          0 0 28px rgba(143, 82, 255, 0.18);
+      }
+
+      50% {
+        text-shadow:
+          0 0 18px rgba(216, 189, 116, 0.34),
+          0 0 34px rgba(143, 82, 255, 0.38),
+          0 0 52px rgba(197, 52, 79, 0.20);
+      }
     }
 
     .maisie-cabecalho p {
@@ -179,6 +324,8 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
+      position: relative;
+      overflow: hidden;
     }
 
     .maisie-botoes-topo {
@@ -204,6 +351,8 @@
       letter-spacing: 1.5px;
       font-size: 11px;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     .maisie-btn:hover {
@@ -235,6 +384,8 @@
       font-size: 12px;
       cursor: pointer;
       transition: 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
     .aba-maisie:hover {
@@ -249,7 +400,44 @@
       background:
         linear-gradient(135deg, rgba(143,82,255,0.20), rgba(197,52,79,0.10)),
         rgba(0,0,0,0.28);
-      box-shadow: 0 0 18px rgba(143, 82, 255, 0.14);
+      animation: abaAtivaMaisie 2.8s ease-in-out infinite;
+    }
+
+    @keyframes abaAtivaMaisie {
+      0%, 100% {
+        box-shadow: 0 0 18px rgba(143, 82, 255, 0.14);
+      }
+
+      50% {
+        box-shadow:
+          0 0 18px rgba(143, 82, 255, 0.28),
+          0 0 32px rgba(216, 189, 116, 0.08);
+      }
+    }
+
+    .maisie-selo::before,
+    .maisie-btn::before,
+    .aba-maisie::before,
+    .item-interativo-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.10),
+        transparent
+      );
+      transform: translateX(-120%);
+      transition: 0.45s;
+      pointer-events: none;
+    }
+
+    .maisie-selo:hover::before,
+    .maisie-btn:hover::before,
+    .aba-maisie:hover::before,
+    .item-interativo-maisie:hover::before {
+      transform: translateX(120%);
     }
 
     .conteudo-maisie {
@@ -283,6 +471,12 @@
       margin-top: 18px;
       position: relative;
       overflow: hidden;
+      animation: subirMaisie 0.75s ease both;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
     }
 
     .bloco-maisie::before {
@@ -293,6 +487,17 @@
       width: 3px;
       height: 100%;
       background: linear-gradient(to bottom, var(--maisie-roxo), var(--maisie-vermelho));
+    }
+
+    .bloco-maisie:hover,
+    .card-info-maisie:hover,
+    .card-lista-maisie:hover,
+    .frase-maisie:hover {
+      transform: translateY(-4px);
+      border-color: rgba(143, 82, 255, 0.42);
+      box-shadow:
+        0 0 24px rgba(143, 82, 255, 0.12),
+        inset 0 0 24px rgba(143, 82, 255, 0.035);
     }
 
     .bloco-maisie h3 {
@@ -314,6 +519,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
+      animation: abrirAbaMaisie 0.55s ease both;
     }
 
     .card-info-maisie {
@@ -321,7 +527,20 @@
       border-radius: 16px;
       padding: 16px;
       background: rgba(0,0,0,0.24);
+      animation: subirMaisie 0.75s ease both;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
     }
+
+    .card-info-maisie:nth-child(1) { animation-delay: 0.08s; }
+    .card-info-maisie:nth-child(2) { animation-delay: 0.12s; }
+    .card-info-maisie:nth-child(3) { animation-delay: 0.16s; }
+    .card-info-maisie:nth-child(4) { animation-delay: 0.20s; }
+    .card-info-maisie:nth-child(5) { animation-delay: 0.24s; }
+    .card-info-maisie:nth-child(6) { animation-delay: 0.28s; }
 
     .card-info-maisie span {
       display: block;
@@ -336,6 +555,12 @@
       color: var(--maisie-texto);
       font-size: 16px;
       font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .card-info-maisie:hover strong {
+      color: var(--maisie-amarelo);
+      text-shadow: 0 0 12px rgba(143, 82, 255, 0.32);
     }
 
     .frase-maisie {
@@ -346,6 +571,12 @@
       background:
         linear-gradient(135deg, rgba(197,52,79,0.10), rgba(143,82,255,0.08)),
         rgba(0,0,0,0.24);
+      animation: abrirAbaMaisie 0.55s ease both;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
     }
 
     .frase-maisie h4 {
@@ -361,6 +592,19 @@
       font-size: 24px;
       line-height: 1.4;
       font-weight: 600;
+      animation: fraseEnergiaMaisie 3.4s ease-in-out infinite;
+    }
+
+    @keyframes fraseEnergiaMaisie {
+      0%, 100% {
+        text-shadow: 0 0 8px rgba(143, 82, 255, 0.15);
+      }
+
+      50% {
+        text-shadow:
+          0 0 14px rgba(143, 82, 255, 0.36),
+          0 0 22px rgba(197, 52, 79, 0.20);
+      }
     }
 
     .roda-atributos-maisie {
@@ -380,6 +624,38 @@
         0 0 34px rgba(143, 82, 255, 0.14),
         inset 0 0 70px rgba(0,0,0,0.70);
       overflow: hidden;
+      animation:
+        aparecerRodaMaisie 0.9s ease both,
+        pulsoRodaMaisie 4s ease-in-out infinite;
+    }
+
+    @keyframes aparecerRodaMaisie {
+      from {
+        opacity: 0;
+        transform: scale(0.94) rotate(-2deg);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes pulsoRodaMaisie {
+      0%, 100% {
+        box-shadow:
+          0 0 34px rgba(143, 82, 255, 0.14),
+          inset 0 0 70px rgba(0,0,0,0.70);
+      }
+
+      50% {
+        box-shadow:
+          0 0 48px rgba(143, 82, 255, 0.24),
+          0 0 70px rgba(70, 170, 255, 0.08),
+          inset 0 0 70px rgba(0,0,0,0.70);
+      }
     }
 
     .roda-atributos-maisie::before {
@@ -459,6 +735,7 @@
       box-shadow:
         0 0 20px rgba(143, 82, 255, 0.10),
         inset 0 0 24px rgba(0,0,0,0.78);
+      animation: orbitarLeveMaisie 4.5s ease-in-out infinite;
     }
 
     .atributo-maisie:hover {
@@ -468,6 +745,20 @@
         0 0 24px rgba(143, 82, 255, 0.28),
         0 0 34px rgba(216, 189, 116, 0.08),
         inset 0 0 24px rgba(0,0,0,0.78);
+    }
+
+    .atributo-maisie:hover .valor {
+      color: var(--maisie-amarelo);
+    }
+
+    @keyframes orbitarLeveMaisie {
+      0%, 100% {
+        filter: brightness(1);
+      }
+
+      50% {
+        filter: brightness(1.18);
+      }
     }
 
     .atributo-maisie .valor {
@@ -501,30 +792,35 @@
       left: 15%;
       top: 39%;
       transform: translate(-50%, -50%);
+      animation-delay: 0s;
     }
 
     .atributo-agi {
       left: 50%;
       top: 14%;
       transform: translate(-50%, -50%);
+      animation-delay: 0.2s;
     }
 
     .atributo-int {
       left: 85%;
       top: 39%;
       transform: translate(-50%, -50%);
+      animation-delay: 0.4s;
     }
 
     .atributo-pre {
       left: 28%;
       top: 80%;
       transform: translate(-50%, -50%);
+      animation-delay: 0.6s;
     }
 
     .atributo-vig {
       left: 72%;
       top: 80%;
       transform: translate(-50%, -50%);
+      animation-delay: 0.8s;
     }
 
     .linha-atributo-maisie {
@@ -570,7 +866,8 @@
       }
     }
 
-    .detalhe-atributo-maisie {
+    .detalhe-atributo-maisie,
+    .detalhe-lista-maisie {
       margin-top: 18px;
       border: 1px solid rgba(143, 82, 255, 0.22);
       border-radius: 16px;
@@ -579,9 +876,12 @@
         linear-gradient(135deg, rgba(143,82,255,0.10), rgba(197,52,79,0.06)),
         rgba(0,0,0,0.26);
       min-height: 120px;
+      transition: 0.25s ease;
+      animation: subirMaisie 0.75s ease both;
     }
 
-    .detalhe-atributo-maisie h4 {
+    .detalhe-atributo-maisie h4,
+    .detalhe-lista-maisie h4 {
       color: var(--maisie-amarelo);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -589,11 +889,49 @@
       font-size: 18px;
     }
 
+    .detalhe-lista-maisie.atualizado,
+    .detalhe-atributo-maisie.atualizado {
+      animation: detalheAtualizadoMaisie 0.5s ease;
+    }
+
+    @keyframes detalheAtualizadoMaisie {
+      0% {
+        transform: scale(0.985);
+        border-color: rgba(143, 82, 255, 0.18);
+        box-shadow: none;
+      }
+
+      45% {
+        transform: scale(1.01);
+        border-color: rgba(216, 189, 116, 0.55);
+        box-shadow: 0 0 26px rgba(143, 82, 255, 0.18);
+      }
+
+      100% {
+        transform: scale(1);
+        border-color: rgba(143, 82, 255, 0.22);
+        box-shadow: none;
+      }
+    }
+
     .grupo-cards-maisie {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 16px;
+      animation: abrirAbaMaisie 0.55s ease both;
+    }
+
+    @keyframes abrirAbaMaisie {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .card-lista-maisie {
@@ -601,6 +939,12 @@
       border-radius: 18px;
       background: rgba(0,0,0,0.24);
       overflow: hidden;
+      animation: subirMaisie 0.75s ease both;
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
     }
 
     .card-lista-maisie h4 {
@@ -623,6 +967,8 @@
       border-bottom: 1px solid rgba(143, 82, 255, 0.10);
       transition: 0.2s;
       font-family: inherit;
+      position: relative;
+      overflow: hidden;
     }
 
     .item-interativo-maisie:last-child {
@@ -632,25 +978,6 @@
     .item-interativo-maisie:hover {
       background: rgba(143, 82, 255, 0.08);
       color: var(--maisie-amarelo);
-    }
-
-    .detalhe-lista-maisie {
-      margin-top: 18px;
-      border: 1px solid rgba(143, 82, 255, 0.22);
-      border-radius: 16px;
-      padding: 18px;
-      background:
-        linear-gradient(135deg, rgba(143,82,255,0.10), rgba(197,52,79,0.06)),
-        rgba(0,0,0,0.26);
-      min-height: 130px;
-    }
-
-    .detalhe-lista-maisie h4 {
-      color: var(--maisie-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 18px;
-      margin-bottom: 10px;
     }
 
     .lista-texto-maisie ul {
@@ -672,6 +999,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 18px;
       margin-top: 18px;
+      animation: abrirAbaMaisie 0.55s ease both;
     }
 
     .galeria-maisie figure {
@@ -679,12 +1007,28 @@
       border-radius: 18px;
       overflow: hidden;
       background: rgba(0,0,0,0.24);
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+    }
+
+    .galeria-maisie figure:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(216, 189, 116, 0.34);
+      box-shadow: 0 0 24px rgba(143, 82, 255, 0.14);
     }
 
     .galeria-maisie img {
       width: 100%;
       display: block;
       background: #000;
+      transition: 0.35s ease;
+    }
+
+    .galeria-maisie figure:hover img {
+      transform: scale(1.025);
+      filter: contrast(1.08) saturate(1.08);
     }
 
     .galeria-maisie figcaption {
@@ -693,6 +1037,76 @@
       font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
+    }
+
+    .efeito-particulas-maisie {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particula-maisie {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(198, 173, 255, 0.65);
+      box-shadow:
+        0 0 10px rgba(143, 82, 255, 0.70),
+        0 0 18px rgba(70, 170, 255, 0.28);
+      animation: particulaSubindoMaisie linear infinite;
+    }
+
+    @keyframes particulaSubindoMaisie {
+      from {
+        transform: translateY(110vh) scale(0.8);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.75;
+      }
+
+      85% {
+        opacity: 0.45;
+      }
+
+      to {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .falha-energia-maisie {
+      animation: glitchEnergiaMaisie 0.28s steps(2, end);
+    }
+
+    @keyframes glitchEnergiaMaisie {
+      0% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+      }
+
+      25% {
+        transform: translate(2px, -1px);
+        filter: hue-rotate(20deg);
+      }
+
+      50% {
+        transform: translate(-2px, 1px);
+        filter: hue-rotate(-20deg);
+      }
+
+      75% {
+        transform: translate(1px, 2px);
+      }
+
+      100% {
+        transform: translate(0);
+        filter: hue-rotate(0deg);
+      }
     }
 
     @media (max-width: 1100px) {
@@ -784,6 +1198,28 @@
 
       .atributo-maisie:hover {
         transform: translateY(-2px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ficha-maisie,
+      .ficha-maisie::before,
+      .maisie-painel,
+      .maisie-retrato-box,
+      .maisie-status-box,
+      .bloco-maisie,
+      .card-info-maisie,
+      .card-lista-maisie,
+      .frase-maisie,
+      .detalhe-lista-maisie,
+      .detalhe-atributo-maisie,
+      .maisie-cabecalho h2,
+      .frase-maisie p,
+      .roda-atributos-maisie,
+      .atributo-maisie,
+      .simbolos-roda-maisie,
+      .particula-maisie {
+        animation: none !important;
       }
     }
   </style>
@@ -882,7 +1318,6 @@
           </section>
 
           <section class="conteudo-maisie" id="atributos">
-
             <div class="bloco-maisie">
               <h3>Roda de Atributos</h3>
 
@@ -945,7 +1380,6 @@
                     <span class="sigla">VIG</span>
                   </span>
                 </button>
-
               </div>
 
               <div class="detalhe-atributo-maisie" id="detalhe-atributo-maisie">
@@ -953,7 +1387,6 @@
                 <p>Clique em um círculo da roda para ver sua descrição.</p>
               </div>
             </div>
-
           </section>
 
           <section class="conteudo-maisie" id="habilidades">
@@ -1180,6 +1613,9 @@
   <script>
     const abasMaisie = document.querySelectorAll(".aba-maisie");
     const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
+    const fichaMaisie = document.querySelector(".ficha-maisie");
+
+    criarParticulasMaisie();
 
     abasMaisie.forEach((aba) => {
       aba.addEventListener("click", () => {
@@ -1189,7 +1625,14 @@
         conteudosMaisie.forEach((conteudo) => conteudo.classList.remove("ativo"));
 
         aba.classList.add("ativa");
-        document.getElementById(alvo).classList.add("ativo");
+
+        const conteudoAtivo = document.getElementById(alvo);
+
+        if (conteudoAtivo) {
+          conteudoAtivo.classList.add("ativo");
+        }
+
+        causarFalhaEnergiaMaisie();
       });
     });
 
@@ -1202,6 +1645,9 @@
           <h4>${atributo.dataset.nome} — ${atributo.dataset.sigla} (${atributo.dataset.valor})</h4>
           <p>${atributo.dataset.desc}</p>
         `;
+
+        atualizarDetalheMaisie(detalheAtributoMaisie);
+        causarFalhaEnergiaMaisie();
       });
     });
 
@@ -1215,6 +1661,9 @@
             <h4>${item.dataset.titulo}</h4>
             <p>${item.dataset.texto}</p>
           `;
+
+          atualizarDetalheMaisie(detalhe);
+          causarFalhaEnergiaMaisie();
         });
       });
     }
@@ -1222,6 +1671,48 @@
     ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
     ativarDetalhesMaisie(".ritual-item", "detalhe-ritual-maisie");
     ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
+
+    function atualizarDetalheMaisie(elemento) {
+      if (!elemento) return;
+
+      elemento.classList.remove("atualizado");
+      void elemento.offsetWidth;
+      elemento.classList.add("atualizado");
+    }
+
+    function causarFalhaEnergiaMaisie() {
+      if (!fichaMaisie) return;
+
+      fichaMaisie.classList.remove("falha-energia-maisie");
+      void fichaMaisie.offsetWidth;
+      fichaMaisie.classList.add("falha-energia-maisie");
+
+      setTimeout(() => {
+        fichaMaisie.classList.remove("falha-energia-maisie");
+      }, 320);
+    }
+
+    function criarParticulasMaisie() {
+      const container = document.createElement("div");
+      container.className = "efeito-particulas-maisie";
+      document.body.prepend(container);
+
+      const quantidade = window.innerWidth < 720 ? 20 : 42;
+
+      for (let i = 0; i < quantidade; i++) {
+        const particula = document.createElement("span");
+        particula.className = "particula-maisie";
+
+        particula.style.left = `${Math.random() * 100}%`;
+        particula.style.animationDuration = `${6 + Math.random() * 9}s`;
+        particula.style.animationDelay = `${Math.random() * 8}s`;
+        particula.style.opacity = `${0.25 + Math.random() * 0.55}`;
+        particula.style.width = `${2 + Math.random() * 3}px`;
+        particula.style.height = particula.style.width;
+
+        container.appendChild(particula);
+      }
+    }
   </script>
 
 </body>
