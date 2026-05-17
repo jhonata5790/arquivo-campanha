@@ -300,41 +300,195 @@
       font-size: 14px;
     }
 
-    .atributos-dossie {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 9px;
+    /* RODA DE ATRIBUTOS DA YUNA */
+
+    .roda-atributos-yuna {
+      width: min(100%, 470px);
+      aspect-ratio: 1 / 1;
+      margin: 6px auto 18px;
+      position: relative;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(139, 77, 255, 0.18), transparent 13%),
+        radial-gradient(circle at center, transparent 0 21%, rgba(139, 77, 255, 0.16) 21.5%, transparent 22.5%),
+        radial-gradient(circle at center, transparent 0 37%, rgba(139, 77, 255, 0.18) 37.5%, transparent 38.5%),
+        radial-gradient(circle at center, transparent 0 48%, rgba(139, 77, 255, 0.20) 48.5%, transparent 49.5%),
+        radial-gradient(circle at center, rgba(139, 77, 255, 0.07), rgba(0,0,0,0.72) 62%, transparent 72%);
+      filter: drop-shadow(0 0 24px rgba(139, 77, 255, 0.22));
+      overflow: visible;
     }
 
-    .atributos-dossie button {
-      min-height: 82px;
+    .roda-atributos-yuna::before {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border: 1px solid rgba(139, 77, 255, 0.34);
       border-radius: 50%;
-      border: 1px solid rgba(139, 77, 255, 0.55);
+      box-shadow:
+        0 0 0 18px rgba(139, 77, 255, 0.025),
+        0 0 0 42px rgba(139, 77, 255, 0.018),
+        0 0 34px rgba(139, 77, 255, 0.25);
+    }
+
+    .roda-atributos-yuna::after {
+      content: "";
+      position: absolute;
+      inset: 49%;
+      width: 2%;
+      height: 2%;
+      border-radius: 50%;
+      background: var(--dossie-dourado);
+      box-shadow:
+        0 0 18px rgba(139, 77, 255, 0.8),
+        0 -138px 0 -1px rgba(139, 77, 255, 0.25),
+        0 138px 0 -1px rgba(139, 77, 255, 0.25),
+        138px 0 0 -1px rgba(139, 77, 255, 0.25),
+        -138px 0 0 -1px rgba(139, 77, 255, 0.25);
+    }
+
+    .linha-ritual {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 42%;
+      background: linear-gradient(to top, rgba(139, 77, 255, 0.55), transparent);
+      transform-origin: bottom center;
+      opacity: 0.7;
+    }
+
+    .linha-ritual.l1 {
+      transform: translateX(-50%) translateY(-100%) rotate(0deg);
+    }
+
+    .linha-ritual.l2 {
+      transform: translateX(-50%) translateY(-100%) rotate(72deg);
+    }
+
+    .linha-ritual.l3 {
+      transform: translateX(-50%) translateY(-100%) rotate(144deg);
+    }
+
+    .linha-ritual.l4 {
+      transform: translateX(-50%) translateY(-100%) rotate(216deg);
+    }
+
+    .linha-ritual.l5 {
+      transform: translateX(-50%) translateY(-100%) rotate(288deg);
+    }
+
+    .sigilo-central {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 110px;
+      height: 110px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(216, 189, 116, 0.62);
+      font-size: 42px;
+      text-shadow: 0 0 20px rgba(139, 77, 255, 0.85);
+      background: radial-gradient(circle, rgba(139, 77, 255, 0.12), rgba(0,0,0,0.55));
+      pointer-events: none;
+    }
+
+    .atributo-orb {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 77, 255, 0.62);
       background:
-        radial-gradient(circle, rgba(139, 77, 255, 0.20), rgba(0,0,0,0.72));
+        radial-gradient(circle at center, rgba(139, 77, 255, 0.18), rgba(0,0,0,0.92) 66%);
       color: var(--dossie-texto);
+      display: grid;
+      place-items: center;
+      text-align: center;
       cursor: pointer;
       transition: 0.25s;
+      box-shadow:
+        inset 0 0 18px rgba(139, 77, 255, 0.16),
+        0 0 18px rgba(139, 77, 255, 0.16);
+      z-index: 2;
     }
 
-    .atributos-dossie button span {
+    .atributo-orb::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(216, 189, 116, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .atributo-orb .valor {
       display: block;
-      color: var(--dossie-dourado);
-      font-size: 11px;
-      letter-spacing: 1px;
+      font-size: 34px;
+      color: #d8b5ff;
+      line-height: 1;
+      margin-bottom: 6px;
+      text-shadow: 0 0 14px rgba(139, 77, 255, 0.65);
     }
 
-    .atributos-dossie button strong {
+    .atributo-orb .nome {
       display: block;
-      font-size: 26px;
-      margin-top: 4px;
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
     }
 
-    .atributos-dossie button:hover,
-    .atributos-dossie button.selecionado {
-      transform: translateY(-4px) scale(1.04);
+    .atributo-orb .sigla {
+      display: block;
+      color: var(--dossie-texto);
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .atributo-orb:hover,
+    .atributo-orb.selecionado {
       border-color: var(--dossie-dourado);
-      box-shadow: 0 0 18px rgba(139, 77, 255, 0.35);
+      transform: scale(1.06);
+      box-shadow:
+        inset 0 0 22px rgba(139, 77, 255, 0.28),
+        0 0 24px rgba(139, 77, 255, 0.42),
+        0 0 14px rgba(216, 189, 116, 0.18);
+    }
+
+    .orb-for {
+      left: 0;
+      top: 36%;
+    }
+
+    .orb-agi {
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .orb-agi:hover,
+    .orb-agi.selecionado {
+      transform: translateX(-50%) scale(1.06);
+    }
+
+    .orb-int {
+      right: 0;
+      top: 36%;
+    }
+
+    .orb-pre {
+      left: 18%;
+      bottom: 3%;
+    }
+
+    .orb-vig {
+      right: 18%;
+      bottom: 3%;
     }
 
     .dossie-lista {
@@ -523,12 +677,25 @@
         min-height: 520px;
       }
 
-      .atributos-dossie {
-        grid-template-columns: repeat(2, 1fr);
+      .roda-atributos-yuna {
+        width: min(100%, 340px);
       }
 
-      .atributos-dossie button {
-        border-radius: 14px;
+      .atributo-orb {
+        width: 92px;
+        height: 92px;
+      }
+
+      .atributo-orb .valor {
+        font-size: 26px;
+      }
+
+      .atributo-orb .nome {
+        font-size: 8px;
+      }
+
+      .atributo-orb .sigla {
+        font-size: 14px;
       }
 
       .dossie-status {
@@ -657,38 +824,73 @@
           </div>
 
           <div class="dossie-bloco">
-            <h3>Atributos</h3>
+            <h3>Roda de Atributos</h3>
 
-            <div class="atributos-dossie">
-              <button class="atributo-card" data-titulo="FOR — Força" data-texto="Força representa potência física, impacto corpo a corpo e poder bruto.||Em Yuna, esse atributo é baixo. Sua ameaça não vem do corpo, mas do conhecimento paranormal.">
-                <span>FOR</span>
-                <strong>1</strong>
+            <div class="roda-atributos-yuna">
+
+              <div class="linha-ritual l1"></div>
+              <div class="linha-ritual l2"></div>
+              <div class="linha-ritual l3"></div>
+              <div class="linha-ritual l4"></div>
+              <div class="linha-ritual l5"></div>
+
+              <div class="sigilo-central">☽</div>
+
+              <button
+                class="atributo-card atributo-orb orb-for"
+                data-titulo="FOR — Força"
+                data-texto="Força representa potência física, impacto corpo a corpo e poder bruto.||Em Yuna, esse atributo é baixo. Sua ameaça não vem do corpo, mas do conhecimento paranormal."
+              >
+                <span class="valor">1</span>
+                <span class="nome">Força</span>
+                <span class="sigla">FOR</span>
               </button>
 
-              <button class="atributo-card" data-titulo="AGI — Agilidade" data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade e esquiva.||Em Yuna, esse atributo ajuda a manter distância e sobreviver quando o corpo não acompanha o perigo.">
-                <span>AGI</span>
-                <strong>3</strong>
+              <button
+                class="atributo-card atributo-orb orb-agi"
+                data-titulo="AGI — Agilidade"
+                data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade e esquiva.||Em Yuna, esse atributo ajuda a manter distância e sobreviver quando o corpo não acompanha o perigo."
+              >
+                <span class="valor">3</span>
+                <span class="nome">Agilidade</span>
+                <span class="sigla">AGI</span>
               </button>
 
-              <button class="atributo-card" data-titulo="INT — Intelecto" data-texto="Intelecto representa raciocínio, investigação, ocultismo e compreensão de padrões complexos.||É o maior atributo de Yuna e reflete seu domínio sobre manifestações do Outro Lado.">
-                <span>INT</span>
-                <strong>4</strong>
+              <button
+                class="atributo-card atributo-orb orb-int"
+                data-titulo="INT — Intelecto"
+                data-texto="Intelecto representa raciocínio, investigação, ocultismo e compreensão de padrões complexos.||É o maior atributo de Yuna e reflete seu domínio sobre manifestações do Outro Lado."
+              >
+                <span class="valor">4</span>
+                <span class="nome">Intelecto</span>
+                <span class="sigla">INT</span>
               </button>
 
-              <button class="atributo-card" data-titulo="PRE — Presença" data-texto="Presença representa influência, comunicação, força emocional e resistência mental.||Em Yuna, esse atributo é baixo, mostrando distância social, fragilidade emocional e dificuldade de se impor.">
-                <span>PRE</span>
-                <strong>1</strong>
+              <button
+                class="atributo-card atributo-orb orb-pre"
+                data-titulo="PRE — Presença"
+                data-texto="Presença representa influência, comunicação, força emocional e resistência mental.||Em Yuna, esse atributo é baixo, mostrando distância social, fragilidade emocional e dificuldade de se impor."
+              >
+                <span class="valor">1</span>
+                <span class="nome">Presença</span>
+                <span class="sigla">PRE</span>
               </button>
 
-              <button class="atributo-card" data-titulo="VIG — Vigor" data-texto="Vigor representa resistência física, saúde e tolerância à dor.||Yuna possui pouco vigor. Ela sobrevive mais por controle, distância e conhecimento do que por resistência física.">
-                <span>VIG</span>
-                <strong>1</strong>
+              <button
+                class="atributo-card atributo-orb orb-vig"
+                data-titulo="VIG — Vigor"
+                data-texto="Vigor representa resistência física, saúde e tolerância à dor.||Yuna possui pouco vigor. Ela sobrevive mais por controle, distância e conhecimento do que por resistência física."
+              >
+                <span class="valor">1</span>
+                <span class="nome">Vigor</span>
+                <span class="sigla">VIG</span>
               </button>
+
             </div>
 
             <div class="dossie-detalhe" id="detalhe-atributo">
               <h4>Nenhum atributo selecionado</h4>
-              <p>Clique em um atributo para abrir a leitura operacional.</p>
+              <p>Clique em um círculo da roda para abrir a leitura operacional.</p>
             </div>
           </div>
 
