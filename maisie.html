@@ -9,10 +9,8 @@
   <style>
     .ficha-maisie {
       --maisie-roxo: #8f52ff;
-      --maisie-roxo-2: #5f2fcf;
       --maisie-energia: #c6adff;
       --maisie-azul: #46aaff;
-      --maisie-preto: #07070a;
       --maisie-cinza: #a8a0b8;
       --maisie-texto: #ece7f8;
       --maisie-vermelho: #c5344f;
@@ -22,12 +20,7 @@
       border-radius: 28px;
       padding: 30px;
       background:
-        linear-gradient(
-          135deg,
-          rgba(3, 3, 7, 0.88),
-          rgba(8, 4, 16, 0.82),
-          rgba(3, 3, 7, 0.90)
-        ),
+        linear-gradient(135deg, rgba(3, 3, 7, 0.88), rgba(8, 4, 16, 0.82), rgba(3, 3, 7, 0.90)),
         radial-gradient(circle at 12% 10%, rgba(143, 82, 255, 0.16), transparent 24%),
         radial-gradient(circle at 82% 12%, rgba(197, 52, 79, 0.12), transparent 28%),
         url("Fundo-Maisie.png");
@@ -152,12 +145,7 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(
-          to bottom,
-          transparent,
-          rgba(143, 82, 255, 0.07),
-          transparent
-        );
+        linear-gradient(to bottom, transparent, rgba(143, 82, 255, 0.07), transparent);
       animation: scanMaisie 3.5s linear infinite;
       pointer-events: none;
       z-index: 2;
@@ -432,12 +420,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.10),
-        transparent
-      );
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.10), transparent);
       transform: translateX(-120%);
       transition: 0.45s;
       pointer-events: none;
@@ -618,231 +601,145 @@
       }
     }
 
+    /* ============================ */
+    /* RODA DE ATRIBUTOS — VERSÃO 2 */
+    /* ============================ */
+
     .roda-atributos-maisie {
-      width: min(620px, 100%);
+      width: min(720px, 100%);
       aspect-ratio: 1 / 1;
-      margin: 22px auto 0;
+      margin: 28px auto 0;
       position: relative;
       border-radius: 50%;
-      background:
-        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 18%),
-        radial-gradient(circle at center, rgba(198,173,255,0.10), transparent 34%),
-        radial-gradient(circle at center, transparent 43%, rgba(143,82,255,0.12) 44%, transparent 45%),
-        radial-gradient(circle at center, transparent 58%, rgba(216,189,116,0.10) 59%, transparent 60%),
-        rgba(0,0,0,0.18);
-      border: 1px solid rgba(143, 82, 255, 0.24);
-      box-shadow:
-        0 0 34px rgba(143, 82, 255, 0.14),
-        inset 0 0 70px rgba(0,0,0,0.70);
-      overflow: hidden;
-      animation:
-        aparecerRodaMaisie 0.9s ease both,
-        pulsoRodaMaisie 4s ease-in-out infinite;
-    }
-
-    @keyframes aparecerRodaMaisie {
-      from {
-        opacity: 0;
-        transform: scale(0.94) rotate(-2deg);
-        filter: blur(5px);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes pulsoRodaMaisie {
-      0%, 100% {
-        box-shadow:
-          0 0 34px rgba(143, 82, 255, 0.14),
-          inset 0 0 70px rgba(0,0,0,0.70);
-      }
-
-      50% {
-        box-shadow:
-          0 0 48px rgba(143, 82, 255, 0.24),
-          0 0 70px rgba(70, 170, 255, 0.08),
-          inset 0 0 70px rgba(0,0,0,0.70);
-      }
+      isolation: isolate;
+      overflow: visible;
+      filter: drop-shadow(0 0 28px rgba(143, 82, 255, 0.20));
     }
 
     .roda-atributos-maisie::before {
       content: "";
       position: absolute;
-      inset: 10%;
+      inset: 8%;
       border-radius: 50%;
-      border: 1px solid rgba(143, 82, 255, 0.24);
+      background:
+        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 20%),
+        radial-gradient(circle at center, rgba(70,170,255,0.08), transparent 44%),
+        radial-gradient(circle at center, transparent 54%, rgba(143,82,255,0.18) 55%, transparent 57%);
       box-shadow:
-        0 0 0 18px rgba(143, 82, 255, 0.035),
-        0 0 0 42px rgba(198, 173, 255, 0.025),
-        inset 0 0 30px rgba(143, 82, 255, 0.12);
+        inset 0 0 70px rgba(0,0,0,0.78),
+        0 0 46px rgba(143,82,255,0.16);
+      z-index: 0;
+      animation: pulsoCampoRodaMaisie 4s ease-in-out infinite;
     }
 
-    .roda-atributos-maisie::after {
-      content: "";
+    .roda-img {
       position: absolute;
-      inset: 31%;
-      border-radius: 50%;
-      border: 1px solid rgba(216, 189, 116, 0.22);
-      background:
-        linear-gradient(45deg, transparent 48%, rgba(143,82,255,0.38) 49%, rgba(143,82,255,0.38) 51%, transparent 52%),
-        linear-gradient(-45deg, transparent 48%, rgba(143,82,255,0.28) 49%, rgba(143,82,255,0.28) 51%, transparent 52%);
-      box-shadow:
-        0 0 28px rgba(143, 82, 255, 0.18),
-        inset 0 0 34px rgba(0,0,0,0.70);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .roda-img.anel-externo {
+      z-index: 1;
+      opacity: 0.82;
+      mix-blend-mode: screen;
+      animation: girarAnelExternoMaisie 42s linear infinite;
+    }
+
+    .roda-img.anel-interno {
+      inset: 8%;
+      width: 84%;
+      height: 84%;
+      z-index: 2;
+      opacity: 0.78;
+      mix-blend-mode: screen;
+      animation: girarAnelInternoMaisie 34s linear infinite reverse;
+    }
+
+    .roda-img.nucleo {
+      inset: 36%;
+      width: 28%;
+      height: 28%;
+      z-index: 5;
+      opacity: 0.92;
+      mix-blend-mode: screen;
+      animation: pulsoNucleoMaisie 3.2s ease-in-out infinite;
+      filter:
+        drop-shadow(0 0 18px rgba(143,82,255,0.45))
+        drop-shadow(0 0 32px rgba(70,170,255,0.16));
     }
 
     .roda-centro-maisie {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 108px;
-      height: 108px;
+      width: 128px;
+      height: 128px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      border: 1px solid rgba(216, 189, 116, 0.26);
-      background:
-        radial-gradient(circle, rgba(143,82,255,0.28), rgba(0,0,0,0.70) 62%);
       display: grid;
       place-items: center;
-      color: var(--maisie-amarelo);
       text-align: center;
+      color: var(--maisie-amarelo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 11px;
-      z-index: 3;
-      box-shadow:
-        0 0 22px rgba(143, 82, 255, 0.22),
-        inset 0 0 24px rgba(0,0,0,0.75);
+      z-index: 8;
+      text-shadow: 0 0 12px rgba(143,82,255,0.55);
+      pointer-events: none;
     }
 
     .roda-centro-maisie strong {
       display: block;
-      font-size: 18px;
+      font-size: 21px;
       margin-top: 4px;
-    }
-
-    .atributo-maisie {
-      position: absolute;
-      width: 128px;
-      height: 128px;
-      border: 1px solid rgba(143, 82, 255, 0.30);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 55%),
-        rgba(0,0,0,0.72);
       color: var(--maisie-texto);
-      cursor: pointer;
-      transition: 0.25s;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      font-family: inherit;
-      padding: 12px;
-      z-index: 4;
-      box-shadow:
-        0 0 20px rgba(143, 82, 255, 0.10),
-        inset 0 0 24px rgba(0,0,0,0.78);
-      animation: orbitarLeveMaisie 4.5s ease-in-out infinite;
     }
 
-    .atributo-maisie:hover {
-      transform: translate(-50%, -50%) scale(1.06);
-      border-color: var(--maisie-amarelo);
-      box-shadow:
-        0 0 24px rgba(143, 82, 255, 0.28),
-        0 0 34px rgba(216, 189, 116, 0.08),
-        inset 0 0 24px rgba(0,0,0,0.78);
-    }
-
-    .atributo-maisie:hover .valor {
-      color: var(--maisie-amarelo);
-    }
-
-    @keyframes orbitarLeveMaisie {
-      0%, 100% {
-        filter: brightness(1);
-      }
-
-      50% {
-        filter: brightness(1.18);
-      }
-    }
-
-    .atributo-maisie .valor {
+    .roda-centro-maisie span {
       display: block;
-      color: var(--maisie-roxo);
-      font-size: 34px;
-      font-weight: bold;
-      line-height: 1;
-      margin-bottom: 6px;
-      text-shadow: 0 0 14px rgba(143, 82, 255, 0.55);
-    }
-
-    .atributo-maisie .nome {
-      display: block;
-      color: var(--maisie-texto);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-    }
-
-    .atributo-maisie .sigla {
-      display: block;
-      color: var(--maisie-amarelo);
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .atributo-for {
-      left: 15%;
-      top: 39%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0s;
-    }
-
-    .atributo-agi {
-      left: 50%;
-      top: 14%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0.2s;
-    }
-
-    .atributo-int {
-      left: 85%;
-      top: 39%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0.4s;
-    }
-
-    .atributo-pre {
-      left: 28%;
-      top: 80%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0.6s;
-    }
-
-    .atributo-vig {
-      left: 72%;
-      top: 80%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0.8s;
+      color: var(--maisie-cinza);
+      font-size: 10px;
+      margin-top: 6px;
+      letter-spacing: 1.5px;
     }
 
     .linha-atributo-maisie {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 1px;
-      height: 39%;
-      background: linear-gradient(to top, rgba(143,82,255,0.45), transparent);
+      width: 2px;
+      height: 36%;
+      background:
+        linear-gradient(
+          to top,
+          rgba(143,82,255,0.75),
+          rgba(198,173,255,0.42),
+          transparent
+        );
       transform-origin: bottom center;
-      z-index: 1;
+      z-index: 3;
+      opacity: 0.58;
+      filter: drop-shadow(0 0 8px rgba(143,82,255,0.70));
+      overflow: hidden;
+    }
+
+    .linha-atributo-maisie::after {
+      content: "";
+      position: absolute;
+      left: -3px;
+      top: 100%;
+      width: 8px;
+      height: 38px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      box-shadow:
+        0 0 12px rgba(198,173,255,0.9),
+        0 0 22px rgba(143,82,255,0.65);
+      animation: energiaSubindoLinhaMaisie 2.2s linear infinite;
     }
 
     .linha-atributo-maisie.l1 { transform: translate(-50%, -100%) rotate(0deg); }
@@ -851,29 +748,270 @@
     .linha-atributo-maisie.l4 { transform: translate(-50%, -100%) rotate(216deg); }
     .linha-atributo-maisie.l5 { transform: translate(-50%, -100%) rotate(288deg); }
 
-    .simbolos-roda-maisie {
+    .linha-atributo-maisie.l1::after { animation-delay: 0s; }
+    .linha-atributo-maisie.l2::after { animation-delay: 0.25s; }
+    .linha-atributo-maisie.l3::after { animation-delay: 0.5s; }
+    .linha-atributo-maisie.l4::after { animation-delay: 0.75s; }
+    .linha-atributo-maisie.l5::after { animation-delay: 1s; }
+
+    .atributo-maisie {
       position: absolute;
-      inset: 5%;
+      width: 138px;
+      height: 138px;
+      border: none;
       border-radius: 50%;
-      border: 1px dashed rgba(143,82,255,0.20);
-      animation: girarRodaMaisie 26s linear infinite;
-      pointer-events: none;
-    }
-
-    .simbolos-roda-maisie::before {
-      content: "✧  ✦  ✧  ⚚  ✧  ✦  ✧  ⚚  ✧  ✦  ✧";
-      position: absolute;
-      inset: 0;
+      background: transparent;
+      color: var(--maisie-texto);
+      cursor: pointer;
+      transition: 0.25s;
       display: grid;
-      place-items: start center;
-      color: rgba(198, 173, 255, 0.28);
-      font-size: 16px;
-      letter-spacing: 10px;
+      place-items: center;
+      text-align: center;
+      font-family: inherit;
+      padding: 0;
+      z-index: 9;
+      transform: translate(-50%, -50%);
     }
 
-    @keyframes girarRodaMaisie {
+    .atributo-maisie::before {
+      content: "";
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      background: url("Roda-Maisie-No.png") center / contain no-repeat;
+      opacity: 0.82;
+      mix-blend-mode: screen;
+      filter:
+        drop-shadow(0 0 12px rgba(143,82,255,0.35))
+        drop-shadow(0 0 18px rgba(216,189,116,0.08));
+      animation: pulsoNoAtributoMaisie 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .atributo-maisie::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 58%),
+        rgba(0,0,0,0.52);
+      box-shadow:
+        inset 0 0 22px rgba(0,0,0,0.85),
+        0 0 20px rgba(143,82,255,0.12);
+      z-index: -1;
+    }
+
+    .atributo-maisie:hover,
+    .atributo-maisie.selecionado {
+      filter:
+        brightness(1.18)
+        drop-shadow(0 0 16px rgba(143,82,255,0.60))
+        drop-shadow(0 0 28px rgba(216,189,116,0.12));
+    }
+
+    .atributo-maisie:hover::before,
+    .atributo-maisie.selecionado::before {
+      opacity: 1;
+      animation:
+        pulsoNoAtributoMaisie 2.2s ease-in-out infinite,
+        girarNoSelecionadoMaisie 10s linear infinite;
+    }
+
+    .atributo-maisie .icone-atributo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 4px;
+      opacity: 0.86;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 8px rgba(143,82,255,0.55));
+      transition: 0.25s;
+    }
+
+    .atributo-maisie:hover .icone-atributo,
+    .atributo-maisie.selecionado .icone-atributo {
+      transform: scale(1.12);
+      opacity: 1;
+      filter:
+        drop-shadow(0 0 10px rgba(216,189,116,0.40))
+        drop-shadow(0 0 18px rgba(143,82,255,0.75));
+    }
+
+    .atributo-maisie .valor {
+      display: block;
+      color: var(--maisie-roxo);
+      font-size: 34px;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 4px;
+      text-shadow: 0 0 14px rgba(143, 82, 255, 0.55);
+      transition: 0.25s;
+    }
+
+    .atributo-maisie .nome {
+      display: block;
+      color: var(--maisie-texto);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 3px;
+    }
+
+    .atributo-maisie .sigla {
+      display: block;
+      color: var(--maisie-amarelo);
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .atributo-maisie:hover .valor,
+    .atributo-maisie.selecionado .valor {
+      color: var(--maisie-amarelo);
+    }
+
+    .atributo-for {
+      left: 15%;
+      top: 40%;
+    }
+
+    .atributo-agi {
+      left: 50%;
+      top: 14%;
+    }
+
+    .atributo-int {
+      left: 85%;
+      top: 40%;
+    }
+
+    .atributo-pre {
+      left: 28%;
+      top: 81%;
+    }
+
+    .atributo-vig {
+      left: 72%;
+      top: 81%;
+    }
+
+    .micro-particulas-roda {
+      position: absolute;
+      inset: 10%;
+      border-radius: 50%;
+      z-index: 4;
+      pointer-events: none;
+      overflow: hidden;
+      mask-image: radial-gradient(circle, black 0 68%, transparent 71%);
+    }
+
+    .micro-particulas-roda span {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(198,173,255,0.75);
+      box-shadow:
+        0 0 8px rgba(143,82,255,0.8),
+        0 0 16px rgba(70,170,255,0.25);
+      animation: flutuarParticulaRodaMaisie linear infinite;
+    }
+
+    @keyframes girarAnelExternoMaisie {
       to {
         transform: rotate(360deg);
+      }
+    }
+
+    @keyframes girarAnelInternoMaisie {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulsoCampoRodaMaisie {
+      0%, 100% {
+        opacity: 0.85;
+        filter: brightness(1);
+      }
+
+      50% {
+        opacity: 1;
+        filter: brightness(1.18);
+      }
+    }
+
+    @keyframes pulsoNucleoMaisie {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.86;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    @keyframes energiaSubindoLinhaMaisie {
+      from {
+        top: 100%;
+        opacity: 0;
+      }
+
+      18% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 0.7;
+      }
+
+      to {
+        top: -40px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulsoNoAtributoMaisie {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 12px rgba(143,82,255,0.28));
+      }
+
+      50% {
+        transform: scale(1.035);
+        filter:
+          drop-shadow(0 0 16px rgba(143,82,255,0.58))
+          drop-shadow(0 0 24px rgba(70,170,255,0.14));
+      }
+    }
+
+    @keyframes girarNoSelecionadoMaisie {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes flutuarParticulaRodaMaisie {
+      from {
+        transform: translateY(120%) scale(0.8);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      80% {
+        opacity: 0.55;
+      }
+
+      to {
+        transform: translateY(-20%) scale(1.15);
+        opacity: 0;
       }
     }
 
@@ -1173,15 +1311,19 @@
 
       .roda-atributos-maisie {
         width: 100%;
-        min-height: 560px;
+        min-height: 760px;
         aspect-ratio: auto;
         border-radius: 24px;
+        display: grid;
+        gap: 12px;
+        padding: 16px 0;
+        filter: none;
       }
 
       .roda-atributos-maisie::before,
-      .roda-atributos-maisie::after,
-      .simbolos-roda-maisie,
-      .linha-atributo-maisie {
+      .roda-img,
+      .linha-atributo-maisie,
+      .micro-particulas-roda {
         display: none;
       }
 
@@ -1194,7 +1336,9 @@
         height: auto;
         border-radius: 18px;
         padding: 18px;
-        margin: 16px auto;
+        margin: 0 auto 10px;
+        border: 1px solid rgba(143,82,255,0.22);
+        background: rgba(0,0,0,0.44);
       }
 
       .atributo-maisie {
@@ -1204,9 +1348,16 @@
         transform: none;
         width: 100%;
         height: auto;
-        min-height: 105px;
+        min-height: 120px;
         border-radius: 18px;
-        margin: 10px 0;
+        margin: 0;
+        border: 1px solid rgba(143,82,255,0.22);
+        background: rgba(0,0,0,0.34);
+      }
+
+      .atributo-maisie::before {
+        inset: -16px;
+        opacity: 0.42;
       }
 
       .atributo-maisie:hover {
@@ -1230,7 +1381,8 @@
       .frase-maisie p,
       .roda-atributos-maisie,
       .atributo-maisie,
-      .simbolos-roda-maisie,
+      .roda-img,
+      .micro-particulas-roda span,
       .particula-maisie {
         animation: none !important;
       }
@@ -1339,9 +1491,13 @@
                 no dossiê operacional de Maisie Hundown.
               </p>
 
-              <div class="roda-atributos-maisie">
+              <div class="roda-atributos-maisie" id="roda-maisie">
 
-                <div class="simbolos-roda-maisie"></div>
+                <img src="Roda-Maisie-Anel-Externo.png" class="roda-img anel-externo" alt="">
+                <img src="Roda-Maisie-Anel-Interno.png" class="roda-img anel-interno" alt="">
+                <img src="Roda-Maisie-Nucleo.png" class="roda-img nucleo" alt="">
+
+                <div class="micro-particulas-roda" id="micro-particulas-roda"></div>
 
                 <div class="linha-atributo-maisie l1"></div>
                 <div class="linha-atributo-maisie l2"></div>
@@ -1349,13 +1505,15 @@
                 <div class="linha-atributo-maisie l4"></div>
                 <div class="linha-atributo-maisie l5"></div>
 
-                <div class="roda-centro-maisie">
+                <div class="roda-centro-maisie" id="centro-roda-maisie">
                   Ordo
                   <strong>Maisie</strong>
+                  <span>Atributos</span>
                 </div>
 
                 <button class="atributo-maisie atributo-for" data-nome="Força" data-sigla="FOR" data-valor="1" data-desc="Representa a força física, potência muscular e a capacidade de realizar ações que exigem impacto ou resistência corporal bruta.">
                   <span>
+                    <img src="Icone-FOR.png" class="icone-atributo" alt="">
                     <span class="valor">1</span>
                     <span class="nome">Força</span>
                     <span class="sigla">FOR</span>
@@ -1364,6 +1522,7 @@
 
                 <button class="atributo-maisie atributo-agi" data-nome="Agilidade" data-sigla="AGI" data-valor="1" data-desc="Representa reflexos, velocidade, coordenação motora e precisão física. Também influencia ações de esquiva, movimentação e reação.">
                   <span>
+                    <img src="Icone-AGI.png" class="icone-atributo" alt="">
                     <span class="valor">1</span>
                     <span class="nome">Agilidade</span>
                     <span class="sigla">AGI</span>
@@ -1372,6 +1531,7 @@
 
                 <button class="atributo-maisie atributo-int" data-nome="Intelecto" data-sigla="INT" data-valor="3" data-desc="Representa raciocínio, memória, conhecimento, capacidade de análise e domínio técnico. É um dos atributos mais fortes de Maisie.">
                   <span>
+                    <img src="Icone-INT.png" class="icone-atributo" alt="">
                     <span class="valor">3</span>
                     <span class="nome">Intelecto</span>
                     <span class="sigla">INT</span>
@@ -1380,6 +1540,7 @@
 
                 <button class="atributo-maisie atributo-pre" data-nome="Presença" data-sigla="PRE" data-valor="3" data-desc="Representa carisma, força de personalidade, expressão emocional e impacto social. Maisie possui uma presença marcante, intensa e difícil de ignorar.">
                   <span>
+                    <img src="Icone-PRE.png" class="icone-atributo" alt="">
                     <span class="valor">3</span>
                     <span class="nome">Presença</span>
                     <span class="sigla">PRE</span>
@@ -1388,6 +1549,7 @@
 
                 <button class="atributo-maisie atributo-vig" data-nome="Vigor" data-sigla="VIG" data-valor="2" data-desc="Representa resistência física, durabilidade, energia corporal e capacidade de suportar dor, cansaço e desgaste.">
                   <span>
+                    <img src="Icone-VIG.png" class="icone-atributo" alt="">
                     <span class="valor">2</span>
                     <span class="nome">Vigor</span>
                     <span class="sigla">VIG</span>
@@ -1397,7 +1559,7 @@
 
               <div class="detalhe-atributo-maisie" id="detalhe-atributo-maisie">
                 <h4>Nenhum atributo selecionado</h4>
-                <p>Clique em um círculo da roda para ver sua descrição.</p>
+                <p>Clique em um ponto da roda para ver sua descrição.</p>
               </div>
             </div>
           </section>
@@ -1627,8 +1789,10 @@
     const abasMaisie = document.querySelectorAll(".aba-maisie");
     const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
     const fichaMaisie = document.querySelector(".ficha-maisie");
+    const centroRodaMaisie = document.getElementById("centro-roda-maisie");
 
     criarParticulasMaisie();
+    criarMicroParticulasRodaMaisie();
 
     abasMaisie.forEach((aba) => {
       aba.addEventListener("click", () => {
@@ -1654,10 +1818,21 @@
 
     atributosMaisie.forEach((atributo) => {
       atributo.addEventListener("click", () => {
+        atributosMaisie.forEach((item) => item.classList.remove("selecionado"));
+        atributo.classList.add("selecionado");
+
         detalheAtributoMaisie.innerHTML = `
           <h4>${atributo.dataset.nome} — ${atributo.dataset.sigla} (${atributo.dataset.valor})</h4>
           <p>${atributo.dataset.desc}</p>
         `;
+
+        if (centroRodaMaisie) {
+          centroRodaMaisie.innerHTML = `
+            ${atributo.dataset.sigla}
+            <strong>${atributo.dataset.valor}</strong>
+            <span>${atributo.dataset.nome}</span>
+          `;
+        }
 
         atualizarDetalheMaisie(detalheAtributoMaisie);
         causarFalhaEnergiaMaisie();
@@ -1722,6 +1897,25 @@
         particula.style.opacity = `${0.25 + Math.random() * 0.55}`;
         particula.style.width = `${2 + Math.random() * 3}px`;
         particula.style.height = particula.style.width;
+
+        container.appendChild(particula);
+      }
+    }
+
+    function criarMicroParticulasRodaMaisie() {
+      const container = document.getElementById("micro-particulas-roda");
+      if (!container) return;
+
+      const quantidade = window.innerWidth < 720 ? 0 : 26;
+
+      for (let i = 0; i < quantidade; i++) {
+        const particula = document.createElement("span");
+
+        particula.style.left = `${10 + Math.random() * 80}%`;
+        particula.style.top = `${10 + Math.random() * 80}%`;
+        particula.style.animationDuration = `${3 + Math.random() * 5}s`;
+        particula.style.animationDelay = `${Math.random() * 4}s`;
+        particula.style.opacity = `${0.25 + Math.random() * 0.55}`;
 
         container.appendChild(particula);
       }
