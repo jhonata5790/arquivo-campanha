@@ -7,7 +7,588 @@
   <title>Personagens | Arquivo da Campanha</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .personagens-pagina {
+      --pers-vermelho: #b51624;
+      --pers-roxo: #8b4dff;
+      --pers-amarelo: #d8bd74;
+      --pers-verde: #6f8f4e;
+      --pers-metal: #8a8a8a;
+      --pers-texto: #e8dfd2;
+      --pers-fraco: #a89f94;
+
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 28px;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.20), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.17), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
+        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(12, 8, 14, 0.98));
+      box-shadow:
+        0 0 44px rgba(181, 22, 36, 0.16),
+        inset 0 0 70px rgba(0, 0, 0, 0.68);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .personagens-pagina::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .personagens-pagina::after {
+      content: "DOSSIÊS // PERSONAGENS // ORDO REALITAS";
+      position: absolute;
+      right: -128px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .personagens-pagina > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .classificacao {
+      color: #ff3045;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .personagens-hero {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      padding-bottom: 30px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+    }
+
+    .personagens-hero-texto {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
+        rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .personagens-hero-texto::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--pers-vermelho), var(--pers-roxo), var(--pers-amarelo));
+    }
+
+    .personagens-hero-texto .classificacao {
+      margin-bottom: 18px;
+    }
+
+    .personagens-hero-texto h2 {
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.92;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--pers-amarelo);
+      text-shadow:
+        0 0 18px rgba(181, 22, 36, 0.36),
+        0 0 36px rgba(139, 77, 255, 0.20);
+      margin-bottom: 22px;
+    }
+
+    .personagens-hero-texto p {
+      color: var(--pers-fraco);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 780px;
+    }
+
+    .personagens-hero-texto p + p {
+      margin-top: 14px;
+    }
+
+    .personagens-selo {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at center, rgba(181,22,36,0.18), transparent 34%),
+        radial-gradient(circle at center, rgba(139,77,255,0.15), transparent 58%),
+        rgba(0,0,0,0.36);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .personagens-selo::before {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.26);
+      box-shadow:
+        0 0 0 28px rgba(181, 22, 36, 0.04),
+        0 0 0 58px rgba(139, 77, 255, 0.03),
+        0 0 52px rgba(181, 22, 36, 0.28);
+    }
+
+    .personagens-selo::after {
+      content: "DOS";
+      color: var(--pers-amarelo);
+      font-size: clamp(58px, 7vw, 92px);
+      letter-spacing: 8px;
+      font-weight: bold;
+      text-shadow:
+        0 0 22px rgba(181, 22, 36, 0.75),
+        0 0 46px rgba(139, 77, 255, 0.40);
+      z-index: 1;
+    }
+
+    .personagens-selo-dados {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .pers-mini-dado {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.46);
+      text-align: center;
+    }
+
+    .pers-mini-dado span {
+      display: block;
+      color: var(--pers-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 6px;
+    }
+
+    .pers-mini-dado strong {
+      color: var(--pers-amarelo);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .abas-personagens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(0,0,0,0.26);
+    }
+
+    .aba-personagem {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.035);
+      color: var(--pers-texto);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .aba-personagem:hover {
+      color: var(--pers-amarelo);
+      border-color: var(--pers-amarelo);
+      transform: translateY(-2px);
+    }
+
+    .aba-personagem.ativa {
+      color: var(--pers-amarelo);
+      border-color: rgba(181, 22, 36, 0.65);
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.24), rgba(139,77,255,0.10)),
+        rgba(0,0,0,0.30);
+      box-shadow: 0 0 18px rgba(181, 22, 36, 0.16);
+    }
+
+    .conteudo-personagem {
+      display: none;
+    }
+
+    .conteudo-personagem.ativo {
+      display: block;
+      animation: aparecerPersonagem 0.35s ease;
+    }
+
+    @keyframes aparecerPersonagem {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .personagens-secao {
+      margin-top: 28px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .personagens-secao::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: rgba(216, 189, 116, 0.5);
+    }
+
+    .personagens-secao h2 {
+      color: var(--pers-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(26px, 4vw, 46px);
+      margin-bottom: 14px;
+    }
+
+    .personagens-secao p {
+      color: var(--pers-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      max-width: 980px;
+    }
+
+    .cards-personagens {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .personagem-card {
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 20px;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.30);
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.28s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .personagem-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(216, 189, 116, 0.42);
+      box-shadow: 0 0 24px rgba(216, 189, 116, 0.10);
+    }
+
+    .personagem-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .personagem-card.yuna::before {
+      background: radial-gradient(circle at top, rgba(139,77,255,0.85), transparent 48%);
+    }
+
+    .personagem-card.lisa::before {
+      background: radial-gradient(circle at top, rgba(111,143,78,0.80), transparent 48%);
+    }
+
+    .personagem-card.blender::before {
+      background: radial-gradient(circle at top, rgba(181,22,36,0.85), transparent 48%);
+    }
+
+    .personagem-card.bloqueado::before {
+      background: radial-gradient(circle at top, rgba(181,22,36,0.52), rgba(0,0,0,0.08), transparent 52%);
+    }
+
+    .personagem-card.npc::before {
+      background: radial-gradient(circle at top, rgba(216,189,116,0.42), transparent 48%);
+    }
+
+    .personagem-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .personagem-status {
+      display: inline-block;
+      width: fit-content;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--pers-amarelo);
+      background: rgba(0,0,0,0.34);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 9px;
+      margin-bottom: 14px;
+    }
+
+    .personagem-card h3 {
+      color: var(--pers-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .personagem-card p {
+      color: var(--pers-fraco);
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .personagem-meta {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(216, 189, 116, 0.12);
+    }
+
+    .personagem-meta div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--pers-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+    }
+
+    .personagem-meta strong {
+      color: var(--pers-texto);
+      font-weight: normal;
+      text-align: right;
+    }
+
+    .personagem-card a {
+      display: inline-block;
+      width: fit-content;
+      margin-top: 18px;
+      color: var(--pers-texto);
+      text-decoration: none;
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 12px;
+      padding: 11px 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      transition: 0.22s;
+    }
+
+    .personagem-card a:hover {
+      color: var(--pers-amarelo);
+      border-color: var(--pers-amarelo);
+      box-shadow: 0 0 18px rgba(216, 189, 116, 0.12);
+    }
+
+    .botao-bloqueado {
+      display: inline-block;
+      width: fit-content;
+      margin-top: 18px;
+      border: 1px solid rgba(181, 22, 36, 0.40);
+      border-radius: 12px;
+      padding: 11px 13px;
+      color: #ff9aa4;
+      background: rgba(181,22,36,0.08);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      cursor: not-allowed;
+      user-select: none;
+    }
+
+    .dossie-detalhe {
+      margin-top: 22px;
+      border: 1px solid rgba(181, 22, 36, 0.30);
+      border-radius: 18px;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.34);
+      min-height: 150px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossie-detalhe::before {
+      content: "LEITURA DO DOSSIÊ";
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 4px;
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .dossie-detalhe h3 {
+      color: var(--pers-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 24px;
+      margin-bottom: 12px;
+      padding-right: 140px;
+    }
+
+    .dossie-detalhe p {
+      color: var(--pers-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .registro-bloqueado {
+      margin-top: 18px;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(0,0,0,0.32);
+      font-family: monospace;
+    }
+
+    .registro-bloqueado p {
+      color: var(--pers-texto);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .censurado {
+      display: inline-block;
+      min-width: 90px;
+      height: 14px;
+      background: rgba(0,0,0,0.88);
+      border: 1px solid rgba(181,22,36,0.22);
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    .terminal-personagens {
+      margin-top: 28px;
+      border: 1px solid rgba(181, 22, 36, 0.32);
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.36);
+      font-family: monospace;
+    }
+
+    .terminal-personagens span {
+      display: block;
+      color: #ff3045;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .terminal-personagens p {
+      color: var(--pers-texto);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .personagens-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-personagens {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .personagens-pagina {
+        padding: 18px;
+      }
+
+      .personagens-hero-texto h2 {
+        font-size: 40px;
+      }
+
+      .personagens-selo-dados {
+        grid-template-columns: 1fr;
+      }
+
+      .abas-personagens {
+        flex-direction: column;
+      }
+
+      .aba-personagem {
+        width: 100%;
+      }
+
+      .cards-personagens {
+        grid-template-columns: 1fr;
+      }
+
+      .dossie-detalhe h3 {
+        padding-right: 0;
+      }
+
+      .dossie-detalhe::before {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <div class="fundo-paranormal"></div>
@@ -15,143 +596,461 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Personagens registrados pela Ordo Realitas</p>
+      <p>Dossiês de personagens registrados</p>
     </div>
 
     <nav>
-  <a href="index.html">Início</a>
-  <a href="ordo.html">Ordo Realitas</a>
-  <a href="locais.html">Locais</a>
-  <a href="personagens.html">Personagens</a>
-  <a href="missoes.html">Missões</a>
-  <a href="documentos.html">Documentos</a>
-</nav>
+      <a href="index.html">Início</a>
+      <a href="ordo.html">Ordo Realitas</a>
+      <a href="locais.html">Locais</a>
+      <a href="personagens.html">Personagens</a>
+      <a href="missoes.html">Missões</a>
+      <a href="documentos.html">Documentos</a>
+    </nav>
   </header>
 
   <main>
 
-    <section class="hero">
-      <p class="classificacao">Arquivo de agentes // acesso parcial</p>
+    <section class="personagens-pagina">
 
-      <h2>Personagens</h2>
+      <section class="personagens-hero">
 
-      <p>
-        Registros de agentes, aliados, inimigos, figuras importantes e pessoas envolvidas
-        direta ou indiretamente com os acontecimentos da campanha.
-      </p>
-    </section>
+        <div class="personagens-hero-texto">
+          <p class="classificacao">Central de dossiês // personagens registrados</p>
 
-    <section class="trindade-destaque">
-      <div>
-        <p class="classificacao">Comando operacional // núcleo semi-líder</p>
-        <h2>Trindade da Ordem</h2>
+          <h2>Personagens<br>da Campanha</h2>
+
+          <p>
+            Esta seção reúne dossiês de agentes, semi-líderes, figuras internas da Ordem
+            e registros pessoais vinculados aos eventos de Corações do Outro Lado.
+          </p>
+
+          <p>
+            Nem todo dossiê está liberado. Algumas fichas permanecem bloqueadas por estarem
+            incompletas, em revisão ou aguardando autorização de exibição.
+          </p>
+        </div>
+
+        <div class="personagens-selo">
+          <div class="personagens-selo-dados">
+            <div class="pers-mini-dado">
+              <span>Dossiês</span>
+              <strong>Parciais</strong>
+            </div>
+
+            <div class="pers-mini-dado">
+              <span>Jogadores</span>
+              <strong>Bloqueado</strong>
+            </div>
+
+            <div class="pers-mini-dado">
+              <span>Trindade</span>
+              <strong>Liberada</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="abas-personagens">
+        <button class="aba-personagem ativa" data-personagem="trindade">Trindade da Ordem</button>
+        <button class="aba-personagem" data-personagem="jogadores">Agentes dos Jogadores</button>
+        <button class="aba-personagem" data-personagem="npcs">NPCs Registrados</button>
+        <button class="aba-personagem" data-personagem="bloqueados">Dossiês Bloqueados</button>
+      </div>
+
+      <section class="conteudo-personagem ativo" id="trindade">
+
+        <section class="personagens-secao">
+          <p class="classificacao">Núcleo operacional // dossiês liberados</p>
+          <h2>A Trindade da Ordem</h2>
+
+          <p>
+            A Trindade representa o equilíbrio instável da Ordo Realitas: ocultismo,
+            especialização e combate. Estes dossiês estão liberados para consulta parcial.
+          </p>
+
+          <div class="cards-personagens">
+
+            <article class="personagem-card yuna">
+              <div>
+                <span class="personagem-status">Dossiê liberado</span>
+                <h3>Yuna</h3>
+                <p>
+                  Semi-Líder Ocultista. Reservada, silenciosa e profundamente ligada ao
+                  estudo de manifestações paranormais.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Classe</span><strong>Ocultista</strong></div>
+                  <div><span>NEX</span><strong>60%</strong></div>
+                  <div><span>Setor</span><strong>Ala Ocultista</strong></div>
+                  <div><span>Acesso</span><strong>Parcial</strong></div>
+                </div>
+              </div>
+
+              <a href="yuna.html">Abrir dossiê</a>
+            </article>
+
+            <article class="personagem-card lisa">
+              <div>
+                <span class="personagem-status">Dossiê liberado</span>
+                <h3>Lisa</h3>
+                <p>
+                  Semi-Líder Especialista. Coordenadora, estratégica e responsável por manter
+                  a estrutura da Ordem funcionando sob pressão.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Classe</span><strong>Especialista</strong></div>
+                  <div><span>NEX</span><strong>60%</strong></div>
+                  <div><span>Setor</span><strong>Ala Especialista</strong></div>
+                  <div><span>Acesso</span><strong>Parcial</strong></div>
+                </div>
+              </div>
+
+              <a href="lisa.html">Abrir dossiê</a>
+            </article>
+
+            <article class="personagem-card blender">
+              <div>
+                <span class="personagem-status">Dossiê liberado</span>
+                <h3>Blender</h3>
+                <p>
+                  Semi-Líder Combatente. Linha de frente da Ordem, responsável por contenção
+                  física, treino e impacto direto em campo.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Classe</span><strong>Combatente</strong></div>
+                  <div><span>NEX</span><strong>60%</strong></div>
+                  <div><span>Setor</span><strong>Ala Combatente</strong></div>
+                  <div><span>Acesso</span><strong>Parcial</strong></div>
+                </div>
+              </div>
+
+              <a href="blender.html">Abrir dossiê</a>
+            </article>
+
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-personagem" id="jogadores">
+
+        <section class="personagens-secao">
+          <p class="classificacao">Agentes dos jogadores // fichas em montagem</p>
+          <h2>Agentes dos Jogadores</h2>
+
+          <p>
+            Estes dossiês foram localizados no sistema, mas ainda não estão liberados para
+            consulta. As fichas permanecem bloqueadas até a finalização dos registros visuais,
+            mecânicos e narrativos.
+          </p>
+
+          <div class="cards-personagens">
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Dossiê bloqueado</span>
+                <h3>Maisie</h3>
+                <p>
+                  Dossiê localizado no sistema. Ficha visual e registro completo ainda aguardam
+                  finalização antes da liberação pública.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Jogador</span><strong>Caio</strong></div>
+                  <div><span>Classe</span><strong>Não liberada</strong></div>
+                  <div><span>Status</span><strong>Em montagem</strong></div>
+                  <div><span>Acesso</span><strong>Negado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Dossiê bloqueado</span>
+                <h3>Roselyn</h3>
+                <p>
+                  Dossiê localizado no sistema. Informações principais ocultas até revisão
+                  final da ficha e autorização de exibição.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Jogador</span><strong>Erick</strong></div>
+                  <div><span>Classe</span><strong>Não liberada</strong></div>
+                  <div><span>Status</span><strong>Em montagem</strong></div>
+                  <div><span>Acesso</span><strong>Negado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Dossiê bloqueado</span>
+                <h3>Lilian</h3>
+                <p>
+                  Dossiê localizado no sistema. Conteúdo completo retido até a finalização
+                  do registro oficial da personagem.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Jogadora</span><strong>Nathalie</strong></div>
+                  <div><span>Classe</span><strong>Não liberada</strong></div>
+                  <div><span>Status</span><strong>Em montagem</strong></div>
+                  <div><span>Acesso</span><strong>Negado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+          </div>
+
+          <div class="dossie-detalhe">
+            <h3>Liberação pendente</h3>
+            <p>
+              Os agentes dos jogadores já possuem entrada no arquivo, mas os documentos ainda
+              não foram liberados. Isso evita exposição de informações incompletas, incorretas
+              ou que ainda dependem de ajustes finais.
+            </p>
+
+            <div class="registro-bloqueado">
+              <p>
+                SISTEMA // Dossiês encontrados: 03
+              </p>
+              <p>
+                Status: aguardando finalização das fichas.
+              </p>
+              <p>
+                Liberação pública: <span class="censurado"></span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-personagem" id="npcs">
+
+        <section class="personagens-secao">
+          <p class="classificacao">NPCs registrados // acesso parcial</p>
+          <h2>NPCs Registrados</h2>
+
+          <p>
+            Esta área será usada para registrar NPCs importantes da campanha, aliados,
+            figuras suspeitas, membros da Ordem, civis relevantes e personagens que surgirem
+            durante a investigação.
+          </p>
+
+          <div class="cards-personagens">
+
+            <article class="personagem-card npc">
+              <div>
+                <span class="personagem-status">Registro interno</span>
+                <h3>Klint</h3>
+                <p>
+                  Liderança superior da Ordo Realitas. Figura respeitada, temida e associada
+                  às decisões mais pesadas da organização.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Função</span><strong>Líder da Ordem</strong></div>
+                  <div><span>NEX</span><strong>80%</strong></div>
+                  <div><span>Status</span><strong>Ativo</strong></div>
+                  <div><span>Acesso</span><strong>Parcial</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Dossiê em revisão</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Aguardando registro</span>
+                <h3>NPC 02</h3>
+                <p>
+                  Espaço reservado para futuras figuras importantes que surgirem durante
+                  a campanha.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Função</span><strong>Não liberada</strong></div>
+                  <div><span>Origem</span><strong>Desconhecida</strong></div>
+                  <div><span>Status</span><strong>Pendente</strong></div>
+                  <div><span>Acesso</span><strong>Bloqueado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Aguardando registro</span>
+                <h3>NPC 03</h3>
+                <p>
+                  Registro ainda vazio. O arquivo será atualizado quando novos personagens
+                  forem identificados.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Função</span><strong>Não liberada</strong></div>
+                  <div><span>Origem</span><strong>Desconhecida</strong></div>
+                  <div><span>Status</span><strong>Pendente</strong></div>
+                  <div><span>Acesso</span><strong>Bloqueado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-personagem" id="bloqueados">
+
+        <section class="personagens-secao">
+          <p class="classificacao">Arquivos bloqueados // dossiês não liberados</p>
+          <h2>Dossiês Bloqueados</h2>
+
+          <p>
+            Nem todo personagem registrado no sistema pode ser exibido. Alguns arquivos
+            aparecem apenas como entradas vazias, nomes incompletos ou registros censurados.
+          </p>
+
+          <div class="cards-personagens">
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Registro censurado</span>
+                <h3>Arquivo 01</h3>
+                <p>
+                  O nome do personagem foi removido do índice público. O motivo do bloqueio
+                  não aparece no relatório.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Nome</span><strong>Não disponível</strong></div>
+                  <div><span>Classe</span><strong>Não liberada</strong></div>
+                  <div><span>Status</span><strong>Censurado</strong></div>
+                  <div><span>Acesso</span><strong>Negado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Acesso bloqueado</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Registro corrompido</span>
+                <h3>Arquivo 02</h3>
+                <p>
+                  O sistema reconhece a existência do dossiê, mas falha ao carregar os dados
+                  principais.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Nome</span><strong><span class="censurado"></span></strong></div>
+                  <div><span>Classe</span><strong>Erro</strong></div>
+                  <div><span>Status</span><strong>Instável</strong></div>
+                  <div><span>Acesso</span><strong>Negado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Leitura falhou</span>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Registro inexistente</span>
+                <h3>Arquivo 03</h3>
+                <p>
+                  Um espaço foi reservado no índice, mas nenhum personagem foi oficialmente
+                  associado a este registro.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Nome</span><strong>Vazio</strong></div>
+                  <div><span>Classe</span><strong>Não liberada</strong></div>
+                  <div><span>Status</span><strong>Aguardando</strong></div>
+                  <div><span>Acesso</span><strong>Bloqueado</strong></div>
+                </div>
+              </div>
+
+              <span class="botao-bloqueado">Sem registro</span>
+            </article>
+
+          </div>
+
+          <div class="dossie-detalhe">
+            <h3>Nota de segurança</h3>
+            <p>
+              Dossiês bloqueados não indicam necessariamente ameaça, morte, traição ou
+              envolvimento paranormal. Em alguns casos, significam apenas que a Ordem ainda
+              não tem informação suficiente para registrar alguém com segurança.
+            </p>
+
+            <div class="registro-bloqueado">
+              <p>
+                AVISO // A ausência de informação também é uma forma de proteção.
+              </p>
+              <p>
+                O arquivo não mostra tudo. Ele mostra o que a Ordem permite que seja visto.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="terminal-personagens">
+        <span>Nota interna // central de dossiês</span>
         <p>
-          Três setores. Três lideranças. Três formas diferentes de manter a Ordem de pé.
-          Yuna observa o Outro Lado, Lisa coordena a estrutura e Blender segura a linha de frente.
+          Um dossiê nunca é só uma ficha. É uma tentativa de transformar alguém em informação.
+          A Ordem faz isso para proteger agentes. Às vezes, faz para controlar o quanto eles
+          sabem sobre si mesmos.
         </p>
-      </div>
+      </section>
 
-      <div class="trindade-status">
-        <span>STATUS</span>
-        <strong>ATIVA</strong>
-      </div>
-    </section>
-
-    <section class="galeria-personagens trindade-grid">
-
-      <a href="yuna.html" class="card-personagem card-yuna">
-        <div class="selo-setor">ALA OCULTISTA</div>
-
-        <div class="portrait-personagem">
-          <img src="Yuna-cortada.png?v=2" alt="Portrait da personagem Yuna">
-        </div>
-
-        <div class="dados-personagem-card">
-          <span>SEMI-LÍDER // OCULTISTA</span>
-          <h3>Yuna</h3>
-
-          <p>
-            Presença silenciosa, marcada pelo Outro Lado e por uma conexão instável
-            com forças que a Ordem ainda não compreende completamente.
-          </p>
-
-          <div class="tags-personagem">
-            <small>Paranormal</small>
-            <small>Análise</small>
-            <small>Morte</small>
-          </div>
-        </div>
-      </a>
-
-      <a href="lisa.html" class="card-personagem card-lisa">
-        <div class="selo-setor">ALA ESPECIALISTA</div>
-
-        <div class="portrait-personagem">
-          <img src="Lisa-cortada.png?v=1" alt="Portrait da personagem Lisa">
-        </div>
-
-        <div class="dados-personagem-card">
-          <span>SEMI-LÍDER // ESPECIALISTA</span>
-          <h3>Lisa</h3>
-
-          <p>
-            Ex-ginasta, coordenadora prática da Ordem e a cola da Trindade.
-            Ela transforma caos em plano, grito em comando e medo em movimento.
-          </p>
-
-          <div class="tags-personagem">
-            <small>Coordenação</small>
-            <small>Infiltração</small>
-            <small>Agilidade</small>
-          </div>
-        </div>
-      </a>
-
-      <a href="blender.html" class="card-personagem card-blender">
-        <div class="selo-setor">ALA COMBATENTE</div>
-
-        <div class="portrait-personagem">
-          <img src="Blender.png?v=1" alt="Portrait do personagem Blender">
-        </div>
-
-        <div class="dados-personagem-card">
-          <span>SEMI-LÍDER // COMBATENTE</span>
-          <h3>Blender</h3>
-
-          <p>
-            Ex-lutador underground, força de impacto da Ordem e o punho mais bruto
-            da Trindade. Quando tudo falha, ele ainda avança.
-          </p>
-
-          <div class="tags-personagem">
-            <small>Impacto</small>
-            <small>Contenção</small>
-            <small>Força</small>
-          </div>
-        </div>
-      </a>
-
-    </section>
-
-    <section class="arquivo-observacao">
-      <p class="classificacao">Observação interna // registro parcial</p>
-      <h2>Nota sobre a Trindade</h2>
-      <p>
-        A Trindade da Ordem não representa apenas cargos administrativos. Cada Semi-Líder
-        sustenta uma parte essencial da operação: conhecimento, estratégia e força.
-      </p>
-
-      <p>
-        Os arquivos completos ainda estão em expansão. Informações sensíveis, detalhes de campo
-        e registros classificados podem ser adicionados conforme a campanha avança.
-      </p>
     </section>
 
   </main>
 
   <footer>
-    <p>Algumas informações foram ocultadas por segurança operacional.</p>
+    <p>
+      Central parcial de personagens da campanha. Alguns dossiês permanecem bloqueados ou em revisão.
+    </p>
   </footer>
+
+  <script>
+    const abasPersonagens = document.querySelectorAll(".aba-personagem");
+    const conteudosPersonagens = document.querySelectorAll(".conteudo-personagem");
+
+    abasPersonagens.forEach((aba) => {
+      aba.addEventListener("click", () => {
+        const alvo = aba.dataset.personagem;
+
+        abasPersonagens.forEach((item) => item.classList.remove("ativa"));
+        conteudosPersonagens.forEach((conteudo) => conteudo.classList.remove("ativo"));
+
+        aba.classList.add("ativa");
+
+        const conteudoAtivo = document.getElementById(alvo);
+        if (conteudoAtivo) {
+          conteudoAtivo.classList.add("ativo");
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
