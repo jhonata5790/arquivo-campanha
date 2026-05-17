@@ -313,3 +313,349 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+/* ============================= */
+/* FICHA INTERATIVA DE PERSONAGEM */
+/* ============================= */
+
+.ficha-personagem {
+  border: 1px solid rgba(242, 193, 78, 0.35);
+  background:
+    linear-gradient(135deg, rgba(7, 7, 7, 0.96), rgba(20, 10, 35, 0.94)),
+    radial-gradient(circle at top right, rgba(123, 44, 255, 0.22), transparent 30%);
+  padding: 36px;
+  border-radius: 22px;
+  box-shadow:
+    0 0 40px rgba(123, 44, 255, 0.16),
+    inset 0 0 40px rgba(181, 22, 36, 0.08);
+}
+
+.yuna-theme {
+  border-color: rgba(123, 44, 255, 0.55);
+}
+
+.ficha-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+
+.ficha-topo h2 {
+  font-size: 64px;
+  color: var(--amarelo);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.subtitulo-ficha {
+  color: var(--texto-fraco);
+  margin-top: 8px;
+}
+
+.selo-ficha {
+  border: 2px solid rgba(242, 193, 78, 0.45);
+  color: rgba(242, 193, 78, 0.65);
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 3px;
+  transform: rotate(4deg);
+}
+
+.ficha-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+}
+
+.painel-personagem {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.personagem-placeholder {
+  min-height: 520px;
+  border: 1px solid rgba(123, 44, 255, 0.45);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at center, rgba(123, 44, 255, 0.22), transparent 45%),
+    linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  display: grid;
+  place-items: center;
+  color: rgba(241, 232, 220, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.personagem-placeholder:hover {
+  border-color: var(--amarelo);
+  box-shadow: 0 0 28px rgba(123, 44, 255, 0.22);
+}
+
+.status-operacional {
+  border: 1px solid rgba(181, 22, 36, 0.45);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(10, 10, 10, 0.72);
+}
+
+.status-operacional span {
+  display: block;
+  color: var(--texto-fraco);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.status-operacional strong {
+  color: var(--vermelho-claro);
+}
+
+.painel-ficha {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.62);
+}
+
+.abas-ficha {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: rgba(17, 17, 17, 0.9);
+}
+
+.aba {
+  padding: 16px 18px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  color: var(--texto-fraco);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+
+.aba:hover {
+  color: var(--amarelo);
+  background: rgba(123, 44, 255, 0.12);
+}
+
+.aba.ativa {
+  color: var(--amarelo);
+  background: rgba(181, 22, 36, 0.18);
+  box-shadow: inset 0 -2px 0 var(--amarelo);
+}
+
+.conteudo-ficha {
+  padding: 28px;
+  min-height: 520px;
+}
+
+.conteudo-aba {
+  display: none;
+  animation: aparecerAba 0.25s ease;
+}
+
+.conteudo-aba.ativo {
+  display: block;
+}
+
+@keyframes aparecerAba {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.conteudo-aba h3 {
+  color: var(--amarelo);
+  font-size: 30px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.texto-apoio {
+  color: var(--texto-fraco);
+  margin-bottom: 22px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.info-card {
+  border: 1px solid rgba(242, 193, 78, 0.2);
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(255,255,255,0.03);
+  transition: 0.2s;
+}
+
+.info-card:hover {
+  border-color: var(--amarelo);
+  transform: translateY(-3px);
+}
+
+.info-card span {
+  display: block;
+  color: var(--roxo);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.info-card strong {
+  color: var(--texto);
+}
+
+.atributos-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.atributo-card {
+  min-height: 120px;
+  border: 1px solid rgba(123, 44, 255, 0.45);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(123, 44, 255, 0.18), rgba(7,7,7,0.9));
+  color: var(--texto);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.atributo-card span {
+  display: block;
+  color: var(--amarelo);
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.atributo-card strong {
+  display: block;
+  font-size: 34px;
+  margin-top: 6px;
+}
+
+.atributo-card:hover,
+.atributo-card.selecionado {
+  border-color: var(--amarelo);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow:
+    0 0 22px rgba(242, 193, 78, 0.16),
+    0 0 30px rgba(123, 44, 255, 0.18);
+}
+
+.caixa-detalhe {
+  border: 1px solid rgba(181, 22, 36, 0.45);
+  border-radius: 16px;
+  padding: 22px;
+  background:
+    linear-gradient(135deg, rgba(181, 22, 36, 0.1), rgba(123, 44, 255, 0.08));
+  min-height: 130px;
+}
+
+.caixa-detalhe h4 {
+  color: var(--amarelo);
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.caixa-detalhe p {
+  color: var(--texto-fraco);
+  line-height: 1.6;
+}
+
+.lista-interativa {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.item-interativo {
+  text-align: left;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 193, 78, 0.2);
+  background: rgba(255,255,255,0.035);
+  color: var(--texto);
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.22s;
+}
+
+.item-interativo:hover,
+.item-interativo.selecionado {
+  border-color: var(--amarelo);
+  color: var(--amarelo);
+  transform: translateX(6px);
+  box-shadow: 0 0 18px rgba(123, 44, 255, 0.14);
+}
+
+.descricao-bloco {
+  display: grid;
+  gap: 18px;
+  color: var(--texto-fraco);
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+@media (max-width: 1050px) {
+  .ficha-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .personagem-placeholder {
+    min-height: 360px;
+  }
+
+  .atributos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .atributo-card {
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 650px) {
+  .ficha-personagem {
+    padding: 22px;
+  }
+
+  .ficha-topo {
+    flex-direction: column;
+  }
+
+  .ficha-topo h2 {
+    font-size: 42px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .atributos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aba {
+    width: 50%;
+  }
+}
