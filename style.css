@@ -35,9 +35,7 @@ body {
   z-index: -1;
 }
 
-/* ============================= */
-/* CABEÇALHO E NAVEGAÇÃO */
-/* ============================= */
+/* CABEÇALHO */
 
 header {
   padding: 24px 40px;
@@ -99,9 +97,7 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* ============================= */
 /* ESTRUTURA GERAL */
-/* ============================= */
 
 main {
   padding: 60px 40px;
@@ -211,9 +207,7 @@ main {
   box-shadow: 0 0 22px rgba(242, 193, 78, 0.18);
 }
 
-/* ============================= */
-/* CARDS GERAIS */
-/* ============================= */
+/* CARDS */
 
 .cards {
   margin-top: 50px;
@@ -297,9 +291,7 @@ main {
   z-index: 1;
 }
 
-/* ============================= */
 /* RODAPÉ */
-/* ============================= */
 
 footer {
   padding: 28px 40px;
@@ -307,9 +299,7 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-/* ============================= */
-/* FICHA INTERATIVA DE PERSONAGEM */
-/* ============================= */
+/* FICHA INTERATIVA */
 
 .ficha-personagem {
   border: 1px solid rgba(242, 193, 78, 0.35);
@@ -359,7 +349,7 @@ footer {
 
 .ficha-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 360px 1fr;
   gap: 28px;
 }
 
@@ -370,14 +360,16 @@ footer {
 }
 
 .personagem-placeholder {
-  min-height: 520px;
+  min-height: 620px;
   border: 1px solid rgba(123, 44, 255, 0.45);
   border-radius: 18px;
   background:
-    radial-gradient(circle at center, rgba(123, 44, 255, 0.22), transparent 45%),
+    radial-gradient(circle at center, rgba(123, 44, 255, 0.18), transparent 48%),
     linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
   color: rgba(241, 232, 220, 0.45);
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -387,6 +379,25 @@ footer {
 .personagem-placeholder:hover {
   border-color: var(--amarelo);
   box-shadow: 0 0 28px rgba(123, 44, 255, 0.22);
+}
+
+.personagem-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  filter:
+    drop-shadow(0 0 18px rgba(123, 44, 255, 0.22))
+    drop-shadow(0 0 28px rgba(0, 0, 0, 0.8));
+  transition: 0.3s;
+}
+
+.personagem-placeholder:hover img {
+  transform: scale(1.02);
+  filter:
+    drop-shadow(0 0 24px rgba(242, 193, 78, 0.18))
+    drop-shadow(0 0 35px rgba(123, 44, 255, 0.28));
 }
 
 .status-operacional {
@@ -482,6 +493,7 @@ footer {
 .texto-apoio {
   color: var(--texto-fraco);
   margin-bottom: 22px;
+  line-height: 1.6;
 }
 
 .info-grid {
@@ -563,6 +575,8 @@ footer {
   background:
     linear-gradient(135deg, rgba(181, 22, 36, 0.1), rgba(123, 44, 255, 0.08));
   min-height: 130px;
+  max-height: 420px;
+  overflow-y: auto;
 }
 
 .caixa-detalhe h4 {
@@ -574,6 +588,35 @@ footer {
 .caixa-detalhe p {
   color: var(--texto-fraco);
   line-height: 1.6;
+}
+
+.caixa-detalhe::-webkit-scrollbar {
+  width: 8px;
+}
+
+.caixa-detalhe::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+.caixa-detalhe::-webkit-scrollbar-thumb {
+  background: rgba(242, 193, 78, 0.45);
+  border-radius: 10px;
+}
+
+.caixa-detalhe::-webkit-scrollbar-thumb:hover {
+  background: rgba(242, 193, 78, 0.75);
+}
+
+.texto-formatado {
+  display: grid;
+  gap: 14px;
+}
+
+.texto-formatado p {
+  color: var(--texto-fraco);
+  line-height: 1.75;
+  font-size: 16px;
 }
 
 .lista-interativa {
@@ -610,9 +653,7 @@ footer {
   font-size: 17px;
 }
 
-/* ============================= */
 /* RESPONSIVIDADE */
-/* ============================= */
 
 @media (max-width: 1050px) {
   .ficha-layout {
@@ -620,7 +661,7 @@ footer {
   }
 
   .personagem-placeholder {
-    min-height: 360px;
+    min-height: 520px;
   }
 
   .atributos-grid {
@@ -679,37 +720,8 @@ footer {
   .aba {
     width: 50%;
   }
-}
-.texto-formatado {
-  display: grid;
-  gap: 14px;
-}
 
-.texto-formatado p {
-  color: var(--texto-fraco);
-  line-height: 1.75;
-  font-size: 16px;
-}
-
-.caixa-detalhe {
-  max-height: 420px;
-  overflow-y: auto;
-}
-
-.caixa-detalhe::-webkit-scrollbar {
-  width: 8px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-thumb {
-  background: rgba(242, 193, 78, 0.45);
-  border-radius: 10px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-thumb:hover {
-  background: rgba(242, 193, 78, 0.75);
+  .personagem-placeholder {
+    min-height: 420px;
+  }
 }
