@@ -1,6 +1,17 @@
 const abas = document.querySelectorAll(".aba");
 const conteudos = document.querySelectorAll(".conteudo-aba");
 
+function formatarTexto(texto) {
+  if (!texto) return "";
+
+  return texto
+    .split("||")
+    .map(paragrafo => paragrafo.trim())
+    .filter(paragrafo => paragrafo.length > 0)
+    .map(paragrafo => `<p>${paragrafo}</p>`)
+    .join("");
+}
+
 abas.forEach((aba) => {
   aba.addEventListener("click", () => {
     const alvo = aba.dataset.aba;
@@ -26,7 +37,9 @@ atributos.forEach((atributo) => {
 
     detalheAtributo.innerHTML = `
       <h4>${titulo}</h4>
-      <p>${texto}</p>
+      <div class="texto-formatado">
+        ${formatarTexto(texto)}
+      </div>
     `;
   });
 });
@@ -48,7 +61,9 @@ itensInterativos.forEach((item) => {
 
     caixaDetalhe.innerHTML = `
       <h4>${titulo}</h4>
-      <p>${texto}</p>
+      <div class="texto-formatado">
+        ${formatarTexto(texto)}
+      </div>
     `;
   });
 });
