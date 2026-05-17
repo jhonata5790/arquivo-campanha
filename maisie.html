@@ -601,7 +601,7 @@
     }
 
     /* ============================ */
-    /* RODA DE ATRIBUTOS — VERSÃO 3 */
+    /* RODA DE ATRIBUTOS — VERSÃO 4 */
     /* ============================ */
 
     .roda-atributos-maisie {
@@ -694,6 +694,9 @@
         0 0 8px rgba(143,82,255,0.85),
         0 0 16px rgba(143,82,255,0.45),
         0 1px 2px rgba(0,0,0,0.95);
+      transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
     }
 
     .roda-centro-maisie strong {
@@ -722,6 +725,30 @@
         0 1px 2px rgba(0,0,0,0.95);
     }
 
+    .roda-centro-maisie.carregado {
+      animation: centroCarregadoMaisie 0.6s ease;
+    }
+
+    @keyframes centroCarregadoMaisie {
+      0% {
+        filter: brightness(1);
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      45% {
+        filter:
+          brightness(1.35)
+          drop-shadow(0 0 18px rgba(143,82,255,0.75))
+          drop-shadow(0 0 28px rgba(216,189,116,0.20));
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+
+      100% {
+        filter: brightness(1);
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
     .linha-atributo-maisie {
       position: absolute;
       left: 50%;
@@ -737,9 +764,13 @@
         );
       transform-origin: bottom center;
       z-index: 3;
-      opacity: 0.58;
+      opacity: 0.46;
       filter: drop-shadow(0 0 8px rgba(143,82,255,0.70));
       overflow: hidden;
+      transition:
+        opacity 0.25s ease,
+        width 0.25s ease,
+        filter 0.25s ease;
     }
 
     .linha-atributo-maisie::after {
@@ -757,6 +788,35 @@
       animation: energiaSubindoLinhaMaisie 2.2s linear infinite;
     }
 
+    .linha-atributo-maisie.ativa {
+      width: 4px;
+      opacity: 1;
+      background:
+        linear-gradient(
+          to top,
+          rgba(255, 238, 180, 0.98),
+          rgba(198,173,255,0.92),
+          rgba(143,82,255,0.45),
+          transparent
+        );
+      filter:
+        drop-shadow(0 0 10px rgba(255,238,180,0.75))
+        drop-shadow(0 0 22px rgba(143,82,255,0.95))
+        drop-shadow(0 0 38px rgba(70,170,255,0.18));
+    }
+
+    .linha-atributo-maisie.ativa::after {
+      width: 12px;
+      height: 58px;
+      left: -4px;
+      background: rgba(255,248,220,0.98);
+      box-shadow:
+        0 0 14px rgba(255,238,180,1),
+        0 0 26px rgba(198,173,255,0.95),
+        0 0 44px rgba(143,82,255,0.75);
+      animation-duration: 1s;
+    }
+
     .linha-atributo-maisie.l1 { transform: translate(-50%, -100%) rotate(0deg); }
     .linha-atributo-maisie.l2 { transform: translate(-50%, -100%) rotate(72deg); }
     .linha-atributo-maisie.l3 { transform: translate(-50%, -100%) rotate(144deg); }
@@ -768,6 +828,66 @@
     .linha-atributo-maisie.l3::after { animation-delay: 0.5s; }
     .linha-atributo-maisie.l4::after { animation-delay: 0.75s; }
     .linha-atributo-maisie.l5::after { animation-delay: 1s; }
+
+    .raio-selecao-maisie {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 6px;
+      height: 37%;
+      transform-origin: bottom center;
+      transform: translate(-50%, -100%) rotate(0deg) scaleY(0);
+      border-radius: 999px;
+      background:
+        linear-gradient(
+          to top,
+          rgba(255, 238, 180, 0.95),
+          rgba(198, 173, 255, 0.90),
+          rgba(143, 82, 255, 0.48),
+          transparent
+        );
+      box-shadow:
+        0 0 12px rgba(255,238,180,0.7),
+        0 0 24px rgba(143,82,255,0.85),
+        0 0 42px rgba(70,170,255,0.18);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 7;
+      transition:
+        transform 0.32s ease,
+        opacity 0.28s ease;
+      overflow: hidden;
+    }
+
+    .raio-selecao-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          transparent,
+          rgba(255,255,255,0.92),
+          transparent
+        );
+      transform: translateY(100%);
+      animation: raioCorrendoMaisie 0.85s linear infinite;
+    }
+
+    .raio-selecao-maisie.ativo {
+      opacity: 1;
+      transform: translate(-50%, -100%) rotate(var(--rotacao-raio, 0deg)) scaleY(1);
+    }
+
+    @keyframes raioCorrendoMaisie {
+      from {
+        transform: translateY(100%);
+      }
+
+      to {
+        transform: translateY(-100%);
+      }
+    }
 
     .atributo-maisie {
       position: absolute;
@@ -853,6 +973,17 @@
       animation:
         pulsoNoAtributoMaisie 2.2s ease-in-out infinite,
         girarNoSelecionadoMaisie 10s linear infinite;
+    }
+
+    .atributo-maisie.selecionado::after {
+      background:
+        radial-gradient(circle at center, rgba(255, 238, 180, 0.18), transparent 32%),
+        radial-gradient(circle at center, rgba(143,82,255,0.34), transparent 62%),
+        rgba(0,0,0,0.52);
+      box-shadow:
+        inset 0 0 22px rgba(0,0,0,0.85),
+        0 0 24px rgba(143,82,255,0.46),
+        0 0 42px rgba(255,238,180,0.12);
     }
 
     .atributo-maisie:hover > span,
@@ -1423,7 +1554,8 @@
       .roda-atributos-maisie::before,
       .roda-img,
       .linha-atributo-maisie,
-      .micro-particulas-roda {
+      .micro-particulas-roda,
+      .raio-selecao-maisie {
         display: none;
       }
 
@@ -1439,6 +1571,10 @@
         margin: 0 auto 10px;
         border: 1px solid rgba(143,82,255,0.22);
         background: rgba(0,0,0,0.44);
+      }
+
+      .roda-centro-maisie.carregado {
+        animation: none;
       }
 
       .atributo-maisie {
@@ -1506,7 +1642,9 @@
       .atributo-maisie,
       .roda-img,
       .micro-particulas-roda span,
-      .particula-maisie {
+      .particula-maisie,
+      .raio-selecao-maisie,
+      .roda-centro-maisie {
         animation: none !important;
       }
     }
@@ -1622,11 +1760,13 @@
 
                 <div class="micro-particulas-roda" id="micro-particulas-roda"></div>
 
-                <div class="linha-atributo-maisie l1"></div>
-                <div class="linha-atributo-maisie l2"></div>
-                <div class="linha-atributo-maisie l3"></div>
-                <div class="linha-atributo-maisie l4"></div>
-                <div class="linha-atributo-maisie l5"></div>
+                <div class="raio-selecao-maisie" id="raio-selecao-maisie"></div>
+
+                <div class="linha-atributo-maisie l1" data-linha="agi"></div>
+                <div class="linha-atributo-maisie l2" data-linha="int"></div>
+                <div class="linha-atributo-maisie l3" data-linha="vig"></div>
+                <div class="linha-atributo-maisie l4" data-linha="pre"></div>
+                <div class="linha-atributo-maisie l5" data-linha="for"></div>
 
                 <div class="roda-centro-maisie" id="centro-roda-maisie">
                   Ordo
@@ -1634,7 +1774,7 @@
                   <span>Atributos</span>
                 </div>
 
-                <button class="atributo-maisie atributo-for" data-nome="Força" data-sigla="FOR" data-valor="1" data-desc="Representa a força física, potência muscular e a capacidade de realizar ações que exigem impacto ou resistência corporal bruta.">
+                <button class="atributo-maisie atributo-for" data-linha="for" data-rotacao="288deg" data-nome="Força" data-sigla="FOR" data-valor="1" data-desc="Representa a força física, potência muscular e a capacidade de realizar ações que exigem impacto ou resistência corporal bruta.">
                   <span>
                     <img src="Icone-FOR.png" class="icone-atributo" alt="">
                     <span class="valor">1</span>
@@ -1643,7 +1783,7 @@
                   </span>
                 </button>
 
-                <button class="atributo-maisie atributo-agi" data-nome="Agilidade" data-sigla="AGI" data-valor="1" data-desc="Representa reflexos, velocidade, coordenação motora e precisão física. Também influencia ações de esquiva, movimentação e reação.">
+                <button class="atributo-maisie atributo-agi" data-linha="agi" data-rotacao="0deg" data-nome="Agilidade" data-sigla="AGI" data-valor="1" data-desc="Representa reflexos, velocidade, coordenação motora e precisão física. Também influencia ações de esquiva, movimentação e reação.">
                   <span>
                     <img src="Icone-AGI.png" class="icone-atributo" alt="">
                     <span class="valor">1</span>
@@ -1652,7 +1792,7 @@
                   </span>
                 </button>
 
-                <button class="atributo-maisie atributo-int" data-nome="Intelecto" data-sigla="INT" data-valor="3" data-desc="Representa raciocínio, memória, conhecimento, capacidade de análise e domínio técnico. É um dos atributos mais fortes de Maisie.">
+                <button class="atributo-maisie atributo-int" data-linha="int" data-rotacao="72deg" data-nome="Intelecto" data-sigla="INT" data-valor="3" data-desc="Representa raciocínio, memória, conhecimento, capacidade de análise e domínio técnico. É um dos atributos mais fortes de Maisie.">
                   <span>
                     <img src="Icone-INT.png" class="icone-atributo" alt="">
                     <span class="valor">3</span>
@@ -1661,7 +1801,7 @@
                   </span>
                 </button>
 
-                <button class="atributo-maisie atributo-pre" data-nome="Presença" data-sigla="PRE" data-valor="3" data-desc="Representa carisma, força de personalidade, expressão emocional e impacto social. Maisie possui uma presença marcante, intensa e difícil de ignorar.">
+                <button class="atributo-maisie atributo-pre" data-linha="pre" data-rotacao="216deg" data-nome="Presença" data-sigla="PRE" data-valor="3" data-desc="Representa carisma, força de personalidade, expressão emocional e impacto social. Maisie possui uma presença marcante, intensa e difícil de ignorar.">
                   <span>
                     <img src="Icone-PRE.png" class="icone-atributo" alt="">
                     <span class="valor">3</span>
@@ -1670,7 +1810,7 @@
                   </span>
                 </button>
 
-                <button class="atributo-maisie atributo-vig" data-nome="Vigor" data-sigla="VIG" data-valor="2" data-desc="Representa resistência física, durabilidade, energia corporal e capacidade de suportar dor, cansaço e desgaste.">
+                <button class="atributo-maisie atributo-vig" data-linha="vig" data-rotacao="144deg" data-nome="Vigor" data-sigla="VIG" data-valor="2" data-desc="Representa resistência física, durabilidade, energia corporal e capacidade de suportar dor, cansaço e desgaste.">
                   <span>
                     <img src="Icone-VIG.png" class="icone-atributo" alt="">
                     <span class="valor">2</span>
@@ -1913,6 +2053,8 @@
     const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
     const fichaMaisie = document.querySelector(".ficha-maisie");
     const centroRodaMaisie = document.getElementById("centro-roda-maisie");
+    const raioSelecaoMaisie = document.getElementById("raio-selecao-maisie");
+    const linhasAtributoMaisie = document.querySelectorAll(".linha-atributo-maisie");
 
     criarParticulasMaisie();
     criarMicroParticulasRodaMaisie();
@@ -1941,8 +2083,22 @@
 
     atributosMaisie.forEach((atributo) => {
       atributo.addEventListener("click", () => {
+        const linhaAlvo = atributo.dataset.linha;
+        const rotacao = atributo.dataset.rotacao || "0deg";
+
         atributosMaisie.forEach((item) => item.classList.remove("selecionado"));
         atributo.classList.add("selecionado");
+
+        linhasAtributoMaisie.forEach((linha) => {
+          linha.classList.toggle("ativa", linha.dataset.linha === linhaAlvo);
+        });
+
+        if (raioSelecaoMaisie) {
+          raioSelecaoMaisie.style.setProperty("--rotacao-raio", rotacao);
+          raioSelecaoMaisie.classList.remove("ativo");
+          void raioSelecaoMaisie.offsetWidth;
+          raioSelecaoMaisie.classList.add("ativo");
+        }
 
         detalheAtributoMaisie.innerHTML = `
           <h4>${atributo.dataset.nome} — ${atributo.dataset.sigla} (${atributo.dataset.valor})</h4>
@@ -1950,11 +2106,16 @@
         `;
 
         if (centroRodaMaisie) {
+          centroRodaMaisie.classList.remove("carregado");
+
           centroRodaMaisie.innerHTML = `
             ${atributo.dataset.sigla}
             <strong>${atributo.dataset.valor}</strong>
             <span>${atributo.dataset.nome}</span>
           `;
+
+          void centroRodaMaisie.offsetWidth;
+          centroRodaMaisie.classList.add("carregado");
         }
 
         atualizarDetalheMaisie(detalheAtributoMaisie);
