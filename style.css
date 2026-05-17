@@ -35,6 +35,10 @@ body {
   z-index: -1;
 }
 
+/* ============================= */
+/* CABEÇALHO E NAVEGAÇÃO */
+/* ============================= */
+
 header {
   padding: 24px 40px;
   background: rgba(17, 17, 17, 0.92);
@@ -94,6 +98,10 @@ nav a:hover {
 nav a:hover::after {
   width: 100%;
 }
+
+/* ============================= */
+/* ESTRUTURA GERAL */
+/* ============================= */
 
 main {
   padding: 60px 40px;
@@ -203,6 +211,10 @@ main {
   box-shadow: 0 0 22px rgba(242, 193, 78, 0.18);
 }
 
+/* ============================= */
+/* CARDS GERAIS */
+/* ============================= */
+
 .cards {
   margin-top: 50px;
   display: grid;
@@ -285,34 +297,16 @@ main {
   z-index: 1;
 }
 
+/* ============================= */
+/* RODAPÉ */
+/* ============================= */
+
 footer {
   padding: 28px 40px;
   color: var(--texto-fraco);
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-@media (max-width: 900px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  main {
-    padding: 36px 22px;
-  }
-
-  .hero {
-    padding: 32px;
-  }
-
-  .hero h2 {
-    font-size: 34px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-}
 /* ============================= */
 /* FICHA INTERATIVA DE PERSONAGEM */
 /* ============================= */
@@ -616,6 +610,10 @@ footer {
   font-size: 17px;
 }
 
+/* ============================= */
+/* RESPONSIVIDADE */
+/* ============================= */
+
 @media (max-width: 1050px) {
   .ficha-layout {
     grid-template-columns: 1fr;
@@ -631,6 +629,29 @@ footer {
 
   .atributo-card {
     border-radius: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  main {
+    padding: 36px 22px;
+  }
+
+  .hero {
+    padding: 32px;
+  }
+
+  .hero h2 {
+    font-size: 34px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
   }
 }
 
