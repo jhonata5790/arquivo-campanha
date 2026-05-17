@@ -96,8 +96,14 @@
       background: linear-gradient(to bottom, var(--home-vermelho), var(--home-roxo), var(--home-amarelo));
     }
 
-    .home-hero-texto .classificacao {
+    .classificacao {
       color: #ff3045;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .home-hero-texto .classificacao {
       margin-bottom: 18px;
     }
 
@@ -230,6 +236,133 @@
       color: var(--home-amarelo);
       font-size: 13px;
       text-transform: uppercase;
+    }
+
+    .home-update-log {
+      margin-top: 28px;
+      border: 1px solid rgba(181, 22, 36, 0.36);
+      border-radius: 22px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.10), rgba(139,77,255,0.07)),
+        rgba(0,0,0,0.38);
+      box-shadow:
+        0 0 24px rgba(181, 22, 36, 0.12),
+        inset 0 0 40px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-update-log::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 24px 24px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .home-update-log > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-update-topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.16);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .home-update-topo div span {
+      display: block;
+      color: #ff3045;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .home-update-topo h2 {
+      color: var(--home-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(22px, 3vw, 34px);
+    }
+
+    .home-update-status {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--home-amarelo);
+      background: rgba(0,0,0,0.34);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .home-update-lista {
+      display: grid;
+      gap: 12px;
+    }
+
+    .home-update-item {
+      border: 1px solid rgba(216, 189, 116, 0.14);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.26);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      transition: 0.25s;
+    }
+
+    .home-update-item:hover {
+      transform: translateX(4px);
+      border-color: rgba(216, 189, 116, 0.35);
+      box-shadow: 0 0 18px rgba(216, 189, 116, 0.08);
+    }
+
+    .home-update-data {
+      color: var(--home-amarelo);
+      font-family: monospace;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .home-update-conteudo strong {
+      display: block;
+      color: var(--home-texto);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .home-update-conteudo p {
+      color: var(--home-fraco);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .home-update-tag {
+      display: inline-block;
+      margin-top: 8px;
+      border: 1px solid rgba(181, 22, 36, 0.38);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #ff9aa4;
+      background: rgba(181,22,36,0.10);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 9px;
     }
 
     .home-secao {
@@ -558,6 +691,18 @@
       .status-arquivo-home {
         grid-template-columns: 1fr;
       }
+
+      .home-update-topo {
+        flex-direction: column;
+      }
+
+      .home-update-item {
+        grid-template-columns: 1fr;
+      }
+
+      .home-update-status {
+        width: fit-content;
+      }
     }
   </style>
 </head>
@@ -630,6 +775,75 @@
           </div>
         </div>
 
+      </section>
+
+      <section class="home-update-log">
+        <div class="home-update-topo">
+          <div>
+            <span>Terminal interno // mudanças recentes</span>
+            <h2>Registro de Atualizações</h2>
+          </div>
+
+          <div class="home-update-status">
+            Arquivo em expansão
+          </div>
+        </div>
+
+        <div class="home-update-lista">
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Mapa visual da Ordo Realitas adicionado</strong>
+              <p>
+                A página de Locais recebeu a aba da Base da Ordo Realitas com setores clicáveis,
+                imagens das salas e descrições internas.
+              </p>
+              <span class="home-update-tag">Locais</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Abas internas criadas em Locais</strong>
+              <p>
+                A seção de mapas foi reorganizada em abas para separar Base da Ordo,
+                Santa Luzia e Locais Restritos.
+              </p>
+              <span class="home-update-tag">Sistema do site</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Página inicial reformulada</strong>
+              <p>
+                O Arquivo da Campanha recebeu uma entrada principal mais completa,
+                com destaque para a Ordo Realitas, a Trindade e os setores do site.
+              </p>
+              <span class="home-update-tag">Início</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Página institucional da Ordo Realitas criada</strong>
+              <p>
+                A Ordo Realitas ganhou uma página própria com apresentação das alas,
+                da Trindade da Ordem e da liderança de Klint.
+              </p>
+              <span class="home-update-tag">Ordo Realitas</span>
+            </div>
+          </article>
+
+        </div>
       </section>
 
       <section class="home-secao">
