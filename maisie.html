@@ -17,6 +17,8 @@
       --maisie-texto: #ece7f8;
       --maisie-vermelho: #c5344f;
       --maisie-amarelo: #d8bd74;
+      --maisie-morte: #9c9c9c;
+      --maisie-sangue: #b51624;
 
       border: 1px solid rgba(143, 82, 255, 0.24);
       border-radius: 28px;
@@ -79,13 +81,56 @@
     }
 
     @keyframes gradeEnergiaMaisie {
-      from {
-        background-position: 0 0;
+      from { background-position: 0 0; }
+      to { background-position: 34px 34px; }
+    }
+
+    .campo-energia-fundo {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .campo-energia-fundo::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(143,82,255,0.08), transparent 24%),
+        radial-gradient(circle at 80% 35%, rgba(70,170,255,0.06), transparent 22%),
+        radial-gradient(circle at 35% 80%, rgba(197,52,79,0.05), transparent 24%);
+      animation: respirarCampoMaisie 8s ease-in-out infinite;
+    }
+
+    .campo-energia-fundo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, rgba(143,82,255,0.035) 48%, transparent 52%),
+        linear-gradient(65deg, transparent 0%, rgba(70,170,255,0.025) 48%, transparent 52%);
+      background-size: 280px 280px;
+      animation: linhasCampoMaisie 10s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes respirarCampoMaisie {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
       }
 
-      to {
-        background-position: 34px 34px;
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
       }
+    }
+
+    @keyframes linhasCampoMaisie {
+      from { background-position: 0 0; }
+      to { background-position: 280px -280px; }
     }
 
     .classificacao-maisie {
@@ -164,6 +209,20 @@
       position: relative;
       z-index: 1;
       transition: 0.35s ease;
+      animation: retratoPulsoMaisie 5s ease-in-out infinite;
+    }
+
+    @keyframes retratoPulsoMaisie {
+      0%, 100% {
+        filter: saturate(1) contrast(1);
+      }
+
+      50% {
+        filter:
+          saturate(1.1)
+          contrast(1.05)
+          drop-shadow(0 0 12px rgba(143,82,255,0.14));
+      }
     }
 
     .maisie-retrato-box:hover img {
@@ -175,29 +234,14 @@
     }
 
     @keyframes girarEnergiaRetrato {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     @keyframes scanMaisie {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      18% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.7;
-      }
-
-      100% {
-        transform: translateY(100%);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100%); opacity: 0; }
+      18% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { transform: translateY(100%); opacity: 0; }
     }
 
     .maisie-status-box {
@@ -209,6 +253,29 @@
         rgba(0,0,0,0.28);
       animation: subirMaisie 0.75s ease both;
       animation-delay: 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .maisie-status-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px,
+          transparent 18px,
+          rgba(143,82,255,0.045) 19px,
+          transparent 20px
+        );
+      animation: statusLinhasMaisie 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes statusLinhasMaisie {
+      from { transform: translateX(-30px); }
+      to { transform: translateX(30px); }
     }
 
     .maisie-status-box span {
@@ -218,6 +285,8 @@
       letter-spacing: 2px;
       font-size: 11px;
       margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
 
     .maisie-status-box strong {
@@ -226,6 +295,8 @@
       line-height: 1;
       text-transform: uppercase;
       animation: pulsoStatusMaisie 2.2s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes pulsoStatusMaisie {
@@ -250,18 +321,29 @@
       min-height: 100%;
       animation: subirMaisie 0.75s ease both;
       animation-delay: 0.08s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .maisie-painel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(143,82,255,0.06), transparent 26%),
+        radial-gradient(circle at 80% 90%, rgba(70,170,255,0.04), transparent 30%);
+      animation: painelRespiraMaisie 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes painelRespiraMaisie {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
     }
 
     @keyframes subirMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .maisie-cabecalho {
@@ -273,6 +355,8 @@
       padding-bottom: 18px;
       margin-bottom: 18px;
       border-bottom: 1px solid rgba(143, 82, 255, 0.18);
+      position: relative;
+      z-index: 1;
     }
 
     .maisie-cabecalho h2 {
@@ -326,6 +410,20 @@
       letter-spacing: 1.5px;
       position: relative;
       overflow: hidden;
+      animation: seloFlutuaMaisie 4s ease-in-out infinite;
+    }
+
+    .maisie-selo:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .maisie-selo:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes seloFlutuaMaisie {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
     }
 
     .maisie-botoes-topo {
@@ -333,6 +431,8 @@
       gap: 12px;
       flex-wrap: wrap;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     .maisie-btn {
@@ -371,6 +471,24 @@
       border-radius: 18px;
       padding: 14px;
       background: rgba(0,0,0,0.26);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .abas-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(143,82,255,0.06), transparent);
+      animation: varrerAbasMaisie 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes varrerAbasMaisie {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
     }
 
     .aba-maisie {
@@ -386,6 +504,7 @@
       transition: 0.25s;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
     .aba-maisie:hover {
@@ -442,6 +561,8 @@
 
     .conteudo-maisie {
       display: none;
+      position: relative;
+      z-index: 1;
     }
 
     .conteudo-maisie.ativo {
@@ -450,15 +571,8 @@
     }
 
     @keyframes aparecerMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .bloco-maisie {
@@ -489,6 +603,22 @@
       background: linear-gradient(to bottom, var(--maisie-roxo), var(--maisie-vermelho));
     }
 
+    .bloco-maisie::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, rgba(143,82,255,0.04) 48%, transparent 52%);
+      background-size: 220px 220px;
+      animation: blocoEnergiaMaisie 8s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes blocoEnergiaMaisie {
+      from { background-position: 0 0; }
+      to { background-position: 220px -220px; }
+    }
+
     .bloco-maisie:hover,
     .card-info-maisie:hover,
     .card-lista-maisie:hover,
@@ -506,6 +636,8 @@
       letter-spacing: 2px;
       font-size: 24px;
       margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .bloco-maisie p,
@@ -513,6 +645,8 @@
       color: var(--maisie-cinza);
       line-height: 1.72;
       font-size: 15px;
+      position: relative;
+      z-index: 1;
     }
 
     .grid-info-maisie {
@@ -533,6 +667,23 @@
         border-color 0.28s ease,
         box-shadow 0.28s ease,
         background 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-info-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(143,82,255,0.10), transparent 36%);
+      animation: infoPulsoMaisie 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes infoPulsoMaisie {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
     }
 
     .card-info-maisie:nth-child(1) { animation-delay: 0.08s; }
@@ -541,6 +692,12 @@
     .card-info-maisie:nth-child(4) { animation-delay: 0.20s; }
     .card-info-maisie:nth-child(5) { animation-delay: 0.24s; }
     .card-info-maisie:nth-child(6) { animation-delay: 0.28s; }
+
+    .card-info-maisie span,
+    .card-info-maisie strong {
+      position: relative;
+      z-index: 1;
+    }
 
     .card-info-maisie span {
       display: block;
@@ -577,6 +734,29 @@
         border-color 0.28s ease,
         box-shadow 0.28s ease,
         background 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .frase-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(197,52,79,0.09), transparent);
+      animation: fraseVarreduraMaisie 4.5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fraseVarreduraMaisie {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    .frase-maisie h4,
+    .frase-maisie p {
+      position: relative;
+      z-index: 1;
     }
 
     .frase-maisie h4 {
@@ -629,6 +809,34 @@
         pulsoRodaMaisie 4s ease-in-out infinite;
     }
 
+    .roda-atributos-maisie .anel-giratorio {
+      position: absolute;
+      inset: 4%;
+      border-radius: 50%;
+      border: 1px dashed rgba(198,173,255,0.22);
+      animation: girarAnelMaisie 18s linear infinite;
+      pointer-events: none;
+    }
+
+    .roda-atributos-maisie .anel-giratorio:nth-child(2) {
+      inset: 18%;
+      border-style: solid;
+      border-color: rgba(143,82,255,0.20);
+      animation-duration: 12s;
+      animation-direction: reverse;
+    }
+
+    .roda-atributos-maisie .anel-giratorio:nth-child(3) {
+      inset: 29%;
+      border-style: dotted;
+      border-color: rgba(216,189,116,0.20);
+      animation-duration: 22s;
+    }
+
+    @keyframes girarAnelMaisie {
+      to { transform: rotate(360deg); }
+    }
+
     @keyframes aparecerRodaMaisie {
       from {
         opacity: 0;
@@ -668,6 +876,12 @@
         0 0 0 18px rgba(143, 82, 255, 0.035),
         0 0 0 42px rgba(198, 173, 255, 0.025),
         inset 0 0 30px rgba(143, 82, 255, 0.12);
+      animation: haloRodaMaisie 5s ease-in-out infinite;
+    }
+
+    @keyframes haloRodaMaisie {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); }
     }
 
     .roda-atributos-maisie::after {
@@ -682,6 +896,11 @@
       box-shadow:
         0 0 28px rgba(143, 82, 255, 0.18),
         inset 0 0 34px rgba(0,0,0,0.70);
+      animation: nucleoRodaMaisie 9s linear infinite;
+    }
+
+    @keyframes nucleoRodaMaisie {
+      to { transform: rotate(360deg); }
     }
 
     .roda-centro-maisie {
@@ -706,6 +925,12 @@
       box-shadow:
         0 0 22px rgba(143, 82, 255, 0.22),
         inset 0 0 24px rgba(0,0,0,0.75);
+      animation: centroPulsoMaisie 2.8s ease-in-out infinite;
+    }
+
+    @keyframes centroPulsoMaisie {
+      0%, 100% { box-shadow: 0 0 22px rgba(143,82,255,0.22), inset 0 0 24px rgba(0,0,0,0.75); }
+      50% { box-shadow: 0 0 32px rgba(216,189,116,0.20), 0 0 42px rgba(143,82,255,0.22), inset 0 0 24px rgba(0,0,0,0.75); }
     }
 
     .roda-centro-maisie strong {
@@ -738,6 +963,20 @@
       animation: orbitarLeveMaisie 4.5s ease-in-out infinite;
     }
 
+    .atributo-maisie::before {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1px solid rgba(198,173,255,0.12);
+      animation: anelAtributoMaisie 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes anelAtributoMaisie {
+      to { transform: rotate(360deg); }
+    }
+
     .atributo-maisie:hover {
       transform: translate(-50%, -50%) scale(1.06);
       border-color: var(--maisie-amarelo);
@@ -752,13 +991,8 @@
     }
 
     @keyframes orbitarLeveMaisie {
-      0%, 100% {
-        filter: brightness(1);
-      }
-
-      50% {
-        filter: brightness(1.18);
-      }
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.18); }
     }
 
     .atributo-maisie .valor {
@@ -832,6 +1066,12 @@
       background: linear-gradient(to top, rgba(143,82,255,0.45), transparent);
       transform-origin: bottom center;
       z-index: 1;
+      animation: linhaPulsoMaisie 3s ease-in-out infinite;
+    }
+
+    @keyframes linhaPulsoMaisie {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.9; }
     }
 
     .linha-atributo-maisie.l1 { transform: translate(-50%, -100%) rotate(0deg); }
@@ -861,9 +1101,7 @@
     }
 
     @keyframes girarRodaMaisie {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     .detalhe-atributo-maisie,
@@ -878,6 +1116,32 @@
       min-height: 120px;
       transition: 0.25s ease;
       animation: subirMaisie 0.75s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detalhe-atributo-maisie::before,
+    .detalhe-lista-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(143,82,255,0.06), transparent);
+      animation: varreduraDetalheMaisie 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes varreduraDetalheMaisie {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    .detalhe-atributo-maisie h4,
+    .detalhe-lista-maisie h4,
+    .detalhe-atributo-maisie p,
+    .detalhe-lista-maisie p {
+      position: relative;
+      z-index: 1;
     }
 
     .detalhe-atributo-maisie h4,
@@ -923,15 +1187,8 @@
     }
 
     @keyframes abrirAbaMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card-lista-maisie {
@@ -945,6 +1202,131 @@
         border-color 0.28s ease,
         box-shadow 0.28s ease,
         background 0.28s ease;
+      position: relative;
+    }
+
+    .card-lista-maisie::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(143,82,255,0.08), transparent 38%);
+      animation: cardRespiraMaisie 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes cardRespiraMaisie {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    .card-lista-maisie.energia-card {
+      border-color: rgba(143,82,255,0.30);
+      box-shadow:
+        0 0 22px rgba(143,82,255,0.10),
+        inset 0 0 28px rgba(143,82,255,0.035);
+    }
+
+    .card-lista-maisie.energia-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, rgba(198,173,255,0.12) 49%, transparent 51%),
+        linear-gradient(65deg, transparent 0%, rgba(70,170,255,0.09) 49%, transparent 51%);
+      background-size: 90px 90px;
+      animation: eletricidadeMaisie 0.55s steps(2, end) infinite;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .card-lista-maisie.energia-card .raio-energia {
+      position: absolute;
+      width: 2px;
+      height: 120%;
+      background: linear-gradient(to bottom, transparent, rgba(198,173,255,0.55), transparent);
+      top: -10%;
+      transform: rotate(22deg);
+      opacity: 0;
+      animation: raioPulandoMaisie 2.4s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card-lista-maisie.energia-card .raio-energia:nth-child(1) {
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .card-lista-maisie.energia-card .raio-energia:nth-child(2) {
+      left: 52%;
+      animation-delay: 0.7s;
+    }
+
+    .card-lista-maisie.energia-card .raio-energia:nth-child(3) {
+      left: 82%;
+      animation-delay: 1.35s;
+    }
+
+    @keyframes eletricidadeMaisie {
+      0%, 100% {
+        background-position: 0 0;
+        filter: brightness(1);
+      }
+
+      50% {
+        background-position: 18px -12px;
+        filter: brightness(1.35);
+      }
+    }
+
+    @keyframes raioPulandoMaisie {
+      0%, 78%, 100% { opacity: 0; transform: translateY(-8%) rotate(22deg); }
+      82% { opacity: 0.75; transform: translateY(2%) rotate(19deg); }
+      86% { opacity: 0.15; transform: translateY(6%) rotate(24deg); }
+      90% { opacity: 0.9; transform: translateY(12%) rotate(20deg); }
+    }
+
+    .card-lista-maisie.morte-card {
+      border-color: rgba(156,156,156,0.28);
+      box-shadow: inset 0 0 28px rgba(156,156,156,0.035);
+    }
+
+    .card-lista-maisie.morte-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(156,156,156,0.08), transparent 28%),
+        radial-gradient(circle at 70% 80%, rgba(216,189,116,0.05), transparent 30%);
+      animation: poeiraMorteMaisie 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes poeiraMorteMaisie {
+      0%, 100% { opacity: 0.35; transform: translateY(0); }
+      50% { opacity: 0.8; transform: translateY(-5px); }
+    }
+
+    .card-lista-maisie.sangue-card {
+      border-color: rgba(181,22,36,0.30);
+      box-shadow: inset 0 0 28px rgba(181,22,36,0.035);
+    }
+
+    .card-lista-maisie.sangue-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(181,22,36,0.12), transparent 28%),
+        linear-gradient(180deg, transparent, rgba(181,22,36,0.045), transparent);
+      animation: pulsoSangueMaisie 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulsoSangueMaisie {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
     }
 
     .card-lista-maisie h4 {
@@ -954,6 +1336,8 @@
       font-size: 15px;
       padding: 16px 16px 12px;
       border-bottom: 1px solid rgba(143, 82, 255, 0.12);
+      position: relative;
+      z-index: 1;
     }
 
     .item-interativo-maisie {
@@ -969,6 +1353,7 @@
       font-family: inherit;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
     .item-interativo-maisie:last-child {
@@ -983,6 +1368,8 @@
     .lista-texto-maisie ul {
       margin: 0;
       padding-left: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .lista-texto-maisie li + li {
@@ -1011,6 +1398,23 @@
         transform 0.28s ease,
         box-shadow 0.28s ease,
         border-color 0.28s ease;
+      position: relative;
+    }
+
+    .galeria-maisie figure::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, transparent, rgba(143,82,255,0.06), transparent);
+      animation: scanGaleriaMaisie 5s linear infinite;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes scanGaleriaMaisie {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(100%); }
     }
 
     .galeria-maisie figure:hover {
@@ -1037,6 +1441,9 @@
       font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
+      position: relative;
+      z-index: 3;
+      background: rgba(0,0,0,0.45);
     }
 
     .efeito-particulas-maisie {
@@ -1065,13 +1472,8 @@
         opacity: 0;
       }
 
-      12% {
-        opacity: 0.75;
-      }
-
-      85% {
-        opacity: 0.45;
-      }
+      12% { opacity: 0.75; }
+      85% { opacity: 0.45; }
 
       to {
         transform: translateY(-10vh) scale(1.2);
@@ -1084,29 +1486,11 @@
     }
 
     @keyframes glitchEnergiaMaisie {
-      0% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-      }
-
-      25% {
-        transform: translate(2px, -1px);
-        filter: hue-rotate(20deg);
-      }
-
-      50% {
-        transform: translate(-2px, 1px);
-        filter: hue-rotate(-20deg);
-      }
-
-      75% {
-        transform: translate(1px, 2px);
-      }
-
-      100% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-      }
+      0% { transform: translate(0); filter: hue-rotate(0deg); }
+      25% { transform: translate(2px, -1px); filter: hue-rotate(20deg); }
+      50% { transform: translate(-2px, 1px); filter: hue-rotate(-20deg); }
+      75% { transform: translate(1px, 2px); }
+      100% { transform: translate(0); filter: hue-rotate(0deg); }
     }
 
     @media (max-width: 1100px) {
@@ -1168,7 +1552,8 @@
       .roda-atributos-maisie::before,
       .roda-atributos-maisie::after,
       .simbolos-roda-maisie,
-      .linha-atributo-maisie {
+      .linha-atributo-maisie,
+      .anel-giratorio {
         display: none;
       }
 
@@ -1199,26 +1584,51 @@
       .atributo-maisie:hover {
         transform: translateY(-2px);
       }
+
+      .card-lista-maisie.energia-card::after {
+        opacity: 0.32;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .ficha-maisie,
       .ficha-maisie::before,
+      .campo-energia-fundo::before,
+      .campo-energia-fundo::after,
       .maisie-painel,
+      .maisie-painel::before,
       .maisie-retrato-box,
+      .maisie-retrato-box::before,
+      .maisie-retrato-box::after,
+      .maisie-retrato-box img,
       .maisie-status-box,
+      .maisie-status-box::before,
       .bloco-maisie,
+      .bloco-maisie::after,
       .card-info-maisie,
+      .card-info-maisie::before,
       .card-lista-maisie,
+      .card-lista-maisie::before,
+      .card-lista-maisie::after,
+      .raio-energia,
       .frase-maisie,
+      .frase-maisie::before,
       .detalhe-lista-maisie,
+      .detalhe-lista-maisie::before,
       .detalhe-atributo-maisie,
+      .detalhe-atributo-maisie::before,
       .maisie-cabecalho h2,
       .frase-maisie p,
       .roda-atributos-maisie,
+      .roda-atributos-maisie::before,
+      .roda-atributos-maisie::after,
+      .roda-centro-maisie,
+      .anel-giratorio,
       .atributo-maisie,
+      .atributo-maisie::before,
       .simbolos-roda-maisie,
-      .particula-maisie {
+      .particula-maisie,
+      .galeria-maisie figure::before {
         animation: none !important;
       }
     }
@@ -1227,6 +1637,7 @@
 
 <body>
 
+  <div class="campo-energia-fundo"></div>
   <div class="fundo-paranormal"></div>
 
   <header>
@@ -1328,6 +1739,10 @@
 
               <div class="roda-atributos-maisie">
 
+                <div class="anel-giratorio"></div>
+                <div class="anel-giratorio"></div>
+                <div class="anel-giratorio"></div>
+
                 <div class="simbolos-roda-maisie"></div>
 
                 <div class="linha-atributo-maisie l1"></div>
@@ -1391,7 +1806,11 @@
 
           <section class="conteudo-maisie" id="habilidades">
             <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
+              <div class="card-lista-maisie energia-card">
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+
                 <h4>Habilidades</h4>
 
                 <button class="item-interativo-maisie habilidade-item" data-titulo="Escolhido pelo Outro Lado" data-texto="Maisie teve contato direto com o paranormal e foi marcada pelo Outro Lado. Isso permite que ela lance rituais e desenvolva sua conexão com o ocultismo.">
@@ -1432,7 +1851,11 @@
 
           <section class="conteudo-maisie" id="rituais">
             <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
+              <div class="card-lista-maisie energia-card">
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+
                 <h4>Energia</h4>
 
                 <button class="item-interativo-maisie ritual-item" data-titulo="Amaldiçoar Arma" data-texto="Ritual de Energia usado para alterar e potencializar uma arma, aproximando ainda mais o estilo de combate da Maisie da sua afinidade com caos e adaptação.">
@@ -1452,7 +1875,7 @@
                 </button>
               </div>
 
-              <div class="card-lista-maisie">
+              <div class="card-lista-maisie morte-card">
                 <h4>Morte</h4>
 
                 <button class="item-interativo-maisie ritual-item" data-titulo="Cicatrização (Ritual Predileto)" data-texto="Ritual de Morte com afinidade especial para Maisie. Reforça a ideia de sobrevivência, reconstrução e persistência depois do trauma.">
@@ -1470,7 +1893,7 @@
             </div>
 
             <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
+              <div class="card-lista-maisie sangue-card">
                 <h4>Sangue</h4>
 
                 <button class="item-interativo-maisie ritual-item" data-titulo="Aprimorar Físico" data-texto="Ritual de Sangue que reforça o corpo e aproxima a personagem do lado mais bruto e instintivo do combate.">
@@ -1482,7 +1905,11 @@
                 </button>
               </div>
 
-              <div class="card-lista-maisie">
+              <div class="card-lista-maisie energia-card">
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+                <span class="raio-energia"></span>
+
                 <h4>Resumo</h4>
                 <div class="lista-texto-maisie" style="padding: 16px;">
                   <ul>
@@ -1502,7 +1929,11 @@
           </section>
 
           <section class="conteudo-maisie" id="inventario">
-            <div class="card-lista-maisie">
+            <div class="card-lista-maisie energia-card">
+              <span class="raio-energia"></span>
+              <span class="raio-energia"></span>
+              <span class="raio-energia"></span>
+
               <h4>Itens registrados</h4>
 
               <button class="item-interativo-maisie inventario-item" data-titulo="Pistola" data-texto="Arma de fogo carregada por Maisie para situações de combate direto, dando suporte ao seu estilo ofensivo e prático.">
@@ -1697,7 +2128,7 @@
       container.className = "efeito-particulas-maisie";
       document.body.prepend(container);
 
-      const quantidade = window.innerWidth < 720 ? 20 : 42;
+      const quantidade = window.innerWidth < 720 ? 18 : 42;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
