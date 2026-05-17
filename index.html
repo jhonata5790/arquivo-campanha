@@ -4,10 +4,564 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Arquivo da Campanha</title>
+  <title>Arquivo da Campanha | Corações do Outro Lado</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .home-premium {
+      --home-vermelho: #b51624;
+      --home-roxo: #8b4dff;
+      --home-amarelo: #d8bd74;
+      --home-verde: #6f8f4e;
+      --home-texto: #e8dfd2;
+      --home-fraco: #a89f94;
+
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 28px;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.22), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
+        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(15, 9, 12, 0.98));
+      box-shadow:
+        0 0 44px rgba(181, 22, 36, 0.18),
+        inset 0 0 70px rgba(0, 0, 0, 0.68);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-premium::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.23;
+      pointer-events: none;
+    }
+
+    .home-premium::after {
+      content: "ARQUIVO DA CAMPANHA // CORAÇÕES DO OUTRO LADO";
+      position: absolute;
+      right: -145px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .home-premium > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-hero {
+      min-height: 580px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      padding-bottom: 30px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+    }
+
+    .home-hero-texto {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
+        rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-hero-texto::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--home-vermelho), var(--home-roxo), var(--home-amarelo));
+    }
+
+    .home-hero-texto .classificacao {
+      color: #ff3045;
+      margin-bottom: 18px;
+    }
+
+    .home-hero-texto h2 {
+      font-size: clamp(44px, 7vw, 96px);
+      line-height: 0.92;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--home-amarelo);
+      text-shadow:
+        0 0 18px rgba(181, 22, 36, 0.36),
+        0 0 36px rgba(139, 77, 255, 0.20);
+      margin-bottom: 22px;
+    }
+
+    .home-hero-texto p {
+      color: var(--home-fraco);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 780px;
+    }
+
+    .home-hero-texto p + p {
+      margin-top: 14px;
+    }
+
+    .home-acoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .home-botao {
+      color: var(--home-texto);
+      text-decoration: none;
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 12px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.035);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      transition: 0.25s;
+    }
+
+    .home-botao:hover {
+      color: var(--home-amarelo);
+      border-color: var(--home-amarelo);
+      transform: translateY(-3px);
+      box-shadow: 0 0 18px rgba(216, 189, 116, 0.16);
+    }
+
+    .home-botao.principal {
+      border-color: rgba(181, 22, 36, 0.58);
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.26), rgba(139,77,255,0.12)),
+        rgba(0,0,0,0.24);
+      color: var(--home-amarelo);
+    }
+
+    .home-selo {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      min-height: 500px;
+      background:
+        radial-gradient(circle at center, rgba(181,22,36,0.20), transparent 34%),
+        radial-gradient(circle at center, rgba(139,77,255,0.16), transparent 58%),
+        rgba(0,0,0,0.36);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-selo::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.28);
+      box-shadow:
+        0 0 0 28px rgba(181, 22, 36, 0.04),
+        0 0 0 58px rgba(139, 77, 255, 0.03),
+        0 0 52px rgba(181, 22, 36, 0.30);
+    }
+
+    .home-selo::after {
+      content: "C.O.L";
+      color: var(--home-amarelo);
+      font-size: clamp(58px, 8vw, 98px);
+      letter-spacing: 8px;
+      font-weight: bold;
+      text-shadow:
+        0 0 22px rgba(181, 22, 36, 0.75),
+        0 0 46px rgba(139, 77, 255, 0.40);
+      z-index: 1;
+    }
+
+    .home-selo-dados {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .home-mini-dado {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.46);
+      text-align: center;
+    }
+
+    .home-mini-dado span {
+      display: block;
+      color: var(--home-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 6px;
+    }
+
+    .home-mini-dado strong {
+      color: var(--home-amarelo);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .home-secao {
+      margin-top: 28px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-secao::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: rgba(216, 189, 116, 0.5);
+    }
+
+    .home-secao h2 {
+      color: var(--home-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(26px, 4vw, 46px);
+      margin-bottom: 14px;
+    }
+
+    .home-secao p {
+      color: var(--home-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      max-width: 980px;
+    }
+
+    .home-grid-principal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .home-card-link {
+      min-height: 260px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 20px;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.045), transparent 42%),
+        rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+      transition: 0.28s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .home-card-link:hover {
+      transform: translateY(-6px);
+      border-color: var(--home-amarelo);
+      box-shadow: 0 0 24px rgba(216, 189, 116, 0.13);
+    }
+
+    .home-card-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .home-card-link.ordo::before {
+      background: radial-gradient(circle at 50% 10%, rgba(181,22,36,0.75), transparent 45%);
+    }
+
+    .home-card-link.personagens::before {
+      background: radial-gradient(circle at 50% 10%, rgba(139,77,255,0.75), transparent 45%);
+    }
+
+    .home-card-link.missoes::before {
+      background: radial-gradient(circle at 50% 10%, rgba(216,189,116,0.55), transparent 45%);
+    }
+
+    .home-card-link.locais::before {
+      background: radial-gradient(circle at 50% 10%, rgba(111,143,78,0.65), transparent 45%);
+    }
+
+    .home-card-link.documentos::before {
+      background: radial-gradient(circle at 50% 10%, rgba(138,138,138,0.65), transparent 45%);
+    }
+
+    .home-card-link.elementos::before {
+      background: radial-gradient(circle at 50% 10%, rgba(181,22,36,0.45), rgba(139,77,255,0.24), transparent 48%);
+    }
+
+    .home-card-link > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-card-link span {
+      color: var(--home-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+    }
+
+    .home-card-link h3 {
+      color: var(--home-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 24px;
+      margin: 12px 0;
+    }
+
+    .home-card-link p {
+      color: var(--home-fraco);
+      line-height: 1.62;
+      font-size: 14px;
+    }
+
+    .home-card-icone {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      display: grid;
+      place-items: center;
+      color: var(--home-amarelo);
+      font-size: 30px;
+      background: rgba(0,0,0,0.32);
+      margin-top: 20px;
+      box-shadow: inset 0 0 22px rgba(0,0,0,0.65);
+    }
+
+    .trindade-home {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .trindade-home-card {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(0,0,0,0.28);
+      min-height: 240px;
+      transition: 0.28s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trindade-home-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(216, 189, 116, 0.42);
+    }
+
+    .trindade-home-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .trindade-home-card.yuna::before {
+      background: radial-gradient(circle at top, rgba(139,77,255,0.78), transparent 48%);
+    }
+
+    .trindade-home-card.lisa::before {
+      background: radial-gradient(circle at top, rgba(111,143,78,0.78), transparent 48%);
+    }
+
+    .trindade-home-card.blender::before {
+      background: radial-gradient(circle at top, rgba(181,22,36,0.78), transparent 48%);
+    }
+
+    .trindade-home-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .trindade-home-card span {
+      color: var(--home-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+    }
+
+    .trindade-home-card h3 {
+      color: var(--home-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 26px;
+      margin: 10px 0;
+    }
+
+    .trindade-home-card p {
+      color: var(--home-fraco);
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .trindade-home-card a {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--home-texto);
+      text-decoration: none;
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      transition: 0.22s;
+    }
+
+    .trindade-home-card a:hover {
+      color: var(--home-amarelo);
+      border-color: var(--home-amarelo);
+    }
+
+    .status-arquivo-home {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .status-home-card {
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(0,0,0,0.26);
+    }
+
+    .status-home-card span {
+      display: block;
+      color: var(--home-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .status-home-card strong {
+      display: block;
+      color: var(--home-amarelo);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .status-home-card p {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .home-terminal {
+      margin-top: 28px;
+      border: 1px solid rgba(181, 22, 36, 0.32);
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.36);
+      font-family: monospace;
+    }
+
+    .home-terminal span {
+      display: block;
+      color: #ff3045;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .home-terminal p {
+      color: var(--home-texto);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .home-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .home-grid-principal {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .trindade-home {
+        grid-template-columns: 1fr;
+      }
+
+      .status-arquivo-home {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .home-premium {
+        padding: 18px;
+      }
+
+      .home-hero-texto h2 {
+        font-size: 40px;
+      }
+
+      .home-grid-principal {
+        grid-template-columns: 1fr;
+      }
+
+      .home-selo-dados {
+        grid-template-columns: 1fr;
+      }
+
+      .status-arquivo-home {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <div class="fundo-paranormal"></div>
@@ -15,166 +569,235 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Ordo Realitas — Registro Interno da Campanha</p>
+      <p>Corações do Outro Lado</p>
     </div>
 
     <nav>
-  <a href="index.html">Início</a>
-  <a href="ordo.html">Ordo Realitas</a>
-  <a href="locais.html">Locais</a>
-  <a href="personagens.html">Personagens</a>
-  <a href="missoes.html">Missões</a>
-  <a href="documentos.html">Documentos</a>
+      <a href="index.html">Início</a>
+      <a href="ordo.html">Ordo Realitas</a>
+      <a href="locais.html">Locais</a>
+      <a href="personagens.html">Personagens</a>
+      <a href="missoes.html">Missões</a>
+      <a href="documentos.html">Documentos</a>
     </nav>
   </header>
 
   <main>
 
-    <section class="hero">
-      <p class="classificacao">Arquivo central // acesso parcial autorizado</p>
+    <section class="home-premium">
 
-      <h2>Corações do Outro Lado</h2>
+      <section class="home-hero">
 
-      <p>
-        Este site reúne os principais registros do mundo da campanha:
-        personagens, jogadores, locais, missões, elementos, documentos,
-        criaturas, organizações e eventos ligados ao paranormal.
-      </p>
+        <div class="home-hero-texto">
+          <p class="classificacao">Arquivo principal // campanha ativa</p>
 
-      <p>
-        Nem tudo está completo. Nem tudo está liberado. Alguns arquivos ainda estão
-        sendo recuperados, outros foram ocultados por segurança operacional.
-      </p>
-    </section>
+          <h2>Corações<br>do Outro<br>Lado</h2>
 
-    <section class="cards">
+          <p>
+            Este arquivo reúne registros, personagens, missões, locais e documentos
+            relacionados aos eventos de Corações do Outro Lado.
+          </p>
 
-      <a href="personagens.html" class="card">
-        <span>ARQUIVO 01</span>
-        <h3>Personagens</h3>
+          <p>
+            Nem toda informação está completa. Nem todo documento é confiável.
+            E nem todo agente registrado aqui voltou inteiro o suficiente para contar
+            a própria versão.
+          </p>
+
+          <div class="home-acoes">
+            <a href="ordo.html" class="home-botao principal">Abrir Ordo Realitas</a>
+            <a href="personagens.html" class="home-botao">Ver personagens</a>
+            <a href="missoes.html" class="home-botao">Consultar missões</a>
+          </div>
+        </div>
+
+        <div class="home-selo">
+          <div class="home-selo-dados">
+            <div class="home-mini-dado">
+              <span>Campanha</span>
+              <strong>Ativa</strong>
+            </div>
+
+            <div class="home-mini-dado">
+              <span>Acesso</span>
+              <strong>Restrito</strong>
+            </div>
+
+            <div class="home-mini-dado">
+              <span>Núcleo</span>
+              <strong>Ordem</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="home-secao">
+        <p class="classificacao">Navegação principal // índice do arquivo</p>
+        <h2>Setores do Arquivo</h2>
+
         <p>
-          Registros de agentes, NPCs, aliados, inimigos e figuras importantes
-          envolvidas direta ou indiretamente com a campanha.
+          Cada setor abaixo leva a uma parte diferente do arquivo. Algumas páginas
+          ainda podem estar incompletas, censuradas ou aguardando novos registros.
         </p>
-      </a>
 
-      <a href="jogadores.html" class="card">
-        <span>ARQUIVO 02</span>
-        <h3>Jogadores</h3>
+        <div class="home-grid-principal">
+
+          <a href="ordo.html" class="home-card-link ordo">
+            <div>
+              <span>Organização</span>
+              <h3>Ordo Realitas</h3>
+              <p>Estrutura interna da Ordem, suas alas, a Trindade e a liderança de Klint.</p>
+            </div>
+            <div class="home-card-icone">OR</div>
+          </a>
+
+          <a href="personagens.html" class="home-card-link personagens">
+            <div>
+              <span>Registros pessoais</span>
+              <h3>Personagens</h3>
+              <p>Dossiês de agentes, semi-líderes e figuras importantes da campanha.</p>
+            </div>
+            <div class="home-card-icone">☰</div>
+          </a>
+
+          <a href="missoes.html" class="home-card-link missoes">
+            <div>
+              <span>Operações</span>
+              <h3>Missões</h3>
+              <p>Relatórios de campo, ocorrências e eventos ligados ao avanço da campanha.</p>
+            </div>
+            <div class="home-card-icone">✦</div>
+          </a>
+
+          <a href="locais.html" class="home-card-link locais">
+            <div>
+              <span>Mapeamento</span>
+              <h3>Locais</h3>
+              <p>Áreas investigadas, bases, regiões perigosas e pontos de interesse.</p>
+            </div>
+            <div class="home-card-icone">⌖</div>
+          </a>
+
+          <a href="documentos.html" class="home-card-link documentos">
+            <div>
+              <span>Arquivos</span>
+              <h3>Documentos</h3>
+              <p>Registros internos, textos, pistas, evidências e materiais classificados.</p>
+            </div>
+            <div class="home-card-icone">▣</div>
+          </a>
+
+          <a href="elementos.html" class="home-card-link elementos">
+            <div>
+              <span>Paranormal</span>
+              <h3>Elementos</h3>
+              <p>Informações sobre forças paranormais, manifestações e conceitos do Outro Lado.</p>
+            </div>
+            <div class="home-card-icone">◇</div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="home-secao">
+        <p class="classificacao">Núcleo operacional // semi-líderes registrados</p>
+        <h2>A Trindade da Ordem</h2>
+
         <p>
-          Área dedicada aos jogadores da mesa, personagens ativos,
-          participação na campanha e registros importantes.
+          A Trindade representa o equilíbrio instável da Ordo Realitas: conhecimento,
+          coordenação e contenção. Três setores, três formas de liderar e três maneiras
+          diferentes de sobreviver ao Paranormal.
         </p>
-      </a>
 
-      <a href="locais.html" class="card">
-        <span>ARQUIVO 03</span>
-        <h3>Locais</h3>
+        <div class="trindade-home">
+
+          <article class="trindade-home-card yuna">
+            <span>Ala Ocultista</span>
+            <h3>Yuna</h3>
+            <p>
+              Conhecimento proibido, silêncio e análise paranormal. Yuna entende o que
+              muitos agentes sequer conseguem encarar.
+            </p>
+            <a href="yuna.html">Abrir dossiê</a>
+          </article>
+
+          <article class="trindade-home-card lisa">
+            <span>Ala Especialista</span>
+            <h3>Lisa</h3>
+            <p>
+              Estratégia, movimento e coordenação. Lisa mantém a estrutura funcionando
+              quando o medo ameaça quebrar a missão.
+            </p>
+            <a href="lisa.html">Abrir dossiê</a>
+          </article>
+
+          <article class="trindade-home-card blender">
+            <span>Ala Combatente</span>
+            <h3>Blender</h3>
+            <p>
+              Força, contenção e impacto. Blender é a linha de frente quando o plano
+              falha e alguém precisa segurar a ameaça.
+            </p>
+            <a href="blender.html">Abrir dossiê</a>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="home-secao">
+        <p class="classificacao">Status geral // leitura do sistema</p>
+        <h2>Status do Arquivo</h2>
+
         <p>
-          Cidades, bases, zonas de risco, instalações da Ordem,
-          áreas paranormais e pontos relevantes do mundo.
+          O arquivo continua em expansão conforme novos personagens, documentos e
+          eventos forem registrados.
         </p>
-      </a>
 
-      <a href="missoes.html" class="card">
-        <span>ARQUIVO 04</span>
-        <h3>Missões</h3>
+        <div class="status-arquivo-home">
+
+          <div class="status-home-card">
+            <span>Campanha</span>
+            <strong>Ativa</strong>
+            <p>Os registros ainda estão sendo atualizados conforme a história avança.</p>
+          </div>
+
+          <div class="status-home-card">
+            <span>Ordem</span>
+            <strong>Operante</strong>
+            <p>A Ordo Realitas segue funcionando sob pressão crescente.</p>
+          </div>
+
+          <div class="status-home-card">
+            <span>Dossiês</span>
+            <strong>Parciais</strong>
+            <p>Algumas informações permanecem ocultas por segurança operacional.</p>
+          </div>
+
+          <div class="status-home-card">
+            <span>Risco</span>
+            <strong>Elevado</strong>
+            <p>O Paranormal continua influenciando agentes, locais e registros.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="home-terminal">
+        <span>Registro corrompido // mensagem recuperada</span>
         <p>
-          Relatórios de investigações, operações, casos ativos,
-          eventos críticos e consequências da campanha.
+          Nem todo coração batendo ainda pertence completamente à Realidade.
+          Alguns continuam vivos apenas porque o Outro Lado ainda não terminou de escutar.
         </p>
-      </a>
+      </section>
 
-      <a href="elementos.html" class="card">
-        <span>ARQUIVO 05</span>
-        <h3>Elementos</h3>
-        <p>
-          Componentes, forças, manifestações, símbolos e estudos
-          ligados ao Outro Lado.
-        </p>
-      </a>
-
-      <a href="documentos.html" class="card">
-        <span>ARQUIVO 06</span>
-        <h3>Documentos</h3>
-        <p>
-          Regras próprias, sistemas especiais, anotações do mestre,
-          arquivos técnicos e registros internos.
-        </p>
-      </a>
-
-    </section>
-
-    <section class="hero" style="margin-top: 60px;">
-      <p class="classificacao">Estado atual // registro em construção</p>
-
-      <h2>Status do Arquivo</h2>
-
-      <p>
-        O arquivo da campanha ainda está em expansão. A cada nova descoberta,
-        personagem, local ou evento importante, novos registros serão adicionados.
-      </p>
-
-      <p>
-        Alguns setores permanecem incompletos até que mais informações sejam
-        confirmadas durante as sessões.
-      </p>
-    </section>
-
-    <section class="cards">
-
-      <a href="personagens.html" class="card">
-        <span>REGISTRO ATIVO</span>
-        <h3>Yuna</h3>
-        <p>
-          Primeira ficha interativa registrada no sistema. Ocultista marcada
-          pelo Outro Lado e Semi-Líder da classificação ocultista.
-        </p>
-      </a>
-
-      <a href="missoes.html" class="card">
-        <span>CAMPANHA ATUAL</span>
-        <h3>Corações do Outro Lado</h3>
-        <p>
-          Missão principal da campanha atual. Os registros ainda estão sendo
-          organizados e serão liberados futuramente.
-        </p>
-      </a>
-
-      <a href="documentos.html" class="card">
-        <span>SISTEMA INTERNO</span>
-        <h3>Arquivos da Ordem</h3>
-        <p>
-          Estrutura criada para armazenar documentos, regras,
-          fichas e informações importantes da campanha.
-        </p>
-      </a>
-
-    </section>
-
-    <section class="hero" style="margin-top: 60px;">
-      <p class="classificacao">Aviso aos agentes // leitura obrigatória</p>
-
-      <h2>Nem todo arquivo diz a verdade inteira</h2>
-
-      <p>
-        Este arquivo mostra apenas o que foi registrado, autorizado ou recuperado.
-        Algumas informações podem estar incompletas, distorcidas, censuradas
-        ou simplesmente ausentes.
-      </p>
-
-      <p>
-        A ausência de um dado não significa que ele não exista. Significa apenas
-        que ele ainda não deveria ser encontrado.
-      </p>
     </section>
 
   </main>
 
   <footer>
     <p>
-      Arquivo criado para registro da campanha. Acesso externo limitado.
-      Alterações só podem ser feitas pelo Criador do arquivo.
+      Arquivo da Campanha. Acesso limitado a registros autorizados da Ordo Realitas.
     </p>
   </footer>
 
