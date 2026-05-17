@@ -4,9 +4,538 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Yuna | Arquivo da Campanha</title>
+  <title>Dossiê — Yuna | Arquivo da Campanha</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .dossie-premium {
+      --dossie-cor: #8b4dff;
+      --dossie-cor-fraca: rgba(139, 77, 255, 0.18);
+      --dossie-cor-media: rgba(139, 77, 255, 0.42);
+      --dossie-dourado: #d8bd74;
+      --dossie-fundo: #070609;
+      --dossie-card: rgba(13, 11, 18, 0.92);
+      --dossie-texto: #e8dfd2;
+      --dossie-fraco: #a89f94;
+
+      border: 1px solid var(--dossie-cor-media);
+      border-radius: 24px;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(139, 77, 255, 0.20), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(216, 189, 116, 0.08), transparent 26%),
+        radial-gradient(circle at 50% 90%, rgba(139, 77, 255, 0.10), transparent 40%),
+        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(15, 10, 22, 0.97));
+      box-shadow:
+        0 0 42px rgba(139, 77, 255, 0.18),
+        inset 0 0 60px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossie-premium::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .dossie-premium::after {
+      content: "ARQUIVO RESTRITO // ORDO REALITAS // YUNA";
+      position: absolute;
+      right: -120px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.13);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .dossie-premium > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dossie-voltar {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--dossie-dourado);
+      border: 1px solid rgba(216, 189, 116, 0.38);
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      transition: 0.25s;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .dossie-voltar:hover {
+      transform: translateX(-4px);
+      border-color: var(--dossie-dourado);
+      box-shadow: 0 0 18px rgba(139, 77, 255, 0.24);
+    }
+
+    .dossie-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+      padding-bottom: 24px;
+    }
+
+    .dossie-header .classificacao {
+      color: #c667ff;
+    }
+
+    .dossie-titulo h2 {
+      font-size: clamp(46px, 6vw, 88px);
+      letter-spacing: 7px;
+      text-transform: uppercase;
+      color: var(--dossie-dourado);
+      line-height: 0.92;
+      text-shadow:
+        0 0 18px rgba(139, 77, 255, 0.35),
+        0 0 36px rgba(139, 77, 255, 0.18);
+    }
+
+    .dossie-titulo span {
+      display: block;
+      margin-top: 12px;
+      color: var(--dossie-fraco);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .dossie-selo {
+      min-width: 180px;
+      border: 1px solid rgba(216, 189, 116, 0.35);
+      color: var(--dossie-dourado);
+      padding: 18px;
+      text-align: center;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      transform: rotate(3deg);
+      background: rgba(0,0,0,0.32);
+      box-shadow: 0 0 22px rgba(139, 77, 255, 0.14);
+    }
+
+    .dossie-selo strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .dossie-selo small {
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .dossie-grid {
+      display: grid;
+      grid-template-columns: 330px 1.1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .dossie-coluna {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .dossie-personagem {
+      min-height: 700px;
+      border: 1px solid var(--dossie-cor-media);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(139, 77, 255, 0.22), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.12));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.55);
+    }
+
+    .dossie-personagem::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    .dossie-personagem::after {
+      content: "SOBREVIVENTE MARCADA";
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      color: rgba(216, 189, 116, 0.55);
+      letter-spacing: 3px;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .dossie-personagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.02);
+      filter:
+        drop-shadow(0 0 26px rgba(139, 77, 255, 0.28))
+        drop-shadow(0 0 38px rgba(0,0,0,0.85));
+      transition: 0.35s;
+    }
+
+    .dossie-personagem:hover img {
+      transform: scale(1.055);
+    }
+
+    .dossie-bloco {
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(139, 77, 255, 0.07)),
+        rgba(0,0,0,0.22);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossie-bloco::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--dossie-cor);
+      opacity: 0.65;
+    }
+
+    .dossie-bloco h3 {
+      color: var(--dossie-dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .dossie-bloco p {
+      color: var(--dossie-fraco);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .dossie-bloco p + p {
+      margin-top: 12px;
+    }
+
+    .identidade-lista {
+      display: grid;
+      gap: 9px;
+    }
+
+    .identidade-lista div {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.065);
+      padding-bottom: 8px;
+    }
+
+    .identidade-lista span {
+      color: #c667ff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .identidade-lista strong {
+      color: var(--dossie-texto);
+      text-align: right;
+      font-size: 14px;
+    }
+
+    .dossie-status {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .status-mini {
+      border: 1px solid rgba(139, 77, 255, 0.32);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .status-mini span {
+      display: block;
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .status-mini strong {
+      color: var(--dossie-dourado);
+      font-size: 14px;
+    }
+
+    .atributos-dossie {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 9px;
+    }
+
+    .atributos-dossie button {
+      min-height: 82px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 77, 255, 0.55);
+      background:
+        radial-gradient(circle, rgba(139, 77, 255, 0.20), rgba(0,0,0,0.72));
+      color: var(--dossie-texto);
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .atributos-dossie button span {
+      display: block;
+      color: var(--dossie-dourado);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .atributos-dossie button strong {
+      display: block;
+      font-size: 26px;
+      margin-top: 4px;
+    }
+
+    .atributos-dossie button:hover,
+    .atributos-dossie button.selecionado {
+      transform: translateY(-4px) scale(1.04);
+      border-color: var(--dossie-dourado);
+      box-shadow: 0 0 18px rgba(139, 77, 255, 0.35);
+    }
+
+    .dossie-lista {
+      display: grid;
+      gap: 10px;
+    }
+
+    .dossie-lista button {
+      text-align: left;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      background: rgba(255,255,255,0.03);
+      color: var(--dossie-texto);
+      cursor: pointer;
+      transition: 0.22s;
+      font-size: 14px;
+    }
+
+    .dossie-lista button:hover,
+    .dossie-lista button.selecionado {
+      border-color: var(--dossie-dourado);
+      color: var(--dossie-dourado);
+      transform: translateX(5px);
+      box-shadow: 0 0 16px rgba(139, 77, 255, 0.22);
+    }
+
+    .dossie-detalhe {
+      margin-top: 14px;
+      border: 1px solid rgba(139, 77, 255, 0.32);
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 120px;
+      max-height: 260px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .dossie-detalhe h4 {
+      color: var(--dossie-dourado);
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .dossie-detalhe p {
+      color: var(--dossie-fraco);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .texto-formatado {
+      display: grid;
+      gap: 10px;
+    }
+
+    .simbolo-yuna {
+      min-height: 250px;
+      border: 1px solid rgba(139, 77, 255, 0.30);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at center, rgba(139, 77, 255, 0.30), transparent 34%),
+        radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.9)),
+        linear-gradient(135deg, rgba(139,77,255,0.08), rgba(0,0,0,0.2));
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simbolo-yuna::before {
+      content: "";
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(216, 189, 116, 0.35);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 18px rgba(139, 77, 255, 0.05),
+        0 0 35px rgba(139, 77, 255, 0.35);
+      position: absolute;
+    }
+
+    .simbolo-yuna::after {
+      content: "☾";
+      color: var(--dossie-dourado);
+      font-size: 82px;
+      text-shadow: 0 0 28px rgba(139, 77, 255, 0.65);
+      z-index: 1;
+    }
+
+    .relacoes {
+      display: grid;
+      gap: 10px;
+    }
+
+    .relacao-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(216, 189, 116, 0.14);
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .relacao-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 77, 255, 0.45);
+      display: grid;
+      place-items: center;
+      color: var(--dossie-dourado);
+      background: rgba(0,0,0,0.42);
+      font-weight: bold;
+    }
+
+    .relacao-item strong {
+      color: var(--dossie-dourado);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .relacao-item span {
+      color: var(--dossie-fraco);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .frase-dossie {
+      margin-top: 22px;
+      border: 1px solid rgba(216, 189, 116, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(139, 77, 255, 0.16), transparent 60%),
+        rgba(0,0,0,0.30);
+    }
+
+    .frase-dossie span {
+      display: block;
+      color: var(--dossie-fraco);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .frase-dossie strong {
+      color: var(--dossie-dourado);
+      font-size: clamp(22px, 3vw, 38px);
+      letter-spacing: 1px;
+      font-family: Georgia, serif;
+      font-weight: normal;
+    }
+
+    @media (max-width: 1180px) {
+      .dossie-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dossie-personagem {
+        min-height: 620px;
+      }
+
+      .dossie-coluna.personagem-area {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .dossie-premium {
+        padding: 18px;
+      }
+
+      .dossie-header {
+        grid-template-columns: 1fr;
+      }
+
+      .dossie-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dossie-personagem {
+        min-height: 520px;
+      }
+
+      .atributos-dossie {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .atributos-dossie button {
+        border-radius: 14px;
+      }
+
+      .dossie-status {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,7 +544,7 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Ficha interativa de agente</p>
+      <p>Dossiê visual de agente</p>
     </div>
 
     <nav>
@@ -29,343 +558,264 @@
 
   <main>
 
-    <section class="ficha-personagem yuna-theme">
+    <section class="dossie-premium">
 
-      <a href="personagens.html" class="botao-voltar">← Voltar para Personagens</a>
+      <a href="personagens.html" class="dossie-voltar">← Voltar para Personagens</a>
 
-      <div class="ficha-topo">
-        <div>
-          <p class="classificacao">Registro de agente // acesso controlado</p>
+      <div class="dossie-header">
+        <div class="dossie-titulo">
+          <p class="classificacao">Dossiê restrito // Ala Ocultista</p>
           <h2>Yuna</h2>
-          <p class="subtitulo-ficha">Ocultista — NEX 60% — Semi-Líder Ocultista</p>
+          <span>Semi-Líder Ocultista — NEX 60% — Registro OR-OC-07</span>
         </div>
 
-        <div class="selo-ficha">
-          ORDO<br>REALITAS
+        <div class="dossie-selo">
+          <strong>ORDO<br>REALITAS</strong>
+          <small>acesso controlado</small>
         </div>
       </div>
 
-      <div class="ficha-layout">
+      <div class="dossie-grid">
 
-        <aside class="painel-personagem">
-          <div class="personagem-placeholder">
+        <div class="dossie-coluna personagem-area">
+          <div class="dossie-personagem">
             <img src="Yuna-cortada.png?v=2" alt="Imagem de corpo inteiro da personagem Yuna">
           </div>
+        </div>
 
-          <div class="status-operacional">
-            <span>Status operacional</span>
-            <strong>Risco Paranormal Controlado</strong>
-          </div>
-        </aside>
+        <div class="dossie-coluna">
 
-        <section class="painel-ficha">
+          <div class="dossie-bloco">
+            <h3>Identidade</h3>
 
-          <div class="abas-ficha">
-            <button class="aba ativa" data-aba="informacoes">Informações</button>
-            <button class="aba" data-aba="atributos">Atributos</button>
-            <button class="aba" data-aba="habilidades">Habilidades</button>
-            <button class="aba" data-aba="rituais">Rituais</button>
-            <button class="aba" data-aba="inventario">Inventário</button>
-            <button class="aba" data-aba="descricao">Descrição</button>
-          </div>
-
-          <div class="conteudo-ficha">
-
-            <div class="conteudo-aba ativo" id="informacoes">
-              <h3>Informações</h3>
-
-              <div class="info-grid">
-                <div class="info-card">
-                  <span>Nome</span>
-                  <strong>Yuna</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Jogador(a)</span>
-                  <strong>???</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Classe</span>
-                  <strong>Ocultista</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Origem</span>
-                  <strong>Desconhecida</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>NEX</span>
-                  <strong>60%</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Patente / Rank</span>
-                  <strong>Semi-Líder Ocultista</strong>
-                </div>
+            <div class="identidade-lista">
+              <div>
+                <span>Nome</span>
+                <strong>Yuna</strong>
               </div>
 
-              <div class="caixa-detalhe" style="margin-top: 24px;">
-                <h4>Frase de efeito</h4>
-                <p>“Eu sobrevivi, mas isso não significa que eu voltei inteira.”</p>
+              <div>
+                <span>Jogador(a)</span>
+                <strong>???</strong>
+              </div>
+
+              <div>
+                <span>Classe</span>
+                <strong>Ocultista</strong>
+              </div>
+
+              <div>
+                <span>Origem</span>
+                <strong>Desconhecida</strong>
+              </div>
+
+              <div>
+                <span>NEX</span>
+                <strong>60%</strong>
+              </div>
+
+              <div>
+                <span>Patente</span>
+                <strong>Semi-Líder Ocultista</strong>
               </div>
             </div>
-
-            <div class="conteudo-aba" id="atributos">
-              <h3>Atributos</h3>
-
-              <p class="texto-apoio">
-                Clique em um atributo para ver o que ele representa dentro da ficha.
-              </p>
-
-              <div class="atributos-grid">
-
-                <button
-                  class="atributo-card"
-                  data-titulo="FOR — Força"
-                  data-texto="Força representa potência física, capacidade de erguer peso, causar impacto corpo a corpo e resistir em situações que exigem poder bruto.||Em Yuna, esse atributo é baixo. Isso reforça que sua ameaça não vem do corpo, mas do conhecimento paranormal."
-                >
-                  <span>FOR</span>
-                  <strong>1</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="AGI — Agilidade"
-                  data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade, esquiva e precisão em movimentos rápidos.||Em Yuna, esse é um dos atributos mais úteis para manter distância, reagir a ameaças e sobreviver em situações perigosas."
-                >
-                  <span>AGI</span>
-                  <strong>3</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="INT — Intelecto"
-                  data-texto="Intelecto representa raciocínio, investigação, conhecimento técnico, estudo ocultista e capacidade de compreender padrões complexos.||É o maior atributo de Yuna e reflete seu domínio sobre o Outro Lado, seus rituais e sua capacidade de analisar manifestações paranormais."
-                >
-                  <span>INT</span>
-                  <strong>4</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="PRE — Presença"
-                  data-texto="Presença representa força de vontade, influência, intimidação, conexão emocional e resistência mental diante do paranormal.||Em Yuna, esse atributo é baixo, mostrando sua fragilidade emocional, sua distância social e sua dificuldade de se impor diante dos outros."
-                >
-                  <span>PRE</span>
-                  <strong>1</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="VIG — Vigor"
-                  data-texto="Vigor representa saúde, resistência física, fôlego, tolerância à dor e capacidade de continuar de pé em situações extremas.||Yuna possui pouco vigor, tornando seu corpo uma parte vulnerável da ficha. Ela sobrevive mais por controle, distância e conhecimento do que por resistência física."
-                >
-                  <span>VIG</span>
-                  <strong>1</strong>
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe" id="detalhe-atributo">
-                <h4>Nenhum atributo selecionado</h4>
-                <p>Clique em FOR, AGI, INT, PRE ou VIG para revelar a descrição.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="habilidades">
-              <h3>Habilidades</h3>
-
-              <p class="texto-apoio">
-                Clique em uma habilidade para abrir o registro completo.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Escolhido pelo Outro Lado"
-                  data-texto="Yuna teve uma experiência paranormal e foi marcada pelo Outro Lado, absorvendo o conhecimento e o poder necessários para realizar rituais.||Ela pode lançar rituais de 1º círculo. Conforme aumenta seu NEX, passa a lançar rituais de círculos maiores: 2º círculo em NEX 25%, 3º círculo em NEX 55% e 4º círculo em NEX 85%.||Ela começa com três rituais de 1º círculo. Sempre que avança de NEX, aprende um ritual de qualquer círculo que possa lançar. Esses rituais não contam no limite de rituais conhecidos."
-                >
-                  Escolhido pelo Outro Lado
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Especialista em Elemento"
-                  data-texto="Yuna escolhe um elemento. A DT para resistir aos seus rituais desse elemento aumenta em +2.||Essa habilidade reforça seu domínio sobre uma força específica do Outro Lado, tornando seus rituais mais difíceis de resistir."
-                >
-                  Especialista em Elemento
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Identificação Paranormal"
-                  data-texto="Yuna recebe +10 em testes de Ocultismo para identificar criaturas, objetos ou rituais.||Essa habilidade combina diretamente com seu papel dentro da Ordem: analisar, reconhecer e compreender ameaças antes que elas se tornem catastróficas."
-                >
-                  Identificação Paranormal
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Mestre em Elemento"
-                  data-texto="Yuna escolhe um elemento. O custo para lançar rituais desse elemento diminui em –1 PE.||Pré-requisitos: Especialista em Elemento no elemento escolhido e NEX 45%.||Essa habilidade mostra que ela não apenas conhece o elemento, mas aprendeu a manipulá-lo com eficiência."
-                >
-                  Mestre em Elemento
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Treinamento em Perícia (x2)"
-                  data-texto="Yuna escolhe duas perícias e se torna treinada nelas.||A partir de NEX 35%, pode escolher perícias nas quais já é treinada para se tornar veterana.||A partir de NEX 70%, pode escolher perícias nas quais já é veterana para se tornar expert. Esse poder pode ser escolhido várias vezes."
-                >
-                  Treinamento em Perícia (x2)
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione uma habilidade</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="rituais">
-              <h3>Rituais</h3>
-
-              <p class="texto-apoio">
-                Clique em um ritual para consultar suas informações.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Refração Temporal"
-                  data-texto="Elemento: Morte.||Círculo: 2º.||Execução: Padrão.||Alcance: Pessoal.||Duração: Sustentada.||Custo: 1 PD.||Efeito: Yuna altera sua própria percepção temporal. Durante o efeito, recebe +5 em Reflexos."
-                >
-                  Refração Temporal
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Memória do Último Instante"
-                  data-texto="Elemento: Morte.||Círculo: 3º.||Execução: Padrão.||Alcance: Toque.||Duração: Cena.||Resistência: Vontade.||Custo: 2 PD.||Efeito: Yuna força o alvo a encarar uma simulação mental do próprio último instante.||Caso o alvo falhe no teste de Vontade, sofre 2d6 de dano mental e fica abalado.||Caso o alvo passe no teste de Vontade, sofre metade do dano e evita a condição.||Forma Discente: a experiência se torna mais intensa, o dano muda para 3d6 mental e, caso o alvo seja perito em Vontade, ele pode realizar um teste para sofrer metade do dano e evitar a condição."
-                >
-                  Memória do Último Instante
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione um ritual</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="inventario">
-              <h3>Inventário</h3>
-
-              <p class="texto-apoio">
-                Clique no registro para abrir a descrição.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Inventário vazio"
-                  data-texto="Yuna não costuma carregar nada consigo, nem mesmo componentes ritualísticos.||Ela carrega o próprio corpo apenas porque não pode deixá-lo para trás."
-                >
-                  Inventário vazio
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione um item</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="descricao">
-              <h3>Descrição</h3>
-
-              <p class="texto-apoio">
-                Clique em uma seção para abrir os registros descritivos da personagem.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Aparência"
-                  data-texto="Yuna tem 1,65m de altura e possui um corpo magro e delicado, transmitindo uma presença quase etérea. É como se uma parte dela ainda habitasse o Outro Lado e não pertencesse completamente à Realidade.||Sua pele negra é lisa, com um brilho sutil que se intensifica sob luzes fracas ou durante a canalização de rituais.||Seu cabelo é longo, volumoso e intensamente cacheado, caindo em cachos definidos e cheios. As pontas de todos os cachos terminam em mechas brancas marcantes, criando um contraste hipnotizante.||Uma franja cacheada cai naturalmente sobre o lado esquerdo do rosto, escondendo parcialmente um dos olhos e reforçando sua aura reservada.||Seu rosto é sereno, com olhos escuros e profundos. O olho visível costuma carregar um brilho cinza sutil, quase sobrenatural. Sua expressão habitual é calma, distante e reservada."
-                >
-                  Aparência
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Marcas ritualísticas"
-                  data-texto="No pescoço e nos pulsos, Yuna possui marcas ritualísticas sutis e delicadas, formadas por linhas finas e pequenos símbolos.||Elas parecem brilhar levemente em momentos de tensão, quando o véu entre os mundos afina ou quando ela manipula os Elementos do Outro Lado."
-                >
-                  Marcas ritualísticas
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Roupa habitual"
-                  data-texto="Yuna prefere roupas folgadas e escuras que ajudam a camuflá-la.||Seu visual mais comum é um hoodie oversized preto ou cinza escuro, combinado com calças largas e confortáveis, quase sempre pretas ou cinza.||Nos pulsos, usa pulseiras simples que cobrem parcialmente as marcas rituais. Tudo nela transmite conforto, discrição e uma elegância sombria e discreta."
-                >
-                  Roupa habitual
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Personalidade"
-                  data-texto="Yuna é reservada, educada e extremamente distante. Fala pouco, responde com frases curtas e prefere o silêncio a conversas superficiais.||Evita multidões, festas e qualquer interação social desnecessária.||Sua guarda só cai de verdade quando está ao lado de Lisa, a única pessoa com quem ela permite ser um pouco mais aberta e vulnerável.||Com os demais membros da Ordem, mantém uma cortesia fria e profissional."
-                >
-                  Personalidade
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="História"
-                  data-texto="Yuna nasceu em circunstâncias comuns, mas sua vida mudou para sempre ainda na infância. Um culto obscuro a escolheu como sacrifício humano em um ritual sombrio ligado ao Outro Lado.||O ritual foi completado e ela deveria ter morrido. No entanto, algo deu errado.||Ela sobreviveu, mas o Outro Lado deixou marcas profundas nela: tanto as cicatrizes ritualísticas visíveis quanto uma conexão involuntária com o véu entre as realidades.||A Ordo Realitas interveio a tempo de resgatá-la do local do ritual. O trauma foi devastador.||Ela passou anos lutando contra pesadelos, fragmentos de memórias que não eram suas e uma sanidade constantemente ameaçada pela exposição precoce ao paranormal.||Anos depois, já adulta e com um conhecimento instintivo e avançado sobre o Outro Lado, Yuna se envolveu sozinha em uma investigação perigosa.||Ela sobreviveu a um evento traumático grave: um ritual de alto círculo que estava se manifestando sozinho, culminando em uma possessão parcial e um confronto direto com o antigo ritual que já havia marcado seu corpo.||A Ordem a encontrou quase morta no local, o corpo marcado por novos símbolos ritualísticos e a mente à beira de um colapso.||Sem família, sem ter para onde ir e sem vontade de voltar a uma vida normal que ela sabia que seria impossível, Yuna aceitou entrar oficialmente para a Ordo Realitas.||Seu conhecimento profundo sobre o Outro Lado rapidamente se mostrou insubstituível.||Ela resolveu casos complexos sozinha: analisando artefatos amaldiçoados, decifrando manifestações antes que elas se tornassem catastróficas e prevendo pontos de ruptura paranormal.||Klint, líder da Ordo Realitas, a promoveu a Semi-Líder de classificação Ocultista por pura necessidade operacional."
-                >
-                  História
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Condições impostas à Ordem"
-                  data-texto="Klint aceitou as condições rígidas impostas por Yuna.||Ela não seria obrigada a treinar ou mentorar outros agentes.||Ela não seria obrigada a participar de reuniões, briefings ou eventos sociais da Ordem.||Ela teria liberdade para trabalhar sozinha na maioria das vezes.||Essas condições foram aceitas porque o conhecimento de Yuna era valioso demais para ser desperdiçado."
-                >
-                  Condições impostas à Ordem
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Estado atual"
-                  data-texto="Hoje, aos 24 anos, Yuna vive como uma sombra dentro da própria organização.||Suas marcas ritualísticas brilham quando ela se envolve de alguma forma com o paranormal, seja conjurando rituais ou apenas identificando padrões paranormais.||Esse brilho é um lembrete constante de que ela carrega pedaços do Outro Lado dentro de si desde a infância.||Yuna é extremamente competente, mas também frágil. Qualquer ritual mais poderoso pode abalar sua sanidade.||A conexão que ela tem com o Outro Lado a torna tanto uma arma valiosa quanto um risco potencial."
-                >
-                  Estado atual
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione uma seção</h4>
-                <p>A descrição detalhada aparecerá aqui.</p>
-              </div>
-            </div>
-
           </div>
 
-        </section>
+          <div class="dossie-bloco">
+            <h3>Status Operacional</h3>
 
+            <div class="dossie-status">
+              <div class="status-mini">
+                <span>Status</span>
+                <strong>Ativa</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Risco</span>
+                <strong>Controlado</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Setor</span>
+                <strong>Ocultismo</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Atuação</span>
+                <strong>Solitária</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Conceito Central</h3>
+            <p>
+              Yuna representa silêncio, trauma e conhecimento proibido. Ela não parece
+              pertencer totalmente à Realidade, como se uma parte de seu corpo ainda
+              respondesse ao Outro Lado.
+            </p>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Atributos</h3>
+
+            <div class="atributos-dossie">
+              <button class="atributo-card" data-titulo="FOR — Força" data-texto="Força representa potência física, impacto corpo a corpo e poder bruto.||Em Yuna, esse atributo é baixo. Sua ameaça não vem do corpo, mas do conhecimento paranormal.">
+                <span>FOR</span>
+                <strong>1</strong>
+              </button>
+
+              <button class="atributo-card" data-titulo="AGI — Agilidade" data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade e esquiva.||Em Yuna, esse atributo ajuda a manter distância e sobreviver quando o corpo não acompanha o perigo.">
+                <span>AGI</span>
+                <strong>3</strong>
+              </button>
+
+              <button class="atributo-card" data-titulo="INT — Intelecto" data-texto="Intelecto representa raciocínio, investigação, ocultismo e compreensão de padrões complexos.||É o maior atributo de Yuna e reflete seu domínio sobre manifestações do Outro Lado.">
+                <span>INT</span>
+                <strong>4</strong>
+              </button>
+
+              <button class="atributo-card" data-titulo="PRE — Presença" data-texto="Presença representa influência, comunicação, força emocional e resistência mental.||Em Yuna, esse atributo é baixo, mostrando distância social, fragilidade emocional e dificuldade de se impor.">
+                <span>PRE</span>
+                <strong>1</strong>
+              </button>
+
+              <button class="atributo-card" data-titulo="VIG — Vigor" data-texto="Vigor representa resistência física, saúde e tolerância à dor.||Yuna possui pouco vigor. Ela sobrevive mais por controle, distância e conhecimento do que por resistência física.">
+                <span>VIG</span>
+                <strong>1</strong>
+              </button>
+            </div>
+
+            <div class="dossie-detalhe" id="detalhe-atributo">
+              <h4>Nenhum atributo selecionado</h4>
+              <p>Clique em um atributo para abrir a leitura operacional.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Personalidade</h3>
+            <p>
+              Reservada, educada e extremamente distante. Fala pouco, evita multidões
+              e prefere o silêncio a qualquer conversa superficial.
+            </p>
+            <p>
+              Sua guarda só cai de verdade ao lado de Lisa. Com os demais membros da
+              Ordem, mantém uma cortesia fria e profissional.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="dossie-coluna">
+
+          <div class="dossie-bloco">
+            <h3>Habilidades</h3>
+
+            <div class="dossie-lista">
+              <button class="item-interativo" data-titulo="Escolhido pelo Outro Lado" data-texto="Yuna teve uma experiência paranormal e foi marcada pelo Outro Lado, absorvendo conhecimento e poder para realizar rituais.||Ela pode lançar rituais de círculos maiores conforme seu NEX avança.">
+                Escolhido pelo Outro Lado
+              </button>
+
+              <button class="item-interativo" data-titulo="Especialista em Elemento" data-texto="Yuna escolhe um elemento. A DT para resistir aos seus rituais desse elemento aumenta em +2.||Essa habilidade reforça seu domínio sobre forças específicas do Outro Lado.">
+                Especialista em Elemento
+              </button>
+
+              <button class="item-interativo" data-titulo="Identificação Paranormal" data-texto="Yuna recebe +10 em testes de Ocultismo para identificar criaturas, objetos ou rituais.||Essa é uma das razões pelas quais ela se tornou insubstituível para a Ordem.">
+                Identificação Paranormal
+              </button>
+
+              <button class="item-interativo" data-titulo="Mestre em Elemento" data-texto="Yuna reduz o custo para lançar rituais de um elemento escolhido.||Essa habilidade representa controle refinado e eficiência ritualística.">
+                Mestre em Elemento
+              </button>
+
+              <button class="item-interativo" data-titulo="Treinamento em Perícia (x2)" data-texto="Yuna escolhe perícias adicionais e aprimora sua atuação técnica.||Dentro da Ordem, isso reforça seu papel como analista e especialista paranormal.">
+                Treinamento em Perícia (x2)
+              </button>
+            </div>
+
+            <div class="dossie-detalhe detalhe-lista">
+              <h4>Selecione uma habilidade</h4>
+              <p>O conteúdo detalhado aparecerá aqui.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Rituais</h3>
+
+            <div class="dossie-lista">
+              <button class="item-interativo" data-titulo="Refração Temporal" data-texto="Elemento: Morte.||Círculo: 2º.||Execução: Padrão.||Alcance: Pessoal.||Duração: Sustentada.||Custo: 1 PD.||Efeito: Yuna altera sua própria percepção temporal e recebe +5 em Reflexos.">
+                Refração Temporal
+              </button>
+
+              <button class="item-interativo" data-titulo="Memória do Último Instante" data-texto="Elemento: Morte.||Círculo: 3º.||Execução: Padrão.||Alcance: Toque.||Duração: Cena.||Resistência: Vontade.||Custo: 2 PD.||Yuna força o alvo a encarar uma simulação mental do próprio último instante. Em falha, o alvo sofre dano mental e fica abalado. Em sucesso, sofre metade do dano e evita a condição.">
+                Memória do Último Instante
+              </button>
+            </div>
+
+            <div class="dossie-detalhe detalhe-lista">
+              <h4>Selecione um ritual</h4>
+              <p>O conteúdo detalhado aparecerá aqui.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Papel na Ordem</h3>
+            <p>
+              Yuna atua como analista de manifestações, artefatos e pontos de ruptura
+              paranormal. Ela trabalha quase sempre sozinha e evita treinar agentes.
+            </p>
+            <p>
+              Klint aceitou suas condições por necessidade operacional: o conhecimento
+              dela é valioso demais para ser desperdiçado.
+            </p>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Relações</h3>
+
+            <div class="relacoes">
+              <div class="relacao-item">
+                <div class="relacao-avatar">L</div>
+                <div>
+                  <strong>Lisa</strong>
+                  <span>Única pessoa com quem Yuna permite vulnerabilidade real.</span>
+                </div>
+              </div>
+
+              <div class="relacao-item">
+                <div class="relacao-avatar">K</div>
+                <div>
+                  <strong>Klint</strong>
+                  <span>Respeito operacional. Ele conhece o valor e o risco dela.</span>
+                </div>
+              </div>
+
+              <div class="relacao-item">
+                <div class="relacao-avatar">B</div>
+                <div>
+                  <strong>Blender</strong>
+                  <span>Contraste total: ele destrói o que ela tenta compreender.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Representação Simbólica</h3>
+            <div class="simbolo-yuna"></div>
+            <p style="margin-top: 14px;">
+              Lua escura, silêncio ritualístico e conhecimento proibido. Yuna é a parte
+              da Trindade que observa antes de agir.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="frase-dossie">
+        <span>Frase marcante</span>
+        <strong>“Eu sobrevivi, mas isso não significa que eu voltei inteira.”</strong>
       </div>
 
     </section>
@@ -373,7 +823,7 @@
   </main>
 
   <footer>
-    <p>Ficha de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
+    <p>Dossiê de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
   </footer>
 
   <script src="script.js"></script>
