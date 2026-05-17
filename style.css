@@ -35,6 +35,10 @@ body {
   z-index: -1;
 }
 
+/* ===================== */
+/* CABEÇALHO */
+/* ===================== */
+
 header {
   padding: 24px 40px;
   background: rgba(17, 17, 17, 0.92);
@@ -94,6 +98,10 @@ nav a:hover {
 nav a:hover::after {
   width: 100%;
 }
+
+/* ===================== */
+/* ESTRUTURA GERAL */
+/* ===================== */
 
 main {
   padding: 60px 40px;
@@ -167,6 +175,10 @@ main {
   position: relative;
   z-index: 1;
 }
+
+/* ===================== */
+/* CARDS GERAIS */
+/* ===================== */
 
 .cards {
   margin-top: 50px;
@@ -250,17 +262,20 @@ main {
   z-index: 1;
 }
 
+/* ===================== */
 /* GALERIA DE PERSONAGENS */
+/* ===================== */
 
 .galeria-personagens {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
   gap: 26px;
 }
 
 .card-personagem {
-  min-height: 520px;
+  min-height: 540px;
+  max-height: 620px;
   background: linear-gradient(145deg, rgba(16, 16, 16, 0.96), rgba(8, 8, 8, 0.98));
   border: 1px solid rgba(123, 44, 255, 0.42);
   border-radius: 18px;
@@ -284,6 +299,20 @@ main {
   transition: 0.28s;
 }
 
+.card-personagem::after {
+  content: "ABRIR REGISTRO";
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  color: rgba(242, 193, 78, 0.42);
+  font-size: 11px;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 0.25s;
+  z-index: 2;
+}
+
 .card-personagem:hover {
   transform: translateY(-8px);
   border-color: var(--amarelo);
@@ -296,8 +325,14 @@ main {
   opacity: 1;
 }
 
+.card-personagem:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .portrait-personagem {
   height: 340px;
+  width: 100%;
   border-bottom: 1px solid rgba(242, 193, 78, 0.18);
   position: relative;
   z-index: 1;
@@ -342,6 +377,7 @@ main {
   padding: 24px;
   position: relative;
   z-index: 1;
+  flex: 1;
 }
 
 .dados-personagem-card span {
@@ -367,13 +403,9 @@ main {
   opacity: 0.72;
 }
 
-footer {
-  padding: 28px 40px;
-  color: var(--texto-fraco);
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
+/* ===================== */
 /* FICHA INTERATIVA */
+/* ===================== */
 
 .ficha-personagem {
   border: 1px solid rgba(242, 193, 78, 0.35);
@@ -736,7 +768,15 @@ footer {
   box-shadow: 0 0 18px rgba(123, 44, 255, 0.14);
 }
 
+footer {
+  padding: 28px 40px;
+  color: var(--texto-fraco);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===================== */
 /* RESPONSIVIDADE */
+/* ===================== */
 
 @media (max-width: 1050px) {
   .ficha-layout {
