@@ -364,7 +364,7 @@ footer {
   border: 1px solid rgba(123, 44, 255, 0.45);
   border-radius: 18px;
   background:
-    radial-gradient(circle at center, rgba(123, 44, 255, 0.18), transparent 48%),
+    radial-gradient(circle at center, rgba(123, 44, 255, 0.16), transparent 52%),
     linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
   display: flex;
   align-items: flex-end;
@@ -374,6 +374,16 @@ footer {
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: 0.3s;
+  position: relative;
+}
+
+.personagem-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.25) 100%);
 }
 
 .personagem-placeholder:hover {
@@ -382,19 +392,24 @@ footer {
 }
 
 .personagem-placeholder img {
-  width: 100%;
-  height: 100%;
+  height: 108%;
+  width: auto;
+  max-width: none;
   object-fit: contain;
   object-position: center bottom;
   display: block;
+  transform: translateY(8px) scale(1.18);
+  transform-origin: center bottom;
   filter:
     drop-shadow(0 0 18px rgba(123, 44, 255, 0.22))
     drop-shadow(0 0 28px rgba(0, 0, 0, 0.8));
   transition: 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .personagem-placeholder:hover img {
-  transform: scale(1.02);
+  transform: translateY(8px) scale(1.23);
   filter:
     drop-shadow(0 0 24px rgba(242, 193, 78, 0.18))
     drop-shadow(0 0 35px rgba(123, 44, 255, 0.28));
@@ -661,7 +676,16 @@ footer {
   }
 
   .personagem-placeholder {
-    min-height: 520px;
+    min-height: 620px;
+  }
+
+  .personagem-placeholder img {
+    height: 108%;
+    transform: translateY(8px) scale(1.08);
+  }
+
+  .personagem-placeholder:hover img {
+    transform: translateY(8px) scale(1.12);
   }
 
   .atributos-grid {
@@ -722,6 +746,15 @@ footer {
   }
 
   .personagem-placeholder {
-    min-height: 420px;
+    min-height: 520px;
+  }
+
+  .personagem-placeholder img {
+    height: 105%;
+    transform: translateY(6px) scale(1.03);
+  }
+
+  .personagem-placeholder:hover img {
+    transform: translateY(6px) scale(1.06);
   }
 }
