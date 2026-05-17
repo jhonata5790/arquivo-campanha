@@ -7,7 +7,606 @@
   <title>Documentos | Arquivo da Campanha</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .documentos-pagina {
+      --doc-vermelho: #b51624;
+      --doc-roxo: #8b4dff;
+      --doc-amarelo: #d8bd74;
+      --doc-verde: #6f8f4e;
+      --doc-metal: #8a8a8a;
+      --doc-texto: #e8dfd2;
+      --doc-fraco: #a89f94;
+
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 28px;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.20), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
+        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(13, 10, 8, 0.98));
+      box-shadow:
+        0 0 44px rgba(181, 22, 36, 0.16),
+        inset 0 0 70px rgba(0, 0, 0, 0.68);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .documentos-pagina::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .documentos-pagina::after {
+      content: "DOCUMENTOS // ARQUIVOS // ACESSO RESTRITO";
+      position: absolute;
+      right: -142px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .documentos-pagina > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .classificacao {
+      color: #ff3045;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    .documentos-hero {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      padding-bottom: 30px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+    }
+
+    .documentos-hero-texto {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
+        rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .documentos-hero-texto::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--doc-vermelho), var(--doc-roxo), var(--doc-amarelo));
+    }
+
+    .documentos-hero-texto .classificacao {
+      margin-bottom: 18px;
+    }
+
+    .documentos-hero-texto h2 {
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.92;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--doc-amarelo);
+      text-shadow:
+        0 0 18px rgba(181, 22, 36, 0.36),
+        0 0 36px rgba(139, 77, 255, 0.20);
+      margin-bottom: 22px;
+    }
+
+    .documentos-hero-texto p {
+      color: var(--doc-fraco);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 780px;
+    }
+
+    .documentos-hero-texto p + p {
+      margin-top: 14px;
+    }
+
+    .documentos-selo {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at center, rgba(181,22,36,0.18), transparent 34%),
+        radial-gradient(circle at center, rgba(139,77,255,0.13), transparent 58%),
+        rgba(0,0,0,0.36);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .documentos-selo::before {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.26);
+      box-shadow:
+        0 0 0 28px rgba(181, 22, 36, 0.04),
+        0 0 0 58px rgba(139, 77, 255, 0.03),
+        0 0 52px rgba(181, 22, 36, 0.28);
+    }
+
+    .documentos-selo::after {
+      content: "DOC";
+      color: var(--doc-amarelo);
+      font-size: clamp(58px, 7vw, 92px);
+      letter-spacing: 8px;
+      font-weight: bold;
+      text-shadow:
+        0 0 22px rgba(181, 22, 36, 0.75),
+        0 0 46px rgba(139, 77, 255, 0.40);
+      z-index: 1;
+    }
+
+    .documentos-selo-dados {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .doc-mini-dado {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.46);
+      text-align: center;
+    }
+
+    .doc-mini-dado span {
+      display: block;
+      color: var(--doc-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 6px;
+    }
+
+    .doc-mini-dado strong {
+      color: var(--doc-amarelo);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .documentos-secao {
+      margin-top: 28px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .documentos-secao::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: rgba(216, 189, 116, 0.5);
+    }
+
+    .documentos-secao h2 {
+      color: var(--doc-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(26px, 4vw, 46px);
+      margin-bottom: 14px;
+    }
+
+    .documentos-secao p {
+      color: var(--doc-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      max-width: 980px;
+    }
+
+    .abas-documentos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(0,0,0,0.26);
+    }
+
+    .aba-documento {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.035);
+      color: var(--doc-texto);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .aba-documento:hover {
+      color: var(--doc-amarelo);
+      border-color: var(--doc-amarelo);
+      transform: translateY(-2px);
+    }
+
+    .aba-documento.ativa {
+      color: var(--doc-amarelo);
+      border-color: rgba(181, 22, 36, 0.65);
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.24), rgba(139,77,255,0.10)),
+        rgba(0,0,0,0.30);
+      box-shadow: 0 0 18px rgba(181, 22, 36, 0.16);
+    }
+
+    .conteudo-documento {
+      display: none;
+    }
+
+    .conteudo-documento.ativo {
+      display: block;
+      animation: aparecerDocumento 0.35s ease;
+    }
+
+    @keyframes aparecerDocumento {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .documentos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .doc-card {
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.16)),
+        rgba(0,0,0,0.28);
+      min-height: 240px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.25s;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      text-align: left;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(216, 189, 116, 0.40);
+      box-shadow: 0 0 22px rgba(216, 189, 116, 0.10);
+    }
+
+    .doc-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.24;
+      pointer-events: none;
+    }
+
+    .doc-card.liberado::before {
+      background: radial-gradient(circle at top, rgba(111,143,78,0.65), transparent 48%);
+    }
+
+    .doc-card.bloqueado::before {
+      background: radial-gradient(circle at top, rgba(181,22,36,0.65), transparent 48%);
+    }
+
+    .doc-card.corrompido::before {
+      background: radial-gradient(circle at top, rgba(139,77,255,0.65), transparent 48%);
+    }
+
+    .doc-card.analise::before {
+      background: radial-gradient(circle at top, rgba(216,189,116,0.48), transparent 48%);
+    }
+
+    .doc-card.selecionado {
+      border-color: var(--doc-amarelo);
+      box-shadow:
+        0 0 24px rgba(216, 189, 116, 0.16),
+        inset 0 0 24px rgba(216, 189, 116, 0.06);
+    }
+
+    .doc-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .doc-status {
+      display: inline-block;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--doc-amarelo);
+      background: rgba(0,0,0,0.34);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 9px;
+      margin-bottom: 14px;
+    }
+
+    .doc-card h3 {
+      color: var(--doc-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .doc-card p {
+      color: var(--doc-fraco);
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .doc-meta {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(216, 189, 116, 0.12);
+    }
+
+    .doc-meta div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--doc-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+    }
+
+    .doc-meta strong {
+      color: var(--doc-texto);
+      font-weight: normal;
+      text-align: right;
+    }
+
+    .detalhe-documento {
+      margin-top: 22px;
+      border: 1px solid rgba(181, 22, 36, 0.30);
+      border-radius: 18px;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.34);
+      min-height: 170px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detalhe-documento::before {
+      content: "LEITURA DO ARQUIVO";
+      position: absolute;
+      right: 18px;
+      top: 14px;
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 4px;
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .detalhe-documento h3 {
+      color: var(--doc-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 24px;
+      margin-bottom: 12px;
+      padding-right: 130px;
+    }
+
+    .detalhe-documento p {
+      color: var(--doc-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .documento-aberto {
+      margin-top: 18px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 16px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(216,189,116,0.05), rgba(0,0,0,0.22)),
+        rgba(0,0,0,0.28);
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--doc-texto);
+      line-height: 1.78;
+    }
+
+    .documento-aberto p {
+      color: var(--doc-texto);
+      font-size: 15px;
+    }
+
+    .documento-aberto .censurado {
+      display: inline-block;
+      min-width: 90px;
+      height: 14px;
+      background: rgba(0,0,0,0.88);
+      border: 1px solid rgba(181,22,36,0.22);
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    .placeholder-doc {
+      margin-top: 24px;
+      min-height: 420px;
+      border: 1px dashed rgba(216, 189, 116, 0.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(139,77,255,0.16), transparent 36%),
+        radial-gradient(circle at 15% 20%, rgba(181,22,36,0.14), transparent 32%),
+        rgba(0,0,0,0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder-doc::before {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      box-shadow:
+        0 0 0 42px rgba(181, 22, 36, 0.035),
+        0 0 0 82px rgba(139, 77, 255, 0.025);
+    }
+
+    .placeholder-doc div {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .placeholder-doc h3 {
+      color: var(--doc-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(30px, 5vw, 58px);
+      margin-bottom: 16px;
+    }
+
+    .placeholder-doc p {
+      color: var(--doc-fraco);
+      line-height: 1.7;
+    }
+
+    .terminal-documentos {
+      margin-top: 28px;
+      border: 1px solid rgba(181, 22, 36, 0.32);
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.36);
+      font-family: monospace;
+    }
+
+    .terminal-documentos span {
+      display: block;
+      color: #ff3045;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .terminal-documentos p {
+      color: var(--doc-texto);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .documentos-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .documentos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .documentos-pagina {
+        padding: 18px;
+      }
+
+      .documentos-hero-texto h2 {
+        font-size: 40px;
+      }
+
+      .documentos-selo-dados {
+        grid-template-columns: 1fr;
+      }
+
+      .abas-documentos {
+        flex-direction: column;
+      }
+
+      .aba-documento {
+        width: 100%;
+      }
+
+      .documentos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detalhe-documento h3 {
+        padding-right: 0;
+      }
+
+      .detalhe-documento::before {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <div class="fundo-paranormal"></div>
@@ -15,11 +614,12 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Regras, sistemas e arquivos internos</p>
+      <p>Documentos e registros confidenciais</p>
     </div>
 
     <nav>
       <a href="index.html">Início</a>
+      <a href="ordo.html">Ordo Realitas</a>
       <a href="locais.html">Locais</a>
       <a href="personagens.html">Personagens</a>
       <a href="missoes.html">Missões</a>
@@ -28,19 +628,432 @@
   </header>
 
   <main>
-    <section class="hero">
-      <p class="classificacao">Arquivo técnico // documentos internos</p>
-      <h2>Documentos</h2>
-      <p>
-        Regras próprias da campanha, sistemas especiais, anotações do mestre,
-        arquivos operacionais e documentos importantes para o mundo do RPG.
-      </p>
+
+    <section class="documentos-pagina">
+
+      <section class="documentos-hero">
+
+        <div class="documentos-hero-texto">
+          <p class="classificacao">Arquivo interno // documentos registrados</p>
+
+          <h2>Documentos<br>da Campanha</h2>
+
+          <p>
+            Esta seção reúne relatórios, registros recuperados, arquivos bloqueados,
+            anotações internas e documentos ligados aos eventos de Corações do Outro Lado.
+          </p>
+
+          <p>
+            Alguns documentos foram liberados parcialmente. Outros permanecem corrompidos,
+            censurados ou aguardando análise por agentes autorizados da Ordo Realitas.
+          </p>
+        </div>
+
+        <div class="documentos-selo">
+          <div class="documentos-selo-dados">
+            <div class="doc-mini-dado">
+              <span>Arquivos</span>
+              <strong>Parciais</strong>
+            </div>
+
+            <div class="doc-mini-dado">
+              <span>Acesso</span>
+              <strong>Restrito</strong>
+            </div>
+
+            <div class="doc-mini-dado">
+              <span>Estado</span>
+              <strong>Instável</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="abas-documentos">
+        <button class="aba-documento ativa" data-documento="relatorios">Relatórios</button>
+        <button class="aba-documento" data-documento="pistas">Pistas</button>
+        <button class="aba-documento" data-documento="bloqueados">Bloqueados</button>
+        <button class="aba-documento" data-documento="corrompidos">Corrompidos</button>
+      </div>
+
+      <section class="conteudo-documento ativo" id="relatorios">
+
+        <section class="documentos-secao">
+          <p class="classificacao">Relatórios liberados // leitura parcial</p>
+          <h2>Relatórios da Ordem</h2>
+
+          <p>
+            Relatórios são documentos internos usados para organizar operações, registrar
+            ocorrências e manter histórico dos eventos sem entregar todas as informações
+            sensíveis aos agentes de campo.
+          </p>
+
+          <div class="documentos-grid">
+
+            <button
+              class="doc-card liberado"
+              data-titulo="Relatório Inicial da Campanha"
+              data-texto="Documento-base criado para registrar o início do arquivo da campanha.||Contém apenas informações públicas: campanha ativa, estrutura principal do site, setores liberados e indicação de que novos registros serão adicionados conforme a história avançar."
+              data-conteudo="RELATÓRIO INICIAL — CORAÇÕES DO OUTRO LADO||O Arquivo da Campanha foi aberto para organizar registros relacionados à operação principal. Personagens, locais, missões e documentos serão adicionados conforme forem liberados.||Observação: nem todo registro disponível neste arquivo representa a verdade completa. Algumas informações foram removidas para preservar segurança operacional."
+            >
+              <span class="doc-status">Liberado</span>
+              <h3>Relatório Inicial</h3>
+              <p>
+                Documento-base da campanha, usado para registrar o estado inicial do arquivo.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Relatório</strong></div>
+                <div><span>Acesso</span><strong>Parcial</strong></div>
+                <div><span>Status</span><strong>Disponível</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card analise"
+              data-titulo="Registro da Base da Ordo"
+              data-texto="Relatório estrutural sobre a base da Ordo Realitas.||Inclui setores conhecidos, áreas de suporte, zonas restritas e observações sobre a planta incompleta do local."
+              data-conteudo="REGISTRO ESTRUTURAL — BASE DA ORDO REALITAS||A base foi catalogada como centro operacional, abrigo, arquivo e ponto de contenção. Os setores principais registrados incluem Sala de Comando, alas de função, Enfermaria, Arsenal e Prisão Subterrânea.||Nota: a planta completa não está disponível. Algumas áreas foram omitidas ou deslocadas por segurança."
+            >
+              <span class="doc-status">Em análise</span>
+              <h3>Registro da Base</h3>
+              <p>
+                Documento sobre a estrutura interna da base da Ordo Realitas.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Estrutural</strong></div>
+                <div><span>Acesso</span><strong>Parcial</strong></div>
+                <div><span>Status</span><strong>Revisão</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card liberado"
+              data-titulo="Painel de Missão Atual"
+              data-texto="Resumo operacional sobre a missão Corações do Outro Lado.||O documento não revela segredos da trama, apenas organiza objetivos conhecidos e o status da operação."
+              data-conteudo="PAINEL DE MISSÃO — CORAÇÕES DO OUTRO LADO||Status: em andamento.||Tipo: investigação.||Supervisão: Ordo Realitas.||Objetivos conhecidos: investigar ocorrências, identificar conexões, proteger envolvidos, coletar evidências, conter ameaças e sobreviver."
+            >
+              <span class="doc-status">Liberado</span>
+              <h3>Painel de Missão</h3>
+              <p>
+                Registro operacional seguro sobre a missão principal da campanha.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Operação</strong></div>
+                <div><span>Acesso</span><strong>Público</strong></div>
+                <div><span>Status</span><strong>Ativo</strong></div>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="detalhe-documento" id="detalhe-documento-relatorios">
+            <h3>Nenhum documento selecionado</h3>
+            <p>Clique em um relatório para abrir a leitura parcial do arquivo.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-documento" id="pistas">
+
+        <section class="documentos-secao">
+          <p class="classificacao">Pistas recuperadas // aguardando sessão</p>
+          <h2>Pistas e Evidências</h2>
+
+          <p>
+            Esta aba será usada para guardar pistas encontradas pelos jogadores, documentos
+            recuperados em cena, imagens, símbolos, mensagens e fragmentos importantes da
+            investigação.
+          </p>
+
+          <div class="documentos-grid">
+
+            <button
+              class="doc-card analise"
+              data-titulo="Fragmento de Símbolo"
+              data-texto="Registro reservado para um símbolo encontrado durante investigação.||A análise ainda não foi liberada. O arquivo permanece preparado para receber conteúdo futuro."
+              data-conteudo="FRAGMENTO VISUAL — ANÁLISE PENDENTE||O símbolo ainda não foi anexado ao sistema.||Classificação atual: aguardando descoberta em sessão."
+            >
+              <span class="doc-status">Aguardando</span>
+              <h3>Fragmento de Símbolo</h3>
+              <p>
+                Espaço reservado para símbolos, marcas ou desenhos encontrados em investigação.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Pista</strong></div>
+                <div><span>Acesso</span><strong>Pendente</strong></div>
+                <div><span>Status</span><strong>Vazio</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card analise"
+              data-titulo="Depoimento Recuperado"
+              data-texto="Área preparada para depoimentos de testemunhas, relatos de sobreviventes ou mensagens encontradas durante a campanha."
+              data-conteudo="DEPOIMENTO — REGISTRO NÃO ANEXADO||Nenhum depoimento foi liberado para leitura até o momento.||O arquivo será atualizado quando uma testemunha relevante for registrada."
+            >
+              <span class="doc-status">Aguardando</span>
+              <h3>Depoimento</h3>
+              <p>
+                Registro futuro para falas, relatos e testemunhos importantes.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Testemunho</strong></div>
+                <div><span>Acesso</span><strong>Pendente</strong></div>
+                <div><span>Status</span><strong>Vazio</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card analise"
+              data-titulo="Fotografia de Campo"
+              data-texto="Área reservada para imagens encontradas em missão, fotos de locais, registros visuais e evidências recuperadas."
+              data-conteudo="FOTOGRAFIA DE CAMPO — SEM ANEXO||Nenhuma imagem de campo foi liberada.||Quando uma fotografia importante for encontrada, ela poderá ser adicionada a este setor."
+            >
+              <span class="doc-status">Aguardando</span>
+              <h3>Fotografia de Campo</h3>
+              <p>
+                Registro visual futuro para evidências e locais importantes.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Imagem</strong></div>
+                <div><span>Acesso</span><strong>Pendente</strong></div>
+                <div><span>Status</span><strong>Vazio</strong></div>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="detalhe-documento" id="detalhe-documento-pistas">
+            <h3>Nenhuma pista selecionada</h3>
+            <p>Clique em uma pista para abrir o registro preparado.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-documento" id="bloqueados">
+
+        <section class="documentos-secao">
+          <p class="classificacao">Arquivos bloqueados // acesso negado</p>
+          <h2>Documentos Bloqueados</h2>
+
+          <p>
+            Arquivos bloqueados existem no sistema, mas seu conteúdo ainda não deve ser
+            exibido. Esta aba ajuda a criar mistério sem entregar informações antes da hora.
+          </p>
+
+          <div class="documentos-grid">
+
+            <button
+              class="doc-card bloqueado"
+              data-titulo="Arquivo de Santa Luzia"
+              data-texto="Registro urbano ainda bloqueado.||O arquivo parece conter referências ao mapa de Santa Luzia, mas o conteúdo completo não foi liberado."
+              data-conteudo="ACESSO NEGADO — SANTA LUZIA||O arquivo solicitado existe, mas ainda não está disponível.||Motivo: mapa urbano aguardando liberação.||Trechos recuperados: <span class='censurado'></span> centro <span class='censurado'></span> ocorrência <span class='censurado'></span>"
+            >
+              <span class="doc-status">Bloqueado</span>
+              <h3>Santa Luzia</h3>
+              <p>
+                Arquivo urbano ainda não liberado para leitura completa.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Local</strong></div>
+                <div><span>Acesso</span><strong>Negado</strong></div>
+                <div><span>Status</span><strong>Bloqueado</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card bloqueado"
+              data-titulo="Relatório de Agentes"
+              data-texto="Documento reservado para agentes dos jogadores e NPCs futuros.||Parte do conteúdo está bloqueada até que as fichas sejam finalizadas."
+              data-conteudo="ACESSO NEGADO — RELATÓRIO DE AGENTES||O conteúdo deste relatório depende da finalização de novos dossiês.||Trechos recuperados: Trindade registrada. Agentes adicionais aguardando autorização."
+            >
+              <span class="doc-status">Bloqueado</span>
+              <h3>Relatório de Agentes</h3>
+              <p>
+                Documento reservado para registros futuros de personagens.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Dossiê</strong></div>
+                <div><span>Acesso</span><strong>Negado</strong></div>
+                <div><span>Status</span><strong>Pendente</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card bloqueado"
+              data-titulo="Registro da Ameaça Principal"
+              data-texto="Arquivo de ameaça ainda totalmente bloqueado.||O sistema reconhece a existência do registro, mas impede a leitura por risco de spoiler e instabilidade narrativa."
+              data-conteudo="ACESSO NEGADO — AMEAÇA PRINCIPAL||Classificação: restrita.||Motivo: informação crítica da campanha.||Leitura parcial indisponível."
+            >
+              <span class="doc-status">Restrito</span>
+              <h3>Ameaça Principal</h3>
+              <p>
+                Arquivo crítico da campanha. Conteúdo bloqueado por segurança narrativa.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Ameaça</strong></div>
+                <div><span>Acesso</span><strong>Restrito</strong></div>
+                <div><span>Status</span><strong>Selado</strong></div>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="detalhe-documento" id="detalhe-documento-bloqueados">
+            <h3>Nenhum arquivo bloqueado selecionado</h3>
+            <p>Clique em um arquivo para visualizar o aviso de acesso.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="conteudo-documento" id="corrompidos">
+
+        <section class="documentos-secao">
+          <p class="classificacao">Erro de leitura // arquivos instáveis</p>
+          <h2>Arquivos Corrompidos</h2>
+
+          <p>
+            Alguns registros não estão apenas bloqueados. Eles parecem danificados, alterados
+            ou afetados por interferência paranormal. A leitura desses arquivos pode mudar
+            conforme a campanha avança.
+          </p>
+
+          <div class="documentos-grid">
+
+            <button
+              class="doc-card corrompido"
+              data-titulo="Mensagem Fragmentada"
+              data-texto="Uma mensagem incompleta foi encontrada no sistema.||O conteúdo parece ter sido salvo, apagado e reescrito várias vezes."
+              data-conteudo="MENSAGEM FRAGMENTADA||...não confiem no primeiro relatório...||...o coração não era metáfora...||...se a porta aparecer onde não deveria, não abram...||Fim do fragmento."
+            >
+              <span class="doc-status">Corrompido</span>
+              <h3>Mensagem Fragmentada</h3>
+              <p>
+                Registro instável com trechos recuperados e falhas de leitura.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Mensagem</strong></div>
+                <div><span>Acesso</span><strong>Instável</strong></div>
+                <div><span>Status</span><strong>Corrompido</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card corrompido"
+              data-titulo="Documento Sem Origem"
+              data-texto="Este arquivo não possui autor, data, origem ou setor responsável.||Mesmo assim, ele continua reaparecendo no sistema."
+              data-conteudo="DOCUMENTO SEM ORIGEM||Autor: não identificado.||Data: inexistente.||Origem: <span class='censurado'></span>||Observação recuperada: o arquivo foi apagado três vezes. Ele voltou quatro."
+            >
+              <span class="doc-status">Corrompido</span>
+              <h3>Sem Origem</h3>
+              <p>
+                Arquivo sem metadados confiáveis, reaparecendo após exclusão.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Desconhecido</strong></div>
+                <div><span>Acesso</span><strong>Instável</strong></div>
+                <div><span>Status</span><strong>Persistente</strong></div>
+              </div>
+            </button>
+
+            <button
+              class="doc-card corrompido"
+              data-titulo="Registro de Áudio Transcrito"
+              data-texto="Transcrição parcial de um áudio danificado.||A gravação original não pode ser reproduzida sem causar falhas no sistema."
+              data-conteudo="TRANSCRIÇÃO PARCIAL||[ruído]||— Eu ouvi do outro lado da parede.||[falha]||— Não era uma voz. Era como se o prédio inteiro estivesse respirando.||[fim abrupto]"
+            >
+              <span class="doc-status">Corrompido</span>
+              <h3>Áudio Transcrito</h3>
+              <p>
+                Trecho recuperado de uma gravação danificada.
+              </p>
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Áudio</strong></div>
+                <div><span>Acesso</span><strong>Parcial</strong></div>
+                <div><span>Status</span><strong>Falha</strong></div>
+              </div>
+            </button>
+
+          </div>
+
+          <div class="detalhe-documento" id="detalhe-documento-corrompidos">
+            <h3>Nenhum arquivo corrompido selecionado</h3>
+            <p>Clique em um arquivo para abrir os fragmentos recuperados.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <section class="terminal-documentos">
+        <span>Nota interna // sistema de arquivos</span>
+        <p>
+          Um documento não precisa estar completo para ser perigoso. Às vezes, uma linha
+          censurada revela mais do que um relatório inteiro.
+        </p>
+      </section>
+
     </section>
+
   </main>
 
   <footer>
-    <p>Alguns documentos podem estar incompletos, rasurados ou intencionalmente ocultos.</p>
+    <p>
+      Arquivos documentais da campanha. Parte do conteúdo foi bloqueada, censurada ou corrompida.
+    </p>
   </footer>
+
+  <script>
+    const abasDocumentos = document.querySelectorAll(".aba-documento");
+    const conteudosDocumentos = document.querySelectorAll(".conteudo-documento");
+
+    abasDocumentos.forEach((aba) => {
+      aba.addEventListener("click", () => {
+        const alvo = aba.dataset.documento;
+
+        abasDocumentos.forEach((item) => item.classList.remove("ativa"));
+        conteudosDocumentos.forEach((conteudo) => conteudo.classList.remove("ativo"));
+
+        aba.classList.add("ativa");
+
+        const conteudoAtivo = document.getElementById(alvo);
+        if (conteudoAtivo) {
+          conteudoAtivo.classList.add("ativo");
+        }
+      });
+    });
+
+    const cardsDocumento = document.querySelectorAll(".doc-card");
+
+    cardsDocumento.forEach((card) => {
+      card.addEventListener("click", () => {
+        const blocoAtual = card.closest(".conteudo-documento");
+        if (!blocoAtual) return;
+
+        const detalhe = blocoAtual.querySelector(".detalhe-documento");
+        if (!detalhe) return;
+
+        const cardsDoBloco = blocoAtual.querySelectorAll(".doc-card");
+        cardsDoBloco.forEach((item) => item.classList.remove("selecionado"));
+        card.classList.add("selecionado");
+
+        const titulo = card.dataset.titulo || "Documento";
+        const texto = card.dataset.texto || "Nenhum resumo disponível.";
+        const conteudo = card.dataset.conteudo || "Conteúdo indisponível.";
+
+        detalhe.innerHTML = `
+          <h3>${titulo}</h3>
+          ${texto.split("||").map(paragrafo => `<p>${paragrafo.trim()}</p>`).join("")}
+          <div class="documento-aberto">
+            ${conteudo.split("||").map(paragrafo => `<p>${paragrafo.trim()}</p>`).join("")}
+          </div>
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
