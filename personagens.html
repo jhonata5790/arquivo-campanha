@@ -350,6 +350,12 @@
       background: radial-gradient(circle at top, rgba(181,22,36,0.85), transparent 48%);
     }
 
+    .personagem-card.maisie::before {
+      background:
+        radial-gradient(circle at top, rgba(143,82,255,0.85), transparent 48%),
+        radial-gradient(circle at 80% 20%, rgba(70,170,255,0.28), transparent 42%);
+    }
+
     .personagem-card.bloqueado::before {
       background: radial-gradient(circle at top, rgba(181,22,36,0.52), rgba(0,0,0,0.08), transparent 52%);
     }
@@ -640,7 +646,7 @@
 
             <div class="pers-mini-dado">
               <span>Jogadores</span>
-              <strong>Bloqueado</strong>
+              <strong>Em revisão</strong>
             </div>
 
             <div class="pers-mini-dado">
@@ -740,30 +746,50 @@
       <section class="conteudo-personagem" id="jogadores">
 
         <section class="personagens-secao">
-          <p class="classificacao">Agentes dos jogadores // fichas em montagem</p>
+          <p class="classificacao">Agentes dos jogadores // dossiês registrados</p>
           <h2>Agentes dos Jogadores</h2>
 
           <p>
-            Estes dossiês foram localizados no sistema, mas ainda não estão liberados para
-            consulta. As fichas permanecem bloqueadas até a finalização dos registros visuais,
-            mecânicos e narrativos.
+            Estes são os agentes designados para a operação Corações do Outro Lado.
+            Alguns dossiês já foram liberados para consulta pública, enquanto outros
+            permanecem em revisão até a finalização dos registros operacionais.
           </p>
 
           <div class="cards-personagens">
 
-            <article class="personagem-card bloqueado">
+            <article class="personagem-card maisie">
               <div>
-                <span class="personagem-status">Dossiê bloqueado</span>
+                <span class="personagem-status">Dossiê liberado</span>
                 <h3>Maisie</h3>
                 <p>
-                  Dossiê localizado no sistema. Ficha visual e registro completo ainda aguardam
-                  finalização antes da liberação pública.
+                  Ocultista e agente de saúde. Criativa, intensa e marcada por um contato
+                  brutal com o paranormal, Maisie transforma trauma, tecnologia e caos em arma.
                 </p>
 
                 <div class="personagem-meta">
                   <div><span>Jogador</span><strong>Caio</strong></div>
+                  <div><span>Classe</span><strong>Ocultista</strong></div>
+                  <div><span>NEX</span><strong>40%</strong></div>
+                  <div><span>Acesso</span><strong>Liberado</strong></div>
+                </div>
+              </div>
+
+              <a href="maisie.html">Abrir dossiê</a>
+            </article>
+
+            <article class="personagem-card bloqueado">
+              <div>
+                <span class="personagem-status">Dossiê em revisão</span>
+                <h3>Vivian</h3>
+                <p>
+                  Dossiê localizado no sistema. Informações principais ainda estão em revisão
+                  antes da liberação pública do registro completo.
+                </p>
+
+                <div class="personagem-meta">
+                  <div><span>Jogador(a)</span><strong>Não liberado</strong></div>
                   <div><span>Classe</span><strong>Não liberada</strong></div>
-                  <div><span>Status</span><strong>Em montagem</strong></div>
+                  <div><span>Status</span><strong>Em revisão</strong></div>
                   <div><span>Acesso</span><strong>Negado</strong></div>
                 </div>
               </div>
@@ -773,37 +799,17 @@
 
             <article class="personagem-card bloqueado">
               <div>
-                <span class="personagem-status">Dossiê bloqueado</span>
+                <span class="personagem-status">Dossiê em revisão</span>
                 <h3>Roselyn</h3>
                 <p>
-                  Dossiê localizado no sistema. Informações principais ocultas até revisão
-                  final da ficha e autorização de exibição.
+                  Dossiê localizado no sistema. O arquivo completo existe, mas ainda aguarda
+                  autorização para exibição no Arquivo da Campanha.
                 </p>
 
                 <div class="personagem-meta">
                   <div><span>Jogador</span><strong>Erick</strong></div>
                   <div><span>Classe</span><strong>Não liberada</strong></div>
-                  <div><span>Status</span><strong>Em montagem</strong></div>
-                  <div><span>Acesso</span><strong>Negado</strong></div>
-                </div>
-              </div>
-
-              <span class="botao-bloqueado">Acesso bloqueado</span>
-            </article>
-
-            <article class="personagem-card bloqueado">
-              <div>
-                <span class="personagem-status">Dossiê bloqueado</span>
-                <h3>Lilian</h3>
-                <p>
-                  Dossiê localizado no sistema. Conteúdo completo retido até a finalização
-                  do registro oficial da personagem.
-                </p>
-
-                <div class="personagem-meta">
-                  <div><span>Jogadora</span><strong>Nathalie</strong></div>
-                  <div><span>Classe</span><strong>Não liberada</strong></div>
-                  <div><span>Status</span><strong>Em montagem</strong></div>
+                  <div><span>Status</span><strong>Em revisão</strong></div>
                   <div><span>Acesso</span><strong>Negado</strong></div>
                 </div>
               </div>
@@ -814,11 +820,11 @@
           </div>
 
           <div class="dossie-detalhe">
-            <h3>Liberação pendente</h3>
+            <h3>Registros dos agentes</h3>
             <p>
-              Os agentes dos jogadores já possuem entrada no arquivo, mas os documentos ainda
-              não foram liberados. Isso evita exposição de informações incompletas, incorretas
-              ou que ainda dependem de ajustes finais.
+              A ala dos Agentes dos Jogadores foi atualizada. O dossiê de Maisie Hundown
+              está liberado para consulta, enquanto Vivian e Roselyn permanecem em revisão
+              até que seus registros sejam finalizados e autorizados pela Ordo Realitas.
             </p>
 
             <div class="registro-bloqueado">
@@ -826,10 +832,10 @@
                 SISTEMA // Dossiês encontrados: 03
               </p>
               <p>
-                Status: aguardando finalização das fichas.
+                Liberados: 01 — Maisie Hundown.
               </p>
               <p>
-                Liberação pública: <span class="censurado"></span>
+                Em revisão: 02 — Vivian / Roselyn.
               </p>
             </div>
           </div>
