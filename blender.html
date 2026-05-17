@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Blender | Arquivo da Campanha</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="fundo-paranormal"></div>
+
+  <header>
+    <div>
+      <h1>Arquivo da Campanha</h1>
+      <p>Ficha interativa de agente</p>
+    </div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="locais.html">Locais</a>
+      <a href="personagens.html">Personagens</a>
+      <a href="missoes.html">Missões</a>
+      <a href="documentos.html">Documentos</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="ficha-personagem">
+
+      <a href="personagens.html" class="botao-voltar">← Voltar para Personagens</a>
+
+      <div class="ficha-topo">
+        <div>
+          <p class="classificacao">Registro de agente // acesso controlado</p>
+          <h2>Blender</h2>
+          <p class="subtitulo-ficha">Combatente — NEX 60% — Semi-Líder Combatente</p>
+        </div>
+
+        <div class="selo-ficha">
+          ORDO<br>REALITAS
+        </div>
+      </div>
+
+      <div class="ficha-layout">
+
+        <aside class="painel-personagem">
+          <div class="personagem-placeholder">
+            <img src="Blender.png?v=1" alt="Imagem de corpo inteiro do personagem Blender">
+          </div>
+
+          <div class="status-operacional">
+            <span>Status operacional</span>
+            <strong>Força de Contenção Ativa</strong>
+          </div>
+        </aside>
+
+        <section class="painel-ficha">
+
+          <div class="abas-ficha">
+            <button class="aba ativa" data-aba="informacoes">Informações</button>
+            <button class="aba" data-aba="atributos">Atributos</button>
+            <button class="aba" data-aba="habilidades">Habilidades</button>
+            <button class="aba" data-aba="rituais">Rituais</button>
+            <button class="aba" data-aba="inventario">Inventário</button>
+            <button class="aba" data-aba="descricao">Descrição</button>
+          </div>
+
+          <div class="conteudo-ficha">
+
+            <div class="conteudo-aba ativo" id="informacoes">
+              <h3>Informações</h3>
+
+              <div class="info-grid">
+                <div class="info-card">
+                  <span>Nome</span>
+                  <strong>Blender</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Jogador(a)</span>
+                  <strong>???</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Classe</span>
+                  <strong>Combatente</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Origem</span>
+                  <strong>Lutador</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>NEX</span>
+                  <strong>60%</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Patente / Rank</span>
+                  <strong>Semi-Líder Combatente</strong>
+                </div>
+              </div>
+
+              <div class="caixa-detalhe" style="margin-top: 24px;">
+                <h4>Frase marcante</h4>
+                <p>“Se não pode quebrar na porrada, não merece meu tempo.”</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="atributos">
+              <h3>Atributos</h3>
+
+              <p class="texto-apoio">
+                Clique em um atributo para ver o que ele representa dentro da ficha.
+              </p>
+
+              <div class="atributos-grid">
+
+                <button
+                  class="atributo-card"
+                  data-titulo="FOR — Força"
+                  data-texto="Força representa potência física, capacidade de erguer peso, causar impacto corpo a corpo e impor domínio físico.||Esse é um dos pilares de Blender. Ele resolve conflitos com agressividade direta, impacto bruto e presença física esmagadora."
+                >
+                  <span>FOR</span>
+                  <strong>3</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="AGI — Agilidade"
+                  data-texto="Agilidade representa reflexos, velocidade, equilíbrio e movimentação eficiente em combate.||Blender tem boa agilidade, suficiente para acompanhar lutas intensas e reagir em campo, mas seu foco principal ainda é o confronto direto."
+                >
+                  <span>AGI</span>
+                  <strong>2</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="INT — Intelecto"
+                  data-texto="Intelecto representa raciocínio, análise, investigação e planejamento.||Blender não depende de estudo nem de estratégia refinada. Seu modo de agir é simples: avançar, resistir e quebrar a ameaça antes que ela avance sobre os outros."
+                >
+                  <span>INT</span>
+                  <strong>1</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="PRE — Presença"
+                  data-texto="Presença representa influência, postura, comunicação e força de personalidade.||Mesmo sem ser diplomático, Blender impõe respeito. Sua presença não vem de carisma refinado, mas de sinceridade brutal, coragem e intimidação natural."
+                >
+                  <span>PRE</span>
+                  <strong>1</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="VIG — Vigor"
+                  data-texto="Vigor representa resistência física, fôlego, tolerância à dor e capacidade de continuar de pé.||Blender possui vigor elevado. Ele é o tipo de agente que aguenta pancada, continua avançando e protege os outros mesmo ferido."
+                >
+                  <span>VIG</span>
+                  <strong>3</strong>
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe" id="detalhe-atributo">
+                <h4>Nenhum atributo selecionado</h4>
+                <p>Clique em FOR, AGI, INT, PRE ou VIG para revelar a descrição.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="habilidades">
+              <h3>Habilidades</h3>
+
+              <p class="texto-apoio">
+                Clique em uma habilidade ou habilidade de trilha para abrir o registro completo.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Artista Marcial"
+                  data-texto="Os ataques desarmados de Blender causam 1d6 pontos de dano, podem causar dano letal e contam como armas ágeis.||Em NEX 35%, o dano aumenta para 1d8.||Em NEX 70%, aumenta para 1d10.||Essa habilidade reflete anos de luta e o fato de que Blender é perigoso mesmo sem arma nenhuma."
+                >
+                  Artista Marcial
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Ataque Especial"
+                  data-texto="Quando faz um ataque, Blender pode gastar 2 PE para receber +5 no teste de ataque ou na rolagem de dano.||Conforme avança de NEX, pode gastar +1 PE para receber mais bônus de +5.||Cada bônus de +5 pode ser aplicado em ataque ou dano.||Por exemplo, em NEX 55%, pode gastar 4 PE para receber +5 no teste de ataque e +10 na rolagem de dano."
+                >
+                  Ataque Especial
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Mão Pesada"
+                  data-texto="Blender recebe +2 em rolagens de dano com ataques corpo a corpo.||Essa habilidade representa o peso absurdo de seus golpes e a brutalidade da sua forma de lutar."
+                >
+                  Mão Pesada
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Trilha — Guerreiro"
+                  data-texto="Blender segue a trilha de Guerreiro.||Essa trilha reforça sua capacidade de dominar combate direto, punir erros do inimigo e manter pressão constante em confrontos corpo a corpo."
+                >
+                  Trilha: Guerreiro
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="NEX 10% — Técnica Letal"
+                  data-texto="Blender recebe um aumento de +2 na margem de ameaça com todos os seus ataques corpo a corpo.||Isso torna seus golpes ainda mais perigosos, especialmente em confrontos diretos e agressivos."
+                >
+                  NEX 10% — Técnica Letal
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="NEX 40% — Revidar"
+                  data-texto="Sempre que bloquear um ataque, Blender pode gastar uma reação e 2 PE para fazer um ataque corpo a corpo no inimigo que o atacou.||Essa habilidade resume muito bem seu estilo: ele não apenas resiste, ele devolve na mesma hora."
+                >
+                  NEX 40% — Revidar
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione uma habilidade</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="rituais">
+              <h3>Rituais</h3>
+
+              <p class="texto-apoio">
+                Clique no registro para abrir a observação da Ordem.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Avesso ao Paranormal"
+                  data-texto="Blender odeia qualquer coisa relacionada ao Paranormal.||Ele nunca se interessou em tentar entender o Outro Lado em profundidade.||Para ele, espancar o Paranormal já é o suficiente.||Sua relação com esse campo é de repulsa, não de estudo."
+                >
+                  Avesso ao Paranormal
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um registro</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="inventario">
+              <h3>Inventário</h3>
+
+              <p class="texto-apoio">
+                Clique em um item para abrir a descrição.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Corrente"
+                  data-texto="Um pedaço de corrente grossa pode ser usado como uma arma bastante efetiva.||A corrente fornece +2 em testes para desarmar e derrubar.||Nas mãos de Blender, também funciona como símbolo visual do seu estilo pesado e agressivo."
+                >
+                  Corrente
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Faca"
+                  data-texto="Uma lâmina longa e afiada, como uma navalha, uma faca de churrasco ou uma faca militar.||É uma arma ágil e pode ser arremessada.||Mesmo sendo mais associado à força bruta, Blender mantém opções rápidas para confrontos diretos."
+                >
+                  Faca
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Machado"
+                  data-texto="Uma ferramenta importante para lenhadores e bombeiros, um machado pode causar ferimentos terríveis.||É uma arma brutal e combina diretamente com o estilo de combate intimidador de Blender."
+                >
+                  Machado
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um item</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="descricao">
+              <h3>Descrição</h3>
+
+              <p class="texto-apoio">
+                Clique em uma seção para abrir os registros descritivos do personagem.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Aparência"
+                  data-texto="Blender tem 1,92m de altura e um corpo muito musculoso, com ombros largos, braços grossos e definição construída por anos de luta.||Sua pele é negra escura.||O cabelo é crespo, médio, volumoso e quase sempre bagunçado, como se tivesse acabado de sair de um treino ou de uma briga.||Seu rosto tem traços fortes e uma presença intimidadora.||Uma cicatriz grande e visível desce da sobrancelha esquerda até a bochecha.||Seus olhos castanhos escuros são intensos e ameaçadores."
+                >
+                  Aparência
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Marcas"
+                  data-texto="Blender possui tatuagens antigas nos braços misturadas com marcas paranormais escuras.||Essas marcas parecem veias pretas ou roxas subindo pelos braços, especialmente no braço direito.||Elas funcionam como um lembrete físico de tudo que ele odeia no Outro Lado."
+                >
+                  Marcas
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Roupa habitual"
+                  data-texto="Blender costuma usar jaqueta de couro preta surrada, às vezes sem manga, camiseta justa preta, calça tática preta com muitos bolsos e botas pesadas de combate.||Frequentemente está suado, marcado por treino ou com sinais de luta recente.||Seu visual passa uma sensação constante de perigo e prontidão."
+                >
+                  Roupa habitual
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Personalidade"
+                  data-texto="Blender é porra-louca, direto e impulsivo.||Fala tudo o que pensa, sem filtro nenhum.||É grosseiro, alto, sincero e explosivo.||Ri em situações perigosas e xinga enquanto luta.||Valoriza coragem, resistência e respeito conquistado na prática.||Apesar da brutalidade, protege ferozmente quem considera seu."
+                >
+                  Personalidade
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="História"
+                  data-texto="Blender foi lutador de MMA underground em São Paulo antes de entrar para a Ordem.||Durante uma luta, uma manifestação de Sangue invadiu o ringue e matou várias pessoas, incluindo o irmão mais novo dele.||Blender sobreviveu e matou a entidade com as próprias mãos.||A Ordo Realitas o recrutou logo depois, impressionada com sua força bruta, resistência e capacidade de enfrentar o Paranormal sem hesitar.||Ele subiu rápido dentro da organização por ser extremamente competente em combate e nunca recusar missões perigosas.||Klint o promoveu a Semi-Líder Combatente depois de várias operações bem-sucedidas.||Blender aceitou, mas deixou claro que continuaria indo para a rua."
+                >
+                  História
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Objetivo atual"
+                  data-texto="Atualmente, o objetivo de Blender é treinar agentes da Ordem.||Mas, diferente de outros líderes, ele treina os agentes em missão e acompanha pessoalmente as operações para garantir que todos voltem.||Sua liderança vem mais pelo exemplo em campo do que por postura institucional."
+                >
+                  Objetivo atual
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione uma seção</h4>
+                <p>A descrição detalhada aparecerá aqui.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Ficha de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
