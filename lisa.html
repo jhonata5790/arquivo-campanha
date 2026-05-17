@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lisa | Arquivo da Campanha</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="fundo-paranormal"></div>
+
+  <header>
+    <div>
+      <h1>Arquivo da Campanha</h1>
+      <p>Ficha interativa de agente</p>
+    </div>
+
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="locais.html">Locais</a>
+      <a href="personagens.html">Personagens</a>
+      <a href="missoes.html">Missões</a>
+      <a href="documentos.html">Documentos</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="ficha-personagem">
+
+      <a href="personagens.html" class="botao-voltar">← Voltar para Personagens</a>
+
+      <div class="ficha-topo">
+        <div>
+          <p class="classificacao">Registro de agente // acesso controlado</p>
+          <h2>Lisa</h2>
+          <p class="subtitulo-ficha">Especialista — NEX 60% — Semi-Líder Especialista</p>
+        </div>
+
+        <div class="selo-ficha">
+          ORDO<br>REALITAS
+        </div>
+      </div>
+
+      <div class="ficha-layout">
+
+        <aside class="painel-personagem">
+          <div class="personagem-placeholder">
+            <span>Imagem da Lisa</span>
+          </div>
+
+          <div class="status-operacional">
+            <span>Status operacional</span>
+            <strong>Coordenação Ativa</strong>
+          </div>
+        </aside>
+
+        <section class="painel-ficha">
+
+          <div class="abas-ficha">
+            <button class="aba ativa" data-aba="informacoes">Informações</button>
+            <button class="aba" data-aba="atributos">Atributos</button>
+            <button class="aba" data-aba="habilidades">Habilidades</button>
+            <button class="aba" data-aba="rituais">Rituais</button>
+            <button class="aba" data-aba="inventario">Inventário</button>
+            <button class="aba" data-aba="descricao">Descrição</button>
+          </div>
+
+          <div class="conteudo-ficha">
+
+            <div class="conteudo-aba ativo" id="informacoes">
+              <h3>Informações</h3>
+
+              <div class="info-grid">
+                <div class="info-card">
+                  <span>Nome</span>
+                  <strong>Lisa</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Jogador(a)</span>
+                  <strong>???</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Classe</span>
+                  <strong>Especialista</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Origem</span>
+                  <strong>Ginasta</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>NEX</span>
+                  <strong>60%</strong>
+                </div>
+
+                <div class="info-card">
+                  <span>Patente / Rank</span>
+                  <strong>Semi-Líder Especialista</strong>
+                </div>
+              </div>
+
+              <div class="caixa-detalhe" style="margin-top: 24px;">
+                <h4>Frase marcante</h4>
+                <p>“Respira. Olha para mim. Agora me escuta.”</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="atributos">
+              <h3>Atributos</h3>
+
+              <p class="texto-apoio">
+                Clique em um atributo para ver o que ele representa dentro da ficha.
+              </p>
+
+              <div class="atributos-grid">
+
+                <button
+                  class="atributo-card"
+                  data-titulo="FOR — Força"
+                  data-texto="Força representa potência física, capacidade de erguer peso, causar impacto corpo a corpo e resistir em situações que exigem poder bruto.||Em Lisa, esse atributo é baixo. Ela não depende de força bruta, mas de técnica, precisão, leitura de movimento e controle corporal."
+                >
+                  <span>FOR</span>
+                  <strong>1</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="AGI — Agilidade"
+                  data-texto="Agilidade representa reflexos, velocidade, equilíbrio, furtividade, esquiva e precisão em movimentos rápidos.||É um dos atributos centrais de Lisa. Sua origem como ginasta aparece diretamente na forma como ela se move, desvia, se posiciona e reage sob pressão."
+                >
+                  <span>AGI</span>
+                  <strong>3</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="INT — Intelecto"
+                  data-texto="Intelecto representa raciocínio, investigação, análise, estratégia e leitura de padrões.||Lisa possui alto Intelecto, refletindo sua capacidade de coordenar missões, interpretar riscos e organizar agentes com eficiência."
+                >
+                  <span>INT</span>
+                  <strong>3</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="PRE — Presença"
+                  data-texto="Presença representa influência, postura, comunicação, intimidação e força emocional.||Lisa tem presença suficiente para liderar, motivar e chamar atenção quando necessário, mesmo que seu pavio curto às vezes torne sua comunicação explosiva."
+                >
+                  <span>PRE</span>
+                  <strong>2</strong>
+                </button>
+
+                <button
+                  class="atributo-card"
+                  data-titulo="VIG — Vigor"
+                  data-texto="Vigor representa saúde, resistência física, fôlego, tolerância à dor e capacidade de continuar de pé em situações extremas.||Lisa não é uma muralha. Sua sobrevivência depende mais de mobilidade, esquiva e preparo técnico do que de aguentar dano diretamente."
+                >
+                  <span>VIG</span>
+                  <strong>1</strong>
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe" id="detalhe-atributo">
+                <h4>Nenhum atributo selecionado</h4>
+                <p>Clique em FOR, AGI, INT, PRE ou VIG para revelar a descrição.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="habilidades">
+              <h3>Habilidades</h3>
+
+              <p class="texto-apoio">
+                Clique em uma habilidade ou habilidade de trilha para abrir o registro completo.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Eclético"
+                  data-texto="Quando Lisa faz um teste de uma perícia, ela pode gastar 2 PE para receber os benefícios de ser treinada nessa perícia.||Essa habilidade combina com seu papel de Semi-Líder Especialista: ela sabe improvisar, cobrir lacunas e se adaptar rapidamente a problemas variados."
+                >
+                  Eclético
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Mobilidade Acrobática"
+                  data-texto="Lisa recebe +2 na Defesa e seu deslocamento aumenta em +3m.||Essa habilidade reflete sua base física como ex-ginasta, permitindo que ela se mova melhor, evite ameaças e controle distância com mais eficiência."
+                >
+                  Mobilidade Acrobática
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Movimentos Ginásticos"
+                  data-texto="Lisa é perita em ginástica. Seu corpo é completamente manipulável e ela recebe +2 em Defesa.||Gastando 1 ponto de PD, pode transformar esse bônus em +5 como reação.||Esse bônus não é acumulativo. A duração do bônus é instantânea. Após desviar, ou caso não passe no teste, o bônus volta a ser apenas +2."
+                >
+                  Movimentos Ginásticos
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Perito"
+                  data-texto="Lisa escolhe duas perícias nas quais é treinada, exceto Luta e Pontaria.||Quando faz um teste de uma dessas perícias, pode gastar 2 PE para somar +1d6 no resultado.||Conforme avança de NEX, pode gastar +1 PE para aumentar o dado de bônus. Em NEX 55%, por exemplo, pode gastar 4 PE para receber +1d10 no teste."
+                >
+                  Perito
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Trilha — Infiltrador"
+                  data-texto="Lisa segue a trilha de Infiltrador.||Essa trilha reforça sua capacidade de entrar, sair, se esconder, agir com precisão e explorar brechas em situações de risco."
+                >
+                  Trilha: Infiltrador
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="NEX 10% — Ataque Furtivo"
+                  data-texto="Lisa sabe atingir os pontos vitais de um inimigo distraído.||Uma vez por rodada, quando atinge um alvo desprevenido com um ataque corpo a corpo ou em alcance curto, ou um alvo que esteja flanqueando, pode gastar 1 PE para causar +1d6 pontos de dano do mesmo tipo da arma.||Em NEX 40%, o dano adicional aumenta para +2d6. Em NEX 65%, aumenta para +3d6. Em NEX 99%, aumenta para +4d6."
+                >
+                  NEX 10% — Ataque Furtivo
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="NEX 40% — Gatuno"
+                  data-texto="Lisa recebe +5 em Atletismo e Crime.||Além disso, pode percorrer seu deslocamento normal quando se esconder sem penalidade, conforme as regras da perícia Furtividade.||Essa habilidade reforça o lado infiltrador, rápido e técnico de Lisa."
+                >
+                  NEX 40% — Gatuno
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione uma habilidade</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="rituais">
+              <h3>Rituais</h3>
+
+              <p class="texto-apoio">
+                Clique no registro para abrir a observação da Ordem.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Sem conhecimento ritualístico"
+                  data-texto="Lisa não possui conhecimento sobre rituais.||Ela confia plenamente em deixar essa área com Yuna, mantendo sua atuação focada em coordenação, infiltração, análise e treinamento de agentes."
+                >
+                  Sem conhecimento ritualístico
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um registro</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="inventario">
+              <h3>Inventário</h3>
+
+              <p class="texto-apoio">
+                Clique no registro para abrir a descrição.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Inventário vazio"
+                  data-texto="Lisa não costuma carregar nenhum item consigo.||Como quase nunca sai para missões, seu papel costuma estar mais ligado à coordenação, treinamento e organização interna da Ordem do que ao campo operacional direto."
+                >
+                  Inventário vazio
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione um item</h4>
+                <p>O conteúdo detalhado aparecerá aqui.</p>
+              </div>
+            </div>
+
+            <div class="conteudo-aba" id="descricao">
+              <h3>Descrição</h3>
+
+              <p class="texto-apoio">
+                Clique em uma seção para abrir os registros descritivos da personagem.
+              </p>
+
+              <div class="lista-interativa">
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Aparência"
+                  data-texto="Lisa tem 1,68m de altura, pele clara e corpo atlético definido, resultado de uma vida como ginasta de alto nível.||Seu corpo tem abdômen marcado, braços e pernas tonificados, transmitindo controle físico, disciplina e preparo.||Seu cabelo é castanho escuro, preso em um rabo de cavalo alto e prático. Uma franja solta cai sobre a testa, um pouco bagunçada, quebrando a rigidez da aparência.||Seus olhos verdes são afiados e expressivos. Sua expressão geralmente é séria e confiante, ficando ainda mais intensa quando se irrita.||Possui uma cicatriz fina e horizontal no antebraço esquerdo."
+                >
+                  Aparência
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Roupa habitual"
+                  data-texto="Lisa prefere roupas funcionais, mas com um toque estiloso.||Seu visual mais comum inclui uma jaqueta leve cinza ou bege aberta, top preto cropped, calça cargo verde militar com vários bolsos e botas ou tênis práticos.||Tudo nela passa a ideia de alguém pronta para se mover, reagir e assumir controle da situação rapidamente."
+                >
+                  Roupa habitual
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Personalidade"
+                  data-texto="Lisa é comunicativa e carismática quando está calma. Tem facilidade para explicar, orientar e motivar.||Ao mesmo tempo, possui pavio curto: fica irritada com facilidade, explode gesticulando bastante e depois volta ao normal como se nada tivesse acontecido.||Protege ferozmente quem gosta e assume responsabilidade sobre os agentes sob seu cuidado.||Dentro da Ordem, é uma presença prática, intensa e necessária."
+                >
+                  Personalidade
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="História"
+                  data-texto="Lisa foi uma ginasta de alto nível antes de entrar para a Ordem.||Durante uma competição, uma entidade de Medo se manifestou no ginásio, causando pânico e alucinações entre os presentes.||Lisa usou sua agilidade, leitura corporal e capacidade de reação para proteger várias pessoas e escapar da situação.||A Ordo Realitas a recrutou por sua frieza sob pressão, habilidade em análise e capacidade de agir rápido em meio ao caos.||Com o tempo, Lisa se destacou organizando missões complexas e minimizando baixas.||Klint a promoveu a Semi-Líder Especialista porque ela era a única capaz de coordenar os três setores com eficiência.||Ela se tornou a cola da Trindade da Ordem."
+                >
+                  História
+                </button>
+
+                <button
+                  class="item-interativo"
+                  data-titulo="Objetivo atual"
+                  data-texto="O objetivo atual de Lisa é coordenar e treinar agentes da Ordem.||Ela atua como uma ponte entre setores, tentando manter combatentes, especialistas e ocultistas funcionando juntos mesmo quando as tensões internas aumentam.||Sua função não é apenas liderar, mas impedir que a estrutura da Ordem desmorone por falhas de comunicação, impulsividade ou despreparo."
+                >
+                  Objetivo atual
+                </button>
+
+              </div>
+
+              <div class="caixa-detalhe detalhe-lista">
+                <h4>Selecione uma seção</h4>
+                <p>A descrição detalhada aparecerá aqui.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Ficha de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
