@@ -601,7 +601,7 @@
     }
 
     /* ============================ */
-    /* RODA DE ATRIBUTOS — VERSÃO 4 */
+    /* RODA DE ATRIBUTOS — RESPONSIVA */
     /* ============================ */
 
     .roda-atributos-maisie {
@@ -1489,13 +1489,19 @@
       }
     }
 
+    /* ============================ */
+    /* TABLET */
+    /* ============================ */
+
     @media (max-width: 1100px) {
       .maisie-topo {
         grid-template-columns: 1fr;
       }
 
       .maisie-lateral {
-        max-width: 400px;
+        width: min(420px, 100%);
+        max-width: 100%;
+        margin: 0 auto;
       }
 
       .grupo-cards-maisie,
@@ -1504,123 +1510,387 @@
       }
     }
 
+    /* ============================ */
+    /* CELULAR */
+    /* ============================ */
+
     @media (max-width: 720px) {
       .ficha-maisie {
-        padding: 18px;
+        padding: 14px;
+        border-radius: 20px;
         background-attachment: scroll;
         background-position: center top;
       }
 
-      .maisie-painel {
-        padding: 18px;
+      .ficha-maisie::after {
+        display: none;
       }
 
-      .maisie-cabecalho h2 {
-        font-size: 40px;
+      .maisie-topo {
+        gap: 16px;
       }
 
-      .grid-info-maisie {
-        grid-template-columns: 1fr;
-      }
-
-      .abas-maisie {
-        flex-direction: column;
-      }
-
-      .aba-maisie {
+      .maisie-lateral {
         width: 100%;
+        max-width: 100%;
+      }
+
+      .maisie-retrato-box {
+        border-radius: 18px;
       }
 
       .maisie-retrato-box img {
         height: auto;
+        max-height: 580px;
         object-fit: contain;
       }
 
-      .frase-maisie p {
+      .maisie-status-box {
+        padding: 14px;
+      }
+
+      .maisie-status-box strong {
+        font-size: 22px;
+      }
+
+      .maisie-painel {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .maisie-cabecalho {
+        gap: 12px;
+      }
+
+      .maisie-cabecalho h2 {
+        font-size: 42px;
+        letter-spacing: 2px;
+      }
+
+      .maisie-cabecalho p {
+        font-size: 14px;
+      }
+
+      .maisie-selos {
+        justify-content: flex-start;
+      }
+
+      .maisie-selo {
+        font-size: 10px;
+        padding: 8px 10px;
+      }
+
+      .maisie-botoes-topo {
+        margin-bottom: 14px;
+      }
+
+      .maisie-btn {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .abas-maisie {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px;
+        gap: 8px;
+        scrollbar-width: thin;
+      }
+
+      .abas-maisie::-webkit-scrollbar {
+        height: 5px;
+      }
+
+      .abas-maisie::-webkit-scrollbar-thumb {
+        background: rgba(143,82,255,0.45);
+        border-radius: 999px;
+      }
+
+      .aba-maisie {
+        flex: 0 0 auto;
+        font-size: 10px;
+        padding: 10px 12px;
+        letter-spacing: 1.4px;
+      }
+
+      .grid-info-maisie {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .card-info-maisie {
+        padding: 14px;
+      }
+
+      .bloco-maisie {
+        padding: 16px;
+        border-radius: 16px;
+        margin-top: 14px;
+      }
+
+      .bloco-maisie h3 {
         font-size: 20px;
       }
 
-      .roda-atributos-maisie {
-        width: 100%;
-        min-height: 790px;
-        aspect-ratio: auto;
-        border-radius: 24px;
-        display: grid;
-        gap: 12px;
-        padding: 16px 0;
-        filter: none;
+      .bloco-maisie p,
+      .bloco-maisie li {
+        font-size: 14px;
       }
 
-      .roda-atributos-maisie::before,
+      .frase-maisie {
+        padding: 16px;
+      }
+
+      .frase-maisie p {
+        font-size: 19px;
+      }
+
+      .grupo-cards-maisie {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card-lista-maisie h4 {
+        font-size: 14px;
+        padding: 14px 14px 10px;
+      }
+
+      .item-interativo-maisie {
+        padding: 13px 14px;
+        font-size: 14px;
+      }
+
+      .detalhe-atributo-maisie,
+      .detalhe-lista-maisie {
+        padding: 15px;
+        border-radius: 14px;
+        min-height: auto;
+      }
+
+      .detalhe-atributo-maisie h4,
+      .detalhe-lista-maisie h4 {
+        font-size: 16px;
+      }
+
+      .galeria-maisie {
+        grid-template-columns: 1fr;
+      }
+
+      /* roda mobile real, não lista */
+      .roda-atributos-maisie {
+        width: min(360px, 100%);
+        aspect-ratio: 1 / 1;
+        min-height: auto;
+        margin: 20px auto 0;
+        border-radius: 50%;
+        display: block;
+        filter:
+          drop-shadow(0 0 16px rgba(143, 82, 255, 0.20))
+          drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));
+      }
+
+      .roda-atributos-maisie::before {
+        display: block;
+        inset: 9%;
+      }
+
       .roda-img,
       .linha-atributo-maisie,
-      .micro-particulas-roda,
+      .raio-selecao-maisie,
+      .micro-particulas-roda {
+        display: block;
+      }
+
+      .linha-atributo-maisie {
+        width: 1px;
+        height: 33%;
+      }
+
+      .linha-atributo-maisie.ativa {
+        width: 3px;
+      }
+
+      .linha-atributo-maisie::after {
+        width: 6px;
+        height: 26px;
+        left: -2px;
+      }
+
+      .linha-atributo-maisie.ativa::after {
+        width: 9px;
+        height: 38px;
+        left: -3px;
+      }
+
       .raio-selecao-maisie {
-        display: none;
+        width: 4px;
+        height: 34%;
       }
 
       .roda-centro-maisie {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        height: auto;
-        border-radius: 18px;
-        padding: 18px;
-        margin: 0 auto 10px;
-        border: 1px solid rgba(143,82,255,0.22);
-        background: rgba(0,0,0,0.44);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 74px;
+        height: 74px;
+        transform: translate(-50%, -50%);
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        font-size: 8px;
+        letter-spacing: 1px;
       }
 
       .roda-centro-maisie.carregado {
-        animation: none;
+        animation: centroCarregadoMaisie 0.6s ease;
+      }
+
+      .roda-centro-maisie strong {
+        font-size: 17px;
+        margin-top: 2px;
+      }
+
+      .roda-centro-maisie span {
+        font-size: 7px;
+        letter-spacing: 0.12em;
+        margin-top: 3px;
       }
 
       .atributo-maisie {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        height: auto;
-        min-height: 124px;
-        border-radius: 18px;
-        margin: 0;
-        border: 1px solid rgba(143,82,255,0.22);
-        background: rgba(0,0,0,0.34);
-      }
-
-      .atributo-maisie::before {
-        inset: -16px;
-        opacity: 0.42;
-      }
-
-      .atributo-maisie > span {
-        width: 100%;
-        min-height: 100px;
-        border-radius: 18px;
+        position: absolute;
+        width: 78px;
+        height: 78px;
+        min-height: auto;
+        border: none;
+        background: transparent;
+        transform: translate(-50%, -50%);
       }
 
       .atributo-maisie:hover {
-        transform: translateY(-2px);
+        transform: translate(-50%, -50%) scale(1.04);
       }
 
-      .atributo-maisie .valor {
-        font-size: 38px;
+      .atributo-maisie::before {
+        inset: -12px;
+        opacity: 0.76;
       }
 
-      .atributo-maisie .sigla {
-        font-size: 17px;
+      .atributo-maisie::after {
+        inset: 5px;
       }
 
-      .atributo-maisie .nome {
-        font-size: 10px;
+      .atributo-maisie > span {
+        width: 56px;
+        min-height: 56px;
+        border-radius: 999px;
+        padding: 5px 4px;
+        gap: 0;
       }
 
       .atributo-maisie .icone-atributo {
-        width: 28px;
-        height: 28px;
+        width: 16px;
+        height: 16px;
+        margin-bottom: 1px;
+      }
+
+      .atributo-maisie .valor {
+        font-size: 23px;
+        margin-bottom: 2px;
+      }
+
+      .atributo-maisie .nome {
+        display: none;
+      }
+
+      .atributo-maisie .sigla {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+      }
+
+      .atributo-for {
+        left: 15%;
+        top: 40%;
+      }
+
+      .atributo-agi {
+        left: 50%;
+        top: 14%;
+      }
+
+      .atributo-int {
+        left: 85%;
+        top: 40%;
+      }
+
+      .atributo-pre {
+        left: 28%;
+        top: 81%;
+      }
+
+      .atributo-vig {
+        left: 72%;
+        top: 81%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .ficha-maisie {
+        padding: 10px;
+      }
+
+      .maisie-painel {
+        padding: 12px;
+      }
+
+      .maisie-cabecalho h2 {
+        font-size: 36px;
+      }
+
+      .roda-atributos-maisie {
+        width: min(320px, 100%);
+      }
+
+      .atributo-maisie {
+        width: 70px;
+        height: 70px;
+      }
+
+      .atributo-maisie > span {
+        width: 50px;
+        min-height: 50px;
+      }
+
+      .atributo-maisie .icone-atributo {
+        width: 14px;
+        height: 14px;
+      }
+
+      .atributo-maisie .valor {
+        font-size: 20px;
+      }
+
+      .atributo-maisie .sigla {
+        font-size: 9px;
+      }
+
+      .roda-centro-maisie {
+        width: 68px;
+        height: 68px;
+        font-size: 7px;
+      }
+
+      .roda-centro-maisie strong {
+        font-size: 15px;
+      }
+
+      .roda-centro-maisie span {
+        display: none;
+      }
+
+      .detalhe-atributo-maisie,
+      .detalhe-lista-maisie {
+        font-size: 14px;
       }
     }
 
@@ -2169,7 +2439,7 @@
       container.className = "efeito-particulas-maisie";
       document.body.prepend(container);
 
-      const quantidade = window.innerWidth < 720 ? 20 : 42;
+      const quantidade = window.innerWidth < 720 ? 18 : 42;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
@@ -2178,7 +2448,7 @@
         particula.style.left = `${Math.random() * 100}%`;
         particula.style.animationDuration = `${6 + Math.random() * 9}s`;
         particula.style.animationDelay = `${Math.random() * 8}s`;
-        particula.style.opacity = `${0.25 + Math.random() * 0.55}`;
+        particula.style.opacity = `${0.22 + Math.random() * 0.45}`;
         particula.style.width = `${2 + Math.random() * 3}px`;
         particula.style.height = particula.style.width;
 
@@ -2190,7 +2460,8 @@
       const container = document.getElementById("micro-particulas-roda");
       if (!container) return;
 
-      const quantidade = window.innerWidth < 720 ? 0 : 26;
+      const larguraPequena = window.innerWidth < 720;
+      const quantidade = larguraPequena ? 10 : 26;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
@@ -2199,7 +2470,7 @@
         particula.style.top = `${10 + Math.random() * 80}%`;
         particula.style.animationDuration = `${3 + Math.random() * 5}s`;
         particula.style.animationDelay = `${Math.random() * 4}s`;
-        particula.style.opacity = `${0.25 + Math.random() * 0.55}`;
+        particula.style.opacity = `${0.20 + Math.random() * 0.45}`;
 
         container.appendChild(particula);
       }
