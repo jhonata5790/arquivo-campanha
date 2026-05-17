@@ -59,13 +59,8 @@
     }
 
     @keyframes gradeMovendo {
-      from {
-        background-position: 0 0;
-      }
-
-      to {
-        background-position: 34px 34px;
-      }
+      from { background-position: 0 0; }
+      to { background-position: 34px 34px; }
     }
 
     .abertura-painel {
@@ -162,18 +157,10 @@
     @keyframes pulsoAbertura {
       0%, 100% {
         transform: scale(1);
-        box-shadow:
-          0 0 0 18px rgba(181, 22, 36, 0.055),
-          0 0 34px rgba(181, 22, 36, 0.30),
-          inset 0 0 30px rgba(0,0,0,0.70);
       }
 
       50% {
         transform: scale(1.04);
-        box-shadow:
-          0 0 0 24px rgba(181, 22, 36, 0.08),
-          0 0 48px rgba(255, 48, 69, 0.38),
-          inset 0 0 30px rgba(0,0,0,0.70);
       }
     }
 
@@ -198,13 +185,8 @@
     }
 
     @keyframes varredura {
-      from {
-        transform: translateX(-100%);
-      }
-
-      to {
-        transform: translateX(100%);
-      }
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
     }
 
     .linha-terminal {
@@ -264,7 +246,6 @@
       border-radius: 999px;
       background: rgba(0,0,0,0.55);
       overflow: hidden;
-      position: relative;
     }
 
     .abertura-barra-preenchimento {
@@ -302,9 +283,7 @@
     }
 
     @keyframes acessoConcedido {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
     .pular-abertura {
@@ -330,124 +309,119 @@
       box-shadow: 0 0 18px rgba(216, 189, 116, 0.12);
     }
 
-    .home-premium {
-      --home-vermelho: #b51624;
-      --home-roxo: #8b4dff;
-      --home-amarelo: #d8bd74;
-      --home-verde: #6f8f4e;
-      --home-texto: #e8dfd2;
-      --home-fraco: #a89f94;
+    .home-cinematica {
+      --vermelho: #b51624;
+      --vermelho-vivo: #ff3045;
+      --roxo: #8b4dff;
+      --amarelo: #d8bd74;
+      --texto: #e8dfd2;
+      --fraco: #a89f94;
 
+      border-radius: 34px;
       border: 1px solid rgba(216, 189, 116, 0.22);
-      border-radius: 28px;
-      padding: 30px;
+      padding: 28px;
       background:
-        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.22), transparent 30%),
-        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
-        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(15, 9, 12, 0.98));
+        radial-gradient(circle at 50% 2%, rgba(181, 22, 36, 0.32), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(139, 77, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 10% 90%, rgba(216, 189, 116, 0.10), transparent 35%),
+        linear-gradient(135deg, rgba(4, 4, 6, 0.99), rgba(15, 5, 8, 0.98));
       box-shadow:
-        0 0 44px rgba(181, 22, 36, 0.18),
-        inset 0 0 70px rgba(0, 0, 0, 0.68);
+        0 0 60px rgba(181, 22, 36, 0.22),
+        inset 0 0 90px rgba(0, 0, 0, 0.72);
       position: relative;
       overflow: hidden;
     }
 
-    .home-premium::before {
+    .home-cinematica::before {
       content: "";
       position: absolute;
       inset: 0;
       background:
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: 0.23;
+      background-size: 38px 38px;
+      opacity: 0.20;
       pointer-events: none;
     }
 
-    .home-premium::after {
-      content: "ARQUIVO DA CAMPANHA // CORAÇÕES DO OUTRO LADO";
+    .home-cinematica::after {
+      content: "ARQUIVO DA CAMPANHA // CORAÇÕES DO OUTRO LADO // ACESSO PARCIAL";
       position: absolute;
-      right: -145px;
+      right: -175px;
       top: 50%;
       transform: rotate(90deg);
-      color: rgba(216, 189, 116, 0.12);
-      letter-spacing: 6px;
+      color: rgba(216, 189, 116, 0.11);
+      letter-spacing: 7px;
       font-size: 11px;
       pointer-events: none;
     }
 
-    .home-premium > * {
+    .home-cinematica > * {
       position: relative;
       z-index: 1;
     }
 
-    .home-hero {
-      min-height: 580px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: stretch;
-      padding-bottom: 30px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
-    }
-
-    .home-hero-texto {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      padding: 30px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
-        rgba(0,0,0,0.28);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .home-hero-texto::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--home-vermelho), var(--home-roxo), var(--home-amarelo));
-    }
-
     .classificacao {
-      color: #ff3045;
+      color: var(--vermelho-vivo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 12px;
     }
 
-    .home-hero-texto .classificacao {
-      margin-bottom: 18px;
+    .hero-campanha {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 28px;
     }
 
-    .home-hero-texto h2 {
-      font-size: clamp(44px, 7vw, 96px);
-      line-height: 0.92;
-      letter-spacing: 5px;
+    .hero-titulo {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 28px;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(181,22,36,0.22), transparent 34%),
+        radial-gradient(circle at 90% 90%, rgba(139,77,255,0.10), transparent 36%),
+        rgba(0,0,0,0.30);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-titulo::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--vermelho), var(--roxo), var(--amarelo));
+    }
+
+    .hero-titulo h2 {
+      color: var(--amarelo);
       text-transform: uppercase;
-      color: var(--home-amarelo);
+      letter-spacing: 6px;
+      line-height: 0.88;
+      font-size: clamp(48px, 8.5vw, 122px);
+      margin: 18px 0 24px;
       text-shadow:
-        0 0 18px rgba(181, 22, 36, 0.36),
-        0 0 36px rgba(139, 77, 255, 0.20);
-      margin-bottom: 22px;
+        0 0 24px rgba(181, 22, 36, 0.55),
+        0 0 54px rgba(139, 77, 255, 0.25);
     }
 
-    .home-hero-texto p {
-      color: var(--home-fraco);
+    .hero-titulo p {
+      color: var(--fraco);
       line-height: 1.75;
       font-size: 16px;
-      max-width: 780px;
+      max-width: 840px;
     }
 
-    .home-hero-texto p + p {
+    .hero-titulo p + p {
       margin-top: 14px;
     }
 
@@ -455,15 +429,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 26px;
+      margin-top: 28px;
     }
 
     .home-botao {
-      color: var(--home-texto);
+      color: var(--texto);
       text-decoration: none;
       border: 1px solid rgba(216, 189, 116, 0.24);
-      border-radius: 12px;
-      padding: 13px 16px;
+      border-radius: 14px;
+      padding: 14px 16px;
       background: rgba(255,255,255,0.035);
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -472,224 +446,137 @@
     }
 
     .home-botao:hover {
-      color: var(--home-amarelo);
-      border-color: var(--home-amarelo);
+      color: var(--amarelo);
+      border-color: var(--amarelo);
       transform: translateY(-3px);
       box-shadow: 0 0 18px rgba(216, 189, 116, 0.16);
     }
 
     .home-botao.principal {
-      border-color: rgba(181, 22, 36, 0.58);
+      border-color: rgba(181, 22, 36, 0.62);
       background:
         linear-gradient(135deg, rgba(181,22,36,0.26), rgba(139,77,255,0.12)),
         rgba(0,0,0,0.24);
-      color: var(--home-amarelo);
+      color: var(--amarelo);
     }
 
-    .home-selo {
+    .hero-painel {
+      display: grid;
+      gap: 16px;
+      grid-template-rows: 1fr auto;
+    }
+
+    .selo-principal {
       border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      min-height: 500px;
+      border-radius: 28px;
       background:
-        radial-gradient(circle at center, rgba(181,22,36,0.20), transparent 34%),
-        radial-gradient(circle at center, rgba(139,77,255,0.16), transparent 58%),
+        radial-gradient(circle at center, rgba(181,22,36,0.24), transparent 34%),
+        radial-gradient(circle at center, rgba(139,77,255,0.18), transparent 58%),
         rgba(0,0,0,0.36);
       display: grid;
       place-items: center;
+      min-height: 420px;
       position: relative;
       overflow: hidden;
     }
 
-    .home-selo::before {
+    .selo-principal::before {
       content: "";
       position: absolute;
-      width: 320px;
-      height: 320px;
+      width: 330px;
+      height: 330px;
       border-radius: 50%;
       border: 1px solid rgba(216, 189, 116, 0.28);
       box-shadow:
-        0 0 0 28px rgba(181, 22, 36, 0.04),
-        0 0 0 58px rgba(139, 77, 255, 0.03),
-        0 0 52px rgba(181, 22, 36, 0.30);
+        0 0 0 30px rgba(181, 22, 36, 0.05),
+        0 0 0 64px rgba(139, 77, 255, 0.035),
+        0 0 62px rgba(181, 22, 36, 0.34);
+      animation: pulsoSeloHome 3s infinite ease-in-out;
     }
 
-    .home-selo::after {
+    .selo-principal::after {
       content: "C.O.L";
-      color: var(--home-amarelo);
-      font-size: clamp(58px, 8vw, 98px);
-      letter-spacing: 8px;
+      color: var(--amarelo);
+      font-size: clamp(62px, 8vw, 110px);
+      letter-spacing: 9px;
       font-weight: bold;
       text-shadow:
-        0 0 22px rgba(181, 22, 36, 0.75),
-        0 0 46px rgba(139, 77, 255, 0.40);
+        0 0 22px rgba(181, 22, 36, 0.80),
+        0 0 48px rgba(139, 77, 255, 0.40);
       z-index: 1;
     }
 
-    .home-selo-dados {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      z-index: 2;
+    @keyframes pulsoSeloHome {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+
+      50% {
+        transform: scale(1.045);
+        opacity: 1;
+      }
     }
 
-    .home-mini-dado {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 12px;
-      padding: 12px;
-      background: rgba(0,0,0,0.46);
-      text-align: center;
-    }
-
-    .home-mini-dado span {
-      display: block;
-      color: var(--home-fraco);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 9px;
-      margin-bottom: 6px;
-    }
-
-    .home-mini-dado strong {
-      color: var(--home-amarelo);
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .home-update-log {
-      margin-top: 28px;
-      border: 1px solid rgba(181, 22, 36, 0.36);
+    .leitura-sistema {
+      border: 1px solid rgba(181, 22, 36, 0.34);
       border-radius: 22px;
-      padding: 22px;
+      padding: 18px;
       background:
-        linear-gradient(135deg, rgba(181,22,36,0.10), rgba(139,77,255,0.07)),
-        rgba(0,0,0,0.38);
-      box-shadow:
-        0 0 24px rgba(181, 22, 36, 0.12),
-        inset 0 0 40px rgba(0, 0, 0, 0.45);
-      position: relative;
-      overflow: hidden;
+        linear-gradient(135deg, rgba(181,22,36,0.12), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.42);
+      font-family: monospace;
     }
 
-    .home-update-log::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 24px 24px;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
-    .home-update-log > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .home-update-topo {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      border-bottom: 1px solid rgba(216, 189, 116, 0.16);
-      padding-bottom: 14px;
-      margin-bottom: 16px;
-    }
-
-    .home-update-topo div span {
+    .leitura-sistema span {
       display: block;
-      color: #ff3045;
+      color: var(--vermelho-vivo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 11px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
-    .home-update-topo h2 {
-      color: var(--home-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: clamp(22px, 3vw, 34px);
+    .leitura-sistema p {
+      color: var(--texto);
+      line-height: 1.6;
+      font-size: 13px;
+      margin-top: 8px;
     }
 
-    .home-update-status {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 999px;
-      padding: 8px 12px;
-      color: var(--home-amarelo);
-      background: rgba(0,0,0,0.34);
+    .mini-status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .mini-status {
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .mini-status span {
+      display: block;
+      color: var(--fraco);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 10px;
-      white-space: nowrap;
+      margin-bottom: 8px;
     }
 
-    .home-update-lista {
-      display: grid;
-      gap: 12px;
-    }
-
-    .home-update-item {
-      border: 1px solid rgba(216, 189, 116, 0.14);
-      border-radius: 16px;
-      padding: 14px;
-      background: rgba(0,0,0,0.26);
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 14px;
-      transition: 0.25s;
-    }
-
-    .home-update-item:hover {
-      transform: translateX(4px);
-      border-color: rgba(216, 189, 116, 0.35);
-      box-shadow: 0 0 18px rgba(216, 189, 116, 0.08);
-    }
-
-    .home-update-data {
-      color: var(--home-amarelo);
-      font-family: monospace;
-      font-size: 13px;
-      letter-spacing: 1px;
-    }
-
-    .home-update-conteudo strong {
-      display: block;
-      color: var(--home-texto);
+    .mini-status strong {
+      color: var(--amarelo);
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .home-update-conteudo p {
-      color: var(--home-fraco);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .home-update-tag {
-      display: inline-block;
-      margin-top: 8px;
-      border: 1px solid rgba(181, 22, 36, 0.38);
-      border-radius: 999px;
-      padding: 5px 9px;
-      color: #ff9aa4;
-      background: rgba(181,22,36,0.10);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 9px;
+      font-size: 16px;
     }
 
     .home-secao {
       margin-top: 28px;
       border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
+      border-radius: 26px;
       padding: 24px;
       background:
         linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
@@ -709,7 +596,7 @@
     }
 
     .home-secao h2 {
-      color: var(--home-amarelo);
+      color: var(--amarelo);
       text-transform: uppercase;
       letter-spacing: 3px;
       font-size: clamp(26px, 4vw, 46px);
@@ -717,10 +604,83 @@
     }
 
     .home-secao p {
-      color: var(--home-fraco);
+      color: var(--fraco);
       line-height: 1.72;
       font-size: 15px;
       max-width: 980px;
+    }
+
+    .destaque-santa-luzia {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .santa-selo {
+      border: 1px solid rgba(181, 22, 36, 0.34);
+      border-radius: 24px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at center, rgba(181,22,36,0.30), transparent 48%),
+        rgba(0,0,0,0.34);
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .santa-selo::before {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 1px dashed rgba(216, 189, 116, 0.25);
+      animation: girarSelo 16s linear infinite;
+    }
+
+    @keyframes girarSelo {
+      to { transform: rotate(360deg); }
+    }
+
+    .santa-selo h3 {
+      color: var(--amarelo);
+      font-size: clamp(34px, 5vw, 58px);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      line-height: 0.95;
+      position: relative;
+      z-index: 1;
+    }
+
+    .santa-info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .santa-linha {
+      border: 1px solid rgba(216, 189, 116, 0.14);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .santa-linha span {
+      display: block;
+      color: var(--fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 6px;
+    }
+
+    .santa-linha strong {
+      color: var(--texto);
+      font-weight: normal;
+      line-height: 1.55;
     }
 
     .home-grid-principal {
@@ -733,7 +693,7 @@
     .home-card-link {
       min-height: 260px;
       border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 18px;
+      border-radius: 22px;
       padding: 20px;
       text-decoration: none;
       background:
@@ -749,7 +709,7 @@
 
     .home-card-link:hover {
       transform: translateY(-6px);
-      border-color: var(--home-amarelo);
+      border-color: var(--amarelo);
       box-shadow: 0 0 24px rgba(216, 189, 116, 0.13);
     }
 
@@ -791,14 +751,14 @@
     }
 
     .home-card-link span {
-      color: var(--home-fraco);
+      color: var(--fraco);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 10px;
     }
 
     .home-card-link h3 {
-      color: var(--home-amarelo);
+      color: var(--amarelo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 24px;
@@ -806,7 +766,7 @@
     }
 
     .home-card-link p {
-      color: var(--home-fraco);
+      color: var(--fraco);
       line-height: 1.62;
       font-size: 14px;
     }
@@ -818,7 +778,7 @@
       border: 1px solid rgba(216, 189, 116, 0.22);
       display: grid;
       place-items: center;
-      color: var(--home-amarelo);
+      color: var(--amarelo);
       font-size: 30px;
       background: rgba(0,0,0,0.32);
       margin-top: 20px;
@@ -834,7 +794,7 @@
 
     .trindade-home-card {
       border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 18px;
+      border-radius: 22px;
       padding: 18px;
       background: rgba(0,0,0,0.28);
       min-height: 240px;
@@ -874,14 +834,14 @@
     }
 
     .trindade-home-card span {
-      color: var(--home-fraco);
+      color: var(--fraco);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 10px;
     }
 
     .trindade-home-card h3 {
-      color: var(--home-amarelo);
+      color: var(--amarelo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 26px;
@@ -889,7 +849,7 @@
     }
 
     .trindade-home-card p {
-      color: var(--home-fraco);
+      color: var(--fraco);
       font-size: 14px;
       line-height: 1.62;
     }
@@ -897,7 +857,7 @@
     .trindade-home-card a {
       display: inline-block;
       margin-top: 16px;
-      color: var(--home-texto);
+      color: var(--texto);
       text-decoration: none;
       border: 1px solid rgba(216, 189, 116, 0.20);
       border-radius: 10px;
@@ -909,59 +869,82 @@
     }
 
     .trindade-home-card a:hover {
-      color: var(--home-amarelo);
-      border-color: var(--home-amarelo);
+      color: var(--amarelo);
+      border-color: var(--amarelo);
     }
 
-    .status-arquivo-home {
+    .home-update-log {
+      margin-top: 22px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 20px;
+      gap: 12px;
     }
 
-    .status-home-card {
-      border: 1px solid rgba(216, 189, 116, 0.16);
+    .home-update-item {
+      border: 1px solid rgba(216, 189, 116, 0.14);
       border-radius: 16px;
-      padding: 16px;
+      padding: 14px;
       background: rgba(0,0,0,0.26);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      transition: 0.25s;
     }
 
-    .status-home-card span {
+    .home-update-item:hover {
+      transform: translateX(4px);
+      border-color: rgba(216, 189, 116, 0.35);
+      box-shadow: 0 0 18px rgba(216, 189, 116, 0.08);
+    }
+
+    .home-update-data {
+      color: var(--amarelo);
+      font-family: monospace;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .home-update-conteudo strong {
       display: block;
-      color: var(--home-fraco);
+      color: var(--texto);
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 10px;
-      margin-bottom: 8px;
-    }
-
-    .status-home-card strong {
-      display: block;
-      color: var(--home-amarelo);
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .status-home-card p {
       font-size: 13px;
-      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .home-update-conteudo p {
+      color: var(--fraco);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .home-update-tag {
+      display: inline-block;
+      margin-top: 8px;
+      border: 1px solid rgba(181, 22, 36, 0.38);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #ff9aa4;
+      background: rgba(181,22,36,0.10);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 9px;
     }
 
     .home-terminal {
       margin-top: 28px;
       border: 1px solid rgba(181, 22, 36, 0.32);
-      border-radius: 20px;
-      padding: 22px;
+      border-radius: 24px;
+      padding: 24px;
       background:
-        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
-        rgba(0,0,0,0.36);
+        linear-gradient(135deg, rgba(181,22,36,0.10), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.38);
       font-family: monospace;
     }
 
     .home-terminal span {
       display: block;
-      color: #ff3045;
+      color: var(--vermelho-vivo);
       margin-bottom: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -969,26 +952,24 @@
     }
 
     .home-terminal p {
-      color: var(--home-texto);
+      color: var(--texto);
       line-height: 1.7;
       font-size: 14px;
     }
 
     @media (max-width: 1080px) {
-      .home-hero {
+      .hero-campanha,
+      .destaque-santa-luzia {
         grid-template-columns: 1fr;
       }
 
+      .mini-status-grid,
       .home-grid-principal {
         grid-template-columns: 1fr 1fr;
       }
 
       .trindade-home {
         grid-template-columns: 1fr;
-      }
-
-      .status-arquivo-home {
-        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -1008,49 +989,29 @@
         font-size: 18px;
       }
 
-      .abertura-terminal {
-        min-height: 260px;
-      }
-
       .linha-terminal {
         font-size: 12px;
       }
 
-      .pular-abertura {
-        right: 14px;
-        bottom: 14px;
-      }
-
-      .home-premium {
+      .home-cinematica {
         padding: 18px;
       }
 
-      .home-hero-texto h2 {
-        font-size: 40px;
+      .hero-titulo {
+        padding: 24px;
       }
 
+      .hero-titulo h2 {
+        font-size: 43px;
+      }
+
+      .mini-status-grid,
       .home-grid-principal {
         grid-template-columns: 1fr;
       }
 
-      .home-selo-dados {
-        grid-template-columns: 1fr;
-      }
-
-      .status-arquivo-home {
-        grid-template-columns: 1fr;
-      }
-
-      .home-update-topo {
-        flex-direction: column;
-      }
-
       .home-update-item {
         grid-template-columns: 1fr;
-      }
-
-      .home-update-status {
-        width: fit-content;
       }
     }
   </style>
@@ -1118,24 +1079,23 @@
 
   <main>
 
-    <section class="home-premium">
+    <section class="home-cinematica">
 
-      <section class="home-hero">
+      <section class="hero-campanha">
 
-        <div class="home-hero-texto">
+        <div class="hero-titulo">
           <p class="classificacao">Arquivo principal // campanha ativa</p>
 
           <h2>Corações<br>do Outro<br>Lado</h2>
 
           <p>
-            Este arquivo reúne registros, personagens, missões, locais e documentos
-            relacionados aos eventos de Corações do Outro Lado.
+            Este não é apenas um índice. É a porta de entrada para os registros de uma
+            campanha onde a Ordem tenta entender uma ameaça que já começou a se espalhar.
           </p>
 
           <p>
-            Nem toda informação está completa. Nem todo documento é confiável.
-            E nem todo agente registrado aqui voltou inteiro o suficiente para contar
-            a própria versão.
+            Santa Luzia foi tocada por algo ligado ao Sangue. O componente não foi localizado.
+            A infecção, porém, já foi considerada ativa.
           </p>
 
           <div class="home-acoes">
@@ -1145,168 +1105,88 @@
           </div>
         </div>
 
-        <div class="home-selo">
-          <div class="home-selo-dados">
-            <div class="home-mini-dado">
-              <span>Campanha</span>
-              <strong>Ativa</strong>
-            </div>
+        <aside class="hero-painel">
+          <div class="selo-principal"></div>
 
-            <div class="home-mini-dado">
-              <span>Acesso</span>
-              <strong>Restrito</strong>
-            </div>
-
-            <div class="home-mini-dado">
-              <span>Núcleo</span>
-              <strong>Ordem</strong>
-            </div>
+          <div class="leitura-sistema">
+            <span>Última leitura do sistema</span>
+            <p>&gt; Local de risco: Santa Luzia</p>
+            <p>&gt; Elemento predominante: Sangue</p>
+            <p>&gt; Componente: não localizado</p>
+            <p>&gt; Estado: contaminação ativa</p>
           </div>
-        </div>
+        </aside>
 
       </section>
 
-      <section class="home-update-log">
-        <div class="home-update-topo">
-          <div>
-            <span>Terminal interno // mudanças recentes</span>
-            <h2>Registro de Atualizações</h2>
-          </div>
-
-          <div class="home-update-status">
-            Arquivo em expansão
-          </div>
+      <section class="mini-status-grid">
+        <div class="mini-status">
+          <span>Campanha</span>
+          <strong>Ativa</strong>
         </div>
 
-        <div class="home-update-lista">
+        <div class="mini-status">
+          <span>Acesso</span>
+          <strong>Parcial</strong>
+        </div>
 
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
+        <div class="mini-status">
+          <span>Elemento</span>
+          <strong>Sangue</strong>
+        </div>
 
-            <div class="home-update-conteudo">
-              <strong>Central de personagens reformulada</strong>
-              <p>
-                A página de Personagens foi transformada em uma central de dossiês com abas para
-                Trindade da Ordem, Agentes dos Jogadores, NPCs Registrados e Dossiês Bloqueados.
-              </p>
-              <span class="home-update-tag">Personagens</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Arquivo de Elementos criado</strong>
-              <p>
-                A página de Elementos foi adicionada com foco no elemento de Sangue, indicando uma
-                contaminação ativa em Santa Luzia e registros corrompidos dos demais elementos.
-              </p>
-              <span class="home-update-tag">Elementos</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Página de documentos confidenciais criada</strong>
-              <p>
-                A seção de Documentos recebeu relatórios, pistas, arquivos bloqueados e registros
-                corrompidos com leitura parcial pelo sistema.
-              </p>
-              <span class="home-update-tag">Documentos</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Painel de missões adicionado</strong>
-              <p>
-                A página de Missões foi criada com a operação Corações do Outro Lado em destaque,
-                objetivos conhecidos, eventos registrados e arquivos de missão.
-              </p>
-              <span class="home-update-tag">Missões</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Abas internas criadas em Locais</strong>
-              <p>
-                A seção de mapas foi reorganizada em abas para separar Base da Ordo,
-                Santa Luzia e Locais Restritos.
-              </p>
-              <span class="home-update-tag">Locais</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Mapa visual da Ordo Realitas adicionado</strong>
-              <p>
-                A página de Locais recebeu a aba da Base da Ordo Realitas com setores clicáveis,
-                imagens das salas e descrições internas.
-              </p>
-              <span class="home-update-tag">Locais</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Página institucional da Ordo Realitas criada</strong>
-              <p>
-                A Ordo Realitas ganhou uma página própria com apresentação das alas,
-                da Trindade da Ordem e da liderança de Klint.
-              </p>
-              <span class="home-update-tag">Ordo Realitas</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Dossiês da Trindade liberados</strong>
-              <p>
-                Os dossiês de Yuna, Lisa e Blender foram adicionados ao arquivo com informações
-                operacionais, habilidades, atributos e registros parciais da Ordem.
-              </p>
-              <span class="home-update-tag">Dossiês</span>
-            </div>
-          </article>
-
-          <article class="home-update-item">
-            <div class="home-update-data">17/05/2026</div>
-
-            <div class="home-update-conteudo">
-              <strong>Página inicial reformulada</strong>
-              <p>
-                O Arquivo da Campanha recebeu uma entrada principal mais completa,
-                com destaque para a Ordo Realitas, a Trindade e os setores do site.
-              </p>
-              <span class="home-update-tag">Início</span>
-            </div>
-          </article>
-
+        <div class="mini-status">
+          <span>Risco</span>
+          <strong>Crescente</strong>
         </div>
       </section>
 
       <section class="home-secao">
-        <p class="classificacao">Navegação principal // índice do arquivo</p>
+        <p class="classificacao">Alerta principal // Santa Luzia</p>
+        <h2>O Centro da Infecção</h2>
+
+        <p>
+          As informações sobre o elemento de Sangue são mínimas. A Ordem sabe apenas que
+          existe um componente associado a ele em Santa Luzia, e que esse componente está
+          infectando o local de alguma forma ainda não identificada.
+        </p>
+
+        <div class="destaque-santa-luzia">
+          <div class="santa-selo">
+            <h3>Santa<br>Luzia</h3>
+          </div>
+
+          <div class="santa-info">
+            <div class="santa-linha">
+              <span>Componente</span>
+              <strong>Não localizado.</strong>
+            </div>
+
+            <div class="santa-linha">
+              <span>Método de infecção</span>
+              <strong>Desconhecido. Pode ser físico, ritualístico, emocional, simbólico ou territorial.</strong>
+            </div>
+
+            <div class="santa-linha">
+              <span>Origem</span>
+              <strong>Não identificada pelos registros atuais da Ordo Realitas.</strong>
+            </div>
+
+            <div class="santa-linha">
+              <span>Conclusão</span>
+              <strong>O componente não foi encontrado. A infecção, porém, já começou.</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-secao">
+        <p class="classificacao">Navegação principal // setores liberados</p>
         <h2>Setores do Arquivo</h2>
 
         <p>
-          Cada setor abaixo leva a uma parte diferente do arquivo. Algumas páginas
-          ainda podem estar incompletas, censuradas ou aguardando novos registros.
+          Cada setor abaixo leva a uma área diferente do arquivo. Algumas páginas estão
+          completas, outras permanecem incompletas, bloqueadas ou parcialmente corrompidas.
         </p>
 
         <div class="home-grid-principal">
@@ -1414,39 +1294,79 @@
       </section>
 
       <section class="home-secao">
-        <p class="classificacao">Status geral // leitura do sistema</p>
-        <h2>Status do Arquivo</h2>
+        <p class="classificacao">Terminal interno // mudanças recentes</p>
+        <h2>Registro de Atualizações</h2>
 
         <p>
-          O arquivo continua em expansão conforme novos personagens, documentos e
-          eventos forem registrados.
+          O arquivo continua em expansão conforme novos setores são liberados pela Ordem.
         </p>
 
-        <div class="status-arquivo-home">
+        <div class="home-update-log">
 
-          <div class="status-home-card">
-            <span>Campanha</span>
-            <strong>Ativa</strong>
-            <p>Os registros ainda estão sendo atualizados conforme a história avança.</p>
-          </div>
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
 
-          <div class="status-home-card">
-            <span>Ordem</span>
-            <strong>Operante</strong>
-            <p>A Ordo Realitas segue funcionando sob pressão crescente.</p>
-          </div>
+            <div class="home-update-conteudo">
+              <strong>Central de personagens reformulada</strong>
+              <p>
+                A página de Personagens foi transformada em uma central de dossiês com abas para
+                Trindade da Ordem, Agentes dos Jogadores, NPCs Registrados e Dossiês Bloqueados.
+              </p>
+              <span class="home-update-tag">Personagens</span>
+            </div>
+          </article>
 
-          <div class="status-home-card">
-            <span>Dossiês</span>
-            <strong>Parciais</strong>
-            <p>Algumas informações permanecem ocultas por segurança operacional.</p>
-          </div>
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
 
-          <div class="status-home-card">
-            <span>Risco</span>
-            <strong>Elevado</strong>
-            <p>O Paranormal continua influenciando agentes, locais e registros.</p>
-          </div>
+            <div class="home-update-conteudo">
+              <strong>Arquivo de Elementos criado</strong>
+              <p>
+                A página de Elementos foi adicionada com foco no elemento de Sangue, indicando uma
+                contaminação ativa em Santa Luzia e registros corrompidos dos demais elementos.
+              </p>
+              <span class="home-update-tag">Elementos</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Página de documentos confidenciais criada</strong>
+              <p>
+                A seção de Documentos recebeu relatórios, pistas, arquivos bloqueados e registros
+                corrompidos com leitura parcial pelo sistema.
+              </p>
+              <span class="home-update-tag">Documentos</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Painel de missões adicionado</strong>
+              <p>
+                A página de Missões foi criada com a operação Corações do Outro Lado em destaque,
+                objetivos conhecidos, eventos registrados e arquivos de missão.
+              </p>
+              <span class="home-update-tag">Missões</span>
+            </div>
+          </article>
+
+          <article class="home-update-item">
+            <div class="home-update-data">17/05/2026</div>
+
+            <div class="home-update-conteudo">
+              <strong>Mapa visual da Ordo Realitas adicionado</strong>
+              <p>
+                A página de Locais recebeu a aba da Base da Ordo Realitas com setores clicáveis,
+                imagens das salas e descrições internas.
+              </p>
+              <span class="home-update-tag">Locais</span>
+            </div>
+          </article>
 
         </div>
       </section>
