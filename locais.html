@@ -7,7 +7,497 @@
   <title>Locais | Arquivo da Campanha</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .locais-pagina {
+      --locais-vermelho: #b51624;
+      --locais-roxo: #8b4dff;
+      --locais-amarelo: #d8bd74;
+      --locais-verde: #6f8f4e;
+      --locais-metal: #8a8a8a;
+      --locais-texto: #e8dfd2;
+      --locais-fraco: #a89f94;
+
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 28px;
+      padding: 30px;
+      background:
+        radial-gradient(circle at 10% 12%, rgba(181, 22, 36, 0.20), transparent 30%),
+        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
+        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(12, 10, 14, 0.98));
+      box-shadow:
+        0 0 44px rgba(181, 22, 36, 0.16),
+        inset 0 0 70px rgba(0, 0, 0, 0.68);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locais-pagina::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .locais-pagina::after {
+      content: "MAPEAMENTO // LOCAIS // ORDO REALITAS";
+      position: absolute;
+      right: -120px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.12);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .locais-pagina > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .locais-hero {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      padding-bottom: 30px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+    }
+
+    .locais-hero-texto {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
+        rgba(0,0,0,0.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locais-hero-texto::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--locais-vermelho), var(--locais-roxo), var(--locais-amarelo));
+    }
+
+    .locais-hero-texto .classificacao {
+      color: #ff3045;
+      margin-bottom: 18px;
+    }
+
+    .locais-hero-texto h2 {
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.92;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--locais-amarelo);
+      text-shadow:
+        0 0 18px rgba(181, 22, 36, 0.36),
+        0 0 36px rgba(139, 77, 255, 0.20);
+      margin-bottom: 22px;
+    }
+
+    .locais-hero-texto p {
+      color: var(--locais-fraco);
+      line-height: 1.75;
+      font-size: 16px;
+      max-width: 780px;
+    }
+
+    .locais-hero-texto p + p {
+      margin-top: 14px;
+    }
+
+    .locais-selo {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      min-height: 420px;
+      background:
+        radial-gradient(circle at center, rgba(181,22,36,0.16), transparent 34%),
+        radial-gradient(circle at center, rgba(139,77,255,0.14), transparent 58%),
+        rgba(0,0,0,0.36);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locais-selo::before {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 189, 116, 0.26);
+      box-shadow:
+        0 0 0 28px rgba(181, 22, 36, 0.04),
+        0 0 0 58px rgba(139, 77, 255, 0.03),
+        0 0 52px rgba(181, 22, 36, 0.28);
+    }
+
+    .locais-selo::after {
+      content: "MAPA";
+      color: var(--locais-amarelo);
+      font-size: clamp(54px, 7vw, 88px);
+      letter-spacing: 8px;
+      font-weight: bold;
+      text-shadow:
+        0 0 22px rgba(181, 22, 36, 0.75),
+        0 0 46px rgba(139, 77, 255, 0.40);
+      z-index: 1;
+    }
+
+    .locais-selo-dados {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .local-mini-dado {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(0,0,0,0.46);
+      text-align: center;
+    }
+
+    .local-mini-dado span {
+      display: block;
+      color: var(--locais-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 6px;
+    }
+
+    .local-mini-dado strong {
+      color: var(--locais-amarelo);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .locais-secao {
+      margin-top: 28px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .locais-secao::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: rgba(216, 189, 116, 0.5);
+    }
+
+    .locais-secao h2 {
+      color: var(--locais-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(26px, 4vw, 46px);
+      margin-bottom: 14px;
+    }
+
+    .locais-secao p {
+      color: var(--locais-fraco);
+      line-height: 1.72;
+      font-size: 15px;
+      max-width: 980px;
+    }
+
+    .mapa-ordo {
+      margin-top: 24px;
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 22px;
+      min-height: 520px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(216, 189, 116, 0.07), transparent 42%),
+        rgba(0,0,0,0.30);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      grid-template-rows: auto auto auto auto;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mapa-ordo::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px dashed rgba(216, 189, 116, 0.16);
+      border-radius: 16px;
+      pointer-events: none;
+    }
+
+    .setor-mapa {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 16px;
+      padding: 16px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(0,0,0,0.15)),
+        rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+      min-height: 120px;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .setor-mapa:hover {
+      transform: translateY(-4px);
+      border-color: var(--locais-amarelo);
+      box-shadow: 0 0 20px rgba(216, 189, 116, 0.12);
+    }
+
+    .setor-mapa::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .setor-mapa.ocultista::before {
+      background: radial-gradient(circle at top, rgba(139,77,255,0.85), transparent 48%);
+    }
+
+    .setor-mapa.especialista::before {
+      background: radial-gradient(circle at top, rgba(111,143,78,0.80), transparent 48%);
+    }
+
+    .setor-mapa.combatente::before {
+      background: radial-gradient(circle at top, rgba(181,22,36,0.85), transparent 48%);
+    }
+
+    .setor-mapa.restrito::before {
+      background: radial-gradient(circle at top, rgba(216,189,116,0.55), transparent 48%);
+    }
+
+    .setor-mapa.suporte::before {
+      background: radial-gradient(circle at top, rgba(138,138,138,0.65), transparent 48%);
+    }
+
+    .setor-mapa > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .setor-mapa span {
+      display: block;
+      color: var(--locais-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 9px;
+      margin-bottom: 8px;
+    }
+
+    .setor-mapa strong {
+      display: block;
+      color: var(--locais-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .setor-mapa p {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .setor-principal {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .setor-principal strong {
+      font-size: 26px;
+    }
+
+    .setor-subsolo {
+      grid-column: 1 / -1;
+      min-height: 140px;
+    }
+
+    .detalhe-local {
+      margin-top: 18px;
+      border: 1px solid rgba(181, 22, 36, 0.30);
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.34);
+      min-height: 130px;
+    }
+
+    .detalhe-local h3 {
+      color: var(--locais-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .detalhe-local p {
+      color: var(--locais-fraco);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .locais-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .local-card {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(0,0,0,0.26);
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.25s;
+    }
+
+    .local-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(216, 189, 116, 0.42);
+      box-shadow: 0 0 22px rgba(216, 189, 116, 0.10);
+    }
+
+    .local-card span {
+      color: var(--locais-fraco);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+    }
+
+    .local-card h3 {
+      color: var(--locais-amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 22px;
+      margin: 10px 0;
+    }
+
+    .local-card p {
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .aviso-local {
+      margin-top: 28px;
+      border: 1px solid rgba(181, 22, 36, 0.32);
+      border-radius: 20px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
+        rgba(0,0,0,0.36);
+      font-family: monospace;
+    }
+
+    .aviso-local span {
+      display: block;
+      color: #ff3045;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .aviso-local p {
+      color: var(--locais-texto);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .locais-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .mapa-ordo {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .setor-principal {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+
+      .setor-subsolo {
+        grid-column: 1 / -1;
+      }
+
+      .locais-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .locais-pagina {
+        padding: 18px;
+      }
+
+      .locais-hero-texto h2 {
+        font-size: 40px;
+      }
+
+      .locais-selo-dados {
+        grid-template-columns: 1fr;
+      }
+
+      .mapa-ordo {
+        grid-template-columns: 1fr;
+      }
+
+      .locais-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
   <div class="fundo-paranormal"></div>
@@ -15,11 +505,12 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Mapeamento de locais, zonas e áreas de risco</p>
+      <p>Mapeamento de locais registrados</p>
     </div>
 
     <nav>
       <a href="index.html">Início</a>
+      <a href="ordo.html">Ordo Realitas</a>
       <a href="locais.html">Locais</a>
       <a href="personagens.html">Personagens</a>
       <a href="missoes.html">Missões</a>
@@ -29,44 +520,256 @@
 
   <main>
 
-    <section class="hero">
-      <p class="classificacao">Mapeamento paranormal // zonas observadas</p>
+    <section class="locais-pagina">
 
-      <h2>Locais</h2>
+      <section class="locais-hero">
 
-      <p>
-        Registro de cidades, bases, ruínas, instalações, dimensões, zonas de risco
-        e áreas afetadas por manifestações paranormais.
-      </p>
-    </section>
+        <div class="locais-hero-texto">
+          <p class="classificacao">Mapeamento interno // locais registrados</p>
 
-    <section class="cards">
+          <h2>Locais<br>da Campanha</h2>
 
-      <a href="#" class="card">
-        <span>BASE</span>
-        <h3>Base da Ordem</h3>
-        <p>Instalação principal com alas de combatentes, especialistas, ocultistas e áreas restritas.</p>
-      </a>
+          <p>
+            Esta seção reúne regiões, bases, salas, setores e áreas de interesse
+            registradas durante os eventos de Corações do Outro Lado.
+          </p>
 
-      <a href="#" class="card">
-        <span>CIDADE</span>
-        <h3>Santa Luzia</h3>
-        <p>Cidade marcada por eventos estranhos, comportamento animal anormal e tensão crescente.</p>
-      </a>
+          <p>
+            O primeiro local documentado é a área interna da Ordo Realitas, incluindo
+            seus setores principais, áreas restritas e zonas de suporte operacional.
+          </p>
+        </div>
 
-      <a href="#" class="card">
-        <span>ÁREA RESTRITA</span>
-        <h3>Prisão Subterrânea</h3>
-        <p>Setor isolado abaixo da base, acessado por plataforma elevada e protocolos especiais.</p>
-      </a>
+        <div class="locais-selo">
+          <div class="locais-selo-dados">
+            <div class="local-mini-dado">
+              <span>Mapa</span>
+              <strong>Interno</strong>
+            </div>
+
+            <div class="local-mini-dado">
+              <span>Acesso</span>
+              <strong>Parcial</strong>
+            </div>
+
+            <div class="local-mini-dado">
+              <span>Base</span>
+              <strong>Ordem</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="locais-secao">
+        <p class="classificacao">Local principal // área da Ordo Realitas</p>
+        <h2>Base da Ordo Realitas</h2>
+
+        <p>
+          A base da Ordem funciona como centro de operações, abrigo, arquivo, sala de
+          comando e ponto de contenção. Por fora, não deveria chamar atenção. Por dentro,
+          cada corredor carrega o peso de decisões que não aparecem em relatórios públicos.
+        </p>
+
+        <div class="mapa-ordo">
+
+          <button
+            class="setor-mapa suporte"
+            data-titulo="Entrada / Recepção"
+            data-texto="A entrada da base é discreta e funcional. Não parece grandiosa, e essa é exatamente a intenção.||Agentes entram e saem por aqui, mas visitantes sem autorização raramente passam do primeiro controle."
+          >
+            <span>Acesso inicial</span>
+            <strong>Recepção</strong>
+            <p>Controle de entrada, identificação e triagem básica.</p>
+          </button>
+
+          <button
+            class="setor-mapa setor-principal restrito"
+            data-titulo="Sala de Comando"
+            data-texto="A Sala de Comando é o coração operacional da base. É onde missões são revisadas, agentes são enviados e decisões difíceis são tomadas.||Klint costuma passar tempo demais aqui, cercado por relatórios, mapas, nomes e baixas que nunca somem de verdade."
+          >
+            <span>Núcleo operacional</span>
+            <strong>Sala de Comando</strong>
+            <p>Centro de decisões da Ordem e ponto principal de organização das missões.</p>
+          </button>
+
+          <button
+            class="setor-mapa suporte"
+            data-titulo="Sala de Reuniões"
+            data-texto="A Sala de Reuniões é usada para briefings, interrogatórios leves, revisão de relatórios e conversas que não deveriam ser ouvidas por agentes despreparados.||A mesa central carrega marcas de café, documentos riscados e decisões tomadas rápido demais."
+          >
+            <span>Briefing</span>
+            <strong>Reuniões</strong>
+            <p>Onde agentes recebem instruções antes de partir.</p>
+          </button>
+
+          <button
+            class="setor-mapa ocultista"
+            data-titulo="Ala Ocultista"
+            data-texto="A Ala Ocultista concentra registros paranormais, símbolos, estudos de rituais e artefatos sensíveis.||É uma das áreas mais silenciosas da base. Mesmo agentes experientes evitam tocar em qualquer coisa sem autorização.||Yuna costuma trabalhar isolada nesse setor."
+          >
+            <span>Setor Yuna</span>
+            <strong>Ala Ocultista</strong>
+            <p>Estudo de rituais, símbolos, entidades e artefatos.</p>
+          </button>
+
+          <button
+            class="setor-mapa especialista"
+            data-titulo="Ala Especialista"
+            data-texto="A Ala Especialista reúne investigação, arquivos de campo, rotas, análises, planos de infiltração e equipamentos técnicos.||É o setor mais movimentado da base. Lisa costuma coordenar agentes daqui, ajustando missões antes que virem desastre."
+          >
+            <span>Setor Lisa</span>
+            <strong>Ala Especialista</strong>
+            <p>Investigação, infiltração, suporte e análise de risco.</p>
+          </button>
+
+          <button
+            class="setor-mapa combatente"
+            data-titulo="Ala Combatente"
+            data-texto="A Ala Combatente é formada por salas de treino, áreas de simulação, equipamentos pesados e espaços para preparação física.||Blender costuma transformar esse setor em um caos barulhento, mas os agentes que treinam ali voltam mais preparados."
+          >
+            <span>Setor Blender</span>
+            <strong>Ala Combatente</strong>
+            <p>Treinamento, contenção física e preparação de campo.</p>
+          </button>
+
+          <button
+            class="setor-mapa suporte"
+            data-titulo="Enfermaria"
+            data-texto="A Enfermaria trata ferimentos físicos, exaustão e os danos que ainda podem ser chamados de médicos.||Nem todo trauma cabe em uma ficha clínica, mas a equipe tenta manter os agentes vivos o bastante para continuarem."
+          >
+            <span>Suporte médico</span>
+            <strong>Enfermaria</strong>
+            <p>Tratamento físico e estabilização após missões.</p>
+          </button>
+
+          <button
+            class="setor-mapa suporte"
+            data-titulo="Arsenal"
+            data-texto="O Arsenal guarda armas, equipamentos de contenção, munição, proteção e ferramentas usadas em missões de campo.||O acesso é controlado. Alguns agentes acham isso exagero. A Ordem chama de sobrevivência."
+          >
+            <span>Equipamento</span>
+            <strong>Arsenal</strong>
+            <p>Armas, proteção e recursos de missão.</p>
+          </button>
+
+          <button
+            class="setor-mapa restrito"
+            data-titulo="Arquivo Morto"
+            data-texto="O Arquivo Morto guarda relatórios encerrados, casos antigos, registros censurados e documentos que a Ordem prefere não abrir sem necessidade.||Alguns arquivos estão incompletos. Outros estão completos demais."
+          >
+            <span>Restrito</span>
+            <strong>Arquivo Morto</strong>
+            <p>Registros antigos, censurados e perigosos.</p>
+          </button>
+
+          <button
+            class="setor-mapa setor-subsolo restrito"
+            data-titulo="Prisão Subterrânea"
+            data-texto="A Prisão Subterrânea fica abaixo da base principal e só pode ser acessada por um elevador controlado.||O setor é usado para contenção temporária de ameaças, interrogatórios de alto risco e isolamento de indivíduos afetados pelo Paranormal.||Nem todo mundo que desce volta imediatamente."
+          >
+            <span>Subsolo // contenção</span>
+            <strong>Prisão Subterrânea</strong>
+            <p>Área isolada abaixo da base, acessada por elevador de segurança.</p>
+          </button>
+
+        </div>
+
+        <div class="detalhe-local" id="detalhe-local">
+          <h3>Nenhum setor selecionado</h3>
+          <p>Clique em uma área do mapa interno da Ordo Realitas para abrir a descrição do setor.</p>
+        </div>
+      </section>
+
+      <section class="locais-secao">
+        <p class="classificacao">Resumo de setores // leitura rápida</p>
+        <h2>Áreas Importantes</h2>
+
+        <p>
+          Estes são os setores mais relevantes da base no momento. Novas áreas podem ser
+          adicionadas conforme a campanha revelar outros espaços.
+        </p>
+
+        <div class="locais-grid">
+
+          <article class="local-card">
+            <span>Área central</span>
+            <h3>Sala de Comando</h3>
+            <p>Onde Klint e a liderança analisam missões, riscos, baixas e decisões estratégicas.</p>
+          </article>
+
+          <article class="local-card">
+            <span>Área paranormal</span>
+            <h3>Ala Ocultista</h3>
+            <p>Setor de estudo de rituais, manifestações e artefatos ligados ao Outro Lado.</p>
+          </article>
+
+          <article class="local-card">
+            <span>Área tática</span>
+            <h3>Ala Especialista</h3>
+            <p>Centro de análise, infiltração, suporte, organização e planejamento de missão.</p>
+          </article>
+
+          <article class="local-card">
+            <span>Área de combate</span>
+            <h3>Ala Combatente</h3>
+            <p>Treinamento físico, simulações, combate direto e preparação de contenção.</p>
+          </article>
+
+          <article class="local-card">
+            <span>Área médica</span>
+            <h3>Enfermaria</h3>
+            <p>Tratamento de agentes feridos e estabilização após contato com ameaças.</p>
+          </article>
+
+          <article class="local-card">
+            <span>Área restrita</span>
+            <h3>Prisão Subterrânea</h3>
+            <p>Zona de contenção abaixo da base, acessada por elevador e protocolos de segurança.</p>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="aviso-local">
+        <span>Registro interno // aviso de segurança</span>
+        <p>
+          A planta completa da base não está disponível neste arquivo. Algumas áreas foram
+          omitidas, deslocadas ou registradas de forma incompleta por segurança operacional.
+          Se um agente encontrar uma porta que não consta no mapa, deve se afastar e comunicar
+          a liderança imediatamente.
+        </p>
+      </section>
 
     </section>
 
   </main>
 
   <footer>
-    <p>Locais classificados podem ter informações removidas dos registros públicos.</p>
+    <p>
+      Mapeamento parcial de locais da campanha. Algumas áreas foram ocultadas por segurança operacional.
+    </p>
   </footer>
+
+  <script>
+    const setores = document.querySelectorAll(".setor-mapa");
+    const detalheLocal = document.querySelector("#detalhe-local");
+
+    setores.forEach((setor) => {
+      setor.addEventListener("click", () => {
+        setores.forEach((item) => item.classList.remove("selecionado"));
+        setor.classList.add("selecionado");
+
+        const titulo = setor.dataset.titulo;
+        const texto = setor.dataset.texto;
+
+        detalheLocal.innerHTML = `
+          <h3>${titulo}</h3>
+          ${texto.split("||").map(paragrafo => `<p>${paragrafo}</p>`).join("")}
+        `;
+      });
+    });
+  </script>
 
 </body>
 </html>
