@@ -4,9 +4,706 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Blender | Arquivo da Campanha</title>
+  <title>Dossiê — Blender | Arquivo da Campanha</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .dossie-premium {
+      --dossie-cor: #b51624;
+      --dossie-cor-fraca: rgba(181, 22, 36, 0.18);
+      --dossie-cor-media: rgba(181, 22, 36, 0.48);
+      --dossie-dourado: #d8bd74;
+      --dossie-metal: #8a8a8a;
+      --dossie-fundo: #080606;
+      --dossie-card: rgba(18, 10, 10, 0.92);
+      --dossie-texto: #e8dfd2;
+      --dossie-fraco: #a89f94;
+
+      border: 1px solid var(--dossie-cor-media);
+      border-radius: 24px;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(181, 22, 36, 0.24), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(138, 138, 138, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 90%, rgba(181, 22, 36, 0.12), transparent 40%),
+        linear-gradient(135deg, rgba(8, 6, 6, 0.98), rgba(26, 10, 10, 0.97));
+      box-shadow:
+        0 0 42px rgba(181, 22, 36, 0.20),
+        inset 0 0 60px rgba(0, 0, 0, 0.62);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossie-premium::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .dossie-premium::after {
+      content: "ARQUIVO RESTRITO // ORDO REALITAS // BLENDER";
+      position: absolute;
+      right: -140px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(216, 189, 116, 0.13);
+      letter-spacing: 6px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .dossie-premium > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dossie-voltar {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--dossie-dourado);
+      border: 1px solid rgba(216, 189, 116, 0.38);
+      padding: 12px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 12px;
+      transition: 0.25s;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .dossie-voltar:hover {
+      transform: translateX(-4px);
+      border-color: var(--dossie-dourado);
+      box-shadow: 0 0 18px rgba(181, 22, 36, 0.28);
+    }
+
+    .dossie-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
+      padding-bottom: 24px;
+    }
+
+    .dossie-header .classificacao {
+      color: #ff3045;
+    }
+
+    .dossie-titulo h2 {
+      font-size: clamp(46px, 6vw, 88px);
+      letter-spacing: 7px;
+      text-transform: uppercase;
+      color: var(--dossie-dourado);
+      line-height: 0.92;
+      text-shadow:
+        0 0 18px rgba(181, 22, 36, 0.45),
+        0 0 36px rgba(181, 22, 36, 0.22);
+    }
+
+    .dossie-titulo span {
+      display: block;
+      margin-top: 12px;
+      color: var(--dossie-fraco);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .dossie-selo {
+      min-width: 180px;
+      border: 1px solid rgba(216, 189, 116, 0.35);
+      color: var(--dossie-dourado);
+      padding: 18px;
+      text-align: center;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      transform: rotate(3deg);
+      background: rgba(0,0,0,0.32);
+      box-shadow: 0 0 22px rgba(181, 22, 36, 0.16);
+    }
+
+    .dossie-selo strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .dossie-selo small {
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .dossie-grid {
+      display: grid;
+      grid-template-columns: 330px 1.1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .dossie-coluna {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .dossie-personagem {
+      min-height: 700px;
+      border: 1px solid var(--dossie-cor-media);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(181, 22, 36, 0.24), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.14));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+    }
+
+    .dossie-personagem::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    .dossie-personagem::after {
+      content: "FORÇA DE CONTENÇÃO";
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      color: rgba(216, 189, 116, 0.55);
+      letter-spacing: 3px;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .dossie-personagem img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transform: scale(1.03);
+      filter:
+        drop-shadow(0 0 26px rgba(181, 22, 36, 0.32))
+        drop-shadow(0 0 38px rgba(0,0,0,0.88));
+      transition: 0.35s;
+    }
+
+    .dossie-personagem:hover img {
+      transform: scale(1.065);
+    }
+
+    .dossie-bloco {
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 14px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181, 22, 36, 0.08)),
+        rgba(0,0,0,0.24);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dossie-bloco::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--dossie-cor);
+      opacity: 0.75;
+    }
+
+    .dossie-bloco h3 {
+      color: var(--dossie-dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .dossie-bloco p {
+      color: var(--dossie-fraco);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .dossie-bloco p + p {
+      margin-top: 12px;
+    }
+
+    .identidade-lista {
+      display: grid;
+      gap: 9px;
+    }
+
+    .identidade-lista div {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.065);
+      padding-bottom: 8px;
+    }
+
+    .identidade-lista span {
+      color: #ff3045;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .identidade-lista strong {
+      color: var(--dossie-texto);
+      text-align: right;
+      font-size: 14px;
+    }
+
+    .dossie-status {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .status-mini {
+      border: 1px solid rgba(181, 22, 36, 0.38);
+      border-radius: 12px;
+      padding: 14px;
+      background: rgba(0,0,0,0.30);
+    }
+
+    .status-mini span {
+      display: block;
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .status-mini strong {
+      color: var(--dossie-dourado);
+      font-size: 14px;
+    }
+
+    /* RODA DE ATRIBUTOS DO BLENDER */
+
+    .roda-atributos-blender {
+      width: min(100%, 470px);
+      aspect-ratio: 1 / 1;
+      margin: 6px auto 18px;
+      position: relative;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(181, 22, 36, 0.18), transparent 13%),
+        radial-gradient(circle at center, transparent 0 21%, rgba(181, 22, 36, 0.16) 21.5%, transparent 22.5%),
+        radial-gradient(circle at center, transparent 0 37%, rgba(181, 22, 36, 0.18) 37.5%, transparent 38.5%),
+        radial-gradient(circle at center, transparent 0 48%, rgba(181, 22, 36, 0.20) 48.5%, transparent 49.5%),
+        radial-gradient(circle at center, rgba(181, 22, 36, 0.08), rgba(0,0,0,0.76) 62%, transparent 72%);
+      filter: drop-shadow(0 0 24px rgba(181, 22, 36, 0.24));
+      overflow: visible;
+    }
+
+    .roda-atributos-blender::before {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border: 1px solid rgba(181, 22, 36, 0.42);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 18px rgba(181, 22, 36, 0.028),
+        0 0 0 42px rgba(181, 22, 36, 0.018),
+        0 0 34px rgba(181, 22, 36, 0.27);
+    }
+
+    .roda-atributos-blender::after {
+      content: "";
+      position: absolute;
+      inset: 49%;
+      width: 2%;
+      height: 2%;
+      border-radius: 50%;
+      background: var(--dossie-metal);
+      box-shadow:
+        0 0 18px rgba(181, 22, 36, 0.85),
+        0 -138px 0 -1px rgba(181, 22, 36, 0.28),
+        0 138px 0 -1px rgba(181, 22, 36, 0.28),
+        138px 0 0 -1px rgba(181, 22, 36, 0.28),
+        -138px 0 0 -1px rgba(181, 22, 36, 0.28);
+    }
+
+    .linha-ritual {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 42%;
+      background: linear-gradient(to top, rgba(181, 22, 36, 0.68), transparent);
+      transform-origin: bottom center;
+      opacity: 0.78;
+    }
+
+    .linha-ritual.l1 {
+      transform: translateX(-50%) translateY(-100%) rotate(0deg);
+    }
+
+    .linha-ritual.l2 {
+      transform: translateX(-50%) translateY(-100%) rotate(72deg);
+    }
+
+    .linha-ritual.l3 {
+      transform: translateX(-50%) translateY(-100%) rotate(144deg);
+    }
+
+    .linha-ritual.l4 {
+      transform: translateX(-50%) translateY(-100%) rotate(216deg);
+    }
+
+    .linha-ritual.l5 {
+      transform: translateX(-50%) translateY(-100%) rotate(288deg);
+    }
+
+    .sigilo-central {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 112px;
+      height: 112px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: rgba(216, 189, 116, 0.58);
+      font-size: 44px;
+      text-shadow: 0 0 20px rgba(181, 22, 36, 0.9);
+      background: radial-gradient(circle, rgba(181, 22, 36, 0.14), rgba(0,0,0,0.58));
+      pointer-events: none;
+    }
+
+    .atributo-orb {
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      border: 1px solid rgba(181, 22, 36, 0.68);
+      background:
+        radial-gradient(circle at center, rgba(181, 22, 36, 0.20), rgba(0,0,0,0.94) 66%);
+      color: var(--dossie-texto);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow:
+        inset 0 0 18px rgba(181, 22, 36, 0.18),
+        0 0 18px rgba(181, 22, 36, 0.18);
+      z-index: 2;
+    }
+
+    .atributo-orb::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(216, 189, 116, 0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .atributo-orb .valor {
+      display: block;
+      font-size: 34px;
+      color: #ff3045;
+      line-height: 1;
+      margin-bottom: 6px;
+      text-shadow: 0 0 14px rgba(181, 22, 36, 0.75);
+    }
+
+    .atributo-orb .nome {
+      display: block;
+      color: var(--dossie-fraco);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .atributo-orb .sigla {
+      display: block;
+      color: var(--dossie-texto);
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .atributo-orb:hover,
+    .atributo-orb.selecionado {
+      border-color: var(--dossie-dourado);
+      transform: scale(1.06);
+      box-shadow:
+        inset 0 0 22px rgba(181, 22, 36, 0.30),
+        0 0 24px rgba(181, 22, 36, 0.48),
+        0 0 14px rgba(216, 189, 116, 0.18);
+    }
+
+    .orb-for {
+      left: 0;
+      top: 36%;
+    }
+
+    .orb-agi {
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+
+    .orb-agi:hover,
+    .orb-agi.selecionado {
+      transform: translateX(-50%) scale(1.06);
+    }
+
+    .orb-int {
+      right: 0;
+      top: 36%;
+    }
+
+    .orb-pre {
+      left: 18%;
+      bottom: 3%;
+    }
+
+    .orb-vig {
+      right: 18%;
+      bottom: 3%;
+    }
+
+    .dossie-lista {
+      display: grid;
+      gap: 10px;
+    }
+
+    .dossie-lista button {
+      text-align: left;
+      padding: 13px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      background: rgba(255,255,255,0.03);
+      color: var(--dossie-texto);
+      cursor: pointer;
+      transition: 0.22s;
+      font-size: 14px;
+    }
+
+    .dossie-lista button:hover,
+    .dossie-lista button.selecionado {
+      border-color: var(--dossie-dourado);
+      color: var(--dossie-dourado);
+      transform: translateX(5px);
+      box-shadow: 0 0 16px rgba(181, 22, 36, 0.24);
+    }
+
+    .dossie-detalhe {
+      margin-top: 14px;
+      border: 1px solid rgba(181, 22, 36, 0.38);
+      border-radius: 12px;
+      padding: 15px;
+      min-height: 120px;
+      max-height: 260px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.30);
+    }
+
+    .dossie-detalhe h4 {
+      color: var(--dossie-dourado);
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .dossie-detalhe p {
+      color: var(--dossie-fraco);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .texto-formatado {
+      display: grid;
+      gap: 10px;
+    }
+
+    .simbolo-blender {
+      min-height: 250px;
+      border: 1px solid rgba(181, 22, 36, 0.34);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at center, rgba(181, 22, 36, 0.32), transparent 34%),
+        radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.92)),
+        linear-gradient(135deg, rgba(181,22,36,0.09), rgba(0,0,0,0.2));
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simbolo-blender::before {
+      content: "";
+      width: 150px;
+      height: 150px;
+      border: 1px solid rgba(216, 189, 116, 0.28);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 18px rgba(181, 22, 36, 0.055),
+        0 0 35px rgba(181, 22, 36, 0.38);
+      position: absolute;
+    }
+
+    .simbolo-blender::after {
+      content: "♜";
+      color: var(--dossie-dourado);
+      font-size: 82px;
+      text-shadow: 0 0 28px rgba(181, 22, 36, 0.72);
+      z-index: 1;
+    }
+
+    .relacoes {
+      display: grid;
+      gap: 10px;
+    }
+
+    .relacao-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(216, 189, 116, 0.14);
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .relacao-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(181, 22, 36, 0.50);
+      display: grid;
+      place-items: center;
+      color: var(--dossie-dourado);
+      background: rgba(0,0,0,0.42);
+      font-weight: bold;
+    }
+
+    .relacao-item strong {
+      color: var(--dossie-dourado);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .relacao-item span {
+      color: var(--dossie-fraco);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .frase-dossie {
+      margin-top: 22px;
+      border: 1px solid rgba(216, 189, 116, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(181, 22, 36, 0.17), transparent 60%),
+        rgba(0,0,0,0.32);
+    }
+
+    .frase-dossie span {
+      display: block;
+      color: var(--dossie-fraco);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .frase-dossie strong {
+      color: var(--dossie-dourado);
+      font-size: clamp(22px, 3vw, 38px);
+      letter-spacing: 1px;
+      font-family: Georgia, serif;
+      font-weight: normal;
+    }
+
+    @media (max-width: 1180px) {
+      .dossie-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dossie-personagem {
+        min-height: 620px;
+      }
+
+      .dossie-coluna.personagem-area {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .dossie-premium {
+        padding: 18px;
+      }
+
+      .dossie-header {
+        grid-template-columns: 1fr;
+      }
+
+      .dossie-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dossie-personagem {
+        min-height: 520px;
+      }
+
+      .roda-atributos-blender {
+        width: min(100%, 340px);
+      }
+
+      .atributo-orb {
+        width: 92px;
+        height: 92px;
+      }
+
+      .atributo-orb .valor {
+        font-size: 26px;
+      }
+
+      .atributo-orb .nome {
+        font-size: 8px;
+      }
+
+      .atributo-orb .sigla {
+        font-size: 14px;
+      }
+
+      .dossie-status {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,7 +712,7 @@
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Ficha interativa de agente</p>
+      <p>Dossiê visual de agente</p>
     </div>
 
     <nav>
@@ -29,351 +726,322 @@
 
   <main>
 
-    <section class="ficha-personagem">
+    <section class="dossie-premium">
 
-      <a href="personagens.html" class="botao-voltar">← Voltar para Personagens</a>
+      <a href="personagens.html" class="dossie-voltar">← Voltar para Personagens</a>
 
-      <div class="ficha-topo">
-        <div>
-          <p class="classificacao">Registro de agente // acesso controlado</p>
+      <div class="dossie-header">
+        <div class="dossie-titulo">
+          <p class="classificacao">Dossiê restrito // Ala Combatente</p>
           <h2>Blender</h2>
-          <p class="subtitulo-ficha">Combatente — NEX 60% — Semi-Líder Combatente</p>
+          <span>Semi-Líder Combatente — NEX 60% — Registro OR-CB-77</span>
         </div>
 
-        <div class="selo-ficha">
-          ORDO<br>REALITAS
+        <div class="dossie-selo">
+          <strong>ORDO<br>REALITAS</strong>
+          <small>acesso restrito</small>
         </div>
       </div>
 
-      <div class="ficha-layout">
+      <div class="dossie-grid">
 
-        <aside class="painel-personagem">
-          <div class="personagem-placeholder">
+        <div class="dossie-coluna personagem-area">
+          <div class="dossie-personagem">
             <img src="Blender.png?v=1" alt="Imagem de corpo inteiro do personagem Blender">
           </div>
+        </div>
 
-          <div class="status-operacional">
-            <span>Status operacional</span>
-            <strong>Força de Contenção Ativa</strong>
-          </div>
-        </aside>
+        <div class="dossie-coluna">
 
-        <section class="painel-ficha">
+          <div class="dossie-bloco">
+            <h3>Identidade</h3>
 
-          <div class="abas-ficha">
-            <button class="aba ativa" data-aba="informacoes">Informações</button>
-            <button class="aba" data-aba="atributos">Atributos</button>
-            <button class="aba" data-aba="habilidades">Habilidades</button>
-            <button class="aba" data-aba="rituais">Rituais</button>
-            <button class="aba" data-aba="inventario">Inventário</button>
-            <button class="aba" data-aba="descricao">Descrição</button>
-          </div>
-
-          <div class="conteudo-ficha">
-
-            <div class="conteudo-aba ativo" id="informacoes">
-              <h3>Informações</h3>
-
-              <div class="info-grid">
-                <div class="info-card">
-                  <span>Nome</span>
-                  <strong>Blender</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Jogador(a)</span>
-                  <strong>???</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Classe</span>
-                  <strong>Combatente</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Origem</span>
-                  <strong>Lutador</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>NEX</span>
-                  <strong>60%</strong>
-                </div>
-
-                <div class="info-card">
-                  <span>Patente / Rank</span>
-                  <strong>Semi-Líder Combatente</strong>
-                </div>
+            <div class="identidade-lista">
+              <div>
+                <span>Nome</span>
+                <strong>Blender</strong>
               </div>
 
-              <div class="caixa-detalhe" style="margin-top: 24px;">
-                <h4>Frase marcante</h4>
-                <p>“Se não pode quebrar na porrada, não merece meu tempo.”</p>
+              <div>
+                <span>Jogador(a)</span>
+                <strong>???</strong>
+              </div>
+
+              <div>
+                <span>Classe</span>
+                <strong>Combatente</strong>
+              </div>
+
+              <div>
+                <span>Origem</span>
+                <strong>Lutador</strong>
+              </div>
+
+              <div>
+                <span>NEX</span>
+                <strong>60%</strong>
+              </div>
+
+              <div>
+                <span>Patente</span>
+                <strong>Semi-Líder Combatente</strong>
               </div>
             </div>
-
-            <div class="conteudo-aba" id="atributos">
-              <h3>Atributos</h3>
-
-              <p class="texto-apoio">
-                Clique em um atributo para ver o que ele representa dentro da ficha.
-              </p>
-
-              <div class="atributos-grid">
-
-                <button
-                  class="atributo-card"
-                  data-titulo="FOR — Força"
-                  data-texto="Força representa potência física, capacidade de erguer peso, causar impacto corpo a corpo e impor domínio físico.||Esse é um dos pilares de Blender. Ele resolve conflitos com agressividade direta, impacto bruto e presença física esmagadora."
-                >
-                  <span>FOR</span>
-                  <strong>3</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="AGI — Agilidade"
-                  data-texto="Agilidade representa reflexos, velocidade, equilíbrio e movimentação eficiente em combate.||Blender tem boa agilidade, suficiente para acompanhar lutas intensas e reagir em campo, mas seu foco principal ainda é o confronto direto."
-                >
-                  <span>AGI</span>
-                  <strong>2</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="INT — Intelecto"
-                  data-texto="Intelecto representa raciocínio, análise, investigação e planejamento.||Blender não depende de estudo nem de estratégia refinada. Seu modo de agir é simples: avançar, resistir e quebrar a ameaça antes que ela avance sobre os outros."
-                >
-                  <span>INT</span>
-                  <strong>1</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="PRE — Presença"
-                  data-texto="Presença representa influência, postura, comunicação e força de personalidade.||Mesmo sem ser diplomático, Blender impõe respeito. Sua presença não vem de carisma refinado, mas de sinceridade brutal, coragem e intimidação natural."
-                >
-                  <span>PRE</span>
-                  <strong>1</strong>
-                </button>
-
-                <button
-                  class="atributo-card"
-                  data-titulo="VIG — Vigor"
-                  data-texto="Vigor representa resistência física, fôlego, tolerância à dor e capacidade de continuar de pé.||Blender possui vigor elevado. Ele é o tipo de agente que aguenta pancada, continua avançando e protege os outros mesmo ferido."
-                >
-                  <span>VIG</span>
-                  <strong>3</strong>
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe" id="detalhe-atributo">
-                <h4>Nenhum atributo selecionado</h4>
-                <p>Clique em FOR, AGI, INT, PRE ou VIG para revelar a descrição.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="habilidades">
-              <h3>Habilidades</h3>
-
-              <p class="texto-apoio">
-                Clique em uma habilidade ou habilidade de trilha para abrir o registro completo.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Artista Marcial"
-                  data-texto="Os ataques desarmados de Blender causam 1d6 pontos de dano, podem causar dano letal e contam como armas ágeis.||Em NEX 35%, o dano aumenta para 1d8.||Em NEX 70%, aumenta para 1d10.||Essa habilidade reflete anos de luta e o fato de que Blender é perigoso mesmo sem arma nenhuma."
-                >
-                  Artista Marcial
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Ataque Especial"
-                  data-texto="Quando faz um ataque, Blender pode gastar 2 PE para receber +5 no teste de ataque ou na rolagem de dano.||Conforme avança de NEX, pode gastar +1 PE para receber mais bônus de +5.||Cada bônus de +5 pode ser aplicado em ataque ou dano.||Por exemplo, em NEX 55%, pode gastar 4 PE para receber +5 no teste de ataque e +10 na rolagem de dano."
-                >
-                  Ataque Especial
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Mão Pesada"
-                  data-texto="Blender recebe +2 em rolagens de dano com ataques corpo a corpo.||Essa habilidade representa o peso absurdo de seus golpes e a brutalidade da sua forma de lutar."
-                >
-                  Mão Pesada
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Trilha — Guerreiro"
-                  data-texto="Blender segue a trilha de Guerreiro.||Essa trilha reforça sua capacidade de dominar combate direto, punir erros do inimigo e manter pressão constante em confrontos corpo a corpo."
-                >
-                  Trilha: Guerreiro
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="NEX 10% — Técnica Letal"
-                  data-texto="Blender recebe um aumento de +2 na margem de ameaça com todos os seus ataques corpo a corpo.||Isso torna seus golpes ainda mais perigosos, especialmente em confrontos diretos e agressivos."
-                >
-                  NEX 10% — Técnica Letal
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="NEX 40% — Revidar"
-                  data-texto="Sempre que bloquear um ataque, Blender pode gastar uma reação e 2 PE para fazer um ataque corpo a corpo no inimigo que o atacou.||Essa habilidade resume muito bem seu estilo: ele não apenas resiste, ele devolve na mesma hora."
-                >
-                  NEX 40% — Revidar
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione uma habilidade</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="rituais">
-              <h3>Rituais</h3>
-
-              <p class="texto-apoio">
-                Clique no registro para abrir a observação da Ordem.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Avesso ao Paranormal"
-                  data-texto="Blender odeia qualquer coisa relacionada ao Paranormal.||Ele nunca se interessou em tentar entender o Outro Lado em profundidade.||Para ele, espancar o Paranormal já é o suficiente.||Sua relação com esse campo é de repulsa, não de estudo."
-                >
-                  Avesso ao Paranormal
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione um registro</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="inventario">
-              <h3>Inventário</h3>
-
-              <p class="texto-apoio">
-                Clique em um item para abrir a descrição.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Corrente"
-                  data-texto="Um pedaço de corrente grossa pode ser usado como uma arma bastante efetiva.||A corrente fornece +2 em testes para desarmar e derrubar.||Nas mãos de Blender, também funciona como símbolo visual do seu estilo pesado e agressivo."
-                >
-                  Corrente
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Faca"
-                  data-texto="Uma lâmina longa e afiada, como uma navalha, uma faca de churrasco ou uma faca militar.||É uma arma ágil e pode ser arremessada.||Mesmo sendo mais associado à força bruta, Blender mantém opções rápidas para confrontos diretos."
-                >
-                  Faca
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Machado"
-                  data-texto="Uma ferramenta importante para lenhadores e bombeiros, um machado pode causar ferimentos terríveis.||É uma arma brutal e combina diretamente com o estilo de combate intimidador de Blender."
-                >
-                  Machado
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione um item</h4>
-                <p>O conteúdo detalhado aparecerá aqui.</p>
-              </div>
-            </div>
-
-            <div class="conteudo-aba" id="descricao">
-              <h3>Descrição</h3>
-
-              <p class="texto-apoio">
-                Clique em uma seção para abrir os registros descritivos do personagem.
-              </p>
-
-              <div class="lista-interativa">
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Aparência"
-                  data-texto="Blender tem 1,92m de altura e um corpo muito musculoso, com ombros largos, braços grossos e definição construída por anos de luta.||Sua pele é negra escura.||O cabelo é crespo, médio, volumoso e quase sempre bagunçado, como se tivesse acabado de sair de um treino ou de uma briga.||Seu rosto tem traços fortes e uma presença intimidadora.||Uma cicatriz grande e visível desce da sobrancelha esquerda até a bochecha.||Seus olhos castanhos escuros são intensos e ameaçadores."
-                >
-                  Aparência
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Marcas"
-                  data-texto="Blender possui tatuagens antigas nos braços misturadas com marcas paranormais escuras.||Essas marcas parecem veias pretas ou roxas subindo pelos braços, especialmente no braço direito.||Elas funcionam como um lembrete físico de tudo que ele odeia no Outro Lado."
-                >
-                  Marcas
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Roupa habitual"
-                  data-texto="Blender costuma usar jaqueta de couro preta surrada, às vezes sem manga, camiseta justa preta, calça tática preta com muitos bolsos e botas pesadas de combate.||Frequentemente está suado, marcado por treino ou com sinais de luta recente.||Seu visual passa uma sensação constante de perigo e prontidão."
-                >
-                  Roupa habitual
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Personalidade"
-                  data-texto="Blender é porra-louca, direto e impulsivo.||Fala tudo o que pensa, sem filtro nenhum.||É grosseiro, alto, sincero e explosivo.||Ri em situações perigosas e xinga enquanto luta.||Valoriza coragem, resistência e respeito conquistado na prática.||Apesar da brutalidade, protege ferozmente quem considera seu."
-                >
-                  Personalidade
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="História"
-                  data-texto="Blender foi lutador de MMA underground em São Paulo antes de entrar para a Ordem.||Durante uma luta, uma manifestação de Sangue invadiu o ringue e matou várias pessoas, incluindo o irmão mais novo dele.||Blender sobreviveu e matou a entidade com as próprias mãos.||A Ordo Realitas o recrutou logo depois, impressionada com sua força bruta, resistência e capacidade de enfrentar o Paranormal sem hesitar.||Ele subiu rápido dentro da organização por ser extremamente competente em combate e nunca recusar missões perigosas.||Klint o promoveu a Semi-Líder Combatente depois de várias operações bem-sucedidas.||Blender aceitou, mas deixou claro que continuaria indo para a rua."
-                >
-                  História
-                </button>
-
-                <button
-                  class="item-interativo"
-                  data-titulo="Objetivo atual"
-                  data-texto="Atualmente, o objetivo de Blender é treinar agentes da Ordem.||Mas, diferente de outros líderes, ele treina os agentes em missão e acompanha pessoalmente as operações para garantir que todos voltem.||Sua liderança vem mais pelo exemplo em campo do que por postura institucional."
-                >
-                  Objetivo atual
-                </button>
-
-              </div>
-
-              <div class="caixa-detalhe detalhe-lista">
-                <h4>Selecione uma seção</h4>
-                <p>A descrição detalhada aparecerá aqui.</p>
-              </div>
-            </div>
-
           </div>
 
-        </section>
+          <div class="dossie-bloco">
+            <h3>Status Operacional</h3>
 
+            <div class="dossie-status">
+              <div class="status-mini">
+                <span>Status</span>
+                <strong>Ativo</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Função</span>
+                <strong>Contenção</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Risco</span>
+                <strong>Alto</strong>
+              </div>
+
+              <div class="status-mini">
+                <span>Sincronia</span>
+                <strong>Estável</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Conceito Central</h3>
+            <p>
+              Blender representa impacto, instinto e resistência. Ele não tenta
+              compreender o Outro Lado: ele encara, segura e quebra antes que alcance
+              os agentes atrás dele.
+            </p>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Roda de Atributos</h3>
+
+            <div class="roda-atributos-blender">
+
+              <div class="linha-ritual l1"></div>
+              <div class="linha-ritual l2"></div>
+              <div class="linha-ritual l3"></div>
+              <div class="linha-ritual l4"></div>
+              <div class="linha-ritual l5"></div>
+
+              <div class="sigilo-central">✦</div>
+
+              <button
+                class="atributo-card atributo-orb orb-for"
+                data-titulo="FOR — Força"
+                data-texto="Força representa potência física, impacto corpo a corpo e domínio bruto.||Esse é um dos pilares de Blender. Ele resolve conflitos com agressividade direta, impacto pesado e presença física esmagadora."
+              >
+                <span class="valor">3</span>
+                <span class="nome">Força</span>
+                <span class="sigla">FOR</span>
+              </button>
+
+              <button
+                class="atributo-card atributo-orb orb-agi"
+                data-titulo="AGI — Agilidade"
+                data-texto="Agilidade representa reflexos, velocidade, equilíbrio e movimentação eficiente em combate.||Blender tem boa agilidade para acompanhar lutas intensas, mas seu foco principal ainda é o confronto direto."
+              >
+                <span class="valor">2</span>
+                <span class="nome">Agilidade</span>
+                <span class="sigla">AGI</span>
+              </button>
+
+              <button
+                class="atributo-card atributo-orb orb-int"
+                data-titulo="INT — Intelecto"
+                data-texto="Intelecto representa análise, investigação e planejamento.||Blender não depende de estudo nem estratégia refinada. Seu método é simples: avançar, resistir e derrubar a ameaça."
+              >
+                <span class="valor">1</span>
+                <span class="nome">Intelecto</span>
+                <span class="sigla">INT</span>
+              </button>
+
+              <button
+                class="atributo-card atributo-orb orb-pre"
+                data-titulo="PRE — Presença"
+                data-texto="Presença representa influência, postura e força de personalidade.||Mesmo sem ser diplomático, Blender impõe respeito por coragem, sinceridade brutal e intimidação natural."
+              >
+                <span class="valor">1</span>
+                <span class="nome">Presença</span>
+                <span class="sigla">PRE</span>
+              </button>
+
+              <button
+                class="atributo-card atributo-orb orb-vig"
+                data-titulo="VIG — Vigor"
+                data-texto="Vigor representa resistência física, fôlego e tolerância à dor.||Blender possui vigor elevado. Ele aguenta impacto, continua avançando e protege os outros mesmo sob pressão."
+              >
+                <span class="valor">3</span>
+                <span class="nome">Vigor</span>
+                <span class="sigla">VIG</span>
+              </button>
+
+            </div>
+
+            <div class="dossie-detalhe" id="detalhe-atributo">
+              <h4>Nenhum atributo selecionado</h4>
+              <p>Clique em um círculo da roda para abrir a leitura operacional.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Personalidade</h3>
+            <p>
+              Porra-louca, direto e impulsivo. Fala o que pensa, sem filtro nenhum.
+              Ri em situações perigosas e xinga enquanto luta.
+            </p>
+            <p>
+              Valoriza coragem, resistência e respeito conquistado na prática. Apesar
+              da brutalidade, protege ferozmente quem considera seu.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="dossie-coluna">
+
+          <div class="dossie-bloco">
+            <h3>Habilidades</h3>
+
+            <div class="dossie-lista">
+              <button class="item-interativo" data-titulo="Artista Marcial" data-texto="Os ataques desarmados de Blender causam 1d6 pontos de dano, podem causar dano letal e contam como armas ágeis.||Em NEX 35%, o dano aumenta para 1d8. Em NEX 70%, aumenta para 1d10.||Essa habilidade mostra que Blender é perigoso mesmo sem arma nenhuma.">
+                Artista Marcial
+              </button>
+
+              <button class="item-interativo" data-titulo="Ataque Especial" data-texto="Quando faz um ataque, Blender pode gastar 2 PE para receber +5 no teste de ataque ou na rolagem de dano.||Conforme avança de NEX, pode gastar mais PE para receber novos bônus de +5.||Cada bônus pode ser aplicado em ataque ou dano.">
+                Ataque Especial
+              </button>
+
+              <button class="item-interativo" data-titulo="Mão Pesada" data-texto="Blender recebe +2 em rolagens de dano com ataques corpo a corpo.||Essa habilidade representa o peso absurdo de seus golpes e a brutalidade da sua forma de lutar.">
+                Mão Pesada
+              </button>
+
+              <button class="item-interativo" data-titulo="Trilha — Guerreiro" data-texto="Blender segue a trilha de Guerreiro.||Essa trilha reforça combate direto, pressão constante e punição imediata contra erros do inimigo.">
+                Trilha: Guerreiro
+              </button>
+
+              <button class="item-interativo" data-titulo="NEX 10% — Técnica Letal" data-texto="Blender recebe um aumento de +2 na margem de ameaça com todos os seus ataques corpo a corpo.||Isso torna seus golpes ainda mais perigosos em confrontos diretos.">
+                NEX 10% — Técnica Letal
+              </button>
+
+              <button class="item-interativo" data-titulo="NEX 40% — Revidar" data-texto="Sempre que bloquear um ataque, Blender pode gastar uma reação e 2 PE para fazer um ataque corpo a corpo no inimigo que o atacou.||Essa habilidade resume seu estilo: ele não apenas resiste, ele devolve na mesma hora.">
+                NEX 40% — Revidar
+              </button>
+            </div>
+
+            <div class="dossie-detalhe detalhe-lista">
+              <h4>Selecione uma habilidade</h4>
+              <p>O conteúdo detalhado aparecerá aqui.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Rituais</h3>
+
+            <div class="dossie-lista">
+              <button class="item-interativo" data-titulo="Avesso ao Paranormal" data-texto="Blender odeia qualquer coisa relacionada ao Paranormal.||Ele nunca se interessou em tentar entender o Outro Lado em profundidade.||Para ele, espancar o Paranormal já é o suficiente. Sua relação com esse campo é de repulsa, não de estudo.">
+                Avesso ao Paranormal
+              </button>
+            </div>
+
+            <div class="dossie-detalhe detalhe-lista">
+              <h4>Selecione um registro</h4>
+              <p>O conteúdo detalhado aparecerá aqui.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Equipamentos Pessoais</h3>
+
+            <div class="dossie-lista">
+              <button class="item-interativo" data-titulo="Corrente" data-texto="Um pedaço de corrente grossa usado como arma efetiva.||A corrente fornece +2 em testes para desarmar e derrubar.||Nas mãos de Blender, também funciona como símbolo visual de seu estilo pesado e agressivo.">
+                Corrente
+              </button>
+
+              <button class="item-interativo" data-titulo="Faca" data-texto="Uma lâmina longa e afiada.||É uma arma ágil e pode ser arremessada.||Mesmo sendo mais associado à força bruta, Blender mantém opções rápidas para confrontos diretos.">
+                Faca
+              </button>
+
+              <button class="item-interativo" data-titulo="Machado" data-texto="Uma ferramenta pesada capaz de causar ferimentos terríveis.||Combina diretamente com o estilo de combate intimidador e brutal de Blender.">
+                Machado
+              </button>
+            </div>
+
+            <div class="dossie-detalhe detalhe-lista">
+              <h4>Selecione um equipamento</h4>
+              <p>O conteúdo detalhado aparecerá aqui.</p>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Papel na Ordem</h3>
+            <p>
+              Blender treina agentes em campo. Diferente de outros líderes, ele vai
+              pessoalmente para garantir que todos voltem.
+            </p>
+            <p>
+              Sua liderança vem menos de discurso e mais de presença: ele entra primeiro,
+              segura a ameaça e ensina sobrevivência na prática.
+            </p>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Relações</h3>
+
+            <div class="relacoes">
+              <div class="relacao-item">
+                <div class="relacao-avatar">Y</div>
+                <div>
+                  <strong>Yuna</strong>
+                  <span>Contraste direto: ela entende o paranormal, ele prefere destruir.</span>
+                </div>
+              </div>
+
+              <div class="relacao-item">
+                <div class="relacao-avatar">L</div>
+                <div>
+                  <strong>Lisa</strong>
+                  <span>Respeito estratégico. Ela organiza o caos que ele causa.</span>
+                </div>
+              </div>
+
+              <div class="relacao-item">
+                <div class="relacao-avatar">K</div>
+                <div>
+                  <strong>Klint</strong>
+                  <span>Confiança operacional. Klint sabe que Blender volta para buscar os seus.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dossie-bloco">
+            <h3>Representação Simbólica</h3>
+            <div class="simbolo-blender"></div>
+            <p style="margin-top: 14px;">
+              Leão de ferro, instinto controlado e força de contenção. Blender é a parte
+              da Trindade que avança quando o medo tenta ocupar espaço.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="frase-dossie">
+        <span>Frase marcante</span>
+        <strong>“Se não pode quebrar na porrada, não merece meu tempo.”</strong>
       </div>
 
     </section>
@@ -381,7 +1049,7 @@
   </main>
 
   <footer>
-    <p>Ficha de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
+    <p>Dossiê de personagem em modo somente leitura. Nenhum dado pode ser alterado por agentes externos.</p>
   </footer>
 
   <script src="script.js"></script>
