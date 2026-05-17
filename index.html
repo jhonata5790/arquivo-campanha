@@ -9,6 +9,327 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    .tela-abertura {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(181, 22, 36, 0.24), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(139, 77, 255, 0.12), transparent 30%),
+        linear-gradient(135deg, #020202, #090305 55%, #000);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .tela-abertura.sumir {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .tela-abertura::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.22;
+      animation: gradeMovendo 7s linear infinite;
+    }
+
+    .tela-abertura::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.025) 0px,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+      opacity: 0.23;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    @keyframes gradeMovendo {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 34px 34px;
+      }
+    }
+
+    .abertura-painel {
+      width: min(860px, calc(100vw - 36px));
+      min-height: 560px;
+      border: 1px solid rgba(216, 189, 116, 0.28);
+      border-radius: 28px;
+      padding: 34px;
+      background:
+        radial-gradient(circle at top, rgba(181,22,36,0.18), transparent 42%),
+        linear-gradient(135deg, rgba(255,255,255,0.045), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.62);
+      box-shadow:
+        0 0 60px rgba(181, 22, 36, 0.24),
+        inset 0 0 80px rgba(0, 0, 0, 0.76);
+      position: relative;
+      overflow: hidden;
+      animation: painelEntrada 1s ease both;
+    }
+
+    @keyframes painelEntrada {
+      from {
+        opacity: 0;
+        transform: scale(0.96) translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .abertura-painel::before {
+      content: "ORDO REALITAS // SISTEMA INTERNO";
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      color: rgba(216, 189, 116, 0.24);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .abertura-topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(216, 189, 116, 0.16);
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+    }
+
+    .abertura-classificacao {
+      color: #ff3045;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .abertura-topo h1 {
+      color: #d8bd74;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: clamp(34px, 7vw, 72px);
+      line-height: 0.92;
+      text-shadow:
+        0 0 20px rgba(181, 22, 36, 0.68),
+        0 0 46px rgba(139, 77, 255, 0.30);
+    }
+
+    .abertura-selo {
+      min-width: 120px;
+      min-height: 120px;
+      border: 1px solid rgba(216, 189, 116, 0.30);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #d8bd74;
+      font-weight: bold;
+      letter-spacing: 4px;
+      font-size: 24px;
+      background:
+        radial-gradient(circle, rgba(181,22,36,0.34), transparent 58%),
+        rgba(0,0,0,0.40);
+      box-shadow:
+        0 0 0 18px rgba(181, 22, 36, 0.055),
+        0 0 34px rgba(181, 22, 36, 0.30),
+        inset 0 0 30px rgba(0,0,0,0.70);
+      animation: pulsoAbertura 2.2s infinite ease-in-out;
+    }
+
+    @keyframes pulsoAbertura {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow:
+          0 0 0 18px rgba(181, 22, 36, 0.055),
+          0 0 34px rgba(181, 22, 36, 0.30),
+          inset 0 0 30px rgba(0,0,0,0.70);
+      }
+
+      50% {
+        transform: scale(1.04);
+        box-shadow:
+          0 0 0 24px rgba(181, 22, 36, 0.08),
+          0 0 48px rgba(255, 48, 69, 0.38),
+          inset 0 0 30px rgba(0,0,0,0.70);
+      }
+    }
+
+    .abertura-terminal {
+      border: 1px solid rgba(216, 189, 116, 0.18);
+      border-radius: 20px;
+      padding: 20px;
+      background: rgba(0,0,0,0.42);
+      font-family: monospace;
+      min-height: 245px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .abertura-terminal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,48,69,0.05), transparent);
+      transform: translateX(-100%);
+      animation: varredura 2.6s infinite linear;
+    }
+
+    @keyframes varredura {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    .linha-terminal {
+      color: #e8dfd2;
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: surgirLinha 0.45s ease forwards;
+      position: relative;
+      z-index: 1;
+    }
+
+    .linha-terminal span {
+      color: #ff3045;
+    }
+
+    .linha-terminal strong {
+      color: #d8bd74;
+      font-weight: normal;
+    }
+
+    .linha-terminal:nth-child(1) { animation-delay: 0.25s; }
+    .linha-terminal:nth-child(2) { animation-delay: 0.75s; }
+    .linha-terminal:nth-child(3) { animation-delay: 1.25s; }
+    .linha-terminal:nth-child(4) { animation-delay: 1.75s; }
+    .linha-terminal:nth-child(5) { animation-delay: 2.25s; }
+    .linha-terminal:nth-child(6) { animation-delay: 2.75s; }
+    .linha-terminal:nth-child(7) { animation-delay: 3.25s; }
+
+    @keyframes surgirLinha {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .abertura-barra-area {
+      margin-top: 24px;
+    }
+
+    .abertura-barra-topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: #a89f94;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    .abertura-barra {
+      height: 12px;
+      border: 1px solid rgba(216, 189, 116, 0.22);
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .abertura-barra-preenchimento {
+      height: 100%;
+      width: 0%;
+      background:
+        linear-gradient(90deg, #b51624, #ff3045, #d8bd74);
+      box-shadow: 0 0 18px rgba(255,48,69,0.46);
+      animation: carregarArquivo 4.4s ease forwards;
+    }
+
+    @keyframes carregarArquivo {
+      0% { width: 0%; }
+      18% { width: 18%; }
+      38% { width: 41%; }
+      60% { width: 63%; }
+      82% { width: 86%; }
+      100% { width: 100%; }
+    }
+
+    .abertura-status-final {
+      margin-top: 22px;
+      border: 1px solid rgba(255, 48, 69, 0.32);
+      border-radius: 16px;
+      padding: 14px;
+      color: #d8bd74;
+      background: rgba(181,22,36,0.10);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0;
+      animation: acessoConcedido 0.8s ease forwards;
+      animation-delay: 4.15s;
+    }
+
+    @keyframes acessoConcedido {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .pular-abertura {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: rgba(0,0,0,0.46);
+      color: #a89f94;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: 0.25s;
+      z-index: 3;
+    }
+
+    .pular-abertura:hover {
+      color: #d8bd74;
+      border-color: #d8bd74;
+      box-shadow: 0 0 18px rgba(216, 189, 116, 0.12);
+    }
+
     .home-premium {
       --home-vermelho: #b51624;
       --home-roxo: #8b4dff;
@@ -672,6 +993,34 @@
     }
 
     @media (max-width: 720px) {
+      .abertura-painel {
+        padding: 22px;
+        min-height: 540px;
+      }
+
+      .abertura-topo {
+        flex-direction: column;
+      }
+
+      .abertura-selo {
+        min-width: 90px;
+        min-height: 90px;
+        font-size: 18px;
+      }
+
+      .abertura-terminal {
+        min-height: 260px;
+      }
+
+      .linha-terminal {
+        font-size: 12px;
+      }
+
+      .pular-abertura {
+        right: 14px;
+        bottom: 14px;
+      }
+
       .home-premium {
         padding: 18px;
       }
@@ -708,6 +1057,46 @@
 </head>
 
 <body>
+
+  <div class="tela-abertura" id="tela-abertura">
+    <div class="abertura-painel">
+      <div class="abertura-topo">
+        <div>
+          <p class="abertura-classificacao">Sistema interno // acesso ao arquivo</p>
+          <h1>Ordo<br>Realitas</h1>
+        </div>
+
+        <div class="abertura-selo">C.O.L</div>
+      </div>
+
+      <div class="abertura-terminal">
+        <p class="linha-terminal"><span>&gt;</span> Inicializando arquivo da campanha...</p>
+        <p class="linha-terminal"><span>&gt;</span> Campanha identificada: <strong>Corações do Outro Lado</strong></p>
+        <p class="linha-terminal"><span>&gt;</span> Verificando dossiês liberados: <strong>Yuna / Lisa / Blender</strong></p>
+        <p class="linha-terminal"><span>&gt;</span> Consultando registros de Santa Luzia...</p>
+        <p class="linha-terminal"><span>&gt;</span> Elemento predominante detectado: <strong>SANGUE</strong></p>
+        <p class="linha-terminal"><span>&gt;</span> Componente paranormal: <strong>não localizado</strong></p>
+        <p class="linha-terminal"><span>&gt;</span> Estado do arquivo: <strong>acesso parcial autorizado</strong></p>
+      </div>
+
+      <div class="abertura-barra-area">
+        <div class="abertura-barra-topo">
+          <span>Carregando registros</span>
+          <span>100%</span>
+        </div>
+
+        <div class="abertura-barra">
+          <div class="abertura-barra-preenchimento"></div>
+        </div>
+      </div>
+
+      <div class="abertura-status-final">
+        Acesso concedido
+      </div>
+    </div>
+
+    <button class="pular-abertura" id="pular-abertura">Pular abertura</button>
+  </div>
 
   <div class="fundo-paranormal"></div>
 
@@ -1079,6 +1468,27 @@
       Arquivo da Campanha. Acesso limitado a registros autorizados da Ordo Realitas.
     </p>
   </footer>
+
+  <script>
+    const telaAbertura = document.querySelector("#tela-abertura");
+    const botaoPular = document.querySelector("#pular-abertura");
+
+    function fecharAbertura() {
+      if (!telaAbertura) return;
+
+      telaAbertura.classList.add("sumir");
+
+      setTimeout(() => {
+        telaAbertura.style.display = "none";
+      }, 1000);
+    }
+
+    setTimeout(fecharAbertura, 5600);
+
+    if (botaoPular) {
+      botaoPular.addEventListener("click", fecharAbertura);
+    }
+  </script>
 
 </body>
 </html>
