@@ -14,10 +14,15 @@
   --roxo: #7b2cff;
   --texto: #f1e8dc;
   --texto-fraco: #a89f94;
+
   --verde-lisa: #6f8f4e;
   --bege-lisa: #d8c6a3;
   --metal-blender: #8a8a8a;
 }
+
+/* ===================== */
+/* BASE */
+/* ===================== */
 
 body {
   background: var(--preto);
@@ -467,7 +472,6 @@ main {
     brightness(1);
 }
 
-/* Ajuste individual de enquadramento */
 .card-yuna .portrait-personagem img {
   object-position: center 8%;
 }
@@ -523,7 +527,7 @@ main {
   font-size: 11px;
 }
 
-/* Temas individuais */
+/* Temas dos cards da Trindade */
 
 .card-yuna {
   border-color: rgba(123, 44, 255, 0.55);
@@ -611,22 +615,65 @@ main {
 /* ===================== */
 
 .ficha-personagem {
-  border: 1px solid rgba(242, 193, 78, 0.35);
+  --tema-principal: var(--roxo);
+  --tema-secundario: var(--vermelho);
+  --tema-texto: var(--amarelo);
+  --tema-suave: rgba(123, 44, 255, 0.18);
+  --tema-borda: rgba(123, 44, 255, 0.55);
+
+  border: 1px solid var(--tema-borda);
   background:
-    linear-gradient(135deg, rgba(7, 7, 7, 0.96), rgba(20, 10, 35, 0.94)),
-    radial-gradient(circle at top right, rgba(123, 44, 255, 0.22), transparent 30%);
+    radial-gradient(circle at 18% 18%, var(--tema-suave), transparent 32%),
+    radial-gradient(circle at 88% 12%, rgba(242, 193, 78, 0.06), transparent 24%),
+    linear-gradient(135deg, rgba(7, 7, 7, 0.96), rgba(20, 10, 35, 0.94));
   padding: 36px;
   border-radius: 22px;
   box-shadow:
-    0 0 40px rgba(123, 44, 255, 0.16),
+    0 0 40px var(--tema-suave),
     inset 0 0 40px rgba(181, 22, 36, 0.08);
+}
+
+/* Tema automático da Yuna */
+.ficha-personagem:has(img[src*="Yuna"]),
+.yuna-theme {
+  --tema-principal: #7b2cff;
+  --tema-secundario: #3b1d70;
+  --tema-texto: #f2c14e;
+  --tema-suave: rgba(123, 44, 255, 0.2);
+  --tema-borda: rgba(123, 44, 255, 0.65);
+}
+
+/* Tema automático da Lisa */
+.ficha-personagem:has(img[src*="Lisa"]) {
+  --tema-principal: #6f8f4e;
+  --tema-secundario: #d8c6a3;
+  --tema-texto: #d8c6a3;
+  --tema-suave: rgba(111, 143, 78, 0.2);
+  --tema-borda: rgba(111, 143, 78, 0.7);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(111, 143, 78, 0.22), transparent 32%),
+    radial-gradient(circle at 88% 12%, rgba(216, 198, 163, 0.12), transparent 24%),
+    linear-gradient(135deg, rgba(7, 9, 7, 0.96), rgba(20, 24, 15, 0.94));
+}
+
+/* Tema automático do Blender */
+.ficha-personagem:has(img[src*="Blender"]) {
+  --tema-principal: #b51624;
+  --tema-secundario: #8a8a8a;
+  --tema-texto: #f2c14e;
+  --tema-suave: rgba(181, 22, 36, 0.22);
+  --tema-borda: rgba(181, 22, 36, 0.75);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(181, 22, 36, 0.24), transparent 32%),
+    radial-gradient(circle at 88% 12%, rgba(138, 138, 138, 0.12), transparent 24%),
+    linear-gradient(135deg, rgba(8, 7, 7, 0.96), rgba(28, 12, 12, 0.94));
 }
 
 .botao-voltar {
   display: inline-block;
   margin-bottom: 28px;
-  color: var(--amarelo);
-  border: 1px solid rgba(242, 193, 78, 0.38);
+  color: var(--tema-texto);
+  border: 1px solid var(--tema-borda);
   padding: 12px 16px;
   border-radius: 10px;
   text-decoration: none;
@@ -639,12 +686,8 @@ main {
 
 .botao-voltar:hover {
   transform: translateX(-4px);
-  border-color: var(--amarelo);
-  box-shadow: 0 0 18px rgba(242, 193, 78, 0.12);
-}
-
-.yuna-theme {
-  border-color: rgba(123, 44, 255, 0.55);
+  border-color: var(--tema-texto);
+  box-shadow: 0 0 18px var(--tema-suave);
 }
 
 .ficha-topo {
@@ -657,9 +700,10 @@ main {
 
 .ficha-topo h2 {
   font-size: 64px;
-  color: var(--amarelo);
+  color: var(--tema-texto);
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-shadow: 0 0 18px var(--tema-suave);
 }
 
 .subtitulo-ficha {
@@ -668,13 +712,14 @@ main {
 }
 
 .selo-ficha {
-  border: 2px solid rgba(242, 193, 78, 0.45);
-  color: rgba(242, 193, 78, 0.65);
+  border: 2px solid var(--tema-borda);
+  color: var(--tema-texto);
   padding: 14px 18px;
   text-align: center;
   font-size: 13px;
   letter-spacing: 3px;
   transform: rotate(4deg);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .ficha-layout {
@@ -691,10 +736,10 @@ main {
 
 .personagem-placeholder {
   height: 620px;
-  border: 1px solid rgba(123, 44, 255, 0.45);
+  border: 1px solid var(--tema-borda);
   border-radius: 18px;
   background:
-    radial-gradient(circle at center, rgba(123, 44, 255, 0.16), transparent 52%),
+    radial-gradient(circle at center, var(--tema-suave), transparent 52%),
     linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
   display: flex;
   align-items: center;
@@ -717,8 +762,8 @@ main {
 }
 
 .personagem-placeholder:hover {
-  border-color: var(--amarelo);
-  box-shadow: 0 0 28px rgba(123, 44, 255, 0.22);
+  border-color: var(--tema-texto);
+  box-shadow: 0 0 28px var(--tema-suave);
 }
 
 .personagem-placeholder img {
@@ -730,7 +775,7 @@ main {
   transform: scale(1.02);
   transform-origin: center center;
   filter:
-    drop-shadow(0 0 18px rgba(123, 44, 255, 0.22))
+    drop-shadow(0 0 18px var(--tema-suave))
     drop-shadow(0 0 28px rgba(0, 0, 0, 0.8));
   transition: 0.3s;
   position: relative;
@@ -741,11 +786,11 @@ main {
   transform: scale(1.05);
   filter:
     drop-shadow(0 0 24px rgba(242, 193, 78, 0.18))
-    drop-shadow(0 0 35px rgba(123, 44, 255, 0.28));
+    drop-shadow(0 0 35px var(--tema-suave));
 }
 
 .status-operacional {
-  border: 1px solid rgba(181, 22, 36, 0.45);
+  border: 1px solid var(--tema-borda);
   border-radius: 14px;
   padding: 18px;
   background: rgba(10, 10, 10, 0.72);
@@ -761,7 +806,7 @@ main {
 }
 
 .status-operacional strong {
-  color: var(--vermelho-claro);
+  color: var(--tema-texto);
 }
 
 .painel-ficha {
@@ -791,14 +836,14 @@ main {
 }
 
 .aba:hover {
-  color: var(--amarelo);
-  background: rgba(123, 44, 255, 0.12);
+  color: var(--tema-texto);
+  background: var(--tema-suave);
 }
 
 .aba.ativa {
-  color: var(--amarelo);
-  background: rgba(181, 22, 36, 0.18);
-  box-shadow: inset 0 -2px 0 var(--amarelo);
+  color: var(--tema-texto);
+  background: var(--tema-suave);
+  box-shadow: inset 0 -2px 0 var(--tema-texto);
 }
 
 .conteudo-ficha {
@@ -828,7 +873,7 @@ main {
 }
 
 .conteudo-aba h3 {
-  color: var(--amarelo);
+  color: var(--tema-texto);
   font-size: 30px;
   margin-bottom: 18px;
   text-transform: uppercase;
@@ -855,13 +900,14 @@ main {
 }
 
 .info-card:hover {
-  border-color: var(--amarelo);
+  border-color: var(--tema-texto);
   transform: translateY(-3px);
+  box-shadow: 0 0 16px var(--tema-suave);
 }
 
 .info-card span {
   display: block;
-  color: var(--roxo);
+  color: var(--tema-principal);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -881,10 +927,10 @@ main {
 
 .atributo-card {
   min-height: 120px;
-  border: 1px solid rgba(123, 44, 255, 0.45);
+  border: 1px solid var(--tema-borda);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(123, 44, 255, 0.18), rgba(7,7,7,0.9));
+    radial-gradient(circle, var(--tema-suave), rgba(7,7,7,0.9));
   color: var(--texto);
   cursor: pointer;
   transition: 0.25s;
@@ -892,7 +938,7 @@ main {
 
 .atributo-card span {
   display: block;
-  color: var(--amarelo);
+  color: var(--tema-texto);
   letter-spacing: 2px;
   font-size: 13px;
 }
@@ -905,26 +951,26 @@ main {
 
 .atributo-card:hover,
 .atributo-card.selecionado {
-  border-color: var(--amarelo);
+  border-color: var(--tema-texto);
   transform: translateY(-5px) scale(1.03);
   box-shadow:
-    0 0 22px rgba(242, 193, 78, 0.16),
-    0 0 30px rgba(123, 44, 255, 0.18);
+    0 0 22px rgba(242, 193, 78, 0.12),
+    0 0 30px var(--tema-suave);
 }
 
 .caixa-detalhe {
-  border: 1px solid rgba(181, 22, 36, 0.45);
+  border: 1px solid var(--tema-borda);
   border-radius: 16px;
   padding: 22px;
   background:
-    linear-gradient(135deg, rgba(181, 22, 36, 0.1), rgba(123, 44, 255, 0.08));
+    linear-gradient(135deg, var(--tema-suave), rgba(255, 255, 255, 0.03));
   min-height: 130px;
   max-height: 420px;
   overflow-y: auto;
 }
 
 .caixa-detalhe h4 {
-  color: var(--amarelo);
+  color: var(--tema-texto);
   font-size: 22px;
   margin-bottom: 10px;
 }
@@ -965,10 +1011,10 @@ main {
 
 .item-interativo:hover,
 .item-interativo.selecionado {
-  border-color: var(--amarelo);
-  color: var(--amarelo);
+  border-color: var(--tema-texto);
+  color: var(--tema-texto);
   transform: translateX(6px);
-  box-shadow: 0 0 18px rgba(123, 44, 255, 0.14);
+  box-shadow: 0 0 18px var(--tema-suave);
 }
 
 footer {
