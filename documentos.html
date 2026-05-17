@@ -343,6 +343,12 @@
       background: radial-gradient(circle at top, rgba(111,143,78,0.65), transparent 48%);
     }
 
+    .doc-card.miyara::before {
+      background:
+        radial-gradient(circle at top left, rgba(181,22,36,0.48), transparent 42%),
+        radial-gradient(circle at top right, rgba(216,189,116,0.24), transparent 46%);
+    }
+
     .doc-card.bloqueado::before {
       background: radial-gradient(circle at top, rgba(181,22,36,0.65), transparent 48%);
     }
@@ -392,6 +398,18 @@
       color: var(--doc-fraco);
       font-size: 14px;
       line-height: 1.62;
+    }
+
+    .doc-imagem {
+      width: 100%;
+      height: 210px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid rgba(216, 189, 116, 0.16);
+      margin-bottom: 14px;
+      background: rgba(0,0,0,0.40);
+      filter: saturate(0.9) contrast(1.05);
     }
 
     .doc-meta {
@@ -476,6 +494,16 @@
       font-size: 15px;
     }
 
+    .documento-aberto .secao-doc {
+      color: var(--doc-amarelo);
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-top: 18px;
+      margin-bottom: 6px;
+    }
+
     .documento-aberto .censurado {
       display: inline-block;
       min-width: 90px;
@@ -484,55 +512,6 @@
       border: 1px solid rgba(181,22,36,0.22);
       vertical-align: middle;
       margin: 0 4px;
-    }
-
-    .placeholder-doc {
-      margin-top: 24px;
-      min-height: 420px;
-      border: 1px dashed rgba(216, 189, 116, 0.28);
-      border-radius: 22px;
-      background:
-        radial-gradient(circle at 50% 45%, rgba(139,77,255,0.16), transparent 36%),
-        radial-gradient(circle at 15% 20%, rgba(181,22,36,0.14), transparent 32%),
-        rgba(0,0,0,0.32);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 26px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .placeholder-doc::before {
-      content: "";
-      position: absolute;
-      width: 330px;
-      height: 330px;
-      border-radius: 50%;
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      box-shadow:
-        0 0 0 42px rgba(181, 22, 36, 0.035),
-        0 0 0 82px rgba(139, 77, 255, 0.025);
-    }
-
-    .placeholder-doc div {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-    }
-
-    .placeholder-doc h3 {
-      color: var(--doc-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: clamp(30px, 5vw, 58px);
-      margin-bottom: 16px;
-    }
-
-    .placeholder-doc p {
-      color: var(--doc-fraco);
-      line-height: 1.7;
     }
 
     .terminal-documentos {
@@ -692,10 +671,107 @@
           <div class="documentos-grid">
 
             <button
+              class="doc-card miyara"
+              data-titulo="Caso Zero: Desaparecimento de Miyara"
+              data-texto="Primeiro documento oficial liberado sobre Corações do Outro Lado.||A Ordo Realitas iniciou uma investigação em Santa Luzia após relatos de desaparecimentos, alterações emocionais intensas e sinais associados ao elemento de Sangue.||Miyara, estudante da faculdade de Nembo, tornou-se a pessoa desaparecida principal do caso."
+              data-conteudo="
+              <p class='secao-doc'>Arquivo da Ordo Realitas</p>
+              <p><strong>CASO:</strong> Corações do Outro Lado</p>
+              <p><strong>Classificação:</strong> Investigação em andamento</p>
+              <p><strong>Local:</strong> Santa Luzia</p>
+              <p><strong>Status:</strong> Aberto</p>
+              <p><strong>Nível de risco inicial:</strong> Médio</p>
+              <p><strong>Nível de risco real:</strong> Indeterminado</p>
+              <p><strong>Elemento suspeito:</strong> Sangue</p>
+              <p><strong>Agentes designados:</strong> Maisie Hundown, Roselyn Tate e Lilian</p>
+
+              <p class='secao-doc'>1. Resumo do Caso</p>
+              <p>A Ordo Realitas iniciou uma investigação em Santa Luzia após o surgimento de relatos envolvendo alterações emocionais intensas, desaparecimentos, comportamento agressivo repentino e sinais físicos associados ao elemento de Sangue.</p>
+              <p>Os primeiros registros indicam que os eventos começaram pouco depois do desaparecimento de uma estudante local chamada Miyara, aluna da faculdade de Nembo.</p>
+              <p>A relação direta entre o desaparecimento da jovem e os episódios paranormais ainda não foi confirmada, mas a proximidade temporal entre os acontecimentos tornou Miyara uma figura central na investigação.</p>
+              <p>Até o momento, não há confirmação de culto ativo, criatura identificada ou ritual em andamento.</p>
+
+              <p class='secao-doc'>2. Pessoa Desaparecida Principal</p>
+              <p><strong>Nome:</strong> Miyara</p>
+              <p><strong>Ocupação:</strong> Estudante da faculdade de Nembo</p>
+              <p><strong>Local:</strong> Santa Luzia</p>
+              <p><strong>Status:</strong> Desaparecida</p>
+              <p><strong>Grau de importância:</strong> Alto</p>
+              <p>Miyara era uma estudante local com interesse incomum pelo Outro Lado. Relatos indicam que ela pesquisava temas ligados ao paranormal de forma independente, mantendo anotações pessoais sobre símbolos, lendas locais e possíveis manifestações.</p>
+              <p>Segundo informações preliminares, Miyara não possuía muitos vínculos sociais próximos. Ela era descrita como uma pessoa emocionalmente intensa, reservada e curiosa.</p>
+              <p>Miyara também cuidava de dois cachorros, chamados Lupe e Thor. Após seu desaparecimento, ambos também não foram localizados.</p>
+
+              <p class='secao-doc'>3. Últimas Informações Conhecidas</p>
+              <p>Antes de desaparecer, Miyara teria apresentado mudanças sutis de comportamento.</p>
+              <p>Relatos não confirmados indicam inquietação, instabilidade emocional, distração durante conversas, obsessão por determinados pontos da cidade, interesse por registros antigos de Santa Luzia e uso frequente de um caderno de anotações.</p>
+              <p>A última movimentação provável de Miyara aponta para a região central de Santa Luzia, próxima à Árvore Mãe, principal ponto turístico da vila.</p>
+              <p>Não há confirmação visual de que ela tenha chegado ao local.</p>
+
+              <p class='secao-doc'>4. Animais Desaparecidos</p>
+              <p><strong>Nomes:</strong> Lupe e Thor</p>
+              <p><strong>Espécie:</strong> Cães</p>
+              <p><strong>Dona/cuidadora:</strong> Miyara</p>
+              <p><strong>Status:</strong> Desaparecidos</p>
+              <p>O desaparecimento dos animais ocorreu no mesmo período do desaparecimento de Miyara.</p>
+              <p>A Ordem ainda não sabe se Lupe e Thor acompanharam Miyara, fugiram após algum evento anormal, foram afetados pela manifestação, foram levados por terceiros, estão mortos ou ainda circulam pela região.</p>
+              <p>A ausência dos animais é considerada um detalhe relevante, pois manifestações de Sangue frequentemente afetam seres vivos com comportamento instintivo de maneira mais rápida e visível.</p>
+
+              <p class='secao-doc'>5. Sinais Paranormais Relatados</p>
+              <p>A população local relatou sons semelhantes a batimentos vindos de paredes, pisos ou objetos; sensação de pressão no peito; alterações repentinas de humor; surtos de agressividade; crises de choro ou raiva sem causa aparente; símbolos orgânicos surgindo em superfícies; marcas semelhantes a veias, raízes ou rachaduras vermelhas; sensação de estar sendo observado por algo vivo; relatos de vozes internas; e aumento de conflitos familiares ou afetivos.</p>
+              <p>Até o momento, os relatos não seguem padrão totalmente previsível.</p>
+
+              <p class='secao-doc'>6. Hipótese Inicial da Ordem</p>
+              <p>A principal hipótese da Ordo Realitas é que Santa Luzia esteja passando por uma manifestação paranormal ligada a vínculos emocionais intensos.</p>
+              <p>A manifestação parece reagir a sentimentos fortes, especialmente culpa, raiva, luto, desejo, dependência, medo de abandono, obsessão, impulso protetor e afeto extremo.</p>
+              <p>A Ordem considera possível que o fenômeno esteja se alimentando de emoções humanas ou usando emoções como meio de propagação.</p>
+
+              <p class='secao-doc'>7. Suspeita de Elemento</p>
+              <p><strong>Elemento mais provável:</strong> Sangue</p>
+              <p>A suspeita se baseia em manifestações ligadas a instinto, intensificação emocional, agressividade repentina, símbolos orgânicos, relatos de batimentos, possíveis alterações corporais em vítimas, comportamento coletivo instável e presença de marcas semelhantes a veias.</p>
+              <p>Apesar disso, a Ordem ainda não descarta a influência secundária de outros elementos.</p>
+
+              <p class='secao-doc'>8. Áreas de Interesse</p>
+              <p><strong>Faculdade de Nembo:</strong> local onde Miyara estudava. Pode conter registros, colegas, professores, materiais de pesquisa ou informações sobre seu comportamento antes do desaparecimento.</p>
+              <p><strong>Casa de Miyara:</strong> local prioritário para investigação. Pode conter anotações, objetos pessoais, marcas de invasão, sinais paranormais ou pistas sobre seus últimos passos.</p>
+              <p><strong>Região Central de Santa Luzia:</strong> área próxima ao último trajeto provável de Miyara.</p>
+              <p><strong>Árvore Mãe:</strong> principal ponto turístico da vila. Aparece em relatos, comentários e possíveis anotações ligadas à desaparecida.</p>
+              <p><strong>Antiga Igreja da Vila:</strong> construção abandonada há semanas. Ainda não há informações suficientes para determinar sua relação com o caso.</p>
+
+              <p class='secao-doc'>9. Objetivos da Equipe</p>
+              <p>Investigar o desaparecimento de Miyara; localizar Lupe e Thor, se possível; confirmar ou descartar atividade paranormal na Árvore Mãe; investigar a antiga igreja da vila; recolher anotações, gravações ou objetos ligados à desaparecida; identificar civis afetados; determinar se há culto, ritual ou criatura envolvida; conter a manifestação antes que ela se espalhe; e reportar qualquer alteração emocional anormal entre os próprios agentes.</p>
+
+              <p class='secao-doc'>10. Observação Final</p>
+              <p>A manifestação parece responder não apenas à presença humana, mas à intensidade emocional dos envolvidos.</p>
+              <p>Recomenda-se que os agentes mantenham distância psicológica das vítimas até que a natureza do fenômeno seja compreendida.</p>
+              <p><strong>Nota interna:</strong> Caso sejam encontrados sinais de alteração corporal, comportamento coletivo agressivo ou perda de consciência em civis, o nível de risco da missão deve ser reavaliado imediatamente.</p>
+              "
+            >
+              <img src="Miyara.png" alt="Registro visual de Miyara" class="doc-imagem">
+
+              <span class="doc-status">Documento 001</span>
+              <h3>Caso Zero: Miyara</h3>
+              <p>
+                Relatório inicial sobre o desaparecimento de Miyara e os primeiros sinais de
+                contaminação associados ao elemento de Sangue em Santa Luzia.
+              </p>
+
+              <div class="doc-meta">
+                <div><span>Tipo</span><strong>Relatório</strong></div>
+                <div><span>Acesso</span><strong>Parcial</strong></div>
+                <div><span>Status</span><strong>Aberto</strong></div>
+              </div>
+            </button>
+
+            <button
               class="doc-card liberado"
               data-titulo="Relatório Inicial da Campanha"
               data-texto="Documento-base criado para registrar o início do arquivo da campanha.||Contém apenas informações públicas: campanha ativa, estrutura principal do site, setores liberados e indicação de que novos registros serão adicionados conforme a história avançar."
-              data-conteudo="RELATÓRIO INICIAL — CORAÇÕES DO OUTRO LADO||O Arquivo da Campanha foi aberto para organizar registros relacionados à operação principal. Personagens, locais, missões e documentos serão adicionados conforme forem liberados.||Observação: nem todo registro disponível neste arquivo representa a verdade completa. Algumas informações foram removidas para preservar segurança operacional."
+              data-conteudo="
+              <p>RELATÓRIO INICIAL — CORAÇÕES DO OUTRO LADO</p>
+              <p>O Arquivo da Campanha foi aberto para organizar registros relacionados à operação principal.</p>
+              <p>Personagens, locais, missões e documentos serão adicionados conforme forem liberados.</p>
+              <p>Observação: nem todo registro disponível neste arquivo representa a verdade completa. Algumas informações foram removidas para preservar segurança operacional.</p>
+              "
             >
               <span class="doc-status">Liberado</span>
               <h3>Relatório Inicial</h3>
@@ -713,7 +789,12 @@
               class="doc-card analise"
               data-titulo="Registro da Base da Ordo"
               data-texto="Relatório estrutural sobre a base da Ordo Realitas.||Inclui setores conhecidos, áreas de suporte, zonas restritas e observações sobre a planta incompleta do local."
-              data-conteudo="REGISTRO ESTRUTURAL — BASE DA ORDO REALITAS||A base foi catalogada como centro operacional, abrigo, arquivo e ponto de contenção. Os setores principais registrados incluem Sala de Comando, alas de função, Enfermaria, Arsenal e Prisão Subterrânea.||Nota: a planta completa não está disponível. Algumas áreas foram omitidas ou deslocadas por segurança."
+              data-conteudo="
+              <p>REGISTRO ESTRUTURAL — BASE DA ORDO REALITAS</p>
+              <p>A base foi catalogada como centro operacional, abrigo, arquivo e ponto de contenção.</p>
+              <p>Os setores principais registrados incluem Sala de Comando, alas de função, Enfermaria, Arsenal e Prisão Subterrânea.</p>
+              <p>Nota: a planta completa não está disponível. Algumas áreas foram omitidas ou deslocadas por segurança.</p>
+              "
             >
               <span class="doc-status">Em análise</span>
               <h3>Registro da Base</h3>
@@ -724,24 +805,6 @@
                 <div><span>Tipo</span><strong>Estrutural</strong></div>
                 <div><span>Acesso</span><strong>Parcial</strong></div>
                 <div><span>Status</span><strong>Revisão</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card liberado"
-              data-titulo="Painel de Missão Atual"
-              data-texto="Resumo operacional sobre a missão Corações do Outro Lado.||O documento não revela segredos da trama, apenas organiza objetivos conhecidos e o status da operação."
-              data-conteudo="PAINEL DE MISSÃO — CORAÇÕES DO OUTRO LADO||Status: em andamento.||Tipo: investigação.||Supervisão: Ordo Realitas.||Objetivos conhecidos: investigar ocorrências, identificar conexões, proteger envolvidos, coletar evidências, conter ameaças e sobreviver."
-            >
-              <span class="doc-status">Liberado</span>
-              <h3>Painel de Missão</h3>
-              <p>
-                Registro operacional seguro sobre a missão principal da campanha.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Operação</strong></div>
-                <div><span>Acesso</span><strong>Público</strong></div>
-                <div><span>Status</span><strong>Ativo</strong></div>
               </div>
             </button>
 
@@ -773,7 +836,11 @@
               class="doc-card analise"
               data-titulo="Fragmento de Símbolo"
               data-texto="Registro reservado para um símbolo encontrado durante investigação.||A análise ainda não foi liberada. O arquivo permanece preparado para receber conteúdo futuro."
-              data-conteudo="FRAGMENTO VISUAL — ANÁLISE PENDENTE||O símbolo ainda não foi anexado ao sistema.||Classificação atual: aguardando descoberta em sessão."
+              data-conteudo="
+              <p>FRAGMENTO VISUAL — ANÁLISE PENDENTE</p>
+              <p>O símbolo ainda não foi anexado ao sistema.</p>
+              <p>Classificação atual: aguardando descoberta em sessão.</p>
+              "
             >
               <span class="doc-status">Aguardando</span>
               <h3>Fragmento de Símbolo</h3>
@@ -791,7 +858,11 @@
               class="doc-card analise"
               data-titulo="Depoimento Recuperado"
               data-texto="Área preparada para depoimentos de testemunhas, relatos de sobreviventes ou mensagens encontradas durante a campanha."
-              data-conteudo="DEPOIMENTO — REGISTRO NÃO ANEXADO||Nenhum depoimento foi liberado para leitura até o momento.||O arquivo será atualizado quando uma testemunha relevante for registrada."
+              data-conteudo="
+              <p>DEPOIMENTO — REGISTRO NÃO ANEXADO</p>
+              <p>Nenhum depoimento foi liberado para leitura até o momento.</p>
+              <p>O arquivo será atualizado quando uma testemunha relevante for registrada.</p>
+              "
             >
               <span class="doc-status">Aguardando</span>
               <h3>Depoimento</h3>
@@ -809,7 +880,11 @@
               class="doc-card analise"
               data-titulo="Fotografia de Campo"
               data-texto="Área reservada para imagens encontradas em missão, fotos de locais, registros visuais e evidências recuperadas."
-              data-conteudo="FOTOGRAFIA DE CAMPO — SEM ANEXO||Nenhuma imagem de campo foi liberada.||Quando uma fotografia importante for encontrada, ela poderá ser adicionada a este setor."
+              data-conteudo="
+              <p>FOTOGRAFIA DE CAMPO — SEM ANEXO</p>
+              <p>Nenhuma imagem de campo foi liberada.</p>
+              <p>Quando uma fotografia importante for encontrada, ela poderá ser adicionada a este setor.</p>
+              "
             >
               <span class="doc-status">Aguardando</span>
               <h3>Fotografia de Campo</h3>
@@ -850,7 +925,12 @@
               class="doc-card bloqueado"
               data-titulo="Arquivo de Santa Luzia"
               data-texto="Registro urbano ainda bloqueado.||O arquivo parece conter referências ao mapa de Santa Luzia, mas o conteúdo completo não foi liberado."
-              data-conteudo="ACESSO NEGADO — SANTA LUZIA||O arquivo solicitado existe, mas ainda não está disponível.||Motivo: mapa urbano aguardando liberação.||Trechos recuperados: <span class='censurado'></span> centro <span class='censurado'></span> ocorrência <span class='censurado'></span>"
+              data-conteudo="
+              <p>ACESSO NEGADO — SANTA LUZIA</p>
+              <p>O arquivo solicitado existe, mas ainda não está disponível.</p>
+              <p>Motivo: mapa urbano aguardando liberação.</p>
+              <p>Trechos recuperados: <span class='censurado'></span> centro <span class='censurado'></span> ocorrência <span class='censurado'></span></p>
+              "
             >
               <span class="doc-status">Bloqueado</span>
               <h3>Santa Luzia</h3>
@@ -868,7 +948,11 @@
               class="doc-card bloqueado"
               data-titulo="Relatório de Agentes"
               data-texto="Documento reservado para agentes dos jogadores e NPCs futuros.||Parte do conteúdo está bloqueada até que as fichas sejam finalizadas."
-              data-conteudo="ACESSO NEGADO — RELATÓRIO DE AGENTES||O conteúdo deste relatório depende da finalização de novos dossiês.||Trechos recuperados: Trindade registrada. Agentes adicionais aguardando autorização."
+              data-conteudo="
+              <p>ACESSO NEGADO — RELATÓRIO DE AGENTES</p>
+              <p>O conteúdo deste relatório depende da finalização de novos dossiês.</p>
+              <p>Trechos recuperados: Trindade registrada. Agentes adicionais aguardando autorização.</p>
+              "
             >
               <span class="doc-status">Bloqueado</span>
               <h3>Relatório de Agentes</h3>
@@ -886,7 +970,12 @@
               class="doc-card bloqueado"
               data-titulo="Registro da Ameaça Principal"
               data-texto="Arquivo de ameaça ainda totalmente bloqueado.||O sistema reconhece a existência do registro, mas impede a leitura por risco de spoiler e instabilidade narrativa."
-              data-conteudo="ACESSO NEGADO — AMEAÇA PRINCIPAL||Classificação: restrita.||Motivo: informação crítica da campanha.||Leitura parcial indisponível."
+              data-conteudo="
+              <p>ACESSO NEGADO — AMEAÇA PRINCIPAL</p>
+              <p>Classificação: restrita.</p>
+              <p>Motivo: informação crítica da campanha.</p>
+              <p>Leitura parcial indisponível.</p>
+              "
             >
               <span class="doc-status">Restrito</span>
               <h3>Ameaça Principal</h3>
@@ -928,7 +1017,13 @@
               class="doc-card corrompido"
               data-titulo="Mensagem Fragmentada"
               data-texto="Uma mensagem incompleta foi encontrada no sistema.||O conteúdo parece ter sido salvo, apagado e reescrito várias vezes."
-              data-conteudo="MENSAGEM FRAGMENTADA||...não confiem no primeiro relatório...||...o coração não era metáfora...||...se a porta aparecer onde não deveria, não abram...||Fim do fragmento."
+              data-conteudo="
+              <p>MENSAGEM FRAGMENTADA</p>
+              <p>...não confiem no primeiro relatório...</p>
+              <p>...o coração não era metáfora...</p>
+              <p>...se a porta aparecer onde não deveria, não abram...</p>
+              <p>Fim do fragmento.</p>
+              "
             >
               <span class="doc-status">Corrompido</span>
               <h3>Mensagem Fragmentada</h3>
@@ -946,7 +1041,13 @@
               class="doc-card corrompido"
               data-titulo="Documento Sem Origem"
               data-texto="Este arquivo não possui autor, data, origem ou setor responsável.||Mesmo assim, ele continua reaparecendo no sistema."
-              data-conteudo="DOCUMENTO SEM ORIGEM||Autor: não identificado.||Data: inexistente.||Origem: <span class='censurado'></span>||Observação recuperada: o arquivo foi apagado três vezes. Ele voltou quatro."
+              data-conteudo="
+              <p>DOCUMENTO SEM ORIGEM</p>
+              <p>Autor: não identificado.</p>
+              <p>Data: inexistente.</p>
+              <p>Origem: <span class='censurado'></span></p>
+              <p>Observação recuperada: o arquivo foi apagado três vezes. Ele voltou quatro.</p>
+              "
             >
               <span class="doc-status">Corrompido</span>
               <h3>Sem Origem</h3>
@@ -964,7 +1065,14 @@
               class="doc-card corrompido"
               data-titulo="Registro de Áudio Transcrito"
               data-texto="Transcrição parcial de um áudio danificado.||A gravação original não pode ser reproduzida sem causar falhas no sistema."
-              data-conteudo="TRANSCRIÇÃO PARCIAL||[ruído]||— Eu ouvi do outro lado da parede.||[falha]||— Não era uma voz. Era como se o prédio inteiro estivesse respirando.||[fim abrupto]"
+              data-conteudo="
+              <p>TRANSCRIÇÃO PARCIAL</p>
+              <p>[ruído]</p>
+              <p>— Eu ouvi do outro lado da parede.</p>
+              <p>[falha]</p>
+              <p>— Não era uma voz. Era como se o prédio inteiro estivesse respirando.</p>
+              <p>[fim abrupto]</p>
+              "
             >
               <span class="doc-status">Corrompido</span>
               <h3>Áudio Transcrito</h3>
@@ -1048,7 +1156,7 @@
           <h3>${titulo}</h3>
           ${texto.split("||").map(paragrafo => `<p>${paragrafo.trim()}</p>`).join("")}
           <div class="documento-aberto">
-            ${conteudo.split("||").map(paragrafo => `<p>${paragrafo.trim()}</p>`).join("")}
+            ${conteudo.trim()}
           </div>
         `;
       });
