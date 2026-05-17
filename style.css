@@ -35,8 +35,6 @@ body {
   z-index: -1;
 }
 
-/* CABEÇALHO */
-
 header {
   padding: 24px 40px;
   background: rgba(17, 17, 17, 0.92);
@@ -96,8 +94,6 @@ nav a:hover {
 nav a:hover::after {
   width: 100%;
 }
-
-/* ESTRUTURA GERAL */
 
 main {
   padding: 60px 40px;
@@ -171,43 +167,6 @@ main {
   position: relative;
   z-index: 1;
 }
-
-.botoes-hero {
-  display: flex;
-  gap: 16px;
-  margin-top: 32px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.botao {
-  padding: 14px 22px;
-  border-radius: 10px;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 13px;
-  transition: 0.25s;
-}
-
-.botao.principal {
-  background: var(--vermelho);
-  color: white;
-  border: 1px solid var(--vermelho-claro);
-}
-
-.botao.secundario {
-  color: var(--amarelo);
-  border: 1px solid rgba(242, 193, 78, 0.5);
-}
-
-.botao:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 22px rgba(242, 193, 78, 0.18);
-}
-
-/* CARDS */
 
 .cards {
   margin-top: 50px;
@@ -291,7 +250,122 @@ main {
   z-index: 1;
 }
 
-/* RODAPÉ */
+/* GALERIA DE PERSONAGENS */
+
+.galeria-personagens {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.card-personagem {
+  min-height: 520px;
+  background: linear-gradient(145deg, rgba(16, 16, 16, 0.96), rgba(8, 8, 8, 0.98));
+  border: 1px solid rgba(123, 44, 255, 0.42);
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--texto);
+  overflow: hidden;
+  position: relative;
+  transition: 0.28s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-personagem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(123, 44, 255, 0.22), transparent 42%),
+    radial-gradient(circle at bottom right, rgba(181, 22, 36, 0.18), transparent 35%);
+  opacity: 0.7;
+  transition: 0.28s;
+}
+
+.card-personagem:hover {
+  transform: translateY(-8px);
+  border-color: var(--amarelo);
+  box-shadow:
+    0 0 28px rgba(123, 44, 255, 0.2),
+    0 0 20px rgba(242, 193, 78, 0.12);
+}
+
+.card-personagem:hover::before {
+  opacity: 1;
+}
+
+.portrait-personagem {
+  height: 340px;
+  border-bottom: 1px solid rgba(242, 193, 78, 0.18);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.portrait-personagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  filter:
+    drop-shadow(0 0 20px rgba(123, 44, 255, 0.22))
+    brightness(0.92);
+  transition: 0.3s;
+}
+
+.card-personagem:hover .portrait-personagem img {
+  transform: scale(1.05);
+  filter:
+    drop-shadow(0 0 24px rgba(242, 193, 78, 0.16))
+    brightness(1);
+}
+
+.portrait-personagem.vazio {
+  background:
+    radial-gradient(circle, rgba(123, 44, 255, 0.18), transparent 45%),
+    rgba(255, 255, 255, 0.02);
+}
+
+.portrait-personagem.vazio span {
+  color: rgba(242, 193, 78, 0.5);
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.dados-personagem-card {
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.dados-personagem-card span {
+  color: var(--roxo);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dados-personagem-card h3 {
+  color: var(--amarelo);
+  font-size: 32px;
+  margin: 12px 0;
+  text-transform: uppercase;
+}
+
+.dados-personagem-card p {
+  color: var(--texto-fraco);
+  line-height: 1.6;
+}
+
+.card-personagem.bloqueado {
+  opacity: 0.72;
+}
 
 footer {
   padding: 28px 40px;
@@ -311,6 +385,27 @@ footer {
   box-shadow:
     0 0 40px rgba(123, 44, 255, 0.16),
     inset 0 0 40px rgba(181, 22, 36, 0.08);
+}
+
+.botao-voltar {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--amarelo);
+  border: 1px solid rgba(242, 193, 78, 0.38);
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  transition: 0.25s;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.botao-voltar:hover {
+  transform: translateX(-4px);
+  border-color: var(--amarelo);
+  box-shadow: 0 0 18px rgba(242, 193, 78, 0.12);
 }
 
 .yuna-theme {
@@ -604,24 +699,6 @@ footer {
   line-height: 1.6;
 }
 
-.caixa-detalhe::-webkit-scrollbar {
-  width: 8px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-thumb {
-  background: rgba(242, 193, 78, 0.45);
-  border-radius: 10px;
-}
-
-.caixa-detalhe::-webkit-scrollbar-thumb:hover {
-  background: rgba(242, 193, 78, 0.75);
-}
-
 .texto-formatado {
   display: grid;
   gap: 14px;
@@ -659,14 +736,6 @@ footer {
   box-shadow: 0 0 18px rgba(123, 44, 255, 0.14);
 }
 
-.descricao-bloco {
-  display: grid;
-  gap: 18px;
-  color: var(--texto-fraco);
-  line-height: 1.8;
-  font-size: 17px;
-}
-
 /* RESPONSIVIDADE */
 
 @media (max-width: 1050px) {
@@ -684,6 +753,10 @@ footer {
 
   .atributo-card {
     border-radius: 18px;
+  }
+
+  .galeria-personagens {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -706,6 +779,10 @@ footer {
   }
 
   .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria-personagens {
     grid-template-columns: 1fr;
   }
 }
@@ -745,5 +822,9 @@ footer {
 
   .personagem-placeholder:hover img {
     transform: scale(1.03);
+  }
+
+  .portrait-personagem {
+    height: 300px;
   }
 }
