@@ -30,7 +30,7 @@
       background:
         linear-gradient(135deg, rgba(3, 3, 7, 0.9), rgba(8, 4, 16, 0.84), rgba(3, 3, 7, 0.92)),
         radial-gradient(circle at 12% 10%, rgba(143, 82, 255, 0.14), transparent 24%),
-        radial-gradient(circle at 82% 12%, rgba(197, 52, 79, 0.10), transparent 28%),
+        radial-gradient(circle at 82% 12%, rgba(70, 170, 255, 0.08), transparent 28%),
         url("Fundo-Maisie.png");
       background-size: cover;
       background-position: center;
@@ -55,12 +55,12 @@
     }
 
     .ficha-maisie::after {
-      content: "DOSSIÊ OPERACIONAL // MAISIE HUNDOWN // ENERGIA";
+      content: "AVALIAÇÃO INICIAL // MAISIE HUNDOWN // RECRUTAMENTO CONFIRMADO";
       position: absolute;
-      right: -150px;
+      right: -185px;
       top: 50%;
       transform: rotate(90deg);
-      color: rgba(143, 82, 255, 0.11);
+      color: rgba(143, 82, 255, 0.12);
       letter-spacing: 5px;
       font-size: 11px;
       pointer-events: none;
@@ -81,6 +81,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 12px;
+      margin-bottom: 8px;
     }
 
     .maisie-topo {
@@ -137,16 +138,20 @@
       100% { transform: translateY(100%); opacity: 0; }
     }
 
-    .maisie-status-box {
-      border: 1px solid rgba(197, 52, 79, 0.28);
+    .maisie-status-box,
+    .mini-dossie-maisie,
+    .terminal-maisie {
+      border: 1px solid rgba(143, 82, 255, 0.22);
       border-radius: 18px;
       padding: 18px;
       background:
-        linear-gradient(135deg, rgba(143,82,255,0.08), rgba(197,52,79,0.08)),
-        rgba(0,0,0,0.28);
+        linear-gradient(135deg, rgba(143,82,255,0.08), rgba(70,170,255,0.055)),
+        rgba(0,0,0,0.30);
     }
 
-    .maisie-status-box span {
+    .maisie-status-box span,
+    .mini-dossie-maisie span,
+    .terminal-maisie span {
       display: block;
       color: var(--cinza);
       text-transform: uppercase;
@@ -156,10 +161,57 @@
     }
 
     .maisie-status-box strong {
-      color: #ff5c83;
-      font-size: 28px;
+      color: #ffe0a3;
+      font-size: 24px;
       line-height: 1;
       text-transform: uppercase;
+    }
+
+    .mini-dossie-lista {
+      display: grid;
+      gap: 11px;
+      margin-top: 10px;
+    }
+
+    .mini-dossie-linha {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding-bottom: 9px;
+    }
+
+    .mini-dossie-linha:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .mini-dossie-linha small {
+      color: var(--cinza);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 10px;
+    }
+
+    .mini-dossie-linha strong {
+      color: var(--texto);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .terminal-maisie p {
+      color: var(--cinza);
+      font-size: 12px;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .terminal-maisie p + p {
+      margin-top: 8px;
+    }
+
+    .terminal-maisie b {
+      color: var(--dourado);
     }
 
     .maisie-painel {
@@ -173,10 +225,8 @@
     }
 
     .maisie-cabecalho {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: start;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 18px;
       padding-bottom: 18px;
       margin-bottom: 18px;
@@ -196,13 +246,40 @@
     .maisie-cabecalho p {
       color: var(--cinza);
       font-size: 16px;
+      max-width: 760px;
+      line-height: 1.65;
+    }
+
+    .maisie-codigo {
+      align-self: start;
+      border: 1px solid rgba(216, 189, 116, 0.20);
+      border-radius: 18px;
+      padding: 14px;
+      min-width: 210px;
+      background: rgba(216, 189, 116, 0.045);
+      text-align: right;
+    }
+
+    .maisie-codigo span {
+      display: block;
+      color: var(--cinza);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .maisie-codigo strong {
+      color: var(--dourado);
+      font-size: 16px;
+      letter-spacing: 2px;
     }
 
     .maisie-selos {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      margin: 18px 0 0;
     }
 
     .maisie-selo {
@@ -214,6 +291,30 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
+    }
+
+    .maisie-banner-recrutamento {
+      border: 1px solid rgba(70, 170, 255, 0.20);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 18px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(70, 170, 255, 0.10), transparent 34%),
+        linear-gradient(135deg, rgba(143,82,255,0.08), rgba(0,0,0,0.22));
+    }
+
+    .maisie-banner-recrutamento h3 {
+      color: var(--dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .maisie-banner-recrutamento p {
+      color: var(--cinza);
+      line-height: 1.65;
+      font-size: 14px;
     }
 
     .maisie-botoes-topo {
@@ -328,13 +429,14 @@
       top: 0;
       width: 3px;
       height: 100%;
-      background: linear-gradient(to bottom, var(--roxo), var(--vermelho));
+      background: linear-gradient(to bottom, var(--roxo), var(--azul));
     }
 
     .bloco-maisie:hover,
     .card-info-maisie:hover,
     .card-lista-maisie:hover,
-    .frase-maisie:hover {
+    .frase-maisie:hover,
+    .linha-tempo-card:hover {
       transform: translateY(-3px);
       border-color: rgba(143, 82, 255, 0.38);
       box-shadow: 0 0 20px rgba(143, 82, 255, 0.09);
@@ -357,8 +459,12 @@
 
     .grid-info-maisie {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 14px;
+    }
+
+    .grid-info-maisie.triplo {
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .card-info-maisie {
@@ -384,13 +490,18 @@
       font-weight: 600;
     }
 
+    .card-info-maisie p {
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
     .frase-maisie {
       margin-top: 18px;
-      border: 1px solid rgba(197, 52, 79, 0.28);
+      border: 1px solid rgba(70, 170, 255, 0.22);
       border-radius: 16px;
       padding: 20px;
       background:
-        linear-gradient(135deg, rgba(197,52,79,0.10), rgba(143,82,255,0.08)),
+        linear-gradient(135deg, rgba(143,82,255,0.10), rgba(70,170,255,0.08)),
         rgba(0,0,0,0.42);
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
@@ -434,28 +545,6 @@
       border-bottom: 1px solid rgba(143, 82, 255, 0.12);
     }
 
-    .item-interativo-maisie {
-      width: 100%;
-      border: none;
-      background: transparent;
-      color: var(--texto);
-      text-align: left;
-      padding: 14px 16px;
-      cursor: pointer;
-      border-bottom: 1px solid rgba(143, 82, 255, 0.10);
-      transition: background 0.18s ease, color 0.18s ease;
-      font-family: inherit;
-    }
-
-    .item-interativo-maisie:last-child {
-      border-bottom: none;
-    }
-
-    .item-interativo-maisie:hover {
-      background: rgba(143, 82, 255, 0.08);
-      color: var(--dourado);
-    }
-
     .lista-texto-maisie ul {
       margin: 0;
       padding-left: 18px;
@@ -468,6 +557,45 @@
     .historia-maisie p + p,
     .personalidade-maisie p + p {
       margin-top: 14px;
+    }
+
+    .linha-tempo-maisie {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .linha-tempo-card {
+      border: 1px solid rgba(143, 82, 255, 0.16);
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.022), rgba(143,82,255,0.035)),
+        rgba(0,0,0,0.38);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .linha-tempo-card span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .linha-tempo-card h4 {
+      color: var(--dourado);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .linha-tempo-card p {
+      color: var(--cinza);
+      line-height: 1.72;
+      font-size: 14px;
     }
 
     .galeria-maisie {
@@ -828,7 +956,7 @@
       border-radius: 16px;
       padding: 18px;
       background:
-        linear-gradient(135deg, rgba(143,82,255,0.09), rgba(197,52,79,0.05)),
+        linear-gradient(135deg, rgba(143,82,255,0.09), rgba(70,170,255,0.05)),
         rgba(0,0,0,0.42);
       min-height: 120px;
       transition: border-color 0.22s ease, box-shadow 0.22s ease;
@@ -857,7 +985,7 @@
       100% { border-color: rgba(143, 82, 255, 0.22); }
     }
 
-    /* HABILIDADES */
+    /* PAINÉIS */
 
     .painel-habilidades-maisie,
     .painel-arsenal-maisie {
@@ -1468,13 +1596,22 @@
         margin: 0 auto;
       }
 
+      .maisie-cabecalho {
+        grid-template-columns: 1fr;
+      }
+
+      .maisie-codigo {
+        text-align: left;
+      }
+
       .grupo-cards-maisie,
       .galeria-maisie,
       .rituais-layout-maisie,
       .habilidades-layout-maisie,
       .arsenal-layout-maisie,
       .resumo-operacional-habilidades,
-      .resumo-operacional-arsenal {
+      .resumo-operacional-arsenal,
+      .grid-info-maisie.triplo {
         grid-template-columns: 1fr;
       }
 
@@ -1522,12 +1659,14 @@
         object-fit: contain;
       }
 
-      .maisie-status-box {
+      .maisie-status-box,
+      .mini-dossie-maisie,
+      .terminal-maisie {
         padding: 14px;
       }
 
       .maisie-status-box strong {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .maisie-painel {
@@ -1623,11 +1762,6 @@
       .card-lista-maisie h4 {
         font-size: 14px;
         padding: 14px 14px 10px;
-      }
-
-      .item-interativo-maisie {
-        padding: 13px 14px;
-        font-size: 14px;
       }
 
       .detalhe-atributo-maisie,
@@ -1912,23 +2046,76 @@
 
           <div class="maisie-status-box">
             <span>Status Operacional</span>
-            <strong>Ativa</strong>
+            <strong>Recém-recrutada</strong>
+          </div>
+
+          <div class="mini-dossie-maisie">
+            <span>Triagem rápida</span>
+
+            <div class="mini-dossie-lista">
+              <div class="mini-dossie-linha">
+                <small>Vínculo</small>
+                <strong>Recente</strong>
+              </div>
+
+              <div class="mini-dossie-linha">
+                <small>Missões oficiais</small>
+                <strong>Nenhuma registrada</strong>
+              </div>
+
+              <div class="mini-dossie-linha">
+                <small>Primeira designação</small>
+                <strong>Corações do Outro Lado</strong>
+              </div>
+
+              <div class="mini-dossie-linha">
+                <small>Risco inicial</small>
+                <strong>Moderado / instável</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="terminal-maisie">
+            <span>Terminal da Ordo</span>
+            <p><b>&gt;</b> Recrutamento confirmado.</p>
+            <p><b>&gt;</b> Histórico formal pela Ordo: inexistente.</p>
+            <p><b>&gt;</b> Capacidade paranormal prévia: observada.</p>
+            <p><b>&gt;</b> Encaminhar para missão inicial.</p>
           </div>
         </aside>
 
         <div class="maisie-painel">
           <div class="maisie-cabecalho">
             <div>
-              <p class="classificacao-maisie">Arquivo operacional // acesso liberado</p>
+              <p class="classificacao-maisie">Arquivo operacional // avaliação inicial</p>
               <h2>Maisie</h2>
-              <p>Ocultista — NEX 40% — Recruta</p>
+              <p>
+                Maisie Hundown foi recrutada recentemente pela Ordo Realitas após sobreviver a eventos paranormais
+                e demonstrar capacidade própria de adaptação, combate e manipulação ritualística. Este dossiê registra
+                uma avaliação inicial para sua primeira missão oficial.
+              </p>
+
+              <div class="maisie-selos">
+                <div class="maisie-selo">Ocultista</div>
+                <div class="maisie-selo">Agente de Saúde</div>
+                <div class="maisie-selo">NEX 40%</div>
+                <div class="maisie-selo">Energia dominante</div>
+              </div>
             </div>
 
-            <div class="maisie-selos">
-              <div class="maisie-selo">Agente de Saúde</div>
-              <div class="maisie-selo">Elemento: Energia</div>
-              <div class="maisie-selo">Arquivo público</div>
+            <div class="maisie-codigo">
+              <span>Código de arquivo</span>
+              <strong>ORDO-COL-MAI-040</strong>
             </div>
+          </div>
+
+          <div class="maisie-banner-recrutamento">
+            <h3>Registro de recrutamento</h3>
+            <p>
+              A agente ainda não possui histórico oficial de missões pela Ordo Realitas. As informações abaixo foram
+              reunidas a partir de entrevista inicial, análise de histórico paranormal, equipamentos declarados e
+              avaliação emergencial de campo.
+            </p>
           </div>
 
           <div class="maisie-botoes-topo">
@@ -1945,30 +2132,76 @@
           </div>
 
           <section class="conteudo-maisie ativo" id="informacoes">
-            <div class="grid-info-maisie">
-              <div class="card-info-maisie"><span>Nome</span><strong>Maisie Hundown</strong></div>
-              <div class="card-info-maisie"><span>Jogador(a)</span><strong>Caio</strong></div>
-              <div class="card-info-maisie"><span>Classe</span><strong>Ocultista</strong></div>
-              <div class="card-info-maisie"><span>Origem</span><strong>Agente de Saúde</strong></div>
-              <div class="card-info-maisie"><span>NEX</span><strong>40%</strong></div>
-              <div class="card-info-maisie"><span>Patente / Rank</span><strong>Recruta</strong></div>
+            <div class="bloco-maisie">
+              <h3>Identificação de Recruta</h3>
+
+              <div class="grid-info-maisie">
+                <div class="card-info-maisie"><span>Nome</span><strong>Maisie Hundown</strong></div>
+                <div class="card-info-maisie"><span>Jogador(a)</span><strong>Caio</strong></div>
+                <div class="card-info-maisie"><span>Classe</span><strong>Ocultista</strong></div>
+                <div class="card-info-maisie"><span>Origem</span><strong>Agente de Saúde</strong></div>
+                <div class="card-info-maisie"><span>NEX</span><strong>40%</strong></div>
+                <div class="card-info-maisie"><span>Patente / Rank</span><strong>Recruta</strong></div>
+              </div>
+            </div>
+
+            <div class="bloco-maisie">
+              <h3>Situação com a Ordo</h3>
+
+              <div class="grid-info-maisie triplo">
+                <div class="card-info-maisie">
+                  <span>Vínculo institucional</span>
+                  <strong>Recente</strong>
+                  <p>Maisie não fazia parte da Ordo antes dos eventos iniciais da campanha.</p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Primeira missão oficial</span>
+                  <strong>Corações do Outro Lado</strong>
+                  <p>Designação inicial após o recrutamento.</p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Histórico formal</span>
+                  <strong>Nenhum registrado</strong>
+                  <p>Experiências paranormais anteriores existem, mas não foram missões oficiais da organização.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bloco-maisie">
+              <h3>Avaliação inicial</h3>
+
+              <div class="grid-info-maisie">
+                <div class="card-info-maisie">
+                  <span>Função em campo</span>
+                  <strong>Ocultista ofensiva / suporte emergencial</strong>
+                  <p>Usa Energia, recursos médicos e tecnologia própria para se adaptar rapidamente.</p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Estado paranormal</span>
+                  <strong>Marcada pelo Outro Lado</strong>
+                  <p>Acesso atual registrado: rituais de até 2º círculo.</p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Fator tecnológico</span>
+                  <strong>Braço mecânico / Walt / tanque ritualístico</strong>
+                  <p>Equipamentos pessoais têm peso operacional e psicológico no dossiê.</p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Observação da Ordo</span>
+                  <strong>Alta adaptabilidade</strong>
+                  <p>Criativa, intensa e capaz de transformar recursos improvisados em vantagem real.</p>
+                </div>
+              </div>
             </div>
 
             <div class="frase-maisie">
               <h4>Frase marcante</h4>
               <p>“Eu transformo o caos em arma”</p>
-            </div>
-
-            <div class="bloco-maisie">
-              <h3>Resumo do arquivo</h3>
-              <p>
-                Maisie Hundown é uma ocultista de perfil criativo, explosivo e altamente adaptável.
-                Sua ligação com o paranormal nasceu do trauma, da curiosidade e da decisão de nunca
-                mais ser apenas vítima do que viu.
-              </p>
-              <p>
-                Seu dossiê foi liberado para consulta pública no arquivo da campanha.
-              </p>
             </div>
           </section>
 
@@ -1976,8 +2209,7 @@
             <div class="bloco-maisie">
               <h3>Roda de Atributos</h3>
               <p>
-                A leitura ritualística abaixo representa os cinco atributos principais registrados
-                no dossiê operacional de Maisie Hundown.
+                Leitura inicial dos cinco atributos principais registrados no dossiê de recrutamento de Maisie Hundown.
               </p>
 
               <div class="roda-atributos-maisie efeito-decorativo" id="roda-maisie" data-efeito="roda">
@@ -2055,10 +2287,10 @@
 
           <section class="conteudo-maisie" id="habilidades">
             <div class="bloco-maisie">
-              <h3>Habilidades Operacionais</h3>
+              <h3>Capacidades Observadas</h3>
               <p>
-                Registro mecânico e narrativo das habilidades atuais da agente. O arquivo considera o estado
-                presente da Maisie em NEX 40%, sem listar progressões futuras que ainda não estão disponíveis.
+                Registro mecânico e narrativo das capacidades apresentadas por Maisie no momento do recrutamento.
+                O painel considera seu estado atual em NEX 40% e não trata a personagem como agente veterana da Ordo.
               </p>
 
               <div class="painel-habilidades-maisie">
@@ -2066,7 +2298,7 @@
                   <div>
                     <h4 id="titulo-grupo-habilidade">Classe e Poderes</h4>
                     <p id="descricao-grupo-habilidade">
-                      Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da agente.
+                      Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da recruta.
                     </p>
                   </div>
 
@@ -2092,10 +2324,10 @@
 
           <section class="conteudo-maisie" id="rituais">
             <div class="bloco-maisie">
-              <h3>Rituais Registrados</h3>
+              <h3>Rituais Declarados</h3>
               <p>
-                Registro ritualístico da agente Maisie Hundown. Este arquivo exibe apenas as formas que a agente
-                possui acesso operacional no momento: forma base e, quando permitido, forma Discente.
+                Registro ritualístico apresentado na avaliação inicial de Maisie Hundown. Este arquivo exibe apenas
+                formas que a recruta possui acesso operacional no momento: forma base e, quando permitido, forma Discente.
               </p>
 
               <div class="painel-rituais-maisie" id="painel-rituais-maisie" data-elemento="energia">
@@ -2122,7 +2354,7 @@
                 <div class="aviso-circulo-maisie">
                   <strong>Nota operacional:</strong>
                   versões Verdadeiras e efeitos que exigem 3º ou 4º círculo não aparecem neste painel, pois o arquivo
-                  está limitado aos rituais que Maisie pode usar atualmente.
+                  está limitado ao que Maisie pode usar atualmente.
                 </div>
               </div>
             </div>
@@ -2130,9 +2362,9 @@
 
           <section class="conteudo-maisie" id="inventario">
             <div class="bloco-maisie">
-              <h3>Arsenal Registrado</h3>
+              <h3>Equipamento Declarado</h3>
               <p>
-                Registro dos itens carregados pela agente e dos equipamentos associados ao seu dossiê.
+                Registro dos itens apresentados no recrutamento e dos equipamentos associados ao dossiê.
                 O painel separa inventário mecânico real de tecnologia pessoal importante para a identidade
                 operacional de Maisie.
               </p>
@@ -2142,7 +2374,7 @@
                   <div>
                     <h4 id="titulo-grupo-arsenal">Inventário Mecânico</h4>
                     <p id="descricao-grupo-arsenal">
-                      Itens presentes na ficha da agente, com dados de uso, categoria, alcance, dano ou função operacional.
+                      Itens presentes na ficha da recruta, com dados de uso, categoria, alcance, dano ou função operacional.
                     </p>
                   </div>
 
@@ -2167,56 +2399,97 @@
           </section>
 
           <section class="conteudo-maisie" id="descricao">
+            <div class="bloco-maisie">
+              <h3>Perfil Visual</h3>
+
+              <div class="grid-info-maisie">
+                <div class="card-info-maisie">
+                  <span>Aparência</span>
+                  <strong>Roxo, metal e Energia</strong>
+                  <p>
+                    Mulher negra, cabelo branco cacheado preso em coque, pano roxo na cabeça, jaqueta roxa aberta,
+                    detalhes em fogo rosa, braço esquerdo mecânico com canhão integrado e tanque ritualístico nas costas.
+                  </p>
+                </div>
+
+                <div class="card-info-maisie">
+                  <span>Presença narrativa</span>
+                  <strong>Tecnologia paranormal</strong>
+                  <p>
+                    Maisie passa a sensação de alguém que adaptou o próprio corpo para sobreviver. Sua estética mistura
+                    invenção, improviso, caos e um controle quase desafiador sobre a própria dor.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div class="bloco-maisie personalidade-maisie">
               <h3>Personalidade</h3>
               <p>
-                Maisie é uma mulher carismática, inteligente e independente. Enquanto muitas pessoas
-                viam o paranormal apenas como algo a temer, ela enxergou nele também uma oportunidade:
-                entender, manipular e usar esse poder contra o próprio inimigo.
+                Maisie é carismática, inteligente e independente. Enquanto algumas pessoas enxergam o paranormal apenas
+                como algo a temer, ela também vê oportunidade: entender, manipular e devolver esse poder contra aquilo
+                que tenta destruí-la.
               </p>
               <p>
-                Apesar do carisma, ela não é alguém naturalmente dependente dos outros. Gosta de fazer
-                suas coisas do próprio jeito, é criativa, curiosa e bastante intensa. Quando pressionada,
-                pode se tornar explosiva, mas por trás disso também existe uma forte capacidade de proteção,
-                principalmente em relação a quem ela não quer ver passando pelo mesmo sofrimento que viveu.
+                Ela gosta de fazer as coisas do próprio jeito, é criativa, curiosa e intensa. Sob pressão, pode se tornar
+                explosiva, mas por trás disso existe uma forte capacidade de proteção, principalmente com pessoas que
+                poderiam passar pelo mesmo tipo de sofrimento que ela viveu.
               </p>
             </div>
 
             <div class="bloco-maisie historia-maisie">
-              <h3>História</h3>
-              <p>
-                Maisie nasceu no Rio de Janeiro e passou a maior parte da infância e juventude lá. Desde cedo,
-                preferia fazer as coisas sozinha e detestava ouvir críticas ou julgamentos sobre suas criações.
-                Sua personalidade intensa e explosiva a colocou em conflito com outras pessoas ainda muito nova,
-                e isso acabou piorando sua relação com o ambiente escolar e familiar.
-              </p>
+              <h3>Linha do Tempo do Dossiê</h3>
 
-              <p>
-                Depois de sofrer violência em casa e anos de bullying, Maisie encontrou um ponto de apoio nas áreas
-                de física e química. Foi aí que descobriu prazer em criar, estudar e construir. Seu primeiro grande
-                projeto foi Walt, um pequeno robô companheiro, marcando o início do seu amor por invenções e robótica.
-              </p>
+              <div class="linha-tempo-maisie">
+                <div class="linha-tempo-card">
+                  <span>Antes da Ordo</span>
+                  <h4>Infância, invenções e Walt</h4>
+                  <p>
+                    Maisie nasceu no Rio de Janeiro e cresceu como alguém criativa, solitária e resistente a críticas.
+                    Encontrou nas áreas de física, química e robótica um ponto de apoio. Walt, seu assistente robótico,
+                    foi um dos primeiros grandes símbolos dessa fase.
+                  </p>
+                </div>
 
-              <p>
-                Mais tarde, ao perceber que a carreira de robótica não se consolidava como queria, migrou para a área
-                medicinal. Sua vida parecia estabilizada até o paranormal atravessar tudo: numa noite de faculdade,
-                ela encontrou no fim de um corredor uma luz carmesim e, ao investigar, viu um colega desaparecido
-                transformado em uma criatura grotesca. Durante a fuga, perdeu o braço esquerdo antes de ser salva por
-                um professor que conhecia a verdade sobre o Outro Lado.
-              </p>
+                <div class="linha-tempo-card">
+                  <span>Primeiro contato paranormal</span>
+                  <h4>A faculdade e a perda do braço</h4>
+                  <p>
+                    Durante a faculdade noturna, Maisie encontrou uma manifestação paranormal ligada a uma luz carmesim
+                    e a um colega transformado por forças do Outro Lado. A fuga deixou marcas permanentes e resultou na
+                    perda do braço esquerdo.
+                  </p>
+                </div>
 
-              <p>
-                A experiência não a afastou do paranormal — fez o contrário. Curiosa e determinada, Maisie exigiu
-                respostas e começou a aprender sobre o ocultismo. Depois, já mais velha, foi recrutada para lutar
-                contra o paranormal. Criou um braço mecânico para substituir o membro perdido e, em uma missão num
-                hospital abandonado, foi a única sobrevivente do grupo. Encurralada por uma manifestação caótica de
-                energia roxa, canalizou essa força através do braço mecânico e escapou ao custo de destruir o hospital.
-              </p>
+                <div class="linha-tempo-card">
+                  <span>Adaptação</span>
+                  <h4>Braço mecânico e ocultismo</h4>
+                  <p>
+                    Em vez de se afastar do paranormal, Maisie exigiu respostas. Criou um braço mecânico para substituir
+                    o membro perdido e começou a aprofundar sua relação com rituais, tecnologia e Energia.
+                  </p>
+                </div>
 
-              <p>
-                Desde então, Maisie aprofundou seus estudos sobre Energia e transformou seu trauma em arma, adaptando
-                o próprio corpo, o próprio estilo de luta e o próprio destino.
-              </p>
+                <div class="linha-tempo-card">
+                  <span>Evento crítico</span>
+                  <h4>Hospital abandonado</h4>
+                  <p>
+                    Em um confronto marcado por Energia caótica, Maisie sobreviveu quando todos os demais do grupo caíram.
+                    Ela canalizou a força pelo braço mecânico e escapou ao custo de destruir o local. Esse evento consolidou
+                    sua ligação com o caos como ferramenta de sobrevivência.
+                  </p>
+                </div>
+
+                <div class="linha-tempo-card">
+                  <span>Recrutamento</span>
+                  <h4>Entrada na Ordo Realitas</h4>
+                  <p>
+                    No momento atual do arquivo, Maisie ainda não é uma agente experiente da Ordo. Ela é uma recém-recrutada
+                    carregando conhecimento, trauma, tecnologia própria e uma primeira missão oficial grande demais para
+                    alguém que acabou de entrar.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div class="bloco-maisie">
@@ -2242,7 +2515,7 @@
   </main>
 
   <footer>
-    <p>Dossiê de agente — Maisie Hundown — Arquivo da Campanha</p>
+    <p>Dossiê de recrutamento — Maisie Hundown — Arquivo da Campanha</p>
   </footer>
 
   <script>
@@ -2267,14 +2540,14 @@
     const dadosHabilidadesMaisie = {
       poderes: {
         titulo: "Classe e Poderes",
-        descricao: "Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da agente.",
+        descricao: "Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da recruta.",
         habilidades: [
           {
             id: "escolhido-outro-lado",
             nome: "Escolhido pelo Outro Lado",
             tipo: "Classe",
             codigo: "OL",
-            resumo: "Maisie foi marcada pelo Outro Lado e recebeu o conhecimento necessário para conjurar rituais.",
+            resumo: "Maisie foi marcada pelo Outro Lado antes de ingressar oficialmente na Ordo, recebendo conhecimento necessário para conjurar rituais.",
             dados: {
               "Origem mecânica": "Habilidade de Ocultista",
               "Círculo atual": "Até 2º círculo",
@@ -2287,8 +2560,8 @@
               "Sempre que avança de NEX, aprende um ritual de qualquer círculo que possa lançar.",
               "Esses rituais não contam no limite de rituais conhecidos."
             ],
-            leitura: "Essa habilidade é a base de toda a ficha paranormal da Maisie. Sem ela, sua relação com Energia, Morte e Sangue não teria forma operacional estável.",
-            ordo: "Progressões futuras de 3º e 4º círculo não foram exibidas neste painel, pois ainda não pertencem ao acesso atual da agente."
+            leitura: "Essa habilidade é a base da avaliação paranormal da Maisie. A Ordo não criou essa ligação; apenas registrou uma capacidade que já existia antes da primeira missão oficial.",
+            ordo: "Progressões futuras de 3º e 4º círculo não foram exibidas neste painel, pois ainda não pertencem ao acesso atual da recruta."
           },
           {
             id: "ritual-predileto",
@@ -2315,7 +2588,7 @@
             nome: "Técnica Medicinal",
             tipo: "Origem",
             codigo: "TM",
-            resumo: "O conhecimento medicinal da agente aumenta a eficiência de qualquer cura realizada por ela.",
+            resumo: "O conhecimento medicinal da recruta aumenta a eficiência de qualquer cura realizada por ela.",
             dados: {
               "Origem": "Agente de Saúde",
               "Atributo usado": "Intelecto",
@@ -2391,7 +2664,7 @@
               "Ela pode ganhar um máximo de PE temporários por cena igual ao seu limite de PE.",
               "PE temporários desaparecem no final da cena."
             ],
-            leitura: "Gladiador Paranormal transforma agressividade em recurso. Cada impacto alimenta a próxima manifestação paranormal da agente.",
+            leitura: "Gladiador Paranormal transforma agressividade em recurso. Cada impacto alimenta a próxima manifestação paranormal da recruta.",
             ordo: "Habilidade compatível com cenas longas de combate. Monitorar limite de PE temporários por cena."
           }
         ]
@@ -2401,7 +2674,7 @@
     const dadosArsenalMaisie = {
       inventario: {
         titulo: "Inventário Mecânico",
-        descricao: "Itens presentes na ficha da agente, com dados de uso, categoria, alcance, dano ou função operacional.",
+        descricao: "Itens presentes na ficha da recruta, com dados de uso, categoria, alcance, dano ou função operacional.",
         itens: [
           {
             id: "pistola",
@@ -2424,8 +2697,8 @@
               "Arma leve.",
               "Usa balas curtas como munição."
             ],
-            uso: "A pistola funciona como armamento básico da Maisie, especialmente quando combinada com Amaldiçoar Arma de Energia.",
-            ordo: "Por ser leve e simples, é uma arma fácil de integrar ao estilo de combate ritualístico da agente."
+            uso: "A pistola funciona como armamento básico declarado por Maisie, especialmente quando combinada com Amaldiçoar Arma de Energia.",
+            ordo: "Por ser leve e simples, é uma arma fácil de integrar ao estilo de combate ritualístico da recruta."
           },
           {
             id: "balas-curtas",
@@ -2442,10 +2715,10 @@
             },
             efeito: [
               "Um pacote possui 12 balas.",
-              "Serve como munição da pistola da agente.",
+              "Serve como munição da pistola da recruta.",
               "Pode ser afetada por Amaldiçoar Arma quando o ritual for aplicado ao pacote de munição."
             ],
-            uso: "As balas curtas são o recurso mais direto para transformar a pistola da Maisie em canal de Energia.",
+            uso: "As balas curtas são o recurso mais direto para transformar a pistola de Maisie em canal de Energia.",
             ordo: "Registrar consumo de munição durante cenas de combate."
           },
           {
@@ -2486,7 +2759,7 @@
             efeito: [
               "Comporta componentes ritualísticos de Energia.",
               "Fica conectado ao canhão adaptado no braço de Maisie.",
-              "Auxilia a execução visual e funcional dos rituais de Energia da agente."
+              "Auxilia a execução visual e funcional dos rituais de Energia da recruta."
             ],
             uso: "É a peça que transforma o braço mecânico em uma interface ritualística mais clara, conectando tecnologia e ocultismo.",
             ordo: "Equipamento sensível. Danos ao tanque podem comprometer o uso seguro de rituais em campo."
@@ -2496,7 +2769,7 @@
 
       associados: {
         titulo: "Equipamentos Associados",
-        descricao: "Itens que não constam como inventário mecânico, mas são essenciais para o dossiê, a estética e a história da agente.",
+        descricao: "Itens que não constam como inventário mecânico, mas são essenciais para o dossiê, a estética e a história da recruta.",
         itens: [
           {
             id: "braco-mecanico",
@@ -2519,7 +2792,7 @@
               "Funciona como interface narrativa para rituais de Energia e descargas caóticas."
             ],
             uso: "O braço mecânico não é apenas reposição. É a forma como Maisie transformou perda em arma, sobrevivência em engenharia e trauma em controle.",
-            ordo: "Não tratar como item comum. O braço é parte da identidade operacional da agente."
+            ordo: "Não tratar como item comum. O braço é parte da identidade operacional da recruta."
           },
           {
             id: "walt",
@@ -2539,10 +2812,10 @@
               "Não consta como item mecânico do inventário.",
               "Representa o primeiro grande projeto tecnológico de Maisie.",
               "Pode auxiliar narrativamente em pequenas tarefas, suporte técnico ou cenas de personalidade.",
-              "Possui valor emocional e simbólico elevado para a agente."
+              "Possui valor emocional e simbólico elevado para a recruta."
             ],
             uso: "Walt conecta a Maisie atual à garota que criava máquinas para não se sentir sozinha. Ele é menos uma arma e mais uma prova de quem ela era antes do paranormal.",
-            ordo: "Não remover Walt da agente sem necessidade operacional. O item possui valor psicológico relevante."
+            ordo: "Não remover Walt da recruta sem necessidade operacional. O item possui valor psicológico relevante."
           }
         ]
       }
@@ -2568,7 +2841,7 @@
             },
             base: [
               "Maisie imbui a arma ou munições com Energia, fazendo com que causem +1d6 de dano de Energia.",
-              "No caso da agente, este ritual foi registrado como Energia, por escolha feita no aprendizado do ritual."
+              "No caso da recruta, este ritual foi registrado como Energia, por escolha feita no aprendizado do ritual."
             ],
             discente: [
               "Custo adicional: +2 PE.",
@@ -2576,7 +2849,7 @@
               "Requer 2º círculo."
             ],
             uso: "A aplicação mais compatível é em munições ou em uma arma usada como extensão do braço mecânico, transformando o disparo ou golpe em descarga instável.",
-            ordo: "A escolha por Energia reforça o padrão da agente: transformar ferramentas comuns em canais de caos controlado."
+            ordo: "A escolha por Energia reforça o padrão observado na avaliação: transformar ferramentas comuns em canais de caos controlado."
           },
           {
             id: "embaralhar",
@@ -2603,7 +2876,7 @@
               "O bônus na Defesa muda para +10.",
               "Requer 2º círculo."
             ],
-            uso: "Funciona como um escudo visual de Energia, combinando com hologramas, reflexos falsos e interferência caótica ao redor da agente.",
+            uso: "Funciona como um escudo visual de Energia, combinando com hologramas, reflexos falsos e interferência caótica ao redor da recruta.",
             ordo: "Ritual recomendado para situações em que Maisie precise se manter em campo sem depender de resistência física."
           },
           {
@@ -2632,7 +2905,7 @@
               "Seres dentro da capacidade de carga podem ser arremessados, mas têm direito a teste de Vontade para evitar o efeito."
             ],
             uso: "É um dos rituais mais científicos da Maisie: magnetismo, trajetória, impacto e controle de campo transformados em ocultismo prático.",
-            ordo: "A compatibilidade com equipamentos metálicos, munições e o braço mecânico torna este ritual especialmente relevante no perfil da agente."
+            ordo: "A compatibilidade com equipamentos metálicos, munições e o braço mecânico torna este ritual especialmente relevante no perfil da recruta."
           },
           {
             id: "rajada-caotica",
@@ -2656,7 +2929,7 @@
               "Custo adicional: +3 PE.",
               "O dano muda para 8d8 pontos de dano de Energia."
             ],
-            uso: "É a manifestação mais direta da frase da agente: transformar caos em arma. Visualmente, combina com descarga roxa/azul saindo do braço mecânico ou da arma.",
+            uso: "É a manifestação mais direta da frase da recruta: transformar caos em arma. Visualmente, combina com descarga roxa/azul saindo do braço mecânico ou da arma.",
             ordo: "Ritual sem sigilo próprio registrado. O arquivo usa representação derivada de Energia/Polarização como referência visual."
           }
         ]
@@ -2683,7 +2956,7 @@
               "Maisie acelera o tempo ao redor das feridas do alvo.",
               "O alvo recupera 3d8+3 PV.",
               "O alvo envelhece 1 ano automaticamente.",
-              "Este é o Ritual Predileto da agente."
+              "Este é o Ritual Predileto da recruta."
             ],
             discente: [
               "Custo adicional: +2 PE.",
@@ -2715,7 +2988,7 @@
               "A penalidade muda para –2d20.",
               "Requer 2º círculo."
             ],
-            uso: "Maisie usa esse ritual para reduzir a ameaça de inimigos perigosos, atrasando ataques e criando espaço para reagir.",
+            uso: "Maisie pode usar esse ritual para reduzir a ameaça de inimigos perigosos, atrasando ataques e criando espaço para reagir.",
             ordo: "O ritual é menos chamativo que os de Energia, mas extremamente eficiente para controle de campo."
           },
           {
@@ -2792,7 +3065,7 @@
               "Se passar no teste de resistência inicial, sofre metade do dano e não fica com hemorragia."
             ],
             discente: [],
-            uso: "É o ritual mais brutal registrado no repertório atual da agente. Deve ser usado como medida extrema.",
+            uso: "É o ritual mais brutal registrado no repertório atual da recruta. Deve ser usado como medida extrema.",
             ordo: "A forma Discente exige 3º círculo e não aparece neste arquivo operacional. Recomenda-se cautela na liberação narrativa deste ritual em cena."
           }
         ]
@@ -3136,7 +3409,7 @@
         : `
           <section class="ritual-secao">
             <h5>Forma Discente</h5>
-            <p>Não disponível no acesso atual da agente. O requisito ultrapassa o círculo operacional registrado para Maisie.</p>
+            <p>Não disponível no acesso atual da recruta. O requisito ultrapassa o círculo operacional registrado para Maisie.</p>
           </section>
         `;
 
@@ -3153,7 +3426,7 @@
             <div class="ritual-tags">
               <span class="ritual-tag">${elementoTitulo}</span>
               <span class="ritual-tag">${ritual.categoria}</span>
-              <span class="ritual-tag">Acesso até 2º círculo</span>
+              <span class="ritual-tag">Avaliação inicial</span>
             </div>
           </div>
         </div>
