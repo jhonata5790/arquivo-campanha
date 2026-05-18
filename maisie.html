@@ -6,6 +6,15 @@
   <title>Maisie | Arquivo da Campanha</title>
   <link rel="stylesheet" href="style.css">
 
+  <script>
+    const larguraInicialMaisie = window.innerWidth;
+    const mobileInicialMaisie = larguraInicialMaisie <= 720;
+
+    document.documentElement.classList.add(
+      mobileInicialMaisie ? "html-mobile-maisie" : "html-desktop-maisie"
+    );
+  </script>
+
   <style>
     .ficha-maisie {
       --maisie-roxo: #8f52ff;
@@ -441,11 +450,6 @@
       animation: aparecerMaisie 0.35s ease;
     }
 
-    .conteudo-maisie:not(.ativo),
-    .conteudo-maisie:not(.ativo) * {
-      animation-play-state: paused !important;
-    }
-
     @keyframes aparecerMaisie {
       from {
         opacity: 0;
@@ -597,10 +601,6 @@
           0 0 22px rgba(197, 52, 79, 0.20);
       }
     }
-
-    /* ============================ */
-    /* RODA DE ATRIBUTOS */
-    /* ============================ */
 
     .roda-atributos-maisie {
       width: min(720px, 100%);
@@ -1468,87 +1468,64 @@
       }
     }
 
-    /* ============================ */
-    /* SISTEMA GLOBAL DE PERFORMANCE */
-    /* ============================ */
-
-    .efeito-pausado,
-    .efeito-pausado *,
-    .efeito-fora-da-aba,
-    .efeito-fora-da-aba *,
-    body.pagina-inativa-maisie .animacao-controlada,
-    body.pagina-inativa-maisie .animacao-controlada *,
-    body.performance-total-maisie .animacao-controlada,
-    body.performance-total-maisie .animacao-controlada * {
+    /* PERFORMANCE SEGURA */
+    .efeito-decorativo.pausado,
+    .efeito-decorativo.pausado::before,
+    .efeito-decorativo.pausado::after,
+    .efeito-decorativo.pausado *,
+    body.pagina-oculta-maisie .efeito-decorativo,
+    body.pagina-oculta-maisie .efeito-decorativo::before,
+    body.pagina-oculta-maisie .efeito-decorativo::after,
+    body.pagina-oculta-maisie .efeito-decorativo * {
       animation-play-state: paused !important;
     }
 
-    .efeito-pausado .micro-particulas-roda,
-    .efeito-fora-da-aba .micro-particulas-roda,
-    body.pagina-inativa-maisie .micro-particulas-roda {
-      display: none !important;
-    }
-
-    body.modo-mobile-maisie .maisie-painel,
-    body.modo-mobile-maisie .bloco-maisie,
-    body.modo-mobile-maisie .atributo-maisie > span {
+    body.versao-mobile .maisie-painel,
+    body.versao-mobile .bloco-maisie,
+    body.versao-mobile .atributo-maisie > span {
       backdrop-filter: none !important;
     }
 
-    body.modo-mobile-maisie .maisie-retrato-box::before,
-    body.modo-mobile-maisie .maisie-retrato-box::after {
-      display: none;
-    }
-
-    body.modo-mobile-maisie .ficha-maisie {
+    body.versao-mobile .ficha-maisie {
       background-attachment: scroll;
     }
 
-    body.modo-mobile-maisie .roda-img.anel-externo {
+    body.versao-mobile .maisie-retrato-box::before,
+    body.versao-mobile .maisie-retrato-box::after {
+      display: none;
+    }
+
+    body.versao-mobile .roda-img.anel-externo {
       animation-duration: 120s;
     }
 
-    body.modo-mobile-maisie .roda-img.anel-interno {
+    body.versao-mobile .roda-img.anel-interno {
       animation-duration: 95s;
     }
 
-    body.modo-mobile-maisie .roda-img.nucleo {
+    body.versao-mobile .roda-img.nucleo {
       animation-duration: 5.5s;
     }
 
-    body.modo-mobile-maisie .linha-atributo-maisie::after {
+    body.versao-mobile .linha-atributo-maisie::after {
       animation-duration: 4s;
     }
 
-    body.modo-mobile-maisie .linha-atributo-maisie.ativa::after {
+    body.versao-mobile .linha-atributo-maisie.ativa::after {
       animation-duration: 1.8s;
     }
 
-    body.modo-mobile-maisie .raio-selecao-maisie::before {
+    body.versao-mobile .raio-selecao-maisie::before {
       animation-duration: 1.4s;
     }
 
-    body.modo-mobile-maisie .falha-energia-maisie {
+    body.versao-mobile .falha-energia-maisie {
       animation: none;
     }
 
-    body.modo-mobile-maisie .efeito-particulas-maisie {
-      opacity: 0.5;
+    body.versao-mobile .efeito-particulas-maisie {
+      opacity: 0.45;
     }
-
-    body.performance-total-maisie .efeito-particulas-maisie,
-    body.performance-total-maisie .micro-particulas-roda {
-      display: none !important;
-    }
-
-    body.performance-total-maisie .maisie-retrato-box::before,
-    body.performance-total-maisie .maisie-retrato-box::after {
-      display: none !important;
-    }
-
-    /* ============================ */
-    /* TABLET */
-    /* ============================ */
 
     @media (max-width: 1100px) {
       .maisie-topo {
@@ -1566,10 +1543,6 @@
         grid-template-columns: 1fr;
       }
     }
-
-    /* ============================ */
-    /* CELULAR */
-    /* ============================ */
 
     @media (max-width: 720px) {
       .ficha-maisie {
@@ -1897,26 +1870,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ficha-maisie,
-      .ficha-maisie::before,
-      .maisie-painel,
-      .maisie-retrato-box,
-      .maisie-status-box,
-      .bloco-maisie,
-      .card-info-maisie,
-      .card-lista-maisie,
-      .frase-maisie,
-      .detalhe-lista-maisie,
-      .detalhe-atributo-maisie,
-      .maisie-cabecalho h2,
-      .frase-maisie p,
-      .roda-atributos-maisie,
-      .atributo-maisie,
-      .roda-img,
-      .micro-particulas-roda span,
-      .particula-maisie,
-      .raio-selecao-maisie,
-      .roda-centro-maisie {
+      .efeito-decorativo,
+      .efeito-decorativo::before,
+      .efeito-decorativo::after,
+      .efeito-decorativo * {
         animation: none !important;
       }
     }
@@ -1943,12 +1900,12 @@
   </header>
 
   <main>
-    <section class="ficha-maisie animacao-controlada" data-efeito="pagina">
+    <section class="ficha-maisie">
 
       <div class="maisie-topo">
 
         <aside class="maisie-lateral">
-          <div class="maisie-retrato-box animacao-controlada" data-efeito="retrato">
+          <div class="maisie-retrato-box efeito-decorativo" data-efeito="retrato">
             <img src="Maisie.png" alt="Retrato de corpo inteiro de Maisie Hundown">
           </div>
 
@@ -2024,7 +1981,7 @@
                 no dossiê operacional de Maisie Hundown.
               </p>
 
-              <div class="roda-atributos-maisie animacao-controlada efeito-fora-da-aba" id="roda-maisie" data-efeito="roda" data-aba-efeito="atributos">
+              <div class="roda-atributos-maisie efeito-decorativo" id="roda-maisie" data-efeito="roda">
 
                 <img src="Roda-Maisie-Anel-Externo.png" class="roda-img anel-externo" alt="">
                 <img src="Roda-Maisie-Anel-Interno.png" class="roda-img anel-interno" alt="">
@@ -2296,12 +2253,12 @@
               <h3>Galeria do arquivo</h3>
 
               <div class="galeria-maisie">
-                <figure class="animacao-controlada" data-efeito="imagem">
+                <figure>
                   <img src="Maisie.png" alt="Imagem de corpo inteiro de Maisie">
                   <figcaption>Registro corporal</figcaption>
                 </figure>
 
-                <figure class="animacao-controlada" data-efeito="imagem">
+                <figure>
                   <img src="Maisie-dossie.png" alt="Ficha visual de Maisie">
                   <figcaption>Ficha visual operacional</figcaption>
                 </figure>
@@ -2323,14 +2280,15 @@
   <script>
     const estadoMaisie = {
       mobile: window.matchMedia("(max-width: 720px)").matches,
-      telaMuitoPequena: window.matchMedia("(max-width: 420px)").matches,
+      desktop: window.matchMedia("(min-width: 721px)").matches,
       movimentoReduzido: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
       abaAtual: "informacoes",
       paginaVisivel: !document.hidden,
-      efeitosVisiveis: new WeakMap(),
       particulasGlobaisAtivas: false,
       particulasRodaAtivas: false
     };
+
+    document.body.classList.add(estadoMaisie.mobile ? "versao-mobile" : "versao-desktop");
 
     const abasMaisie = document.querySelectorAll(".aba-maisie");
     const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
@@ -2340,8 +2298,14 @@
     const linhasAtributoMaisie = document.querySelectorAll(".linha-atributo-maisie");
     const rodaMaisie = document.getElementById("roda-maisie");
 
-    iniciarPerformanceMaisie();
-    atualizarEstadoDeAbaMaisie("informacoes");
+    iniciarMaisie();
+
+    function iniciarMaisie() {
+      criarParticulasMaisie();
+      configurarObservadorSeguroMaisie();
+      configurarVisibilidadeDaPaginaMaisie();
+      atualizarPerformancePorAbaMaisie("informacoes");
+    }
 
     abasMaisie.forEach((aba) => {
       aba.addEventListener("click", () => {
@@ -2359,7 +2323,7 @@
         }
 
         estadoMaisie.abaAtual = alvo;
-        atualizarEstadoDeAbaMaisie(alvo);
+        atualizarPerformancePorAbaMaisie(alvo);
         causarFalhaEnergiaMaisie();
       });
     });
@@ -2413,142 +2377,113 @@
     ativarDetalhesMaisie(".ritual-item", "detalhe-ritual-maisie");
     ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
 
-    function iniciarPerformanceMaisie() {
-      if (estadoMaisie.mobile) {
-        document.body.classList.add("modo-mobile-maisie");
-      }
+    function configurarObservadorSeguroMaisie() {
+      if (!("IntersectionObserver" in window)) return;
 
-      if (estadoMaisie.movimentoReduzido) {
-        document.body.classList.add("performance-total-maisie");
-      }
-
-      observarElementosAnimadosMaisie();
-      observarVisibilidadeDaPaginaMaisie();
-      gerenciarParticulasGlobaisMaisie();
-      gerenciarParticulasRodaMaisie();
-    }
-
-    function observarElementosAnimadosMaisie() {
-      const elementos = document.querySelectorAll(".animacao-controlada");
-
-      if (!("IntersectionObserver" in window)) {
-        elementos.forEach((elemento) => {
-          elemento.classList.remove("efeito-pausado");
-          estadoMaisie.efeitosVisiveis.set(elemento, true);
-        });
-
-        return;
-      }
+      const efeitosDecorativos = document.querySelectorAll(".efeito-decorativo");
 
       const observador = new IntersectionObserver((entradas) => {
         entradas.forEach((entrada) => {
           const elemento = entrada.target;
           const visivel = entrada.isIntersecting;
 
-          estadoMaisie.efeitosVisiveis.set(elemento, visivel);
-
-          if (visivel) {
-            elemento.classList.remove("efeito-pausado");
-          } else {
-            elemento.classList.add("efeito-pausado");
+          if (estadoMaisie.desktop) {
+            elemento.classList.remove("pausado");
+            return;
           }
 
-          gerenciarParticulasGlobaisMaisie();
-          gerenciarParticulasRodaMaisie();
+          elemento.classList.toggle("pausado", !visivel);
+
+          if (elemento === rodaMaisie) {
+            atualizarParticulasRodaMaisie();
+          }
         });
       }, {
-        root: null,
-        threshold: estadoMaisie.mobile ? 0.08 : 0.14,
-        rootMargin: estadoMaisie.mobile ? "80px 0px 80px 0px" : "120px 0px 120px 0px"
+        threshold: estadoMaisie.mobile ? 0.05 : 0.12,
+        rootMargin: estadoMaisie.mobile ? "80px 0px 80px 0px" : "160px 0px 160px 0px"
       });
 
-      elementos.forEach((elemento) => {
-        estadoMaisie.efeitosVisiveis.set(elemento, false);
-        observador.observe(elemento);
-      });
+      efeitosDecorativos.forEach((elemento) => observador.observe(elemento));
     }
 
-    function observarVisibilidadeDaPaginaMaisie() {
+    function configurarVisibilidadeDaPaginaMaisie() {
       document.addEventListener("visibilitychange", () => {
         estadoMaisie.paginaVisivel = !document.hidden;
+        document.body.classList.toggle("pagina-oculta-maisie", !estadoMaisie.paginaVisivel);
 
-        document.body.classList.toggle("pagina-inativa-maisie", !estadoMaisie.paginaVisivel);
-
-        gerenciarParticulasGlobaisMaisie();
-        gerenciarParticulasRodaMaisie();
+        if (estadoMaisie.paginaVisivel) {
+          criarParticulasMaisie();
+          atualizarParticulasRodaMaisie();
+        } else {
+          removerParticulasMaisie();
+          removerMicroParticulasRodaMaisie();
+        }
       });
     }
 
-    function atualizarEstadoDeAbaMaisie(abaAtual) {
-      const elementosComAba = document.querySelectorAll("[data-aba-efeito]");
+    function atualizarPerformancePorAbaMaisie(abaAtual) {
+      if (!rodaMaisie) return;
 
-      elementosComAba.forEach((elemento) => {
-        const abaDoElemento = elemento.dataset.abaEfeito;
-        const ativo = abaDoElemento === abaAtual;
+      if (estadoMaisie.desktop) {
+        rodaMaisie.classList.remove("pausado");
 
-        elemento.classList.toggle("efeito-fora-da-aba", !ativo);
-      });
+        if (abaAtual === "atributos") {
+          criarMicroParticulasRodaMaisie();
+        } else {
+          removerMicroParticulasRodaMaisie();
+        }
 
-      gerenciarParticulasGlobaisMaisie();
-      gerenciarParticulasRodaMaisie();
-    }
-
-    function elementoEstaAtivoMaisie(elemento) {
-      if (!elemento) return false;
-      if (!estadoMaisie.paginaVisivel) return false;
-      if (document.body.classList.contains("performance-total-maisie")) return false;
-      if (elemento.classList.contains("efeito-fora-da-aba")) return false;
-      if (elemento.classList.contains("efeito-pausado")) return false;
-
-      return true;
-    }
-
-    function gerenciarParticulasGlobaisMaisie() {
-      const deveAtivar = estadoMaisie.paginaVisivel &&
-        !estadoMaisie.movimentoReduzido &&
-        !document.body.classList.contains("performance-total-maisie");
-
-      if (deveAtivar && !estadoMaisie.particulasGlobaisAtivas) {
-        criarParticulasMaisie();
+        return;
       }
 
-      if (!deveAtivar && estadoMaisie.particulasGlobaisAtivas) {
-        removerParticulasMaisie();
-      }
-    }
+      const atributosAberto = abaAtual === "atributos";
 
-    function gerenciarParticulasRodaMaisie() {
-      const deveAtivar = elementoEstaAtivoMaisie(rodaMaisie) &&
-        estadoMaisie.abaAtual === "atributos" &&
-        !estadoMaisie.movimentoReduzido;
+      rodaMaisie.classList.toggle("pausado", !atributosAberto);
 
-      if (deveAtivar && !estadoMaisie.particulasRodaAtivas) {
+      if (atributosAberto) {
         criarMicroParticulasRodaMaisie();
+      } else {
+        removerMicroParticulasRodaMaisie();
       }
+    }
 
-      if (!deveAtivar && estadoMaisie.particulasRodaAtivas) {
+    function atualizarParticulasRodaMaisie() {
+      if (!rodaMaisie) return;
+
+      const deveTerParticulas =
+        estadoMaisie.abaAtual === "atributos" &&
+        estadoMaisie.paginaVisivel &&
+        !rodaMaisie.classList.contains("pausado");
+
+      if (deveTerParticulas) {
+        criarMicroParticulasRodaMaisie();
+      } else {
         removerMicroParticulasRodaMaisie();
       }
     }
 
     function criarParticulasMaisie() {
+      if (estadoMaisie.movimentoReduzido) return;
+      if (!estadoMaisie.paginaVisivel) return;
+      if (estadoMaisie.particulasGlobaisAtivas) return;
+
       removerParticulasMaisie();
 
       const container = document.createElement("div");
-      container.className = "efeito-particulas-maisie animacao-controlada";
+      container.className = "efeito-particulas-maisie efeito-decorativo";
       container.dataset.efeito = "particulas-globais";
       document.body.prepend(container);
 
-      const quantidade = estadoMaisie.mobile ? 10 : 36;
+      const quantidade = estadoMaisie.mobile ? 10 : 42;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
         particula.className = "particula-maisie";
 
         particula.style.left = `${Math.random() * 100}%`;
-        particula.style.animationDuration = `${7 + Math.random() * 10}s`;
+        particula.style.animationDuration = `${6 + Math.random() * 10}s`;
         particula.style.animationDelay = `${Math.random() * 8}s`;
-        particula.style.opacity = `${0.18 + Math.random() * 0.42}`;
+        particula.style.opacity = `${0.18 + Math.random() * 0.48}`;
         particula.style.width = `${2 + Math.random() * 3}px`;
         particula.style.height = particula.style.width;
 
@@ -2567,12 +2502,16 @@
     }
 
     function criarMicroParticulasRodaMaisie() {
-      removerMicroParticulasRodaMaisie();
+      if (estadoMaisie.movimentoReduzido) return;
+      if (!estadoMaisie.paginaVisivel) return;
+      if (estadoMaisie.particulasRodaAtivas) return;
 
       const container = document.getElementById("micro-particulas-roda");
       if (!container) return;
 
-      const quantidade = estadoMaisie.mobile ? 6 : 24;
+      removerMicroParticulasRodaMaisie();
+
+      const quantidade = estadoMaisie.mobile ? 6 : 28;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
@@ -2581,7 +2520,7 @@
         particula.style.top = `${10 + Math.random() * 80}%`;
         particula.style.animationDuration = `${3 + Math.random() * 5}s`;
         particula.style.animationDelay = `${Math.random() * 4}s`;
-        particula.style.opacity = `${0.18 + Math.random() * 0.42}`;
+        particula.style.opacity = `${0.18 + Math.random() * 0.48}`;
 
         container.appendChild(particula);
       }
@@ -2624,8 +2563,8 @@
 
     function causarFalhaEnergiaMaisie() {
       if (!fichaMaisie) return;
-      if (estadoMaisie.mobile) return;
       if (!estadoMaisie.paginaVisivel) return;
+      if (estadoMaisie.mobile) return;
       if (estadoMaisie.movimentoReduzido) return;
 
       fichaMaisie.classList.remove("falha-energia-maisie");
