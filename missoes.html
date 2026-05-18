@@ -3,555 +3,361 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Missões | Arquivo da Campanha</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .missoes-pagina {
-      --missao-vermelho: #b51624;
-      --missao-roxo: #8b4dff;
-      --missao-amarelo: #d8bd74;
-      --missao-verde: #6f8f4e;
-      --missao-texto: #e8dfd2;
-      --missao-fraco: #a89f94;
-
-      border: 1px solid rgba(216, 189, 116, 0.22);
-      border-radius: 28px;
-      padding: 30px;
-      background:
-        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.22), transparent 30%),
-        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.16), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
-        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(14, 8, 10, 0.98));
-      box-shadow:
-        0 0 44px rgba(181, 22, 36, 0.16),
-        inset 0 0 70px rgba(0, 0, 0, 0.68);
+    .painel-missoes {
       position: relative;
       overflow: hidden;
     }
 
-    .missoes-pagina::before {
-      content: "";
+    .painel-missoes::before {
+      content: "MISSÕES // OPERAÇÕES // ORDO REALITAS";
       position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-
-    .missoes-pagina::after {
-      content: "OPERAÇÕES // MISSÕES // ORDO REALITAS";
-      position: absolute;
-      right: -130px;
+      right: -115px;
       top: 50%;
       transform: rotate(90deg);
-      color: rgba(216, 189, 116, 0.12);
-      letter-spacing: 6px;
+      color: rgba(124, 60, 255, 0.10);
+      letter-spacing: 5px;
       font-size: 11px;
       pointer-events: none;
     }
 
-    .missoes-pagina > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .classificacao {
-      color: #ff3045;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-    }
-
-    .missoes-hero {
-      min-height: 460px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: stretch;
-      padding-bottom: 30px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
-    }
-
-    .missoes-hero-texto {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      padding: 30px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
-        rgba(0,0,0,0.28);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .missao-painel-atual {
       position: relative;
       overflow: hidden;
-    }
-
-    .missoes-hero-texto::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--missao-vermelho), var(--missao-roxo), var(--missao-amarelo));
-    }
-
-    .missoes-hero-texto .classificacao {
-      margin-bottom: 18px;
-    }
-
-    .missoes-hero-texto h2 {
-      font-size: clamp(44px, 7vw, 92px);
-      line-height: 0.92;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--missao-amarelo);
-      text-shadow:
-        0 0 18px rgba(181, 22, 36, 0.36),
-        0 0 36px rgba(139, 77, 255, 0.20);
+      border: 1px solid rgba(216, 189, 116, 0.26);
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 14% 15%, rgba(216, 189, 116, 0.10), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124, 60, 255, 0.14), transparent 34%),
+        radial-gradient(circle at 50% 92%, rgba(181, 31, 53, 0.12), transparent 38%),
+        rgba(0,0,0,0.46);
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
       margin-bottom: 22px;
     }
 
-    .missoes-hero-texto p {
-      color: var(--missao-fraco);
-      line-height: 1.75;
-      font-size: 16px;
-      max-width: 780px;
-    }
-
-    .missoes-hero-texto p + p {
-      margin-top: 14px;
-    }
-
-    .missoes-selo {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      min-height: 420px;
-      background:
-        radial-gradient(circle at center, rgba(181,22,36,0.20), transparent 34%),
-        radial-gradient(circle at center, rgba(139,77,255,0.13), transparent 58%),
-        rgba(0,0,0,0.36);
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .missoes-selo::before {
+    .missao-painel-atual::before {
       content: "";
       position: absolute;
-      width: 310px;
-      height: 310px;
-      border-radius: 50%;
-      border: 1px solid rgba(216, 189, 116, 0.26);
-      box-shadow:
-        0 0 0 28px rgba(181, 22, 36, 0.04),
-        0 0 0 58px rgba(139, 77, 255, 0.03),
-        0 0 52px rgba(181, 22, 36, 0.28);
-    }
-
-    .missoes-selo::after {
-      content: "OPS";
-      color: var(--missao-amarelo);
-      font-size: clamp(58px, 7vw, 92px);
-      letter-spacing: 8px;
-      font-weight: bold;
-      text-shadow:
-        0 0 22px rgba(181, 22, 36, 0.75),
-        0 0 46px rgba(139, 77, 255, 0.40);
-      z-index: 1;
-    }
-
-    .missoes-selo-dados {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      z-index: 2;
-    }
-
-    .missao-mini-dado {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 12px;
-      padding: 12px;
-      background: rgba(0,0,0,0.46);
-      text-align: center;
-    }
-
-    .missao-mini-dado span {
-      display: block;
-      color: var(--missao-fraco);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 9px;
-      margin-bottom: 6px;
-    }
-
-    .missao-mini-dado strong {
-      color: var(--missao-amarelo);
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .missoes-secao {
-      margin-top: 28px;
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      padding: 24px;
+      inset: 0;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
-        rgba(0,0,0,0.20);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .missoes-secao::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: rgba(216, 189, 116, 0.5);
-    }
-
-    .missoes-secao h2 {
-      color: var(--missao-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: clamp(26px, 4vw, 46px);
-      margin-bottom: 14px;
-    }
-
-    .missoes-secao p {
-      color: var(--missao-fraco);
-      line-height: 1.72;
-      font-size: 15px;
-      max-width: 980px;
-    }
-
-    .missao-atual {
-      margin-top: 22px;
-      border: 1px solid rgba(181, 22, 36, 0.36);
-      border-radius: 22px;
-      padding: 24px;
-      background:
-        radial-gradient(circle at 20% 0%, rgba(181,22,36,0.18), transparent 36%),
-        radial-gradient(circle at 80% 15%, rgba(139,77,255,0.14), transparent 34%),
-        rgba(0,0,0,0.34);
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .missao-atual::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border: 1px dashed rgba(216, 189, 116, 0.14);
-      border-radius: 16px;
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.36;
       pointer-events: none;
     }
 
-    .missao-atual > * {
+    .missao-painel-atual > * {
       position: relative;
       z-index: 1;
     }
 
-    .missao-atual h3 {
-      color: var(--missao-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: clamp(30px, 5vw, 58px);
-      line-height: 0.95;
-      margin: 10px 0 18px;
-    }
-
-    .missao-atual p {
-      line-height: 1.75;
-    }
-
-    .missao-dados {
+    .missao-cabecalho {
       display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .missao-cabecalho h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+      font-size: clamp(30px, 6vw, 58px);
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .missao-cabecalho p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+      max-width: 840px;
+    }
+
+    .missao-codigo {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(216, 189, 116, 0.055);
+      min-width: 210px;
+      text-align: right;
+    }
+
+    .missao-codigo span {
+      display: block;
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .missao-codigo strong {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 15px;
+    }
+
+    .missao-grid-dados {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      align-content: start;
+      margin-top: 16px;
     }
 
     .missao-dado {
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
       padding: 14px;
-      background: rgba(0,0,0,0.32);
+      background: rgba(0,0,0,0.30);
     }
 
     .missao-dado span {
       display: block;
-      color: var(--missao-fraco);
+      color: var(--roxo-claro);
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.4px;
       font-size: 10px;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .missao-dado strong {
-      color: var(--missao-amarelo);
-      font-size: 17px;
-      text-transform: uppercase;
+      color: var(--texto);
+      display: block;
+      line-height: 1.35;
+      font-size: 13px;
     }
 
-    .objetivos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .objetivo-card {
-      border: 1px solid rgba(216, 189, 116, 0.16);
+    .missao-alerta {
+      border: 1px solid rgba(181, 31, 53, 0.28);
       border-radius: 18px;
       padding: 18px;
-      background: rgba(0,0,0,0.28);
-      min-height: 190px;
-      transition: 0.25s;
-      position: relative;
-      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(181, 31, 53, 0.13), transparent 34%),
+        rgba(0,0,0,0.36);
+      margin-top: 18px;
     }
 
-    .objetivo-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(216, 189, 116, 0.42);
-      box-shadow: 0 0 22px rgba(216, 189, 116, 0.10);
-    }
-
-    .objetivo-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(181,22,36,0.28), transparent 46%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    .objetivo-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .objetivo-card span {
-      color: var(--missao-fraco);
+    .missao-alerta h4 {
+      color: #ff8da0;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 10px;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
     }
 
-    .objetivo-card h3 {
-      color: var(--missao-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 20px;
-      margin: 10px 0;
+    .missao-alerta p {
+      color: var(--texto-fraco);
+      line-height: 1.7;
     }
 
-    .objetivo-card p {
-      font-size: 14px;
-      line-height: 1.62;
-    }
-
-    .linha-tempo {
-      margin-top: 22px;
+    .timeline-missoes {
       display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .timeline-item {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.026), rgba(124,60,255,0.035)),
+        rgba(0,0,0,0.38);
+      transition: 0.22s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124, 60, 255, 0.34);
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
+    }
+
+    .timeline-item span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item h4 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item p {
+      color: var(--texto-fraco);
+      line-height: 1.7;
+    }
+
+    .missao-card-custom {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .missao-card-custom::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(124,60,255,0.16), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(181,31,53,0.10), transparent 32%);
+    }
+
+    .missao-card-custom.ativa::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(216,189,116,0.13), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.16), transparent 32%);
+    }
+
+    .missao-card-custom.bloqueada::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(181,31,53,0.16), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.10), transparent 32%);
+    }
+
+    .missao-topo {
+      display: grid;
+      gap: 12px;
+    }
+
+    .missao-identidade {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 14px;
     }
 
-    .evento-missao {
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      border-radius: 16px;
-      padding: 16px;
-      background: rgba(0,0,0,0.26);
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 16px;
-      transition: 0.25s;
-    }
-
-    .evento-missao:hover {
-      transform: translateX(4px);
-      border-color: rgba(216, 189, 116, 0.38);
-    }
-
-    .evento-missao-data {
-      color: var(--missao-amarelo);
-      font-family: monospace;
-      letter-spacing: 1px;
-      font-size: 13px;
-    }
-
-    .evento-missao-info strong {
-      display: block;
-      color: var(--missao-texto);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 13px;
+    .missao-identidade h3 {
       margin-bottom: 6px;
     }
 
-    .evento-missao-info p {
-      font-size: 14px;
-      line-height: 1.62;
-    }
-
-    .arquivos-missoes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    .arquivo-missao-card {
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      border-radius: 18px;
-      padding: 18px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.16)),
-        rgba(0,0,0,0.28);
-      min-height: 210px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.25s;
-    }
-
-    .arquivo-missao-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(216, 189, 116, 0.40);
-      box-shadow: 0 0 22px rgba(216, 189, 116, 0.10);
-    }
-
-    .arquivo-missao-card.bloqueado {
-      opacity: 0.75;
-      filter: grayscale(0.2);
-    }
-
-    .arquivo-missao-card span {
-      color: var(--missao-fraco);
+    .missao-sigla {
+      flex: 0 0 auto;
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 999px;
+      padding: 8px 10px;
+      color: var(--amarelo);
+      background: rgba(216, 189, 116, 0.06);
+      font-size: 10px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .missao-mini-dados {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .missao-mini-dado {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 8px;
+    }
+
+    .missao-mini-dado:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .missao-mini-dado span {
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
       font-size: 10px;
     }
 
-    .arquivo-missao-card h3 {
-      color: var(--missao-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 21px;
-      margin: 10px 0;
-    }
-
-    .arquivo-missao-card p {
-      font-size: 14px;
-      line-height: 1.62;
-    }
-
-    .tag-missao {
-      display: inline-block;
-      margin-top: 12px;
-      border: 1px solid rgba(181, 22, 36, 0.38);
-      border-radius: 999px;
-      padding: 6px 10px;
-      color: #ff9aa4;
-      background: rgba(181,22,36,0.10);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 9px;
-    }
-
-    .terminal-missoes {
-      margin-top: 28px;
-      border: 1px solid rgba(181, 22, 36, 0.32);
-      border-radius: 20px;
-      padding: 22px;
-      background:
-        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
-        rgba(0,0,0,0.36);
-      font-family: monospace;
-    }
-
-    .terminal-missoes span {
-      display: block;
-      color: #ff3045;
-      margin-bottom: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .missao-mini-dado strong {
+      color: var(--texto);
       font-size: 12px;
+      text-align: right;
     }
 
-    .terminal-missoes p {
-      color: var(--missao-texto);
-      line-height: 1.7;
-      font-size: 14px;
+    .missao-acoes {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    @media (max-width: 1080px) {
-      .missoes-hero,
-      .missao-atual {
+    @media (max-width: 1100px) {
+      .missao-grid-dados {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .missao-cabecalho {
         grid-template-columns: 1fr;
       }
 
-      .objetivos-grid,
-      .arquivos-missoes {
-        grid-template-columns: 1fr 1fr;
+      .missao-codigo {
+        text-align: left;
       }
     }
 
-    @media (max-width: 720px) {
-      .missoes-pagina {
-        padding: 18px;
+    @media (max-width: 760px) {
+      .painel-missoes::before {
+        display: none;
       }
 
-      .missoes-hero-texto h2 {
-        font-size: 40px;
+      .missao-painel-atual {
+        padding: 16px;
+        border-radius: 22px;
       }
 
-      .missoes-selo-dados {
+      .missao-grid-dados {
         grid-template-columns: 1fr;
       }
 
-      .objetivos-grid,
-      .arquivos-missoes {
-        grid-template-columns: 1fr;
+      .missao-identidade {
+        display: grid;
       }
 
-      .evento-missao {
-        grid-template-columns: 1fr;
+      .missao-sigla {
+        width: max-content;
+      }
+
+      .missao-card-custom {
+        min-height: auto;
+      }
+
+      .missao-acoes {
+        display: grid;
+      }
+
+      .missao-acoes .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="fundo-paranormal"></div>
 
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Relatórios de operações registradas</p>
+      <p>Sistema interno da Ordo Realitas</p>
     </div>
 
     <nav>
       <a href="index.html">Início</a>
-      <a href="ordo.html">Ordo Realitas</a>
       <a href="locais.html">Locais</a>
       <a href="personagens.html">Personagens</a>
       <a href="missoes.html">Missões</a>
@@ -560,279 +366,361 @@
   </header>
 
   <main>
+    <section class="hero-principal painel-missoes aparecer">
+      <small>Painel operacional // Ordo Realitas</small>
 
-    <section class="missoes-pagina">
+      <h2>Missões</h2>
 
-      <section class="missoes-hero">
+      <p>
+        Registro das operações vinculadas à campanha Corações do Outro Lado. Esta página organiza a missão
+        ativa, objetivos iniciais, progresso narrativo e futuras operações que serão liberadas conforme a
+        investigação avançar.
+      </p>
 
-        <div class="missoes-hero-texto">
-          <p class="classificacao">Painel operacional // missões registradas</p>
+      <div class="selos mt-3">
+        <span class="selo roxo">Operação ativa</span>
+        <span class="selo amarelo">Recrutas em campo</span>
+        <span class="selo vermelho">Risco paranormal</span>
+      </div>
+    </section>
 
-          <h2>Missões<br>da Campanha</h2>
-
+    <section class="missao-painel-atual">
+      <div class="missao-cabecalho">
+        <div>
+          <span class="etiqueta">Missão atual</span>
+          <h3>Corações do Outro Lado</h3>
           <p>
-            Esta seção reúne operações, relatórios públicos, objetivos conhecidos e
-            registros liberados pela Ordo Realitas durante os eventos de Corações do Outro Lado.
+            Primeira missão oficial dos agentes recém-recrutados. A Ordo Realitas reuniu os dossiês iniciais,
+            organizou os primeiros documentos e encaminhou o grupo para investigar um caso paranormal ainda
+            em estágio inicial de confirmação.
           </p>
 
-          <p>
-            Os arquivos exibidos aqui não representam a verdade completa. Algumas informações
-            foram removidas, bloqueadas ou mantidas fora do alcance dos agentes por segurança.
-          </p>
+          <div class="tags mt-2">
+            <span class="tag roxo">Investigação inicial</span>
+            <span class="tag amarelo">Primeira missão oficial</span>
+            <span class="tag vermelho">Informações incompletas</span>
+          </div>
         </div>
 
-        <div class="missoes-selo">
-          <div class="missoes-selo-dados">
+        <div class="missao-codigo">
+          <span>Código operacional</span>
+          <strong>OP-COL-001</strong>
+        </div>
+      </div>
+
+      <div class="missao-grid-dados">
+        <div class="missao-dado">
+          <span>Status</span>
+          <strong>Ativa / em preparação</strong>
+        </div>
+
+        <div class="missao-dado">
+          <span>Equipe</span>
+          <strong>Recrutas recém-integrados</strong>
+        </div>
+
+        <div class="missao-dado">
+          <span>Primeira vítima</span>
+          <strong>Miyara</strong>
+        </div>
+
+        <div class="missao-dado">
+          <span>Tipo</span>
+          <strong>Investigação paranormal</strong>
+        </div>
+      </div>
+
+      <div class="missao-alerta">
+        <h4>Observação da Ordo</h4>
+        <p>
+          Os agentes envolvidos ainda não possuem histórico oficial de missões pela organização.
+          A atuação em Corações do Outro Lado servirá como avaliação prática, registro de campo e possível
+          confirmação de patente futura.
+        </p>
+      </div>
+    </section>
+
+    <section class="abas-personagens" data-area-filtros>
+      <button class="filtro ativo" data-filtro="todos">Todas</button>
+      <button class="filtro" data-filtro="ativa">Ativa</button>
+      <button class="filtro" data-filtro="futura">Futuras</button>
+      <button class="filtro" data-filtro="bloqueado">Bloqueadas</button>
+      <button class="filtro" data-filtro="concluida">Concluídas</button>
+    </section>
+
+    <section class="hero">
+      <small>Operações registradas</small>
+      <h2>Lista de missões</h2>
+      <p>
+        A campanha ainda está em seu começo. Por enquanto, apenas a missão principal está oficialmente aberta.
+        Os demais espaços funcionam como registros preparados para futuras operações, continuações ou arquivos
+        bloqueados.
+      </p>
+    </section>
+
+    <section class="personagens-grid">
+      <article class="personagem-card missao-card-custom ativa" data-categoria="ativa">
+        <div class="missao-topo">
+          <div class="missao-identidade">
+            <div>
+              <span class="etiqueta">Operação aberta</span>
+              <h3>Corações do Outro Lado</h3>
+              <p>
+                Investigação inicial envolvendo o caso Miyara, registros incompletos e manifestações ainda
+                não totalmente compreendidas pela Ordo.
+              </p>
+            </div>
+
+            <span class="missao-sigla">OP-COL-001</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag roxo">Ativa</span>
+            <span class="tag amarelo">Recrutamento</span>
+            <span class="tag vermelho">Caso sensível</span>
+          </div>
+
+          <div class="missao-mini-dados">
             <div class="missao-mini-dado">
-              <span>Operação</span>
+              <span>Status</span>
               <strong>Ativa</strong>
             </div>
 
             <div class="missao-mini-dado">
-              <span>Acesso</span>
-              <strong>Parcial</strong>
+              <span>Agentes</span>
+              <strong>Maisie, Vivian, Roselyn</strong>
             </div>
 
             <div class="missao-mini-dado">
-              <span>Risco</span>
-              <strong>Elevado</strong>
+              <span>Registro</span>
+              <strong>Em expansão</strong>
             </div>
           </div>
         </div>
 
-      </section>
+        <div class="missao-acoes">
+          <a class="btn" href="documentos.html">Ver documentos</a>
+          <a class="btn" href="personagens.html">Ver agentes</a>
+        </div>
+      </article>
 
-      <section class="missoes-secao">
-        <p class="classificacao">Operação atual // registro em andamento</p>
-        <h2>Missão Atual</h2>
+      <article class="personagem-card missao-card-custom bloqueada bloqueado" data-categoria="futura bloqueado" data-bloqueado="true">
+        <div class="missao-topo">
+          <div class="missao-identidade">
+            <div>
+              <span class="etiqueta">Operação futura</span>
+              <h3>Missão seguinte</h3>
+              <p>
+                Espaço reservado para a próxima missão da campanha. O conteúdo será liberado apenas após
+                os eventos de Corações do Outro Lado avançarem.
+              </p>
+            </div>
 
-        <p>
-          A operação principal da campanha ainda está em desenvolvimento. Os dados abaixo
-          representam apenas o que pode ser registrado no arquivo sem comprometer segredos,
-          revelações futuras ou informações que os jogadores ainda não devem acessar.
-        </p>
-
-        <article class="missao-atual">
-          <div>
-            <p class="classificacao">Dossiê operacional // prioridade alta</p>
-            <h3>Corações do Outro Lado</h3>
-
-            <p>
-              Uma série de eventos ligados ao Paranormal começou a se formar ao redor de
-              locais, pessoas e registros ainda incompletos. A Ordo Realitas iniciou o
-              acompanhamento da situação, mas parte das informações permanece fragmentada.
-            </p>
-
-            <p>
-              Os agentes envolvidos deverão investigar ocorrências, reunir pistas, sobreviver
-              ao contato com forças desconhecidas e descobrir o que conecta os acontecimentos
-              antes que o Outro Lado avance demais.
-            </p>
+            <span class="missao-sigla">OP-???</span>
           </div>
 
-          <div class="missao-dados">
-            <div class="missao-dado">
+          <div class="tags">
+            <span class="tag vermelho">Bloqueada</span>
+            <span class="tag">Aguardando progresso</span>
+          </div>
+
+          <div class="missao-mini-dados">
+            <div class="missao-mini-dado">
               <span>Status</span>
-              <strong>Em andamento</strong>
+              <strong>Não iniciada</strong>
             </div>
 
-            <div class="missao-dado">
-              <span>Tipo</span>
-              <strong>Investigação</strong>
+            <div class="missao-mini-dado">
+              <span>Acesso</span>
+              <strong>Indisponível</strong>
             </div>
 
-            <div class="missao-dado">
-              <span>Supervisão</span>
-              <strong>Ordo Realitas</strong>
-            </div>
-
-            <div class="missao-dado">
-              <span>Classificação</span>
-              <strong>Acesso parcial</strong>
+            <div class="missao-mini-dado">
+              <span>Condição</span>
+              <strong>Avanço da campanha</strong>
             </div>
           </div>
-        </article>
-      </section>
-
-      <section class="missoes-secao">
-        <p class="classificacao">Objetivos públicos // sem spoilers</p>
-        <h2>Objetivos Conhecidos</h2>
-
-        <p>
-          Estes objetivos são seguros para exibição pública aos jogadores. Eles indicam direção,
-          mas não entregam respostas completas.
-        </p>
-
-        <div class="objetivos-grid">
-
-          <article class="objetivo-card">
-            <span>Objetivo 01</span>
-            <h3>Investigar ocorrências</h3>
-            <p>
-              Reunir informações sobre eventos anormais, relatos suspeitos e sinais de
-              influência paranormal.
-            </p>
-          </article>
-
-          <article class="objetivo-card">
-            <span>Objetivo 02</span>
-            <h3>Identificar conexões</h3>
-            <p>
-              Descobrir se os casos registrados fazem parte de um padrão maior ou de uma
-              manifestação isolada.
-            </p>
-          </article>
-
-          <article class="objetivo-card">
-            <span>Objetivo 03</span>
-            <h3>Proteger envolvidos</h3>
-            <p>
-              Evitar que civis, agentes ou testemunhas sejam consumidos pela influência
-              do Outro Lado.
-            </p>
-          </article>
-
-          <article class="objetivo-card">
-            <span>Objetivo 04</span>
-            <h3>Coletar evidências</h3>
-            <p>
-              Registrar pistas, documentos, símbolos, locais e depoimentos importantes
-              para a investigação.
-            </p>
-          </article>
-
-          <article class="objetivo-card">
-            <span>Objetivo 05</span>
-            <h3>Conter ameaças</h3>
-            <p>
-              Neutralizar ou isolar manifestações perigosas quando a investigação deixar
-              de ser suficiente.
-            </p>
-          </article>
-
-          <article class="objetivo-card">
-            <span>Objetivo 06</span>
-            <h3>Sobreviver</h3>
-            <p>
-              Retornar com vida continua sendo uma prioridade operacional, mesmo quando
-              a Ordem finge que isso é simples.
-            </p>
-          </article>
-
         </div>
-      </section>
 
-      <section class="missoes-secao">
-        <p class="classificacao">Linha do tempo // registros liberados</p>
-        <h2>Eventos Registrados</h2>
+        <div class="missao-acoes">
+          <a class="btn" href="#">Arquivo bloqueado</a>
+        </div>
+      </article>
 
-        <p>
-          Esta linha do tempo pode ser atualizada conforme as sessões acontecerem. Por enquanto,
-          ela funciona como base para registros futuros.
-        </p>
-
-        <div class="linha-tempo">
-
-          <article class="evento-missao">
-            <div class="evento-missao-data">Registro 00</div>
-
-            <div class="evento-missao-info">
-              <strong>Arquivo da campanha iniciado</strong>
+      <article class="personagem-card missao-card-custom bloqueada bloqueado" data-categoria="futura bloqueado" data-bloqueado="true">
+        <div class="missao-topo">
+          <div class="missao-identidade">
+            <div>
+              <span class="etiqueta">Operação futura</span>
+              <h3>Arquivo de campo</h3>
               <p>
-                A estrutura principal do arquivo foi criada para organizar personagens,
-                locais, missões e documentos da campanha.
+                Registro reservado para missões menores, cenas paralelas, investigações individuais ou
+                relatórios abertos entre operações principais.
               </p>
             </div>
-          </article>
 
-          <article class="evento-missao">
-            <div class="evento-missao-data">Registro 01</div>
+            <span class="missao-sigla">CAM-???</span>
+          </div>
 
-            <div class="evento-missao-info">
-              <strong>Base da Ordo Realitas mapeada</strong>
-              <p>
-                Os primeiros setores da base foram registrados, incluindo salas, alas,
-                áreas restritas e zonas de suporte operacional.
-              </p>
+          <div class="tags">
+            <span class="tag roxo">Campo</span>
+            <span class="tag vermelho">Bloqueado</span>
+          </div>
+
+          <div class="missao-mini-dados">
+            <div class="missao-mini-dado">
+              <span>Status</span>
+              <strong>Não iniciado</strong>
             </div>
-          </article>
 
-          <article class="evento-missao">
-            <div class="evento-missao-data">Registro 02</div>
-
-            <div class="evento-missao-info">
-              <strong>Operação principal preparada</strong>
-              <p>
-                A missão Corações do Outro Lado foi adicionada ao painel operacional como
-                campanha ativa em acompanhamento.
-              </p>
+            <div class="missao-mini-dado">
+              <span>Tipo</span>
+              <strong>Relatório lateral</strong>
             </div>
-          </article>
 
+            <div class="missao-mini-dado">
+              <span>Liberação</span>
+              <strong>Evento narrativo</strong>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <section class="missoes-secao">
-        <p class="classificacao">Arquivos da operação // materiais vinculados</p>
-        <h2>Arquivos de Missão</h2>
-
-        <p>
-          Esta área pode receber relatórios de sessão, pistas encontradas, mensagens,
-          documentos recuperados e registros bloqueados.
-        </p>
-
-        <div class="arquivos-missoes">
-
-          <article class="arquivo-missao-card">
-            <span>Liberado</span>
-            <h3>Relatório Inicial</h3>
-            <p>
-              Documento-base da operação, usado para registrar a situação inicial e os
-              primeiros dados conhecidos.
-            </p>
-            <span class="tag-missao">Disponível</span>
-          </article>
-
-          <article class="arquivo-missao-card bloqueado">
-            <span>Bloqueado</span>
-            <h3>Registro de Campo</h3>
-            <p>
-              Área reservada para anotações de sessão, eventos descobertos pelos jogadores
-              e consequências diretas da investigação.
-            </p>
-            <span class="tag-missao">Aguardando sessão</span>
-          </article>
-
-          <article class="arquivo-missao-card bloqueado">
-            <span>Restrito</span>
-            <h3>Arquivo Corrompido</h3>
-            <p>
-              Registro incompleto detectado no sistema. Parte do conteúdo não pode ser
-              exibida no momento.
-            </p>
-            <span class="tag-missao">Acesso negado</span>
-          </article>
-
+        <div class="missao-acoes">
+          <a class="btn" href="#">Aguardando dados</a>
         </div>
-      </section>
-
-      <section class="terminal-missoes">
-        <span>Nota do sistema // operação em andamento</span>
-        <p>
-          Uma missão não começa quando os agentes chegam ao local. Ela começa quando a Ordem
-          decide que alguém precisa saber a verdade — mesmo que ninguém esteja pronto para ela.
-        </p>
-      </section>
-
+      </article>
     </section>
 
+    <section class="hero mt-3">
+      <small>Progresso narrativo</small>
+      <h2>Linha operacional</h2>
+      <p>
+        Esta linha resume o estado atual da campanha dentro do sistema da Ordo. Ela pode ser atualizada
+        depois de cada sessão para mostrar descobertas, mudanças de patente, novos locais e documentos liberados.
+      </p>
+    </section>
+
+    <section class="timeline-missoes">
+      <article class="timeline-item">
+        <span>Etapa 01</span>
+        <h4>Recrutamento dos agentes</h4>
+        <p>
+          Maisie, Vivian e Roselyn são registradas no sistema como recém-recrutadas. Seus dossiês representam
+          avaliações iniciais, não histórico veterano dentro da Ordo Realitas.
+        </p>
+      </article>
+
+      <article class="timeline-item">
+        <span>Etapa 02</span>
+        <h4>Organização dos dossiês</h4>
+        <p>
+          A Ordo reúne informações mecânicas, visuais, psicológicas e narrativas dos agentes, além de registrar
+          equipamentos declarados, habilidades observadas e possíveis riscos operacionais.
+        </p>
+      </article>
+
+      <article class="timeline-item">
+        <span>Etapa 03</span>
+        <h4>Primeiro caso: Miyara</h4>
+        <p>
+          O caso de Miyara aparece como o primeiro ponto sensível da missão. Parte dos documentos permanece
+          incompleta ou restrita enquanto a investigação ainda não avança em campo.
+        </p>
+      </article>
+
+      <article class="timeline-item">
+        <span>Etapa 04</span>
+        <h4>Envio para campo</h4>
+        <p>
+          Os agentes são encaminhados para sua primeira missão oficial. A atuação deles poderá alterar o conteúdo
+          do arquivo, liberar novos documentos e definir como a Ordo passará a enxergar cada recruta.
+        </p>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Objetivos iniciais</small>
+      <h2>Diretrizes da missão</h2>
+      <p>
+        As diretrizes abaixo representam os objetivos iniciais conhecidos pela Ordo. Elas não revelam toda a verdade
+        do caso e podem mudar conforme os jogadores interagirem com documentos, locais e testemunhas.
+      </p>
+    </section>
+
+    <section class="grid-3">
+      <article class="card">
+        <span class="etiqueta">Objetivo 01</span>
+        <h3>Investigar Miyara</h3>
+        <p>
+          Levantar informações sobre a primeira vítima, sua rotina, seus vínculos, os eventos anteriores ao caso
+          e qualquer sinal de interferência paranormal.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Caso sensível</span>
+          <span class="tag roxo">Prioridade</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="etiqueta">Objetivo 02</span>
+        <h3>Mapear locais</h3>
+        <p>
+          Identificar pontos de interesse, ambientes contaminados, testemunhas próximas e áreas que apresentem
+          sinais de anomalia ou ocultação.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag">Investigação</span>
+          <span class="tag amarelo">Campo</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="etiqueta">Objetivo 03</span>
+        <h3>Avaliar recrutas</h3>
+        <p>
+          Registrar como os novos agentes lidam com pressão, medo, combate, tomada de decisão e contato direto
+          com o Outro Lado.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag roxo">Ordo Realitas</span>
+          <span class="tag">Avaliação</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid-2 mt-3">
+      <article class="card terminal-card">
+        <span class="etiqueta">Terminal de missão</span>
+        <h3>Log operacional</h3>
+        <p><b>&gt;</b> Missão ativa identificada: Corações do Outro Lado.</p>
+        <p><b>&gt;</b> Agentes recém-recrutados anexados ao arquivo.</p>
+        <p><b>&gt;</b> Primeira vítima registrada: Miyara.</p>
+        <p><b>&gt;</b> Documentos e locais aguardam atualização após sessão.</p>
+      </article>
+
+      <article class="card documento-corrompido">
+        <span class="etiqueta">Interferência</span>
+        <h3>Dados instáveis</h3>
+        <p>
+          A Ordo ainda não possui todas as respostas. Algumas informações podem estar erradas, incompletas
+          ou propositalmente ocultas até que os agentes encontrem evidências suficientes em jogo.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Incompleto</span>
+          <span class="tag roxo">Atualização futura</span>
+        </div>
+      </article>
+    </section>
   </main>
 
   <footer>
-    <p>
-      Painel parcial de missões da campanha. Informações sensíveis foram ocultadas por segurança operacional.
-    </p>
+    <p>Arquivo da Campanha — Registro de missões e operações da Ordo Realitas</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
