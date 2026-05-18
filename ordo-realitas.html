@@ -191,7 +191,7 @@
 
     .grid-lideres {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
       margin-top: 18px;
     }
@@ -205,7 +205,7 @@
       background:
         linear-gradient(135deg, rgba(255,255,255,0.030), rgba(124,60,255,0.035)),
         rgba(0,0,0,0.44);
-      min-height: 320px;
+      min-height: 340px;
       transition: 0.22s ease;
     }
 
@@ -233,6 +233,12 @@
       background:
         radial-gradient(circle at 18% 16%, rgba(139,214,133,0.10), transparent 34%),
         radial-gradient(circle at 80% 14%, rgba(216,189,116,0.10), transparent 34%);
+    }
+
+    .lider-card.blender::before {
+      background:
+        radial-gradient(circle at 18% 16%, rgba(181,31,53,0.20), transparent 34%),
+        radial-gradient(circle at 80% 14%, rgba(216,189,116,0.12), transparent 34%);
     }
 
     .lider-card > * {
@@ -400,6 +406,12 @@
       line-height: 1.72;
     }
 
+    @media (max-width: 1180px) {
+      .grid-lideres {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 1100px) {
       .ordo-cabecalho {
         grid-template-columns: 1fr;
@@ -410,7 +422,6 @@
       }
 
       .mini-grid-ordo,
-      .grid-lideres,
       .setores-ordo-grid,
       .protocolos-grid,
       .patentes-grid,
@@ -562,15 +573,17 @@
       <p><b>&gt;</b> Carregando estrutura interna da Ordo Realitas...</p>
       <p><b>&gt;</b> Recrutas vinculados à missão Corações do Outro Lado detectados.</p>
       <p><b>&gt;</b> Histórico oficial dos recrutas: inexistente antes da primeira missão.</p>
+      <p><b>&gt;</b> Núcleo de comando identificado: Klint, Yuna, Lisa e Blender.</p>
       <p><b>&gt;</b> Sistema de patentes: em preparação.</p>
     </section>
 
     <section class="hero">
       <small>Comando</small>
-      <h2>Trindade da Ordem</h2>
+      <h2>Núcleo da Ordem</h2>
       <p>
-        A base operacional da campanha é sustentada por figuras centrais que coordenam, analisam e estruturam
-        a atuação dos agentes. Para os recrutas, esses nomes representam autoridade, orientação e pressão.
+        A base operacional da campanha é sustentada por figuras centrais que coordenam, analisam,
+        combatem e estruturam a atuação dos agentes. Para os recrutas, esses nomes representam
+        autoridade, orientação, pressão e o tipo de pessoa que sobrevive tempo demais encarando o Outro Lado.
       </p>
     </section>
 
@@ -616,7 +629,7 @@
         </p>
 
         <div class="tags">
-          <span class="tag roxo">Ocultismo</span>
+          <span class="tag roxo">Ocultista</span>
           <span class="tag">Morte</span>
           <span class="tag amarelo">NEX 60%</span>
         </div>
@@ -667,6 +680,38 @@
           <div class="lider-dado">
             <small>Postura</small>
             <strong>Direta</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="lider-card blender">
+        <span>Semi-Líder Combatente</span>
+        <h3>Blender</h3>
+        <p>
+          Porra-louca total, alto, grosseiro e sincero até demais. Blender fala sem filtro, ri em situações perigosas
+          e xinga enquanto luta. Valoriza coragem, resistência e qualquer pessoa que aguente continuar de pé depois de apanhar.
+        </p>
+
+        <div class="tags">
+          <span class="tag vermelho">Combatente</span>
+          <span class="tag">Lutador</span>
+          <span class="tag amarelo">NEX 60%</span>
+        </div>
+
+        <div class="lider-dados">
+          <div class="lider-dado">
+            <small>Função</small>
+            <strong>Combate e linha de frente</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Status</small>
+            <strong>Ativo</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Postura</small>
+            <strong>Vai pra rua</strong>
           </div>
         </div>
       </article>
@@ -725,9 +770,24 @@
 
       <article class="setor-ordo">
         <span>Setor 04</span>
+        <h3>Combate</h3>
+        <p>
+          Treina agentes para sobreviverem em confronto direto, enfrentar criaturas, proteger civis sob pressão
+          e agir quando investigação vira pancadaria.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Blender</span>
+          <span class="tag">Linha de frente</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 05</span>
         <h3>Arquivos</h3>
         <p>
           Mantém relatórios, dossiês, documentos, evidências e registros de missões concluídas ou em andamento.
+          Também organiza quais informações podem ser liberadas para cada patente.
         </p>
 
         <div class="tags mt-2">
@@ -737,28 +797,16 @@
       </article>
 
       <article class="setor-ordo">
-        <span>Setor 05</span>
+        <span>Setor 06</span>
         <h3>Contenção</h3>
         <p>
           Área responsável por armazenar, isolar ou neutralizar objetos, pessoas e manifestações consideradas instáveis.
+          Nem todo problema pode ser destruído; alguns precisam ser trancados.
         </p>
 
         <div class="tags mt-2">
           <span class="tag vermelho">Restrito</span>
           <span class="tag roxo">Alto risco</span>
-        </div>
-      </article>
-
-      <article class="setor-ordo">
-        <span>Setor 06</span>
-        <h3>Recrutamento</h3>
-        <p>
-          Identifica sobreviventes, especialistas e pessoas marcadas pelo paranormal que podem se tornar agentes.
-        </p>
-
-        <div class="tags mt-2">
-          <span class="tag amarelo">Avaliação</span>
-          <span class="tag">Novos agentes</span>
         </div>
       </article>
     </section>
@@ -968,8 +1016,8 @@
       <h3>Nota final do sistema</h3>
       <p>
         O acesso à Ordo Realitas representa uma camada interna do site. A partir daqui, o sistema pode evoluir
-        para senhas por patente, documentos desbloqueáveis, registros por missão e páginas secretas conectadas
-        a pistas escondidas no Arquivo da Campanha.
+        para senhas por patente, documentos desbloqueáveis, registros por missão, páginas secretas conectadas
+        a pistas escondidas no Arquivo da Campanha e fichas completas dos membros do Núcleo da Ordem.
       </p>
     </section>
   </main>
