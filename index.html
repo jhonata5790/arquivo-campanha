@@ -459,6 +459,7 @@
         respostaOrdo.className = "resposta-ordo concedido";
 
         setTimeout(() => {
+          sessionStorage.setItem("acessoOrdoRealitas", "autorizado");
           window.location.href = "ordo-realitas.html";
         }, 900);
 
