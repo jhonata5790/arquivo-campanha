@@ -6,6 +6,165 @@
   <title>Arquivo da Campanha | Ordo Realitas</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .link-secreto-ordo {
+      color: var(--texto-fraco);
+      cursor: pointer;
+      transition: 0.22s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .link-secreto-ordo:hover {
+      color: var(--amarelo);
+      border-bottom-color: rgba(216, 189, 116, 0.45);
+      text-shadow: 0 0 12px rgba(124, 60, 255, 0.35);
+    }
+
+    .modal-ordo {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at center, rgba(124, 60, 255, 0.18), transparent 34%),
+        rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-ordo.ativo {
+      display: grid;
+    }
+
+    .modal-ordo-caixa {
+      position: relative;
+      width: min(460px, 100%);
+      overflow: hidden;
+      border: 1px solid rgba(124, 60, 255, 0.32);
+      border-radius: 24px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(124,60,255,0.08)),
+        rgba(0,0,0,0.88);
+      box-shadow:
+        0 0 35px rgba(124, 60, 255, 0.18),
+        inset 0 0 40px rgba(0,0,0,0.6);
+    }
+
+    .modal-ordo-caixa::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.34;
+      pointer-events: none;
+    }
+
+    .modal-ordo-caixa > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .modal-ordo-caixa span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .modal-ordo-caixa h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .modal-ordo-caixa p {
+      color: var(--texto-fraco);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .modal-ordo-caixa input {
+      width: 100%;
+      border: 1px solid rgba(124, 60, 255, 0.30);
+      border-radius: 14px;
+      padding: 13px 14px;
+      margin-bottom: 12px;
+      background: rgba(0,0,0,0.42);
+      color: var(--texto);
+      outline: none;
+    }
+
+    .modal-ordo-caixa input:focus {
+      border-color: rgba(216, 189, 116, 0.42);
+      box-shadow: 0 0 18px rgba(124, 60, 255, 0.14);
+    }
+
+    .modal-ordo-fechar {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      background: rgba(0,0,0,0.36);
+      color: var(--texto);
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .resposta-ordo {
+      margin-top: 14px;
+      margin-bottom: 0 !important;
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 11px;
+    }
+
+    .resposta-ordo.negado {
+      color: #ff7c8f;
+    }
+
+    .resposta-ordo.concedido {
+      color: var(--amarelo);
+    }
+
+    .modal-ordo-caixa.falha {
+      animation: falhaAcessoOrdo 0.22s steps(2, end);
+    }
+
+    @keyframes falhaAcessoOrdo {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+    }
+
+    @media (max-width: 760px) {
+      .modal-ordo-caixa {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .modal-ordo-caixa h3 {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -227,9 +386,114 @@
   </main>
 
   <footer>
-    <p>Arquivo da Campanha — Sistema narrativo da Ordo Realitas</p>
+    <p>
+      Arquivo da Campanha — Sistema narrativo da
+      <span class="link-secreto-ordo" id="abrir-acesso-ordo">Ordo Realitas</span>
+    </p>
   </footer>
 
+  <div class="modal-ordo" id="modal-ordo" aria-hidden="true">
+    <div class="modal-ordo-caixa" id="modal-ordo-caixa">
+      <button class="modal-ordo-fechar" id="fechar-acesso-ordo" type="button">×</button>
+
+      <span>Sistema interno // Ordo Realitas</span>
+      <h3>Acesso restrito</h3>
+
+      <p>
+        Insira a chave de autorização para acessar arquivos internos da organização.
+      </p>
+
+      <input
+        type="password"
+        id="senha-ordo"
+        placeholder="Chave de autorização"
+        autocomplete="off"
+      >
+
+      <button class="btn" id="validar-senha-ordo" type="button">
+        Validar credencial
+      </button>
+
+      <p class="resposta-ordo" id="resposta-ordo">
+        Aguardando credencial...
+      </p>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+
+  <script>
+    const abrirAcessoOrdo = document.getElementById("abrir-acesso-ordo");
+    const fecharAcessoOrdo = document.getElementById("fechar-acesso-ordo");
+    const modalOrdo = document.getElementById("modal-ordo");
+    const caixaModalOrdo = document.getElementById("modal-ordo-caixa");
+    const inputSenhaOrdo = document.getElementById("senha-ordo");
+    const validarSenhaOrdo = document.getElementById("validar-senha-ordo");
+    const respostaOrdo = document.getElementById("resposta-ordo");
+
+    const senhaCorretaOrdo = "VERITAS";
+
+    function abrirModalOrdo() {
+      modalOrdo.classList.add("ativo");
+      modalOrdo.setAttribute("aria-hidden", "false");
+
+      respostaOrdo.textContent = "Aguardando credencial...";
+      respostaOrdo.className = "resposta-ordo";
+      inputSenhaOrdo.value = "";
+
+      setTimeout(() => {
+        inputSenhaOrdo.focus();
+      }, 80);
+    }
+
+    function fecharModalOrdo() {
+      modalOrdo.classList.remove("ativo");
+      modalOrdo.setAttribute("aria-hidden", "true");
+    }
+
+    function validarAcessoOrdo() {
+      const senhaDigitada = inputSenhaOrdo.value.trim().toUpperCase();
+
+      if (senhaDigitada === senhaCorretaOrdo) {
+        respostaOrdo.textContent = "ACESSO CONCEDIDO — redirecionando...";
+        respostaOrdo.className = "resposta-ordo concedido";
+
+        setTimeout(() => {
+          window.location.href = "ordo-realitas.html";
+        }, 900);
+
+        return;
+      }
+
+      respostaOrdo.textContent = "ACESSO NEGADO — credencial inválida.";
+      respostaOrdo.className = "resposta-ordo negado";
+
+      caixaModalOrdo.classList.remove("falha");
+      void caixaModalOrdo.offsetWidth;
+      caixaModalOrdo.classList.add("falha");
+    }
+
+    abrirAcessoOrdo?.addEventListener("click", abrirModalOrdo);
+    fecharAcessoOrdo?.addEventListener("click", fecharModalOrdo);
+    validarSenhaOrdo?.addEventListener("click", validarAcessoOrdo);
+
+    inputSenhaOrdo?.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter") {
+        validarAcessoOrdo();
+      }
+    });
+
+    modalOrdo?.addEventListener("click", (evento) => {
+      if (evento.target === modalOrdo) {
+        fecharModalOrdo();
+      }
+    });
+
+    document.addEventListener("keydown", (evento) => {
+      if (evento.key === "Escape") {
+        fecharModalOrdo();
+      }
+    });
+  </script>
 </body>
 </html>
