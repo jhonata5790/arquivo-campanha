@@ -258,7 +258,8 @@
     }
 
     .aba-maisie,
-    .aba-elemento-ritual {
+    .aba-elemento-ritual,
+    .aba-grupo-habilidade {
       border: 1px solid rgba(143, 82, 255, 0.22);
       border-radius: 12px;
       padding: 12px 16px;
@@ -273,13 +274,15 @@
     }
 
     .aba-maisie:hover,
-    .aba-elemento-ritual:hover {
+    .aba-elemento-ritual:hover,
+    .aba-grupo-habilidade:hover {
       color: var(--dourado);
       border-color: var(--roxo);
       transform: translateY(-2px);
     }
 
-    .aba-maisie.ativa {
+    .aba-maisie.ativa,
+    .aba-grupo-habilidade.ativa {
       color: var(--dourado);
       border-color: rgba(143, 82, 255, 0.65);
       background:
@@ -402,6 +405,101 @@
       font-size: 24px;
       line-height: 1.4;
       font-weight: 600;
+    }
+
+    .grupo-cards-maisie {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .card-lista-maisie {
+      border: 1px solid rgba(143, 82, 255, 0.16);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.42);
+      overflow: hidden;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card-lista-maisie h4 {
+      color: var(--dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 15px;
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(143, 82, 255, 0.12);
+    }
+
+    .item-interativo-maisie {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--texto);
+      text-align: left;
+      padding: 14px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(143, 82, 255, 0.10);
+      transition: background 0.18s ease, color 0.18s ease;
+      font-family: inherit;
+    }
+
+    .item-interativo-maisie:last-child {
+      border-bottom: none;
+    }
+
+    .item-interativo-maisie:hover {
+      background: rgba(143, 82, 255, 0.08);
+      color: var(--dourado);
+    }
+
+    .lista-texto-maisie ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .lista-texto-maisie li + li {
+      margin-top: 10px;
+    }
+
+    .historia-maisie p + p,
+    .personalidade-maisie p + p {
+      margin-top: 14px;
+    }
+
+    .galeria-maisie {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .galeria-maisie figure {
+      border: 1px solid rgba(143, 82, 255, 0.16);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.24);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .galeria-maisie figure:hover {
+      transform: translateY(-4px);
+      border-color: rgba(216, 189, 116, 0.32);
+      box-shadow: 0 0 20px rgba(143, 82, 255, 0.10);
+    }
+
+    .galeria-maisie img {
+      width: 100%;
+      display: block;
+      background: #000;
+    }
+
+    .galeria-maisie figcaption {
+      padding: 12px 14px;
+      color: var(--cinza);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     /* RODA */
@@ -743,7 +841,9 @@
     }
 
     .detalhe-lista-maisie.atualizado,
-    .detalhe-atributo-maisie.atualizado {
+    .detalhe-atributo-maisie.atualizado,
+    .detalhe-ritual-completo.atualizado,
+    .detalhe-habilidade-completo.atualizado {
       animation: detalheAtualizadoMaisie 0.35s ease;
     }
 
@@ -753,99 +853,279 @@
       100% { border-color: rgba(143, 82, 255, 0.22); }
     }
 
-    .grupo-cards-maisie {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 16px;
-    }
+    /* HABILIDADES */
 
-    .card-lista-maisie {
-      border: 1px solid rgba(143, 82, 255, 0.16);
-      border-radius: 18px;
-      background: rgba(0,0,0,0.42);
+    .painel-habilidades-maisie {
+      margin-top: 18px;
+      border: 1px solid rgba(143, 82, 255, 0.20);
+      border-radius: 22px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(143, 82, 255, 0.13), transparent 32%),
+        radial-gradient(circle at 85% 18%, rgba(70, 170, 255, 0.08), transparent 28%),
+        linear-gradient(135deg, rgba(8, 4, 18, 0.92), rgba(3, 7, 15, 0.86));
       overflow: hidden;
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .card-lista-maisie h4 {
+    .habilidades-topo-maisie {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .habilidades-topo-maisie h4 {
       color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 15px;
-      padding: 16px 16px 12px;
-      border-bottom: 1px solid rgba(143, 82, 255, 0.12);
+      font-size: 18px;
     }
 
-    .item-interativo-maisie {
+    .habilidades-topo-maisie p {
+      color: var(--cinza);
+      font-size: 14px;
+      max-width: 640px;
+      line-height: 1.6;
+    }
+
+    .abas-grupo-habilidade {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .aba-grupo-habilidade {
+      padding: 10px 14px;
+      font-size: 11px;
+    }
+
+    .habilidades-layout-maisie {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .lista-habilidades-maisie {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.30);
+      overflow: hidden;
+    }
+
+    .habilidade-botao {
       width: 100%;
       border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       background: transparent;
       color: var(--texto);
       text-align: left;
-      padding: 14px 16px;
+      padding: 15px;
       cursor: pointer;
-      border-bottom: 1px solid rgba(143, 82, 255, 0.10);
-      transition: background 0.18s ease, color 0.18s ease;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: center;
+      transition: 0.18s ease;
       font-family: inherit;
     }
 
-    .item-interativo-maisie:last-child {
+    .habilidade-botao:last-child {
       border-bottom: none;
     }
 
-    .item-interativo-maisie:hover {
-      background: rgba(143, 82, 255, 0.08);
-      color: var(--dourado);
+    .habilidade-botao:hover,
+    .habilidade-botao.ativo {
+      background: linear-gradient(135deg, rgba(143, 82, 255, 0.12), rgba(255,255,255,0.025));
+      color: #fff2c6;
     }
 
-    .lista-texto-maisie ul {
+    .icone-habilidade-falso {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at center, rgba(143, 82, 255, 0.20), rgba(0,0,0,0.42) 66%);
+      color: var(--dourado);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .habilidade-botao strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .habilidade-botao span span {
+      display: block;
+      color: var(--cinza);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .detalhe-habilidade-completo {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.34);
+      padding: 20px;
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detalhe-habilidade-completo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(143, 82, 255, 0.11), transparent 32%),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: cover, 34px 34px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .detalhe-habilidade-completo > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .habilidade-cabecalho {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      padding-bottom: 16px;
+    }
+
+    .habilidade-cabecalho h4 {
+      color: #fff2c6;
+      font-size: 28px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .habilidade-cabecalho p {
+      color: var(--cinza);
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 650px;
+    }
+
+    .habilidade-tipo {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: var(--dourado);
+      background: rgba(216, 189, 116, 0.06);
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .habilidade-grid-dados {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .habilidade-dado {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .habilidade-dado span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 6px;
+    }
+
+    .habilidade-dado strong {
+      display: block;
+      color: var(--texto);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .habilidade-secao {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    .habilidade-secao h5 {
+      color: var(--dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .habilidade-secao p,
+    .habilidade-secao li {
+      color: var(--cinza);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .habilidade-secao ul {
       margin: 0;
       padding-left: 18px;
     }
 
-    .lista-texto-maisie li + li {
-      margin-top: 10px;
+    .habilidade-secao li + li {
+      margin-top: 8px;
     }
 
-    .historia-maisie p + p,
-    .personalidade-maisie p + p {
-      margin-top: 14px;
-    }
-
-    .galeria-maisie {
+    .resumo-operacional-habilidades {
+      margin-top: 16px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
-    .galeria-maisie figure {
+    .resumo-operacional-habilidades div {
       border: 1px solid rgba(143, 82, 255, 0.16);
-      border-radius: 18px;
-      overflow: hidden;
-      background: rgba(0,0,0,0.24);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.28);
     }
 
-    .galeria-maisie figure:hover {
-      transform: translateY(-4px);
-      border-color: rgba(216, 189, 116, 0.32);
-      box-shadow: 0 0 20px rgba(143, 82, 255, 0.10);
-    }
-
-    .galeria-maisie img {
-      width: 100%;
+    .resumo-operacional-habilidades span {
       display: block;
-      background: #000;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 10px;
+      margin-bottom: 6px;
     }
 
-    .galeria-maisie figcaption {
-      padding: 12px 14px;
-      color: var(--cinza);
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    .resumo-operacional-habilidades strong {
+      color: var(--texto);
+      font-size: 14px;
     }
 
     /* RITUAIS */
@@ -931,7 +1211,6 @@
       border-color: var(--elemento-cor);
       background:
         linear-gradient(135deg, var(--elemento-bg), rgba(0,0,0,0.28));
-      box-shadow: 0 0 18px color-mix(in srgb, var(--elemento-cor) 26%, transparent);
     }
 
     .rituais-layout-maisie {
@@ -990,11 +1269,11 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      image-rendering: auto;
       opacity: 0.9;
     }
 
-    .mini-sigilo-ritual img.img-indisponivel {
+    .mini-sigilo-ritual img.img-indisponivel,
+    .ritual-sigilo-grande img.img-indisponivel {
       display: none;
     }
 
@@ -1006,7 +1285,7 @@
       margin-bottom: 4px;
     }
 
-    .ritual-botao span {
+    .ritual-botao span span {
       display: block;
       color: var(--cinza);
       font-size: 11px;
@@ -1072,10 +1351,6 @@
       opacity: 0.94;
     }
 
-    .ritual-sigilo-grande img.img-indisponivel {
-      display: none;
-    }
-
     .ritual-titulo h4 {
       color: #fff2c6;
       font-size: 30px;
@@ -1139,14 +1414,16 @@
       line-height: 1.35;
     }
 
-    .ritual-secao {
+    .ritual-secao,
+    .habilidade-secao {
       border-top: 1px solid rgba(255,255,255,0.10);
       padding-top: 14px;
       margin-top: 14px;
     }
 
-    .ritual-secao h5 {
-      color: var(--elemento-cor2);
+    .ritual-secao h5,
+    .habilidade-secao h5 {
+      color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 13px;
@@ -1154,18 +1431,22 @@
     }
 
     .ritual-secao p,
-    .ritual-secao li {
+    .ritual-secao li,
+    .habilidade-secao p,
+    .habilidade-secao li {
       color: var(--cinza);
       line-height: 1.72;
       font-size: 14px;
     }
 
-    .ritual-secao ul {
+    .ritual-secao ul,
+    .habilidade-secao ul {
       margin: 0;
       padding-left: 18px;
     }
 
-    .ritual-secao li + li {
+    .ritual-secao li + li,
+    .habilidade-secao li + li {
       margin-top: 8px;
     }
 
@@ -1254,16 +1535,20 @@
 
       .grupo-cards-maisie,
       .galeria-maisie,
-      .rituais-layout-maisie {
+      .rituais-layout-maisie,
+      .habilidades-layout-maisie,
+      .resumo-operacional-habilidades {
         grid-template-columns: 1fr;
       }
 
-      .lista-rituais-elemento {
+      .lista-rituais-elemento,
+      .lista-habilidades-maisie {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .ritual-botao {
+      .ritual-botao,
+      .habilidade-botao {
         border-right: 1px solid rgba(255,255,255,0.08);
       }
     }
@@ -1339,7 +1624,8 @@
       }
 
       .abas-maisie,
-      .abas-elementos-ritual {
+      .abas-elementos-ritual,
+      .abas-grupo-habilidade {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 10px;
@@ -1348,7 +1634,8 @@
       }
 
       .aba-maisie,
-      .aba-elemento-ritual {
+      .aba-elemento-ritual,
+      .aba-grupo-habilidade {
         flex: 0 0 auto;
         font-size: 10px;
         padding: 10px 12px;
@@ -1501,33 +1788,40 @@
         letter-spacing: 0.08em;
       }
 
-      .painel-rituais-maisie {
+      .painel-rituais-maisie,
+      .painel-habilidades-maisie {
         padding: 12px;
         border-radius: 18px;
       }
 
-      .rituais-topo-maisie {
+      .rituais-topo-maisie,
+      .habilidades-topo-maisie {
         align-items: stretch;
       }
 
-      .rituais-topo-maisie h4 {
+      .rituais-topo-maisie h4,
+      .habilidades-topo-maisie h4 {
         font-size: 16px;
       }
 
-      .lista-rituais-elemento {
+      .lista-rituais-elemento,
+      .lista-habilidades-maisie {
         grid-template-columns: 1fr;
       }
 
-      .ritual-botao {
+      .ritual-botao,
+      .habilidade-botao {
         grid-template-columns: 38px 1fr;
       }
 
-      .mini-sigilo-ritual {
+      .mini-sigilo-ritual,
+      .icone-habilidade-falso {
         width: 38px;
         height: 38px;
       }
 
-      .detalhe-ritual-completo {
+      .detalhe-ritual-completo,
+      .detalhe-habilidade-completo {
         padding: 14px;
         border-radius: 16px;
         min-height: auto;
@@ -1543,12 +1837,23 @@
         border-radius: 16px;
       }
 
-      .ritual-titulo h4 {
+      .ritual-titulo h4,
+      .habilidade-cabecalho h4 {
         font-size: 20px;
       }
 
-      .ritual-grid-dados {
+      .ritual-grid-dados,
+      .habilidade-grid-dados {
         grid-template-columns: 1fr;
+      }
+
+      .habilidade-cabecalho {
+        display: block;
+      }
+
+      .habilidade-tipo {
+        display: inline-flex;
+        margin-top: 12px;
       }
     }
 
@@ -1797,43 +2102,51 @@
           </section>
 
           <section class="conteudo-maisie" id="habilidades">
-            <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
-                <h4>Habilidades</h4>
+            <div class="bloco-maisie">
+              <h3>Habilidades Operacionais</h3>
+              <p>
+                Registro mecânico e narrativo das habilidades atuais da agente. O arquivo considera o estado
+                presente da Maisie em NEX 40%, sem listar progressões futuras que ainda não estão disponíveis.
+              </p>
 
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Escolhido pelo Outro Lado" data-texto="Maisie teve contato direto com o paranormal e foi marcada pelo Outro Lado. Isso permite que ela lance rituais e desenvolva sua conexão com o ocultismo.">
-                  Escolhido pelo Outro Lado
-                </button>
+              <div class="painel-habilidades-maisie">
+                <div class="habilidades-topo-maisie">
+                  <div>
+                    <h4 id="titulo-grupo-habilidade">Classe e Poderes</h4>
+                    <p id="descricao-grupo-habilidade">
+                      Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da agente.
+                    </p>
+                  </div>
 
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Técnica Medicinal" data-texto="Por sua origem como Agente de Saúde, Maisie possui conhecimento técnico ligado a primeiros socorros, tratamento e uso prático de recursos medicinais.">
-                  Técnica Medicinal
-                </button>
+                  <div class="abas-grupo-habilidade">
+                    <button class="aba-grupo-habilidade ativa" data-grupo="poderes">Poderes</button>
+                    <button class="aba-grupo-habilidade" data-grupo="trilha">Trilha</button>
+                  </div>
+                </div>
 
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Treinamento em Perícia" data-texto="Maisie aprimorou suas capacidades técnicas e investigativas através de treinamento especializado, reforçando seu lado intelectual e funcional.">
-                  Treinamento em Perícia
-                </button>
+                <div class="habilidades-layout-maisie">
+                  <div class="lista-habilidades-maisie" id="lista-habilidades-maisie"></div>
 
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Ritual Predileto" data-texto="Maisie possui um ritual com afinidade especial. No caso dela, Cicatrização se destaca como um ritual predileto, reforçando seu lado prático e sobrevivente.">
-                  Ritual Predileto
-                </button>
+                  <article class="detalhe-habilidade-completo" id="detalhe-habilidade-completo"></article>
+                </div>
+
+                <div class="resumo-operacional-habilidades">
+                  <div>
+                    <span>Círculo atual</span>
+                    <strong>Até 2º círculo</strong>
+                  </div>
+
+                  <div>
+                    <span>Ritual predileto</span>
+                    <strong>Cicatrização</strong>
+                  </div>
+
+                  <div>
+                    <span>Bônus medicinal</span>
+                    <strong>+3 PV curados</strong>
+                  </div>
+                </div>
               </div>
-
-              <div class="card-lista-maisie">
-                <h4>Trilha</h4>
-
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Lâmina Maldita — NEX 10%" data-texto="Maisie segue a trilha de Lâmina Maldita, misturando combate e paranormalidade de forma agressiva e funcional. Essa etapa marca o início da sua arma como extensão do ocultismo.">
-                  NEX 10% — Lâmina Maldita
-                </button>
-
-                <button class="item-interativo-maisie habilidade-item" data-titulo="Gladiador Paranormal — NEX 40%" data-texto="Com o avanço da trilha, Maisie se torna uma Gladiadora Paranormal, aproximando ainda mais combate, improviso e uso brutal da energia do Outro Lado.">
-                  NEX 40% — Gladiador Paranormal
-                </button>
-              </div>
-            </div>
-
-            <div class="detalhe-lista-maisie" id="detalhe-habilidade-maisie">
-              <h4>Nenhuma habilidade selecionada</h4>
-              <p>Clique em uma habilidade ou marco da trilha para abrir a descrição.</p>
             </div>
           </section>
 
@@ -1995,13 +2308,145 @@
 
     document.body.classList.add(estadoMaisie.mobile ? "versao-mobile" : "versao-desktop");
 
-    const abasMaisie = document.querySelectorAll(".aba-maisie");
-    const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
     const fichaMaisie = document.querySelector(".ficha-maisie");
     const centroRodaMaisie = document.getElementById("centro-roda-maisie");
     const raioSelecaoMaisie = document.getElementById("raio-selecao-maisie");
     const linhasAtributoMaisie = document.querySelectorAll(".linha-atributo-maisie");
     const rodaMaisie = document.getElementById("roda-maisie");
+
+    const dadosHabilidadesMaisie = {
+      poderes: {
+        titulo: "Classe e Poderes",
+        descricao: "Capacidades principais que sustentam o uso de rituais, cura e treinamento técnico da agente.",
+        habilidades: [
+          {
+            id: "escolhido-outro-lado",
+            nome: "Escolhido pelo Outro Lado",
+            tipo: "Classe",
+            codigo: "OL",
+            resumo: "Maisie foi marcada pelo Outro Lado e recebeu o conhecimento necessário para conjurar rituais.",
+            dados: {
+              "Origem mecânica": "Habilidade de Ocultista",
+              "Círculo atual": "Até 2º círculo",
+              "NEX atual": "40%"
+            },
+            efeito: [
+              "Maisie pode lançar rituais.",
+              "No NEX atual, ela possui acesso a rituais de até 2º círculo.",
+              "Ela começa com três rituais de 1º círculo.",
+              "Sempre que avança de NEX, aprende um ritual de qualquer círculo que possa lançar.",
+              "Esses rituais não contam no limite de rituais conhecidos."
+            ],
+            leitura: "Essa habilidade é a base de toda a ficha paranormal da Maisie. Sem ela, sua relação com Energia, Morte e Sangue não teria forma operacional estável.",
+            ordo: "Progressões futuras de 3º e 4º círculo não foram exibidas neste painel, pois ainda não pertencem ao acesso atual da agente."
+          },
+          {
+            id: "ritual-predileto",
+            nome: "Ritual Predileto",
+            tipo: "Poder",
+            codigo: "RP",
+            resumo: "Maisie possui afinidade especial com um ritual conhecido, reduzindo seu custo.",
+            dados: {
+              "Ritual escolhido": "Cicatrização",
+              "Redução": "–1 PE",
+              "Acúmulo": "Sim"
+            },
+            efeito: [
+              "Escolha um ritual conhecido.",
+              "O custo desse ritual é reduzido em –1 PE.",
+              "Essa redução se acumula com reduções fornecidas por outras fontes.",
+              "No arquivo atual da Maisie, o ritual escolhido é Cicatrização."
+            ],
+            leitura: "O fato de Cicatrização ser o ritual predileto da Maisie reforça a relação dela com sobrevivência, reparo e insistência em continuar de pé.",
+            ordo: "A redução de custo deve ser considerada sempre que Cicatrização for usada em cena."
+          },
+          {
+            id: "tecnica-medicinal",
+            nome: "Técnica Medicinal",
+            tipo: "Origem",
+            codigo: "TM",
+            resumo: "O conhecimento medicinal da agente aumenta a eficiência de qualquer cura realizada por ela.",
+            dados: {
+              "Origem": "Agente de Saúde",
+              "Atributo usado": "Intelecto",
+              "Bônus atual": "+3 PV"
+            },
+            efeito: [
+              "Sempre que Maisie cura um personagem, adiciona seu Intelecto no total de PV curados.",
+              "Como o Intelecto atual dela é 3, o bônus operacional de cura é +3 PV.",
+              "Esse bônus combina diretamente com Cicatrização e com qualquer outro recurso de cura que ela utilize."
+            ],
+            leitura: "Essa habilidade conecta a antiga área medicinal da Maisie com o ocultismo. Ela não cura apenas por ritual: ela entende o corpo que está tentando manter vivo.",
+            ordo: "Recomendado registrar separadamente cura base, bônus de Intelecto e custos paranormais associados."
+          },
+          {
+            id: "treinamento-pericia",
+            nome: "Treinamento em Perícia",
+            tipo: "Poder",
+            codigo: "TP",
+            resumo: "Maisie amplia sua competência técnica escolhendo perícias para treinamento avançado.",
+            dados: {
+              "Escolhas": "2 perícias",
+              "Estado atual": "Treinado / possível veterano",
+              "NEX atual": "40%"
+            },
+            efeito: [
+              "Escolha duas perícias.",
+              "Maisie se torna treinada nessas perícias.",
+              "A partir de NEX 35%, pode escolher perícias nas quais já é treinada para se tornar veterana.",
+              "Este poder pode ser escolhido várias vezes."
+            ],
+            leitura: "Esse poder reforça o lado técnico da personagem: investigação, medicina, ocultismo, tecnologia ou qualquer área definida na ficha final.",
+            ordo: "As perícias específicas ainda não foram registradas neste arquivo público. Quando forem confirmadas, o painel pode ser atualizado."
+          }
+        ]
+      },
+
+      trilha: {
+        titulo: "Trilha: Lâmina Paranormal",
+        descricao: "Ramo de desenvolvimento que mistura arma, ocultismo e combate direto usando o paranormal como extensão ofensiva.",
+        habilidades: [
+          {
+            id: "lamina-maldita",
+            nome: "Lâmina Maldita",
+            tipo: "NEX 10%",
+            codigo: "10",
+            resumo: "Maisie aprende ou aprimora Amaldiçoar Arma e passa a atacar com a arma amaldiçoada usando Ocultismo.",
+            dados: {
+              "NEX": "10%",
+              "Ritual ligado": "Amaldiçoar Arma",
+              "Teste de ataque": "Ocultismo"
+            },
+            efeito: [
+              "Maisie aprende o ritual Amaldiçoar Arma.",
+              "Se já conhece o ritual, pode gastar +1 PE ao lançá-lo para reduzir seu tempo de conjuração para movimento.",
+              "Quando conjura Amaldiçoar Arma, pode usar Ocultismo em vez de Luta ou Pontaria nos testes de ataque com a arma amaldiçoada."
+            ],
+            leitura: "Essa habilidade é a ponte entre a Maisie ocultista e a Maisie combatente. A arma deixa de ser só ferramenta e vira canal ritualístico.",
+            ordo: "A interação com Amaldiçoar Arma de Energia deve ser destacada no combate, principalmente quando a arma ou munição estiver imbuída."
+          },
+          {
+            id: "gladiador-paranormal",
+            nome: "Gladiador Paranormal",
+            tipo: "NEX 40%",
+            codigo: "40",
+            resumo: "Ao acertar ataques corpo a corpo, Maisie converte impacto em combustível paranormal temporário.",
+            dados: {
+              "NEX": "40%",
+              "Ganho": "2 PE temporários",
+              "Duração": "Até o fim da cena"
+            },
+            efeito: [
+              "Sempre que acerta um ataque corpo a corpo em um inimigo, Maisie recebe 2 PE temporários.",
+              "Ela pode ganhar um máximo de PE temporários por cena igual ao seu limite de PE.",
+              "PE temporários desaparecem no final da cena."
+            ],
+            leitura: "Gladiador Paranormal transforma agressividade em recurso. Cada impacto alimenta a próxima manifestação paranormal da agente.",
+            ordo: "Habilidade compatível com cenas longas de combate. Monitorar limite de PE temporários por cena."
+          }
+        ]
+      }
+    };
 
     const dadosRituaisMaisie = {
       energia: {
@@ -2112,7 +2557,7 @@
               "O dano muda para 8d8 pontos de dano de Energia."
             ],
             uso: "É a manifestação mais direta da frase da agente: transformar caos em arma. Visualmente, combina com descarga roxa/azul saindo do braço mecânico ou da arma.",
-            ordo: "Ritual de alto impacto. Recomenda-se monitorar o estado emocional da agente antes de uso repetido."
+            ordo: "Ritual sem sigilo próprio registrado. O arquivo usa representação derivada de Energia/Polarização como referência visual."
           }
         ]
       },
@@ -2259,8 +2704,9 @@
     function iniciarMaisie() {
       configurarAbasPrincipaisMaisie();
       configurarAtributosMaisie();
-      configurarListasSimplesMaisie();
+      configurarHabilidadesMaisie();
       configurarRituaisMaisie();
+      configurarListasSimplesMaisie();
       criarParticulasMaisie();
       configurarObservadorSeguroMaisie();
       configurarVisibilidadeDaPaginaMaisie();
@@ -2340,9 +2786,98 @@
       });
     }
 
-    function configurarListasSimplesMaisie() {
-      ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
-      ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
+    function configurarHabilidadesMaisie() {
+      const botoesGrupo = document.querySelectorAll(".aba-grupo-habilidade");
+
+      botoesGrupo.forEach((botao) => {
+        botao.addEventListener("click", () => {
+          botoesGrupo.forEach((item) => item.classList.remove("ativa"));
+          botao.classList.add("ativa");
+          renderizarGrupoHabilidade(botao.dataset.grupo, 0);
+          causarFalhaEnergiaMaisie();
+        });
+      });
+
+      renderizarGrupoHabilidade("poderes", 0);
+    }
+
+    function renderizarGrupoHabilidade(grupo, indiceHabilidade) {
+      const titulo = document.getElementById("titulo-grupo-habilidade");
+      const descricao = document.getElementById("descricao-grupo-habilidade");
+      const lista = document.getElementById("lista-habilidades-maisie");
+      const dadosGrupo = dadosHabilidadesMaisie[grupo];
+
+      if (!titulo || !descricao || !lista || !dadosGrupo) return;
+
+      titulo.textContent = dadosGrupo.titulo;
+      descricao.textContent = dadosGrupo.descricao;
+
+      lista.innerHTML = dadosGrupo.habilidades.map((habilidade, index) => `
+        <button class="habilidade-botao ${index === indiceHabilidade ? "ativo" : ""}" data-grupo="${grupo}" data-index="${index}">
+          <span class="icone-habilidade-falso">${habilidade.codigo}</span>
+          <span>
+            <strong>${habilidade.nome}</strong>
+            <span>${habilidade.tipo}</span>
+          </span>
+        </button>
+      `).join("");
+
+      lista.querySelectorAll(".habilidade-botao").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          renderizarGrupoHabilidade(botao.dataset.grupo, Number(botao.dataset.index));
+          causarFalhaEnergiaMaisie();
+        });
+      });
+
+      renderizarDetalheHabilidade(dadosGrupo.habilidades[indiceHabilidade]);
+    }
+
+    function renderizarDetalheHabilidade(habilidade) {
+      const detalhe = document.getElementById("detalhe-habilidade-completo");
+      if (!detalhe || !habilidade) return;
+
+      const dadosHtml = Object.entries(habilidade.dados).map(([chave, valor]) => `
+        <div class="habilidade-dado">
+          <span>${chave}</span>
+          <strong>${valor}</strong>
+        </div>
+      `).join("");
+
+      const efeitoHtml = habilidade.efeito.map((linha) => `<li>${linha}</li>`).join("");
+
+      detalhe.innerHTML = `
+        <div class="habilidade-cabecalho">
+          <div>
+            <h4>${habilidade.nome}</h4>
+            <p>${habilidade.resumo}</p>
+          </div>
+
+          <span class="habilidade-tipo">${habilidade.tipo}</span>
+        </div>
+
+        <div class="habilidade-grid-dados">
+          ${dadosHtml}
+        </div>
+
+        <section class="habilidade-secao">
+          <h5>Efeito mecânico</h5>
+          <ul>${efeitoHtml}</ul>
+        </section>
+
+        <section class="habilidade-secao">
+          <h5>Leitura da Maisie</h5>
+          <p>${habilidade.leitura}</p>
+        </section>
+
+        <section class="habilidade-secao">
+          <h5>Nota da Ordo</h5>
+          <p>${habilidade.ordo}</p>
+        </section>
+      `;
+
+      detalhe.classList.remove("atualizado");
+      void detalhe.offsetWidth;
+      detalhe.classList.add("atualizado");
     }
 
     function configurarRituaisMaisie() {
@@ -2465,6 +3000,10 @@
       detalhe.classList.remove("atualizado");
       void detalhe.offsetWidth;
       detalhe.classList.add("atualizado");
+    }
+
+    function configurarListasSimplesMaisie() {
+      ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
     }
 
     function configurarObservadorSeguroMaisie() {
