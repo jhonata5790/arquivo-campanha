@@ -72,15 +72,8 @@
     }
 
     @keyframes entradaMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .classificacao-maisie {
@@ -139,19 +132,9 @@
     }
 
     @keyframes scanMaisie {
-      0% {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0.75;
-      }
-
-      100% {
-        transform: translateY(100%);
-        opacity: 0;
-      }
+      0% { transform: translateY(-100%); opacity: 0; }
+      20% { opacity: 0.75; }
+      100% { transform: translateY(100%); opacity: 0; }
     }
 
     .maisie-status-box {
@@ -274,7 +257,8 @@
       background: rgba(0,0,0,0.26);
     }
 
-    .aba-maisie {
+    .aba-maisie,
+    .aba-elemento-ritual {
       border: 1px solid rgba(143, 82, 255, 0.22);
       border-radius: 12px;
       padding: 12px 16px;
@@ -285,9 +269,11 @@
       font-size: 12px;
       cursor: pointer;
       transition: 0.22s;
+      font-family: inherit;
     }
 
-    .aba-maisie:hover {
+    .aba-maisie:hover,
+    .aba-elemento-ritual:hover {
       color: var(--dourado);
       border-color: var(--roxo);
       transform: translateY(-2px);
@@ -312,15 +298,8 @@
     }
 
     @keyframes aparecerMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .bloco-maisie {
@@ -733,85 +712,13 @@
       animation: flutuarParticulaRodaMaisie linear infinite;
     }
 
-    @keyframes girarAnelExternoMaisie {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes girarAnelInternoMaisie {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes pulsoCampoRodaMaisie {
-      0%, 100% {
-        opacity: 0.82;
-      }
-
-      50% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes pulsoNucleoMaisie {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 0.86;
-      }
-
-      50% {
-        transform: scale(1.05);
-        opacity: 1;
-      }
-    }
-
-    @keyframes energiaSubindoLinhaMaisie {
-      from {
-        top: 100%;
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0.85;
-      }
-
-      to {
-        top: -40px;
-        opacity: 0;
-      }
-    }
-
-    @keyframes flutuarParticulaRodaMaisie {
-      from {
-        transform: translateY(100%) scale(0.8);
-        opacity: 0;
-      }
-
-      20% {
-        opacity: 0.8;
-      }
-
-      to {
-        transform: translateY(-20%) scale(1.1);
-        opacity: 0;
-      }
-    }
-
-    @keyframes centroCarregadoMaisie {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      45% {
-        transform: translate(-50%, -50%) scale(1.07);
-      }
-
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
+    @keyframes girarAnelExternoMaisie { to { transform: rotate(360deg); } }
+    @keyframes girarAnelInternoMaisie { to { transform: rotate(360deg); } }
+    @keyframes pulsoCampoRodaMaisie { 0%, 100% { opacity: 0.82; } 50% { opacity: 1; } }
+    @keyframes pulsoNucleoMaisie { 0%, 100% { transform: scale(1); opacity: 0.86; } 50% { transform: scale(1.05); opacity: 1; } }
+    @keyframes energiaSubindoLinhaMaisie { from { top: 100%; opacity: 0; } 20% { opacity: 0.85; } to { top: -40px; opacity: 0; } }
+    @keyframes flutuarParticulaRodaMaisie { from { transform: translateY(100%) scale(0.8); opacity: 0; } 20% { opacity: 0.8; } to { transform: translateY(-20%) scale(1.1); opacity: 0; } }
+    @keyframes centroCarregadoMaisie { 0% { transform: translate(-50%, -50%) scale(1); } 45% { transform: translate(-50%, -50%) scale(1.07); } 100% { transform: translate(-50%, -50%) scale(1); } }
 
     .detalhe-atributo-maisie,
     .detalhe-lista-maisie {
@@ -841,18 +748,9 @@
     }
 
     @keyframes detalheAtualizadoMaisie {
-      0% {
-        border-color: rgba(143, 82, 255, 0.18);
-      }
-
-      50% {
-        border-color: rgba(216, 189, 116, 0.55);
-        box-shadow: 0 0 20px rgba(143, 82, 255, 0.12);
-      }
-
-      100% {
-        border-color: rgba(143, 82, 255, 0.22);
-      }
+      0% { border-color: rgba(143, 82, 255, 0.18); }
+      50% { border-color: rgba(216, 189, 116, 0.55); box-shadow: 0 0 20px rgba(143, 82, 255, 0.12); }
+      100% { border-color: rgba(143, 82, 255, 0.22); }
     }
 
     .grupo-cards-maisie {
@@ -950,6 +848,342 @@
       text-transform: uppercase;
     }
 
+    /* RITUAIS */
+
+    .painel-rituais-maisie {
+      margin-top: 18px;
+      border: 1px solid rgba(143, 82, 255, 0.20);
+      border-radius: 22px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at top left, rgba(143, 82, 255, 0.12), transparent 34%),
+        rgba(0,0,0,0.38);
+      overflow: hidden;
+    }
+
+    .painel-rituais-maisie[data-elemento="energia"] {
+      --elemento-cor: #8f52ff;
+      --elemento-cor2: #46aaff;
+      --elemento-bg: rgba(143, 82, 255, 0.12);
+      background:
+        radial-gradient(circle at 18% 16%, rgba(70, 170, 255, 0.14), transparent 30%),
+        radial-gradient(circle at 80% 15%, rgba(143, 82, 255, 0.16), transparent 30%),
+        linear-gradient(135deg, rgba(8, 4, 18, 0.92), rgba(3, 7, 15, 0.86));
+    }
+
+    .painel-rituais-maisie[data-elemento="morte"] {
+      --elemento-cor: #b6b0c8;
+      --elemento-cor2: #d8bd74;
+      --elemento-bg: rgba(185, 179, 204, 0.10);
+      background:
+        radial-gradient(circle at 18% 16%, rgba(216, 189, 116, 0.10), transparent 30%),
+        radial-gradient(circle at 78% 12%, rgba(120, 115, 140, 0.14), transparent 28%),
+        linear-gradient(135deg, rgba(6, 6, 8, 0.95), rgba(15, 14, 18, 0.88));
+    }
+
+    .painel-rituais-maisie[data-elemento="sangue"] {
+      --elemento-cor: #d43c58;
+      --elemento-cor2: #ff8a9c;
+      --elemento-bg: rgba(212, 60, 88, 0.12);
+      background:
+        radial-gradient(circle at 18% 16%, rgba(212, 60, 88, 0.16), transparent 30%),
+        radial-gradient(circle at 80% 15%, rgba(80, 0, 12, 0.28), transparent 32%),
+        linear-gradient(135deg, rgba(16, 2, 6, 0.94), rgba(5, 3, 5, 0.88));
+    }
+
+    .rituais-topo-maisie {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .rituais-topo-maisie h4 {
+      color: var(--dourado);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 18px;
+    }
+
+    .rituais-topo-maisie p {
+      color: var(--cinza);
+      font-size: 14px;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    .abas-elementos-ritual {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .aba-elemento-ritual {
+      padding: 10px 14px;
+      font-size: 11px;
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .aba-elemento-ritual.ativa {
+      color: #fff2c6;
+      border-color: var(--elemento-cor);
+      background:
+        linear-gradient(135deg, var(--elemento-bg), rgba(0,0,0,0.28));
+      box-shadow: 0 0 18px color-mix(in srgb, var(--elemento-cor) 26%, transparent);
+    }
+
+    .rituais-layout-maisie {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .lista-rituais-elemento {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background: rgba(0,0,0,0.30);
+      overflow: hidden;
+    }
+
+    .ritual-botao {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: var(--texto);
+      text-align: left;
+      padding: 15px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: center;
+      transition: 0.18s ease;
+      font-family: inherit;
+    }
+
+    .ritual-botao:last-child {
+      border-bottom: none;
+    }
+
+    .ritual-botao:hover,
+    .ritual-botao.ativo {
+      background: linear-gradient(135deg, var(--elemento-bg), rgba(255,255,255,0.025));
+      color: #fff2c6;
+    }
+
+    .mini-sigilo-ritual {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.42);
+      overflow: hidden;
+    }
+
+    .mini-sigilo-ritual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      opacity: 0.9;
+    }
+
+    .mini-sigilo-ritual img.img-indisponivel {
+      display: none;
+    }
+
+    .ritual-botao strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .ritual-botao span {
+      display: block;
+      color: var(--cinza);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .detalhe-ritual-completo {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(0,0,0,0.18)),
+        rgba(0,0,0,0.34);
+      padding: 20px;
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detalhe-ritual-completo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 18%, var(--elemento-bg), transparent 32%),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: cover, 34px 34px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .detalhe-ritual-completo > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ritual-cabecalho {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .ritual-sigilo-grande {
+      width: 150px;
+      aspect-ratio: 1 / 1;
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at center, var(--elemento-bg), rgba(0,0,0,0.44) 66%),
+        rgba(0,0,0,0.42);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 24px rgba(0,0,0,0.60);
+    }
+
+    .ritual-sigilo-grande img {
+      width: 86%;
+      height: 86%;
+      object-fit: contain;
+      opacity: 0.94;
+    }
+
+    .ritual-sigilo-grande img.img-indisponivel {
+      display: none;
+    }
+
+    .ritual-titulo h4 {
+      color: #fff2c6;
+      font-size: 30px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .ritual-titulo p {
+      color: var(--cinza);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .ritual-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .ritual-tag {
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 999px;
+      padding: 8px 10px;
+      color: var(--texto);
+      background: rgba(0,0,0,0.24);
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .ritual-grid-dados {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .ritual-dado {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(0,0,0,0.28);
+    }
+
+    .ritual-dado span {
+      display: block;
+      color: var(--elemento-cor2);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 6px;
+    }
+
+    .ritual-dado strong {
+      display: block;
+      color: var(--texto);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .ritual-secao {
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    .ritual-secao h5 {
+      color: var(--elemento-cor2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .ritual-secao p,
+    .ritual-secao li {
+      color: var(--cinza);
+      line-height: 1.72;
+      font-size: 14px;
+    }
+
+    .ritual-secao ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .ritual-secao li + li {
+      margin-top: 8px;
+    }
+
+    .aviso-circulo-maisie {
+      margin-top: 16px;
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(216, 189, 116, 0.06);
+      color: var(--cinza);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .aviso-circulo-maisie strong {
+      color: var(--dourado);
+    }
+
     .efeito-particulas-maisie {
       position: fixed;
       inset: 0;
@@ -969,19 +1203,9 @@
     }
 
     @keyframes particulaSubindoMaisie {
-      from {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
-
-      16% {
-        opacity: 0.65;
-      }
-
-      to {
-        transform: translateY(-10vh);
-        opacity: 0;
-      }
+      from { transform: translateY(110vh); opacity: 0; }
+      16% { opacity: 0.65; }
+      to { transform: translateY(-10vh); opacity: 0; }
     }
 
     .falha-energia-maisie {
@@ -1010,29 +1234,12 @@
       display: none;
     }
 
-    body.versao-mobile .roda-img.anel-externo {
-      animation-duration: 130s;
-    }
-
-    body.versao-mobile .roda-img.anel-interno {
-      animation-duration: 110s;
-    }
-
-    body.versao-mobile .roda-img.nucleo {
-      animation-duration: 6s;
-    }
-
-    body.versao-mobile .linha-atributo-maisie::after {
-      animation-duration: 4.2s;
-    }
-
-    body.versao-mobile .falha-energia-maisie {
-      animation: none;
-    }
-
-    body.versao-mobile .efeito-particulas-maisie {
-      opacity: 0.42;
-    }
+    body.versao-mobile .roda-img.anel-externo { animation-duration: 130s; }
+    body.versao-mobile .roda-img.anel-interno { animation-duration: 110s; }
+    body.versao-mobile .roda-img.nucleo { animation-duration: 6s; }
+    body.versao-mobile .linha-atributo-maisie::after { animation-duration: 4.2s; }
+    body.versao-mobile .falha-energia-maisie { animation: none; }
+    body.versao-mobile .efeito-particulas-maisie { opacity: 0.42; }
 
     @media (max-width: 1100px) {
       .maisie-topo {
@@ -1046,8 +1253,18 @@
       }
 
       .grupo-cards-maisie,
-      .galeria-maisie {
+      .galeria-maisie,
+      .rituais-layout-maisie {
         grid-template-columns: 1fr;
+      }
+
+      .lista-rituais-elemento {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ritual-botao {
+        border-right: 1px solid rgba(255,255,255,0.08);
       }
     }
 
@@ -1121,7 +1338,8 @@
         padding: 12px;
       }
 
-      .abas-maisie {
+      .abas-maisie,
+      .abas-elementos-ritual {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding: 10px;
@@ -1129,7 +1347,8 @@
         scrollbar-width: thin;
       }
 
-      .aba-maisie {
+      .aba-maisie,
+      .aba-elemento-ritual {
         flex: 0 0 auto;
         font-size: 10px;
         padding: 10px 12px;
@@ -1281,6 +1500,56 @@
         font-size: 10px;
         letter-spacing: 0.08em;
       }
+
+      .painel-rituais-maisie {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .rituais-topo-maisie {
+        align-items: stretch;
+      }
+
+      .rituais-topo-maisie h4 {
+        font-size: 16px;
+      }
+
+      .lista-rituais-elemento {
+        grid-template-columns: 1fr;
+      }
+
+      .ritual-botao {
+        grid-template-columns: 38px 1fr;
+      }
+
+      .mini-sigilo-ritual {
+        width: 38px;
+        height: 38px;
+      }
+
+      .detalhe-ritual-completo {
+        padding: 14px;
+        border-radius: 16px;
+        min-height: auto;
+      }
+
+      .ritual-cabecalho {
+        grid-template-columns: 90px 1fr;
+        gap: 12px;
+      }
+
+      .ritual-sigilo-grande {
+        width: 90px;
+        border-radius: 16px;
+      }
+
+      .ritual-titulo h4 {
+        font-size: 20px;
+      }
+
+      .ritual-grid-dados {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 420px) {
@@ -1335,6 +1604,14 @@
 
       .roda-centro-maisie span {
         display: none;
+      }
+
+      .ritual-cabecalho {
+        grid-template-columns: 1fr;
+      }
+
+      .ritual-sigilo-grande {
+        width: 120px;
       }
     }
 
@@ -1561,73 +1838,41 @@
           </section>
 
           <section class="conteudo-maisie" id="rituais">
-            <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
-                <h4>Energia</h4>
+            <div class="bloco-maisie">
+              <h3>Rituais Registrados</h3>
+              <p>
+                Registro ritualístico da agente Maisie Hundown. Este arquivo exibe apenas as formas que a agente
+                possui acesso operacional no momento: forma base e, quando permitido, forma Discente.
+              </p>
 
-                <button class="item-interativo-maisie ritual-item" data-titulo="Amaldiçoar Arma" data-texto="Ritual de Energia usado para alterar e potencializar uma arma, aproximando ainda mais o estilo de combate da Maisie da sua afinidade com caos e adaptação.">
-                  Amaldiçoar Arma
-                </button>
+              <div class="painel-rituais-maisie" id="painel-rituais-maisie" data-elemento="energia">
+                <div class="rituais-topo-maisie">
+                  <div>
+                    <h4 id="titulo-elemento-ritual">Energia</h4>
+                    <p id="descricao-elemento-ritual">
+                      Rituais ligados a instabilidade, magnetismo, eletricidade, distorção visual e caos aplicado.
+                    </p>
+                  </div>
 
-                <button class="item-interativo-maisie ritual-item" data-titulo="Embaralhar" data-texto="Ritual de Energia ligado à confusão, instabilidade e manipulação caótica, combinando bastante com o estilo agressivo e criativo da personagem.">
-                  Embaralhar
-                </button>
+                  <div class="abas-elementos-ritual">
+                    <button class="aba-elemento-ritual ativa" data-elemento="energia">Energia</button>
+                    <button class="aba-elemento-ritual" data-elemento="morte">Morte</button>
+                    <button class="aba-elemento-ritual" data-elemento="sangue">Sangue</button>
+                  </div>
+                </div>
 
-                <button class="item-interativo-maisie ritual-item" data-titulo="Polarização Caótica" data-texto="Ritual de Energia que manipula forças e instabilidades de maneira mais agressiva e imprevisível.">
-                  Polarização Caótica
-                </button>
+                <div class="rituais-layout-maisie">
+                  <div class="lista-rituais-elemento" id="lista-rituais-elemento"></div>
 
-                <button class="item-interativo-maisie ritual-item" data-titulo="Rajada Caótica" data-texto="Ritual ofensivo de Energia. Representa bem a forma como Maisie transforma caos em poder destrutivo.">
-                  Rajada Caótica
-                </button>
-              </div>
+                  <article class="detalhe-ritual-completo" id="detalhe-ritual-completo"></article>
+                </div>
 
-              <div class="card-lista-maisie">
-                <h4>Morte</h4>
-
-                <button class="item-interativo-maisie ritual-item" data-titulo="Cicatrização (Ritual Predileto)" data-texto="Ritual de Morte com afinidade especial para Maisie. Reforça a ideia de sobrevivência, reconstrução e persistência depois do trauma.">
-                  Cicatrização (Ritual Predileto)
-                </button>
-
-                <button class="item-interativo-maisie ritual-item" data-titulo="Espirais da Perdição" data-texto="Ritual ligado à Morte e à deterioração gradual, trazendo uma camada mais sombria ao repertório da personagem.">
-                  Espirais da Perdição
-                </button>
-
-                <button class="item-interativo-maisie ritual-item" data-titulo="Velocidade Mortal" data-texto="Ritual que melhora deslocamento, reação ou agressividade prática em combate, dependendo da execução.">
-                  Velocidade Mortal
-                </button>
-              </div>
-            </div>
-
-            <div class="grupo-cards-maisie">
-              <div class="card-lista-maisie">
-                <h4>Sangue</h4>
-
-                <button class="item-interativo-maisie ritual-item" data-titulo="Aprimorar Físico" data-texto="Ritual de Sangue que reforça o corpo e aproxima a personagem do lado mais bruto e instintivo do combate.">
-                  Aprimorar Físico
-                </button>
-
-                <button class="item-interativo-maisie ritual-item" data-titulo="Descarnar" data-texto="Ritual violento e agressivo, ligado ao sofrimento físico e ao impacto corporal. Mostra que Maisie não teme recorrer a ferramentas brutais quando necessário.">
-                  Descarnar
-                </button>
-              </div>
-
-              <div class="card-lista-maisie">
-                <h4>Resumo</h4>
-                <div class="lista-texto-maisie" style="padding: 16px;">
-                  <ul>
-                    <li>Maisie possui rituais de Energia, Morte e Sangue.</li>
-                    <li>Seu foco temático mais forte é Energia.</li>
-                    <li>Seu ritual predileto é <strong>Cicatrização</strong>.</li>
-                    <li>O conjunto reforça versatilidade, agressividade e sobrevivência.</li>
-                  </ul>
+                <div class="aviso-circulo-maisie">
+                  <strong>Nota operacional:</strong>
+                  versões Verdadeiras e efeitos que exigem 3º ou 4º círculo não aparecem neste painel, pois o arquivo
+                  está limitado aos rituais que Maisie pode usar atualmente.
                 </div>
               </div>
-            </div>
-
-            <div class="detalhe-lista-maisie" id="detalhe-ritual-maisie">
-              <h4>Nenhum ritual selecionado</h4>
-              <p>Clique em um ritual para abrir a descrição.</p>
             </div>
           </section>
 
@@ -1758,84 +2003,469 @@
     const linhasAtributoMaisie = document.querySelectorAll(".linha-atributo-maisie");
     const rodaMaisie = document.getElementById("roda-maisie");
 
+    const dadosRituaisMaisie = {
+      energia: {
+        titulo: "Energia",
+        descricao: "Rituais ligados a instabilidade, magnetismo, eletricidade, distorção visual e caos aplicado.",
+        rituais: [
+          {
+            id: "amaldicoar-arma",
+            nome: "Amaldiçoar Arma",
+            sigilo: "amaldicoar-arma.png",
+            categoria: "Aprimoramento ofensivo",
+            resumo: "Imbui uma arma ou munições com Energia, fazendo o dano carregar instabilidade paranormal.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Toque",
+              "Alvo": "1 arma corpo a corpo ou pacote de munição",
+              "Duração": "Cena",
+              "Resistência": "Nenhuma"
+            },
+            base: [
+              "Maisie imbui a arma ou munições com Energia, fazendo com que causem +1d6 de dano de Energia.",
+              "No caso da agente, este ritual foi registrado como Energia, por escolha feita no aprendizado do ritual."
+            ],
+            discente: [
+              "Custo adicional: +2 PE.",
+              "O bônus de dano muda para +2d6.",
+              "Requer 2º círculo."
+            ],
+            uso: "A aplicação mais compatível é em munições ou em uma arma usada como extensão do braço mecânico, transformando o disparo ou golpe em descarga instável.",
+            ordo: "A escolha por Energia reforça o padrão da agente: transformar ferramentas comuns em canais de caos controlado."
+          },
+          {
+            id: "embaralhar",
+            nome: "Embaralhar",
+            sigilo: "embaralhar.png",
+            categoria: "Defensivo / Ilusão",
+            resumo: "Cria cópias ilusórias semelhantes a hologramas realistas, dificultando a identificação do corpo verdadeiro.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Pessoal",
+              "Alvo": "Você",
+              "Duração": "Cena",
+              "Resistência": "Nenhuma"
+            },
+            base: [
+              "Maisie cria três cópias ilusórias ao seu redor. As cópias imitam suas ações e confundem inimigos que dependem da visão.",
+              "Enquanto as cópias permanecem, Maisie recebe +6 na Defesa.",
+              "Cada vez que um ataque contra ela erra, uma imagem desaparece e o bônus na Defesa diminui em 2.",
+              "Um oponente precisa ver as cópias para ser confundido."
+            ],
+            discente: [
+              "Custo adicional: +2 PE.",
+              "O número de cópias muda para 5.",
+              "O bônus na Defesa muda para +10.",
+              "Requer 2º círculo."
+            ],
+            uso: "Funciona como um escudo visual de Energia, combinando com hologramas, reflexos falsos e interferência caótica ao redor da agente.",
+            ordo: "Ritual recomendado para situações em que Maisie precise se manter em campo sem depender de resistência física."
+          },
+          {
+            id: "polarizacao-caotica",
+            nome: "Polarização Caótica",
+            sigilo: "polarizacao-caotica.png",
+            categoria: "Controle / Defesa",
+            resumo: "Gera uma aura magnética sobrenatural capaz de atrair ou repelir objetos metálicos e projéteis.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Curto",
+              "Alvo": "Você",
+              "Duração": "Sustentada",
+              "Resistência": "Vontade anula"
+            },
+            base: [
+              "Maisie gera uma aura magnética sobrenatural e escolhe entre Atrair ou Repelir.",
+              "Atrair: com uma ação de movimento, pode puxar um objeto metálico de espaço 2 ou menor dentro do alcance. Se estiver livre, o objeto voa para suas mãos ou para seus pés.",
+              "Repelir: repele objetos de espaço 2 ou menor, incluindo a maioria dos projéteis e armas de arremesso, recebendo resistência 5 a balístico, corte, impacto e perfuração."
+            ],
+            discente: [
+              "Custo adicional: +2 PE.",
+              "A energia magnética é expelida de uma única vez e arremessa até 10 objetos, ou um total de 10 espaços.",
+              "Objetos arremessados podem atingir seres no caminho, causando dano conforme o tipo de objeto.",
+              "Seres atingidos podem fazer teste de Reflexos para reduzir o dano à metade.",
+              "Seres dentro da capacidade de carga podem ser arremessados, mas têm direito a teste de Vontade para evitar o efeito."
+            ],
+            uso: "É um dos rituais mais científicos da Maisie: magnetismo, trajetória, impacto e controle de campo transformados em ocultismo prático.",
+            ordo: "A compatibilidade com equipamentos metálicos, munições e o braço mecânico torna este ritual especialmente relevante no perfil da agente."
+          },
+          {
+            id: "rajada-caotica",
+            nome: "Rajada Caótica",
+            sigilo: "polarizacao-caotica.png",
+            categoria: "Ofensivo",
+            resumo: "Projeta uma descarga de Energia contra um alvo dentro do alcance.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Médio",
+              "Alvo": "1 ser",
+              "Duração": "Instantânea",
+              "Resistência": "Reflexos reduz metade"
+            },
+            base: [
+              "Maisie concentra a estática caótica da Energia e a projeta contra um alvo.",
+              "O raio causa 8d6 pontos de dano de Energia.",
+              "O alvo tem direito a teste de Reflexos para reduzir o dano à metade."
+            ],
+            discente: [
+              "Custo adicional: +3 PE.",
+              "O dano muda para 8d8 pontos de dano de Energia."
+            ],
+            uso: "É a manifestação mais direta da frase da agente: transformar caos em arma. Visualmente, combina com descarga roxa/azul saindo do braço mecânico ou da arma.",
+            ordo: "Ritual de alto impacto. Recomenda-se monitorar o estado emocional da agente antes de uso repetido."
+          }
+        ]
+      },
+
+      morte: {
+        titulo: "Morte",
+        descricao: "Rituais ligados a tempo, desgaste, aceleração, cicatrização forçada e deterioração de movimento.",
+        rituais: [
+          {
+            id: "cicatrizacao",
+            nome: "Cicatrização",
+            sigilo: "cicatrizacao.png",
+            categoria: "Suporte / Cura",
+            resumo: "Acelera o tempo ao redor das feridas do alvo, fazendo o corpo se fechar rapidamente.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Toque",
+              "Alvo": "1 ser",
+              "Duração": "Instantânea",
+              "Resistência": "Nenhuma"
+            },
+            base: [
+              "Maisie acelera o tempo ao redor das feridas do alvo.",
+              "O alvo recupera 3d8+3 PV.",
+              "O alvo envelhece 1 ano automaticamente.",
+              "Este é o Ritual Predileto da agente."
+            ],
+            discente: [
+              "Custo adicional: +2 PE.",
+              "A cura aumenta para 5d8+5 PV.",
+              "Requer 2º círculo."
+            ],
+            uso: "Para Maisie, este ritual não representa apenas cura: é sobrevivência forçada. O corpo continua porque ela decidiu que ainda não acabou.",
+            ordo: "Apesar da utilidade médica, o custo temporal deve ser registrado sempre que o ritual for usado."
+          },
+          {
+            id: "espirais-da-perdicao",
+            nome: "Espirais da Perdição",
+            sigilo: "espirais-da-perdicao.png",
+            categoria: "Controle / Debilitação",
+            resumo: "Espirais de Morte surgem no alvo e tornam seus movimentos mais lentos e falhos.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Curto",
+              "Alvo": "1 ser",
+              "Duração": "Cena",
+              "Resistência": "Nenhuma registrada"
+            },
+            base: [
+              "Espirais surgem no corpo do alvo, tornando seus movimentos lentos.",
+              "O alvo sofre –1d20 em testes de ataque."
+            ],
+            discente: [
+              "Custo adicional: +2 PE.",
+              "A penalidade muda para –2d20.",
+              "Requer 2º círculo."
+            ],
+            uso: "Maisie usa esse ritual para reduzir a ameaça de inimigos perigosos, atrasando ataques e criando espaço para reagir.",
+            ordo: "O ritual é menos chamativo que os de Energia, mas extremamente eficiente para controle de campo."
+          },
+          {
+            id: "velocidade-mortal",
+            nome: "Velocidade Mortal",
+            sigilo: "velocidade-mortal.png",
+            categoria: "Aprimoramento / Tempo",
+            resumo: "Distorce a passagem do tempo ao redor do alvo, permitindo deslocamento adicional.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Curto",
+              "Alvo": "1 ser",
+              "Duração": "Sustentada",
+              "Resistência": "Nenhuma registrada"
+            },
+            base: [
+              "Maisie distorce a passagem do tempo ao redor do alvo, tornando-o extremamente veloz.",
+              "O alvo pode realizar uma ação de movimento adicional por turno.",
+              "Esta ação não pode ser usada para conjurar rituais."
+            ],
+            discente: [
+              "Custo adicional: +3 PE.",
+              "Em vez de uma ação de movimento, o alvo recebe uma ação padrão adicional por turno."
+            ],
+            uso: "Ritual usado para reposicionamento, pressão em combate ou retirada rápida. Em Maisie, tende a parecer uma aceleração irregular, quase como frames pulando.",
+            ordo: "A sustentação do ritual exige atenção. Uso prolongado pode aumentar a sensação de instabilidade temporal em campo."
+          }
+        ]
+      },
+
+      sangue: {
+        titulo: "Sangue",
+        descricao: "Rituais ligados a corpo, impulso físico, resistência, dor e agressividade materializada.",
+        rituais: [
+          {
+            id: "aprimorar-fisico",
+            nome: "Aprimorar Físico",
+            sigilo: "aprimorar-fisico.png",
+            categoria: "Aprimoramento físico",
+            resumo: "Reforça músculos e ligamentos, ampliando temporariamente a capacidade física do alvo.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Toque",
+              "Alvo": "1 ser",
+              "Duração": "Cena",
+              "Resistência": "Nenhuma"
+            },
+            base: [
+              "O alvo tem seus músculos tonificados e seus ligamentos reforçados.",
+              "O alvo recebe +1 em Agilidade ou Força, à escolha dele."
+            ],
+            discente: [],
+            uso: "Maisie pode usar esse ritual para compensar limitações físicas ou reforçar aliados em momentos de pressão.",
+            ordo: "A forma Discente exige 3º círculo e não aparece neste arquivo operacional."
+          },
+          {
+            id: "descarnar",
+            nome: "Descarnar",
+            sigilo: "descarnar.png",
+            categoria: "Ofensivo / Sangue",
+            resumo: "Ritual agressivo que causa dano direto e pode deixar o alvo com hemorragia severa.",
+            dados: {
+              "Execução": "Padrão",
+              "Alcance": "Toque",
+              "Alvo": "1 ser",
+              "Duração": "Instantânea",
+              "Resistência": "Fortitude parcial"
+            },
+            base: [
+              "O alvo sofre 6d8 pontos de dano: metade corte e metade Sangue.",
+              "Se falhar no teste inicial, fica com hemorragia severa.",
+              "No início de cada turno, o alvo deve fazer teste de Fortitude. Se falhar, sofre 2d8 pontos de dano de Sangue.",
+              "Se passar em dois testes de Fortitude seguidos, a hemorragia é estancada.",
+              "Se passar no teste de resistência inicial, sofre metade do dano e não fica com hemorragia."
+            ],
+            discente: [],
+            uso: "É o ritual mais brutal registrado no repertório atual da agente. Deve ser usado como medida extrema.",
+            ordo: "A forma Discente exige 3º círculo e não aparece neste arquivo operacional. Recomenda-se cautela na liberação narrativa deste ritual em cena."
+          }
+        ]
+      }
+    };
+
     iniciarMaisie();
 
     function iniciarMaisie() {
+      configurarAbasPrincipaisMaisie();
+      configurarAtributosMaisie();
+      configurarListasSimplesMaisie();
+      configurarRituaisMaisie();
       criarParticulasMaisie();
       configurarObservadorSeguroMaisie();
       configurarVisibilidadeDaPaginaMaisie();
       atualizarPerformancePorAbaMaisie("informacoes");
     }
 
-    abasMaisie.forEach((aba) => {
-      aba.addEventListener("click", () => {
-        const alvo = aba.dataset.aba;
+    function configurarAbasPrincipaisMaisie() {
+      const abasMaisie = document.querySelectorAll(".aba-maisie");
+      const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
 
-        abasMaisie.forEach((item) => item.classList.remove("ativa"));
-        conteudosMaisie.forEach((conteudo) => conteudo.classList.remove("ativo"));
+      abasMaisie.forEach((aba) => {
+        aba.addEventListener("click", () => {
+          const alvo = aba.dataset.aba;
 
-        aba.classList.add("ativa");
+          abasMaisie.forEach((item) => item.classList.remove("ativa"));
+          conteudosMaisie.forEach((conteudo) => conteudo.classList.remove("ativo"));
 
-        const conteudoAtivo = document.getElementById(alvo);
+          aba.classList.add("ativa");
 
-        if (conteudoAtivo) {
-          conteudoAtivo.classList.add("ativo");
-        }
+          const conteudoAtivo = document.getElementById(alvo);
 
-        estadoMaisie.abaAtual = alvo;
-        atualizarPerformancePorAbaMaisie(alvo);
-        causarFalhaEnergiaMaisie();
-      });
-    });
+          if (conteudoAtivo) {
+            conteudoAtivo.classList.add("ativo");
+          }
 
-    const atributosMaisie = document.querySelectorAll(".atributo-maisie");
-    const detalheAtributoMaisie = document.getElementById("detalhe-atributo-maisie");
-
-    atributosMaisie.forEach((atributo) => {
-      atributo.addEventListener("click", () => {
-        const linhaAlvo = atributo.dataset.linha;
-        const rotacao = atributo.dataset.rotacao || "0deg";
-
-        atributosMaisie.forEach((item) => item.classList.remove("selecionado"));
-        atributo.classList.add("selecionado");
-
-        linhasAtributoMaisie.forEach((linha) => {
-          linha.classList.toggle("ativa", linha.dataset.linha === linhaAlvo);
+          estadoMaisie.abaAtual = alvo;
+          atualizarPerformancePorAbaMaisie(alvo);
+          causarFalhaEnergiaMaisie();
         });
+      });
+    }
 
-        if (raioSelecaoMaisie) {
-          raioSelecaoMaisie.style.setProperty("--rotacao-raio", rotacao);
-          raioSelecaoMaisie.classList.remove("ativo");
-          void raioSelecaoMaisie.offsetWidth;
-          raioSelecaoMaisie.classList.add("ativo");
-        }
+    function configurarAtributosMaisie() {
+      const atributosMaisie = document.querySelectorAll(".atributo-maisie");
+      const detalheAtributoMaisie = document.getElementById("detalhe-atributo-maisie");
 
-        detalheAtributoMaisie.innerHTML = `
-          <h4>${atributo.dataset.nome} — ${atributo.dataset.sigla} (${atributo.dataset.valor})</h4>
-          <p>${atributo.dataset.desc}</p>
-        `;
+      atributosMaisie.forEach((atributo) => {
+        atributo.addEventListener("click", () => {
+          const linhaAlvo = atributo.dataset.linha;
+          const rotacao = atributo.dataset.rotacao || "0deg";
 
-        if (centroRodaMaisie) {
-          centroRodaMaisie.classList.remove("carregado");
+          atributosMaisie.forEach((item) => item.classList.remove("selecionado"));
+          atributo.classList.add("selecionado");
 
-          centroRodaMaisie.innerHTML = `
-            ${atributo.dataset.sigla}
-            <strong>${atributo.dataset.valor}</strong>
-            <span>${atributo.dataset.nome}</span>
+          linhasAtributoMaisie.forEach((linha) => {
+            linha.classList.toggle("ativa", linha.dataset.linha === linhaAlvo);
+          });
+
+          if (raioSelecaoMaisie) {
+            raioSelecaoMaisie.style.setProperty("--rotacao-raio", rotacao);
+            raioSelecaoMaisie.classList.remove("ativo");
+            void raioSelecaoMaisie.offsetWidth;
+            raioSelecaoMaisie.classList.add("ativo");
+          }
+
+          detalheAtributoMaisie.innerHTML = `
+            <h4>${atributo.dataset.nome} — ${atributo.dataset.sigla} (${atributo.dataset.valor})</h4>
+            <p>${atributo.dataset.desc}</p>
           `;
 
-          void centroRodaMaisie.offsetWidth;
-          centroRodaMaisie.classList.add("carregado");
-        }
+          if (centroRodaMaisie) {
+            centroRodaMaisie.classList.remove("carregado");
 
-        atualizarDetalheMaisie(detalheAtributoMaisie);
-        causarFalhaEnergiaMaisie();
+            centroRodaMaisie.innerHTML = `
+              ${atributo.dataset.sigla}
+              <strong>${atributo.dataset.valor}</strong>
+              <span>${atributo.dataset.nome}</span>
+            `;
+
+            void centroRodaMaisie.offsetWidth;
+            centroRodaMaisie.classList.add("carregado");
+          }
+
+          atualizarDetalheMaisie(detalheAtributoMaisie);
+          causarFalhaEnergiaMaisie();
+        });
       });
-    });
+    }
 
-    ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
-    ativarDetalhesMaisie(".ritual-item", "detalhe-ritual-maisie");
-    ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
+    function configurarListasSimplesMaisie() {
+      ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
+      ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
+    }
+
+    function configurarRituaisMaisie() {
+      const botoesElemento = document.querySelectorAll(".aba-elemento-ritual");
+
+      botoesElemento.forEach((botao) => {
+        botao.addEventListener("click", () => {
+          botoesElemento.forEach((item) => item.classList.remove("ativa"));
+          botao.classList.add("ativa");
+          renderizarElementoRitual(botao.dataset.elemento, 0);
+          causarFalhaEnergiaMaisie();
+        });
+      });
+
+      renderizarElementoRitual("energia", 0);
+    }
+
+    function renderizarElementoRitual(elemento, indiceRitual) {
+      const painel = document.getElementById("painel-rituais-maisie");
+      const titulo = document.getElementById("titulo-elemento-ritual");
+      const descricao = document.getElementById("descricao-elemento-ritual");
+      const lista = document.getElementById("lista-rituais-elemento");
+      const dadosElemento = dadosRituaisMaisie[elemento];
+
+      if (!painel || !titulo || !descricao || !lista || !dadosElemento) return;
+
+      painel.dataset.elemento = elemento;
+      titulo.textContent = dadosElemento.titulo;
+      descricao.textContent = dadosElemento.descricao;
+
+      lista.innerHTML = dadosElemento.rituais.map((ritual, index) => `
+        <button class="ritual-botao ${index === indiceRitual ? "ativo" : ""}" data-elemento="${elemento}" data-index="${index}">
+          <span class="mini-sigilo-ritual">
+            <img src="${ritual.sigilo}" alt="Sigilo de ${ritual.nome}" onerror="this.classList.add('img-indisponivel')">
+          </span>
+          <span>
+            <strong>${ritual.nome}</strong>
+            <span>${ritual.categoria}</span>
+          </span>
+        </button>
+      `).join("");
+
+      lista.querySelectorAll(".ritual-botao").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          renderizarElementoRitual(botao.dataset.elemento, Number(botao.dataset.index));
+          causarFalhaEnergiaMaisie();
+        });
+      });
+
+      renderizarDetalheRitual(dadosElemento.rituais[indiceRitual], dadosElemento.titulo);
+    }
+
+    function renderizarDetalheRitual(ritual, elementoTitulo) {
+      const detalhe = document.getElementById("detalhe-ritual-completo");
+      if (!detalhe || !ritual) return;
+
+      const dadosHtml = Object.entries(ritual.dados).map(([chave, valor]) => `
+        <div class="ritual-dado">
+          <span>${chave}</span>
+          <strong>${valor}</strong>
+        </div>
+      `).join("");
+
+      const baseHtml = ritual.base.map((linha) => `<li>${linha}</li>`).join("");
+
+      const discenteHtml = ritual.discente && ritual.discente.length > 0
+        ? `
+          <section class="ritual-secao">
+            <h5>Forma Discente disponível</h5>
+            <ul>${ritual.discente.map((linha) => `<li>${linha}</li>`).join("")}</ul>
+          </section>
+        `
+        : `
+          <section class="ritual-secao">
+            <h5>Forma Discente</h5>
+            <p>Não disponível no acesso atual da agente. O requisito ultrapassa o círculo operacional registrado para Maisie.</p>
+          </section>
+        `;
+
+      detalhe.innerHTML = `
+        <div class="ritual-cabecalho">
+          <div class="ritual-sigilo-grande">
+            <img src="${ritual.sigilo}" alt="Sigilo de ${ritual.nome}" onerror="this.classList.add('img-indisponivel')">
+          </div>
+
+          <div class="ritual-titulo">
+            <h4>${ritual.nome}</h4>
+            <p>${ritual.resumo}</p>
+
+            <div class="ritual-tags">
+              <span class="ritual-tag">${elementoTitulo}</span>
+              <span class="ritual-tag">${ritual.categoria}</span>
+              <span class="ritual-tag">Acesso até 2º círculo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ritual-grid-dados">
+          ${dadosHtml}
+        </div>
+
+        <section class="ritual-secao">
+          <h5>Efeito base</h5>
+          <ul>${baseHtml}</ul>
+        </section>
+
+        ${discenteHtml}
+
+        <section class="ritual-secao">
+          <h5>Uso pela Maisie</h5>
+          <p>${ritual.uso}</p>
+        </section>
+
+        <section class="ritual-secao">
+          <h5>Nota da Ordo</h5>
+          <p>${ritual.ordo}</p>
+        </section>
+      `;
+
+      detalhe.classList.remove("atualizado");
+      void detalhe.offsetWidth;
+      detalhe.classList.add("atualizado");
+    }
 
     function configurarObservadorSeguroMaisie() {
       if (!("IntersectionObserver" in window)) return;
