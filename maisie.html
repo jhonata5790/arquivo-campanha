@@ -7,41 +7,38 @@
   <link rel="stylesheet" href="style.css">
 
   <script>
-    const larguraInicialMaisie = window.innerWidth;
-    const mobileInicialMaisie = larguraInicialMaisie <= 720;
-
     document.documentElement.classList.add(
-      mobileInicialMaisie ? "html-mobile-maisie" : "html-desktop-maisie"
+      window.innerWidth <= 720 ? "html-mobile-maisie" : "html-desktop-maisie"
     );
   </script>
 
   <style>
     .ficha-maisie {
-      --maisie-roxo: #8f52ff;
-      --maisie-energia: #c6adff;
-      --maisie-azul: #46aaff;
-      --maisie-cinza: #a8a0b8;
-      --maisie-texto: #ece7f8;
-      --maisie-vermelho: #c5344f;
-      --maisie-amarelo: #d8bd74;
+      --roxo: #8f52ff;
+      --roxo-claro: #c6adff;
+      --azul: #46aaff;
+      --texto: #ece7f8;
+      --cinza: #a8a0b8;
+      --vermelho: #c5344f;
+      --dourado: #d8bd74;
 
+      position: relative;
+      overflow: hidden;
       border: 1px solid rgba(143, 82, 255, 0.24);
       border-radius: 28px;
       padding: 30px;
       background:
-        linear-gradient(135deg, rgba(3, 3, 7, 0.88), rgba(8, 4, 16, 0.82), rgba(3, 3, 7, 0.90)),
-        radial-gradient(circle at 12% 10%, rgba(143, 82, 255, 0.16), transparent 24%),
-        radial-gradient(circle at 82% 12%, rgba(197, 52, 79, 0.12), transparent 28%),
+        linear-gradient(135deg, rgba(3, 3, 7, 0.9), rgba(8, 4, 16, 0.84), rgba(3, 3, 7, 0.92)),
+        radial-gradient(circle at 12% 10%, rgba(143, 82, 255, 0.14), transparent 24%),
+        radial-gradient(circle at 82% 12%, rgba(197, 52, 79, 0.10), transparent 28%),
         url("Fundo-Maisie.png");
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
       box-shadow:
-        0 0 46px rgba(143, 82, 255, 0.14),
-        inset 0 0 70px rgba(0, 0, 0, 0.7);
-      position: relative;
-      overflow: hidden;
-      animation: entradaArquivoMaisie 0.9s ease both;
+        0 0 34px rgba(143, 82, 255, 0.12),
+        inset 0 0 55px rgba(0, 0, 0, 0.64);
+      animation: entradaMaisie 0.65s ease both;
     }
 
     .ficha-maisie::before {
@@ -49,13 +46,12 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        radial-gradient(circle at center, transparent 35%, rgba(0,0,0,0.45) 100%);
-      background-size: 34px 34px, 34px 34px, cover;
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        radial-gradient(circle at center, transparent 42%, rgba(0,0,0,0.42) 100%);
+      background-size: 42px 42px, 42px 42px, cover;
       opacity: 0.32;
       pointer-events: none;
-      animation: gradeEnergiaMaisie 12s linear infinite;
     }
 
     .ficha-maisie::after {
@@ -64,7 +60,7 @@
       right: -150px;
       top: 50%;
       transform: rotate(90deg);
-      color: rgba(143, 82, 255, 0.12);
+      color: rgba(143, 82, 255, 0.11);
       letter-spacing: 5px;
       font-size: 11px;
       pointer-events: none;
@@ -75,32 +71,20 @@
       z-index: 1;
     }
 
-    @keyframes entradaArquivoMaisie {
+    @keyframes entradaMaisie {
       from {
         opacity: 0;
-        transform: translateY(24px) scale(0.985);
-        filter: blur(6px);
+        transform: translateY(18px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-      }
-    }
-
-    @keyframes gradeEnergiaMaisie {
-      from {
-        background-position: 0 0, 0 0, center;
-      }
-
-      to {
-        background-position: 34px 34px, 34px 34px, center;
+        transform: translateY(0);
       }
     }
 
     .classificacao-maisie {
-      color: var(--maisie-roxo);
+      color: var(--roxo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 12px;
@@ -110,7 +94,6 @@
       display: grid;
       grid-template-columns: 340px 1fr;
       gap: 24px;
-      margin-bottom: 28px;
       align-items: start;
     }
 
@@ -120,33 +103,12 @@
     }
 
     .maisie-retrato-box {
+      position: relative;
+      overflow: hidden;
       border: 1px solid rgba(143, 82, 255, 0.28);
       border-radius: 22px;
-      background:
-        linear-gradient(180deg, rgba(143, 82, 255, 0.10), transparent 18%),
-        rgba(0,0,0,0.38);
-      overflow: hidden;
-      box-shadow: inset 0 0 24px rgba(143, 82, 255, 0.08);
-      position: relative;
-      animation: subirMaisie 0.75s ease both;
-      animation-delay: 0.14s;
-    }
-
-    .maisie-retrato-box::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        conic-gradient(
-          from 0deg,
-          transparent,
-          rgba(143, 82, 255, 0.16),
-          transparent,
-          rgba(70, 170, 255, 0.10),
-          transparent
-        );
-      animation: girarEnergiaRetrato 8s linear infinite;
-      z-index: 0;
+      background: rgba(0,0,0,0.38);
+      box-shadow: inset 0 0 20px rgba(143, 82, 255, 0.08);
     }
 
     .maisie-retrato-box::after {
@@ -154,35 +116,26 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to bottom, transparent, rgba(143, 82, 255, 0.07), transparent);
-      animation: scanMaisie 3.5s linear infinite;
+      animation: scanMaisie 5s linear infinite;
       pointer-events: none;
       z-index: 2;
     }
 
     .maisie-retrato-box img {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      display: block;
       height: 620px;
+      display: block;
       object-fit: cover;
       object-position: top center;
       background: #000;
-      position: relative;
-      z-index: 1;
-      transition: 0.35s ease;
+      transition: transform 0.28s ease, filter 0.28s ease;
     }
 
     .maisie-retrato-box:hover img {
-      transform: scale(1.025);
-      filter:
-        saturate(1.08)
-        contrast(1.08)
-        drop-shadow(0 0 18px rgba(143, 82, 255, 0.18));
-    }
-
-    @keyframes girarEnergiaRetrato {
-      to {
-        transform: rotate(360deg);
-      }
+      transform: scale(1.018);
+      filter: contrast(1.05) saturate(1.05);
     }
 
     @keyframes scanMaisie {
@@ -191,12 +144,8 @@
         opacity: 0;
       }
 
-      18% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.7;
+      20% {
+        opacity: 0.75;
       }
 
       100% {
@@ -212,13 +161,11 @@
       background:
         linear-gradient(135deg, rgba(143,82,255,0.08), rgba(197,52,79,0.08)),
         rgba(0,0,0,0.28);
-      animation: subirMaisie 0.75s ease both;
-      animation-delay: 0.22s;
     }
 
     .maisie-status-box span {
       display: block;
-      color: var(--maisie-cinza);
+      color: var(--cinza);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 11px;
@@ -230,44 +177,16 @@
       font-size: 28px;
       line-height: 1;
       text-transform: uppercase;
-      animation: pulsoStatusMaisie 2.2s ease-in-out infinite;
-    }
-
-    @keyframes pulsoStatusMaisie {
-      0%, 100% {
-        text-shadow: 0 0 10px rgba(197, 52, 79, 0.25);
-      }
-
-      50% {
-        text-shadow:
-          0 0 16px rgba(197, 52, 79, 0.55),
-          0 0 28px rgba(143, 82, 255, 0.35);
-      }
     }
 
     .maisie-painel {
+      min-height: 100%;
       border: 1px solid rgba(143, 82, 255, 0.22);
       border-radius: 24px;
       padding: 28px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.03), rgba(143,82,255,0.05)),
-        rgba(0,0,0,0.46);
-      min-height: 100%;
-      animation: subirMaisie 0.75s ease both;
-      animation-delay: 0.08s;
-      backdrop-filter: blur(3px);
-    }
-
-    @keyframes subirMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        linear-gradient(135deg, rgba(255,255,255,0.025), rgba(143,82,255,0.045)),
+        rgba(0,0,0,0.48);
     }
 
     .maisie-cabecalho {
@@ -286,31 +205,13 @@
       line-height: 0.92;
       text-transform: uppercase;
       letter-spacing: 4px;
-      color: var(--maisie-amarelo);
-      text-shadow:
-        0 0 16px rgba(143, 82, 255, 0.28),
-        0 0 28px rgba(143, 82, 255, 0.18);
+      color: var(--dourado);
+      text-shadow: 0 0 22px rgba(143, 82, 255, 0.24);
       margin-bottom: 10px;
-      animation: tituloMaisie 3.2s ease-in-out infinite;
-    }
-
-    @keyframes tituloMaisie {
-      0%, 100% {
-        text-shadow:
-          0 0 16px rgba(143, 82, 255, 0.28),
-          0 0 28px rgba(143, 82, 255, 0.18);
-      }
-
-      50% {
-        text-shadow:
-          0 0 18px rgba(216, 189, 116, 0.34),
-          0 0 34px rgba(143, 82, 255, 0.38),
-          0 0 52px rgba(197, 52, 79, 0.20);
-      }
     }
 
     .maisie-cabecalho p {
-      color: var(--maisie-cinza);
+      color: var(--cinza);
       font-size: 16px;
     }
 
@@ -326,12 +227,10 @@
       border-radius: 999px;
       padding: 10px 14px;
       background: rgba(0,0,0,0.30);
-      color: var(--maisie-texto);
+      color: var(--texto);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      position: relative;
-      overflow: hidden;
     }
 
     .maisie-botoes-topo {
@@ -345,26 +244,22 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       text-decoration: none;
       border: 1px solid rgba(143, 82, 255, 0.28);
-      color: var(--maisie-texto);
+      color: var(--texto);
       padding: 11px 15px;
       border-radius: 12px;
       background: rgba(0,0,0,0.28);
-      transition: 0.25s;
+      transition: 0.22s;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-size: 11px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
     }
 
     .maisie-btn:hover {
       transform: translateY(-2px);
-      border-color: var(--maisie-roxo);
-      color: var(--maisie-amarelo);
+      border-color: var(--roxo);
+      color: var(--dourado);
       box-shadow: 0 0 18px rgba(143, 82, 255, 0.14);
     }
 
@@ -384,61 +279,27 @@
       border-radius: 12px;
       padding: 12px 16px;
       background: rgba(255,255,255,0.03);
-      color: var(--maisie-texto);
+      color: var(--texto);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 12px;
       cursor: pointer;
-      transition: 0.25s;
-      position: relative;
-      overflow: hidden;
+      transition: 0.22s;
     }
 
     .aba-maisie:hover {
-      color: var(--maisie-amarelo);
-      border-color: var(--maisie-roxo);
+      color: var(--dourado);
+      border-color: var(--roxo);
       transform: translateY(-2px);
     }
 
     .aba-maisie.ativa {
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
       border-color: rgba(143, 82, 255, 0.65);
       background:
-        linear-gradient(135deg, rgba(143,82,255,0.20), rgba(197,52,79,0.10)),
+        linear-gradient(135deg, rgba(143,82,255,0.18), rgba(197,52,79,0.08)),
         rgba(0,0,0,0.28);
-      animation: abaAtivaMaisie 2.8s ease-in-out infinite;
-    }
-
-    @keyframes abaAtivaMaisie {
-      0%, 100% {
-        box-shadow: 0 0 18px rgba(143, 82, 255, 0.14);
-      }
-
-      50% {
-        box-shadow:
-          0 0 18px rgba(143, 82, 255, 0.28),
-          0 0 32px rgba(216, 189, 116, 0.08);
-      }
-    }
-
-    .maisie-selo::before,
-    .maisie-btn::before,
-    .aba-maisie::before,
-    .item-interativo-maisie::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.10), transparent);
-      transform: translateX(-120%);
-      transition: 0.45s;
-      pointer-events: none;
-    }
-
-    .maisie-selo:hover::before,
-    .maisie-btn:hover::before,
-    .aba-maisie:hover::before,
-    .item-interativo-maisie:hover::before {
-      transform: translateX(120%);
+      box-shadow: 0 0 18px rgba(143, 82, 255, 0.14);
     }
 
     .conteudo-maisie {
@@ -447,13 +308,13 @@
 
     .conteudo-maisie.ativo {
       display: block;
-      animation: aparecerMaisie 0.35s ease;
+      animation: aparecerMaisie 0.25s ease;
     }
 
     @keyframes aparecerMaisie {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(8px);
       }
 
       to {
@@ -463,22 +324,16 @@
     }
 
     .bloco-maisie {
+      position: relative;
+      overflow: hidden;
       border: 1px solid rgba(143, 82, 255, 0.16);
       border-radius: 20px;
       padding: 22px;
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.025), rgba(0,0,0,0.18)),
+        linear-gradient(135deg, rgba(255,255,255,0.022), rgba(0,0,0,0.16)),
         rgba(0,0,0,0.42);
       margin-top: 18px;
-      position: relative;
-      overflow: hidden;
-      animation: subirMaisie 0.75s ease both;
-      transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease,
-        background 0.28s ease;
-      backdrop-filter: blur(2px);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .bloco-maisie::before {
@@ -488,22 +343,20 @@
       top: 0;
       width: 3px;
       height: 100%;
-      background: linear-gradient(to bottom, var(--maisie-roxo), var(--maisie-vermelho));
+      background: linear-gradient(to bottom, var(--roxo), var(--vermelho));
     }
 
     .bloco-maisie:hover,
     .card-info-maisie:hover,
     .card-lista-maisie:hover,
     .frase-maisie:hover {
-      transform: translateY(-4px);
-      border-color: rgba(143, 82, 255, 0.42);
-      box-shadow:
-        0 0 24px rgba(143, 82, 255, 0.12),
-        inset 0 0 24px rgba(143, 82, 255, 0.035);
+      transform: translateY(-3px);
+      border-color: rgba(143, 82, 255, 0.38);
+      box-shadow: 0 0 20px rgba(143, 82, 255, 0.09);
     }
 
     .bloco-maisie h3 {
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 24px;
@@ -512,7 +365,7 @@
 
     .bloco-maisie p,
     .bloco-maisie li {
-      color: var(--maisie-cinza);
+      color: var(--cinza);
       line-height: 1.72;
       font-size: 15px;
     }
@@ -521,7 +374,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      animation: abrirAbaMaisie 0.55s ease both;
     }
 
     .card-info-maisie {
@@ -529,17 +381,12 @@
       border-radius: 16px;
       padding: 16px;
       background: rgba(0,0,0,0.42);
-      animation: subirMaisie 0.75s ease both;
-      transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease,
-        background 0.28s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .card-info-maisie span {
       display: block;
-      color: var(--maisie-roxo);
+      color: var(--roxo);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 10px;
@@ -547,15 +394,9 @@
     }
 
     .card-info-maisie strong {
-      color: var(--maisie-texto);
+      color: var(--texto);
       font-size: 16px;
       font-weight: 600;
-      transition: 0.25s ease;
-    }
-
-    .card-info-maisie:hover strong {
-      color: var(--maisie-amarelo);
-      text-shadow: 0 0 12px rgba(143, 82, 255, 0.32);
     }
 
     .frase-maisie {
@@ -566,16 +407,11 @@
       background:
         linear-gradient(135deg, rgba(197,52,79,0.10), rgba(143,82,255,0.08)),
         rgba(0,0,0,0.42);
-      animation: abrirAbaMaisie 0.55s ease both;
-      transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease,
-        background 0.28s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .frase-maisie h4 {
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 14px;
@@ -583,34 +419,23 @@
     }
 
     .frase-maisie p {
-      color: var(--maisie-texto);
+      color: var(--texto);
       font-size: 24px;
       line-height: 1.4;
       font-weight: 600;
-      animation: fraseEnergiaMaisie 3.4s ease-in-out infinite;
     }
 
-    @keyframes fraseEnergiaMaisie {
-      0%, 100% {
-        text-shadow: 0 0 8px rgba(143, 82, 255, 0.15);
-      }
-
-      50% {
-        text-shadow:
-          0 0 14px rgba(143, 82, 255, 0.36),
-          0 0 22px rgba(197, 52, 79, 0.20);
-      }
-    }
+    /* RODA */
 
     .roda-atributos-maisie {
-      width: min(720px, 100%);
+      width: min(680px, 100%);
       aspect-ratio: 1 / 1;
       margin: 28px auto 0;
       position: relative;
       border-radius: 50%;
       isolation: isolate;
       overflow: visible;
-      filter: drop-shadow(0 0 28px rgba(143, 82, 255, 0.20));
+      box-shadow: 0 0 28px rgba(143, 82, 255, 0.10);
     }
 
     .roda-atributos-maisie::before {
@@ -619,14 +444,11 @@
       inset: 8%;
       border-radius: 50%;
       background:
-        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 20%),
-        radial-gradient(circle at center, rgba(70,170,255,0.08), transparent 44%),
-        radial-gradient(circle at center, transparent 54%, rgba(143,82,255,0.18) 55%, transparent 57%);
-      box-shadow:
-        inset 0 0 70px rgba(0,0,0,0.78),
-        0 0 46px rgba(143,82,255,0.16);
+        radial-gradient(circle at center, rgba(143,82,255,0.15), transparent 20%),
+        radial-gradient(circle at center, transparent 54%, rgba(143,82,255,0.14) 55%, transparent 57%);
+      box-shadow: inset 0 0 58px rgba(0,0,0,0.72);
       z-index: 0;
-      animation: pulsoCampoRodaMaisie 4s ease-in-out infinite;
+      animation: pulsoCampoRodaMaisie 5s ease-in-out infinite;
     }
 
     .roda-img {
@@ -641,9 +463,8 @@
 
     .roda-img.anel-externo {
       z-index: 1;
-      opacity: 0.82;
-      mix-blend-mode: screen;
-      animation: girarAnelExternoMaisie 42s linear infinite;
+      opacity: 0.78;
+      animation: girarAnelExternoMaisie 58s linear infinite;
     }
 
     .roda-img.anel-interno {
@@ -651,9 +472,8 @@
       width: 84%;
       height: 84%;
       z-index: 2;
-      opacity: 0.78;
-      mix-blend-mode: screen;
-      animation: girarAnelInternoMaisie 34s linear infinite reverse;
+      opacity: 0.72;
+      animation: girarAnelInternoMaisie 48s linear infinite reverse;
     }
 
     .roda-img.nucleo {
@@ -661,12 +481,8 @@
       width: 28%;
       height: 28%;
       z-index: 5;
-      opacity: 0.92;
-      mix-blend-mode: screen;
-      animation: pulsoNucleoMaisie 3.2s ease-in-out infinite;
-      filter:
-        drop-shadow(0 0 18px rgba(143,82,255,0.45))
-        drop-shadow(0 0 32px rgba(70,170,255,0.16));
+      opacity: 0.9;
+      animation: pulsoNucleoMaisie 4.4s ease-in-out infinite;
     }
 
     .roda-centro-maisie {
@@ -683,18 +499,11 @@
       text-transform: uppercase;
       z-index: 8;
       pointer-events: none;
-      font-family: Arial, Helvetica, sans-serif;
       color: rgba(255, 240, 200, 0.92);
       letter-spacing: 2px;
       font-size: 12px;
       font-weight: 800;
-      text-shadow:
-        0 0 8px rgba(143,82,255,0.85),
-        0 0 16px rgba(143,82,255,0.45),
-        0 1px 2px rgba(0,0,0,0.95);
-      transition:
-        transform 0.25s ease,
-        filter 0.25s ease;
+      text-shadow: 0 0 12px rgba(143,82,255,0.72);
     }
 
     .roda-centro-maisie strong {
@@ -705,10 +514,6 @@
       font-weight: 900;
       letter-spacing: 0.08em;
       margin-top: 4px;
-      text-shadow:
-        0 0 8px rgba(255, 236, 190, 0.9),
-        0 0 18px rgba(143,82,255,0.82),
-        0 0 28px rgba(70,170,255,0.18);
     }
 
     .roda-centro-maisie span {
@@ -718,33 +523,10 @@
       font-weight: 700;
       margin-top: 6px;
       letter-spacing: 0.22em;
-      text-shadow:
-        0 0 6px rgba(143,82,255,0.65),
-        0 1px 2px rgba(0,0,0,0.95);
     }
 
     .roda-centro-maisie.carregado {
-      animation: centroCarregadoMaisie 0.6s ease;
-    }
-
-    @keyframes centroCarregadoMaisie {
-      0% {
-        filter: brightness(1);
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      45% {
-        filter:
-          brightness(1.35)
-          drop-shadow(0 0 18px rgba(143,82,255,0.75))
-          drop-shadow(0 0 28px rgba(216,189,116,0.20));
-        transform: translate(-50%, -50%) scale(1.08);
-      }
-
-      100% {
-        filter: brightness(1);
-        transform: translate(-50%, -50%) scale(1);
-      }
+      animation: centroCarregadoMaisie 0.45s ease;
     }
 
     .linha-atributo-maisie {
@@ -753,66 +535,37 @@
       top: 50%;
       width: 2px;
       height: 36%;
-      background:
-        linear-gradient(
-          to top,
-          rgba(143,82,255,0.75),
-          rgba(198,173,255,0.42),
-          transparent
-        );
+      background: linear-gradient(to top, rgba(143,82,255,0.60), rgba(198,173,255,0.34), transparent);
       transform-origin: bottom center;
       z-index: 3;
-      opacity: 0.46;
-      filter: drop-shadow(0 0 8px rgba(143,82,255,0.70));
+      opacity: 0.38;
       overflow: hidden;
-      transition:
-        opacity 0.25s ease,
-        width 0.25s ease,
-        filter 0.25s ease;
+      transition: opacity 0.22s ease, width 0.22s ease;
     }
 
     .linha-atributo-maisie::after {
       content: "";
       position: absolute;
-      left: -3px;
+      left: -2px;
       top: 100%;
-      width: 8px;
-      height: 38px;
+      width: 6px;
+      height: 30px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.85);
-      box-shadow:
-        0 0 12px rgba(198,173,255,0.9),
-        0 0 22px rgba(143,82,255,0.65);
-      animation: energiaSubindoLinhaMaisie 2.2s linear infinite;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 0 12px rgba(143,82,255,0.6);
+      animation: energiaSubindoLinhaMaisie 3s linear infinite;
     }
 
     .linha-atributo-maisie.ativa {
       width: 4px;
       opacity: 1;
-      background:
-        linear-gradient(
-          to top,
-          rgba(255, 238, 180, 0.98),
-          rgba(198,173,255,0.92),
-          rgba(143,82,255,0.45),
-          transparent
-        );
-      filter:
-        drop-shadow(0 0 10px rgba(255,238,180,0.75))
-        drop-shadow(0 0 22px rgba(143,82,255,0.95))
-        drop-shadow(0 0 38px rgba(70,170,255,0.18));
+      background: linear-gradient(to top, rgba(255, 238, 180, 0.92), rgba(198,173,255,0.82), rgba(143,82,255,0.38), transparent);
+      box-shadow: 0 0 18px rgba(143,82,255,0.32);
     }
 
     .linha-atributo-maisie.ativa::after {
-      width: 12px;
-      height: 58px;
-      left: -4px;
-      background: rgba(255,248,220,0.98);
-      box-shadow:
-        0 0 14px rgba(255,238,180,1),
-        0 0 26px rgba(198,173,255,0.95),
-        0 0 44px rgba(143,82,255,0.75);
-      animation-duration: 1s;
+      height: 48px;
+      animation-duration: 1.4s;
     }
 
     .linha-atributo-maisie.l1 { transform: translate(-50%, -100%) rotate(0deg); }
@@ -821,55 +574,21 @@
     .linha-atributo-maisie.l4 { transform: translate(-50%, -100%) rotate(216deg); }
     .linha-atributo-maisie.l5 { transform: translate(-50%, -100%) rotate(288deg); }
 
-    .linha-atributo-maisie.l1::after { animation-delay: 0s; }
-    .linha-atributo-maisie.l2::after { animation-delay: 0.25s; }
-    .linha-atributo-maisie.l3::after { animation-delay: 0.5s; }
-    .linha-atributo-maisie.l4::after { animation-delay: 0.75s; }
-    .linha-atributo-maisie.l5::after { animation-delay: 1s; }
-
     .raio-selecao-maisie {
       position: absolute;
       left: 50%;
       top: 50%;
-      width: 6px;
+      width: 5px;
       height: 37%;
       transform-origin: bottom center;
       transform: translate(-50%, -100%) rotate(0deg) scaleY(0);
       border-radius: 999px;
-      background:
-        linear-gradient(
-          to top,
-          rgba(255, 238, 180, 0.95),
-          rgba(198, 173, 255, 0.90),
-          rgba(143, 82, 255, 0.48),
-          transparent
-        );
-      box-shadow:
-        0 0 12px rgba(255,238,180,0.7),
-        0 0 24px rgba(143,82,255,0.85),
-        0 0 42px rgba(70,170,255,0.18);
+      background: linear-gradient(to top, rgba(255, 238, 180, 0.92), rgba(198, 173, 255, 0.82), rgba(143, 82, 255, 0.36), transparent);
+      box-shadow: 0 0 18px rgba(143,82,255,0.55);
       opacity: 0;
       pointer-events: none;
       z-index: 7;
-      transition:
-        transform 0.32s ease,
-        opacity 0.28s ease;
-      overflow: hidden;
-    }
-
-    .raio-selecao-maisie::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          to top,
-          transparent,
-          rgba(255,255,255,0.92),
-          transparent
-        );
-      transform: translateY(100%);
-      animation: raioCorrendoMaisie 0.85s linear infinite;
+      transition: transform 0.28s ease, opacity 0.22s ease;
     }
 
     .raio-selecao-maisie.ativo {
@@ -877,26 +596,16 @@
       transform: translate(-50%, -100%) rotate(var(--rotacao-raio, 0deg)) scaleY(1);
     }
 
-    @keyframes raioCorrendoMaisie {
-      from {
-        transform: translateY(100%);
-      }
-
-      to {
-        transform: translateY(-100%);
-      }
-    }
-
     .atributo-maisie {
       position: absolute;
-      width: 154px;
-      height: 154px;
+      width: 146px;
+      height: 146px;
       border: none;
       border-radius: 50%;
       background: transparent;
-      color: var(--maisie-texto);
+      color: var(--texto);
       cursor: pointer;
-      transition: 0.25s;
+      transition: filter 0.2s ease;
       display: grid;
       place-items: center;
       text-align: center;
@@ -909,15 +618,10 @@
     .atributo-maisie::before {
       content: "";
       position: absolute;
-      inset: -22px;
+      inset: -20px;
       border-radius: 50%;
       background: url("Roda-Maisie-No.png") center / contain no-repeat;
-      opacity: 0.82;
-      mix-blend-mode: screen;
-      filter:
-        drop-shadow(0 0 12px rgba(143,82,255,0.35))
-        drop-shadow(0 0 18px rgba(216,189,116,0.08));
-      animation: pulsoNoAtributoMaisie 4s ease-in-out infinite;
+      opacity: 0.78;
       z-index: -1;
     }
 
@@ -927,132 +631,70 @@
       inset: 10px;
       border-radius: 50%;
       background:
-        radial-gradient(circle at center, rgba(143,82,255,0.18), transparent 58%),
+        radial-gradient(circle at center, rgba(143,82,255,0.16), transparent 58%),
         rgba(0,0,0,0.52);
       box-shadow:
-        inset 0 0 22px rgba(0,0,0,0.85),
-        0 0 20px rgba(143,82,255,0.12);
+        inset 0 0 18px rgba(0,0,0,0.78),
+        0 0 16px rgba(143,82,255,0.10);
       z-index: -1;
     }
 
     .atributo-maisie > span {
-      width: 104px;
-      min-height: 104px;
+      width: 100px;
+      min-height: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
       border-radius: 999px;
       padding: 10px 8px;
-      background:
-        radial-gradient(circle at center, rgba(20, 8, 36, 0.82), rgba(7, 3, 16, 0.42) 64%, transparent 100%);
-      box-shadow:
-        inset 0 0 18px rgba(0,0,0,0.82),
-        0 0 12px rgba(143,82,255,0.16);
-      backdrop-filter: blur(2px);
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
+      background: radial-gradient(circle at center, rgba(20, 8, 36, 0.82), rgba(7, 3, 16, 0.42) 64%, transparent 100%);
+      box-shadow: inset 0 0 16px rgba(0,0,0,0.75);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .atributo-maisie:hover,
     .atributo-maisie.selecionado {
-      filter:
-        brightness(1.18)
-        drop-shadow(0 0 16px rgba(143,82,255,0.60))
-        drop-shadow(0 0 28px rgba(216,189,116,0.12));
-    }
-
-    .atributo-maisie:hover::before,
-    .atributo-maisie.selecionado::before {
-      opacity: 1;
-      animation:
-        pulsoNoAtributoMaisie 2.2s ease-in-out infinite,
-        girarNoSelecionadoMaisie 10s linear infinite;
-    }
-
-    .atributo-maisie.selecionado::after {
-      background:
-        radial-gradient(circle at center, rgba(255, 238, 180, 0.18), transparent 32%),
-        radial-gradient(circle at center, rgba(143,82,255,0.34), transparent 62%),
-        rgba(0,0,0,0.52);
-      box-shadow:
-        inset 0 0 22px rgba(0,0,0,0.85),
-        0 0 24px rgba(143,82,255,0.46),
-        0 0 42px rgba(255,238,180,0.12);
+      filter: brightness(1.16);
     }
 
     .atributo-maisie:hover > span,
     .atributo-maisie.selecionado > span {
-      transform: scale(1.06);
-      background:
-        radial-gradient(circle at center, rgba(56, 22, 98, 0.86), rgba(12, 5, 28, 0.48) 66%, transparent 100%);
+      transform: scale(1.05);
       box-shadow:
-        inset 0 0 18px rgba(0,0,0,0.82),
-        0 0 16px rgba(143,82,255,0.32),
-        0 0 26px rgba(216,189,116,0.10);
+        inset 0 0 16px rgba(0,0,0,0.78),
+        0 0 18px rgba(143,82,255,0.20);
     }
 
     .atributo-maisie .icone-atributo {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
       object-fit: contain;
       display: block;
       margin: 0 auto 2px;
-      opacity: 0.92;
-      mix-blend-mode: screen;
-      filter:
-        drop-shadow(0 0 7px rgba(143,82,255,0.72))
-        drop-shadow(0 0 12px rgba(198,173,255,0.30));
-      transition: 0.25s;
-    }
-
-    .atributo-maisie:hover .icone-atributo,
-    .atributo-maisie.selecionado .icone-atributo {
-      transform: scale(1.12);
-      opacity: 1;
-      filter:
-        drop-shadow(0 0 10px rgba(216,189,116,0.40))
-        drop-shadow(0 0 18px rgba(143,82,255,0.75));
+      opacity: 0.9;
     }
 
     .atributo-maisie .valor {
       display: block;
       color: #ffe6a3;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 900;
       line-height: 0.82;
-      letter-spacing: 0.02em;
       margin: 0 0 5px;
-      opacity: 1;
-      text-shadow:
-        0 0 5px rgba(255, 232, 170, 0.95),
-        0 0 14px rgba(143, 82, 255, 0.92),
-        0 0 24px rgba(90, 36, 190, 0.68),
-        0 2px 3px rgba(0,0,0,0.95);
-      transition:
-        color 0.25s ease,
-        text-shadow 0.25s ease,
-        transform 0.25s ease;
+      text-shadow: 0 0 12px rgba(143, 82, 255, 0.82);
     }
 
     .atributo-maisie .nome {
       display: block;
       color: rgba(238, 226, 255, 0.92);
-      font-family: Arial, Helvetica, sans-serif;
       font-size: 10px;
       font-weight: 700;
       line-height: 1;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       margin-bottom: 4px;
-      opacity: 0.96;
-      text-shadow:
-        0 0 5px rgba(143,82,255,0.75),
-        0 1px 2px rgba(0,0,0,0.95);
     }
 
     .atributo-maisie .sigla {
@@ -1064,41 +706,6 @@
       line-height: 1;
       letter-spacing: 0.11em;
       text-transform: uppercase;
-      opacity: 1;
-      text-shadow:
-        0 0 6px rgba(255, 236, 190, 0.82),
-        0 0 13px rgba(143,82,255,0.72),
-        0 1px 2px rgba(0,0,0,0.95);
-      transition:
-        color 0.25s ease,
-        text-shadow 0.25s ease,
-        transform 0.25s ease;
-    }
-
-    .atributo-maisie:hover .valor,
-    .atributo-maisie.selecionado .valor {
-      color: #fff3c8;
-      transform: scale(1.08);
-      text-shadow:
-        0 0 8px rgba(255, 242, 200, 1),
-        0 0 18px rgba(171, 99, 255, 0.98),
-        0 0 32px rgba(143, 82, 255, 0.82),
-        0 2px 3px rgba(0,0,0,0.95);
-    }
-
-    .atributo-maisie:hover .sigla,
-    .atributo-maisie.selecionado .sigla {
-      color: #fff8de;
-      transform: scale(1.04);
-      text-shadow:
-        0 0 8px rgba(255, 242, 200, 0.98),
-        0 0 16px rgba(171, 99, 255, 0.86),
-        0 1px 2px rgba(0,0,0,0.95);
-    }
-
-    .atributo-maisie:hover .nome,
-    .atributo-maisie.selecionado .nome {
-      color: rgba(255, 245, 220, 0.98);
     }
 
     .atributo-for { left: 15%; top: 40%; }
@@ -1114,7 +721,6 @@
       z-index: 4;
       pointer-events: none;
       overflow: hidden;
-      mask-image: radial-gradient(circle, black 0 68%, transparent 71%);
     }
 
     .micro-particulas-roda span {
@@ -1122,10 +728,8 @@
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: rgba(198,173,255,0.75);
-      box-shadow:
-        0 0 8px rgba(143,82,255,0.8),
-        0 0 16px rgba(70,170,255,0.25);
+      background: rgba(198,173,255,0.65);
+      box-shadow: 0 0 8px rgba(143,82,255,0.58);
       animation: flutuarParticulaRodaMaisie linear infinite;
     }
 
@@ -1143,13 +747,11 @@
 
     @keyframes pulsoCampoRodaMaisie {
       0%, 100% {
-        opacity: 0.85;
-        filter: brightness(1);
+        opacity: 0.82;
       }
 
       50% {
         opacity: 1;
-        filter: brightness(1.18);
       }
     }
 
@@ -1160,7 +762,7 @@
       }
 
       50% {
-        transform: scale(1.08);
+        transform: scale(1.05);
         opacity: 1;
       }
     }
@@ -1171,12 +773,8 @@
         opacity: 0;
       }
 
-      18% {
-        opacity: 1;
-      }
-
-      80% {
-        opacity: 0.7;
+      20% {
+        opacity: 0.85;
       }
 
       to {
@@ -1185,43 +783,33 @@
       }
     }
 
-    @keyframes pulsoNoAtributoMaisie {
-      0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 12px rgba(143,82,255,0.28));
-      }
-
-      50% {
-        transform: scale(1.035);
-        filter:
-          drop-shadow(0 0 16px rgba(143,82,255,0.58))
-          drop-shadow(0 0 24px rgba(70,170,255,0.14));
-      }
-    }
-
-    @keyframes girarNoSelecionadoMaisie {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
     @keyframes flutuarParticulaRodaMaisie {
       from {
-        transform: translateY(120%) scale(0.8);
+        transform: translateY(100%) scale(0.8);
         opacity: 0;
       }
 
-      15% {
+      20% {
         opacity: 0.8;
       }
 
-      80% {
-        opacity: 0.55;
+      to {
+        transform: translateY(-20%) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes centroCarregadoMaisie {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
       }
 
-      to {
-        transform: translateY(-20%) scale(1.15);
-        opacity: 0;
+      45% {
+        transform: translate(-50%, -50%) scale(1.07);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
       }
     }
 
@@ -1232,16 +820,15 @@
       border-radius: 16px;
       padding: 18px;
       background:
-        linear-gradient(135deg, rgba(143,82,255,0.10), rgba(197,52,79,0.06)),
+        linear-gradient(135deg, rgba(143,82,255,0.09), rgba(197,52,79,0.05)),
         rgba(0,0,0,0.42);
       min-height: 120px;
-      transition: 0.25s ease;
-      animation: subirMaisie 0.75s ease both;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .detalhe-atributo-maisie h4,
     .detalhe-lista-maisie h4 {
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 10px;
@@ -1250,26 +837,21 @@
 
     .detalhe-lista-maisie.atualizado,
     .detalhe-atributo-maisie.atualizado {
-      animation: detalheAtualizadoMaisie 0.5s ease;
+      animation: detalheAtualizadoMaisie 0.35s ease;
     }
 
     @keyframes detalheAtualizadoMaisie {
       0% {
-        transform: scale(0.985);
         border-color: rgba(143, 82, 255, 0.18);
-        box-shadow: none;
       }
 
-      45% {
-        transform: scale(1.01);
+      50% {
         border-color: rgba(216, 189, 116, 0.55);
-        box-shadow: 0 0 26px rgba(143, 82, 255, 0.18);
+        box-shadow: 0 0 20px rgba(143, 82, 255, 0.12);
       }
 
       100% {
-        transform: scale(1);
         border-color: rgba(143, 82, 255, 0.22);
-        box-shadow: none;
       }
     }
 
@@ -1278,19 +860,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-top: 16px;
-      animation: abrirAbaMaisie 0.55s ease both;
-    }
-
-    @keyframes abrirAbaMaisie {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .card-lista-maisie {
@@ -1298,16 +867,11 @@
       border-radius: 18px;
       background: rgba(0,0,0,0.42);
       overflow: hidden;
-      animation: subirMaisie 0.75s ease both;
-      transition:
-        transform 0.28s ease,
-        border-color 0.28s ease,
-        box-shadow 0.28s ease,
-        background 0.28s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
     .card-lista-maisie h4 {
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 15px;
@@ -1319,15 +883,13 @@
       width: 100%;
       border: none;
       background: transparent;
-      color: var(--maisie-texto);
+      color: var(--texto);
       text-align: left;
       padding: 14px 16px;
       cursor: pointer;
       border-bottom: 1px solid rgba(143, 82, 255, 0.10);
-      transition: 0.2s;
+      transition: background 0.18s ease, color 0.18s ease;
       font-family: inherit;
-      position: relative;
-      overflow: hidden;
     }
 
     .item-interativo-maisie:last-child {
@@ -1336,7 +898,7 @@
 
     .item-interativo-maisie:hover {
       background: rgba(143, 82, 255, 0.08);
-      color: var(--maisie-amarelo);
+      color: var(--dourado);
     }
 
     .lista-texto-maisie ul {
@@ -1358,7 +920,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 18px;
       margin-top: 18px;
-      animation: abrirAbaMaisie 0.55s ease both;
     }
 
     .galeria-maisie figure {
@@ -1366,33 +927,24 @@
       border-radius: 18px;
       overflow: hidden;
       background: rgba(0,0,0,0.24);
-      transition:
-        transform 0.28s ease,
-        box-shadow 0.28s ease,
-        border-color 0.28s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
 
     .galeria-maisie figure:hover {
-      transform: translateY(-5px) scale(1.01);
-      border-color: rgba(216, 189, 116, 0.34);
-      box-shadow: 0 0 24px rgba(143, 82, 255, 0.14);
+      transform: translateY(-4px);
+      border-color: rgba(216, 189, 116, 0.32);
+      box-shadow: 0 0 20px rgba(143, 82, 255, 0.10);
     }
 
     .galeria-maisie img {
       width: 100%;
       display: block;
       background: #000;
-      transition: 0.35s ease;
-    }
-
-    .galeria-maisie figure:hover img {
-      transform: scale(1.025);
-      filter: contrast(1.08) saturate(1.08);
     }
 
     .galeria-maisie figcaption {
       padding: 12px 14px;
-      color: var(--maisie-cinza);
+      color: var(--cinza);
       font-size: 12px;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -1411,64 +963,38 @@
       width: 3px;
       height: 3px;
       border-radius: 50%;
-      background: rgba(198, 173, 255, 0.65);
-      box-shadow:
-        0 0 10px rgba(143, 82, 255, 0.70),
-        0 0 18px rgba(70, 170, 255, 0.28);
+      background: rgba(198, 173, 255, 0.55);
+      box-shadow: 0 0 8px rgba(143, 82, 255, 0.55);
       animation: particulaSubindoMaisie linear infinite;
     }
 
     @keyframes particulaSubindoMaisie {
       from {
-        transform: translateY(110vh) scale(0.8);
+        transform: translateY(110vh);
         opacity: 0;
       }
 
-      12% {
-        opacity: 0.75;
-      }
-
-      85% {
-        opacity: 0.45;
+      16% {
+        opacity: 0.65;
       }
 
       to {
-        transform: translateY(-10vh) scale(1.2);
+        transform: translateY(-10vh);
         opacity: 0;
       }
     }
 
     .falha-energia-maisie {
-      animation: glitchEnergiaMaisie 0.28s steps(2, end);
+      animation: glitchEnergiaMaisie 0.22s steps(2, end);
     }
 
     @keyframes glitchEnergiaMaisie {
-      0% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-      }
-
-      25% {
-        transform: translate(2px, -1px);
-        filter: hue-rotate(20deg);
-      }
-
-      50% {
-        transform: translate(-2px, 1px);
-        filter: hue-rotate(-20deg);
-      }
-
-      75% {
-        transform: translate(1px, 2px);
-      }
-
-      100% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-      }
+      0% { transform: translate(0); }
+      33% { transform: translate(1px, -1px); }
+      66% { transform: translate(-1px, 1px); }
+      100% { transform: translate(0); }
     }
 
-    /* PERFORMANCE SEGURA */
     .efeito-decorativo.pausado,
     .efeito-decorativo.pausado::before,
     .efeito-decorativo.pausado::after,
@@ -1480,43 +1006,24 @@
       animation-play-state: paused !important;
     }
 
-    body.versao-mobile .maisie-painel,
-    body.versao-mobile .bloco-maisie,
-    body.versao-mobile .atributo-maisie > span {
-      backdrop-filter: none !important;
-    }
-
-    body.versao-mobile .ficha-maisie {
-      background-attachment: scroll;
-    }
-
-    body.versao-mobile .maisie-retrato-box::before,
     body.versao-mobile .maisie-retrato-box::after {
       display: none;
     }
 
     body.versao-mobile .roda-img.anel-externo {
-      animation-duration: 120s;
+      animation-duration: 130s;
     }
 
     body.versao-mobile .roda-img.anel-interno {
-      animation-duration: 95s;
+      animation-duration: 110s;
     }
 
     body.versao-mobile .roda-img.nucleo {
-      animation-duration: 5.5s;
+      animation-duration: 6s;
     }
 
     body.versao-mobile .linha-atributo-maisie::after {
-      animation-duration: 4s;
-    }
-
-    body.versao-mobile .linha-atributo-maisie.ativa::after {
-      animation-duration: 1.8s;
-    }
-
-    body.versao-mobile .raio-selecao-maisie::before {
-      animation-duration: 1.4s;
+      animation-duration: 4.2s;
     }
 
     body.versao-mobile .falha-energia-maisie {
@@ -1524,7 +1031,7 @@
     }
 
     body.versao-mobile .efeito-particulas-maisie {
-      opacity: 0.45;
+      opacity: 0.42;
     }
 
     @media (max-width: 1100px) {
@@ -1548,7 +1055,6 @@
       .ficha-maisie {
         padding: 14px;
         border-radius: 20px;
-        background-attachment: scroll;
         background-position: center top;
       }
 
@@ -1610,10 +1116,6 @@
         padding: 8px 10px;
       }
 
-      .maisie-botoes-topo {
-        margin-bottom: 14px;
-      }
-
       .maisie-btn {
         width: 100%;
         padding: 12px;
@@ -1625,15 +1127,6 @@
         padding: 10px;
         gap: 8px;
         scrollbar-width: thin;
-      }
-
-      .abas-maisie::-webkit-scrollbar {
-        height: 5px;
-      }
-
-      .abas-maisie::-webkit-scrollbar-thumb {
-        background: rgba(143,82,255,0.45);
-        border-radius: 999px;
       }
 
       .aba-maisie {
@@ -1702,24 +1195,13 @@
         font-size: 16px;
       }
 
-      .galeria-maisie {
-        grid-template-columns: 1fr;
-      }
-
       .roda-atributos-maisie {
         width: min(360px, 100%);
-        aspect-ratio: 1 / 1;
-        min-height: auto;
         margin: 20px auto 0;
-        border-radius: 50%;
-        display: block;
-        filter:
-          drop-shadow(0 0 16px rgba(143, 82, 255, 0.20))
-          drop-shadow(0 0 24px rgba(0, 0, 0, 0.40));
+        box-shadow: 0 0 18px rgba(143, 82, 255, 0.10);
       }
 
       .roda-atributos-maisie::before {
-        display: block;
         inset: 9%;
       }
 
@@ -1734,14 +1216,8 @@
 
       .linha-atributo-maisie::after {
         width: 6px;
-        height: 26px;
+        height: 24px;
         left: -2px;
-      }
-
-      .linha-atributo-maisie.ativa::after {
-        width: 9px;
-        height: 38px;
-        left: -3px;
       }
 
       .raio-selecao-maisie {
@@ -1772,13 +1248,9 @@
         height: 78px;
       }
 
-      .atributo-maisie:hover {
-        transform: translate(-50%, -50%) scale(1.04);
-      }
-
       .atributo-maisie::before {
         inset: -12px;
-        opacity: 0.76;
+        opacity: 0.74;
       }
 
       .atributo-maisie::after {
@@ -1788,15 +1260,12 @@
       .atributo-maisie > span {
         width: 56px;
         min-height: 56px;
-        border-radius: 999px;
         padding: 5px 4px;
-        gap: 0;
       }
 
       .atributo-maisie .icone-atributo {
         width: 16px;
         height: 16px;
-        margin-bottom: 1px;
       }
 
       .atributo-maisie .valor {
@@ -1870,18 +1339,17 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .efeito-decorativo,
-      .efeito-decorativo::before,
-      .efeito-decorativo::after,
-      .efeito-decorativo * {
+      *,
+      *::before,
+      *::after {
         animation: none !important;
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="fundo-paranormal"></div>
 
   <header>
@@ -1901,7 +1369,6 @@
 
   <main>
     <section class="ficha-maisie">
-
       <div class="maisie-topo">
 
         <aside class="maisie-lateral">
@@ -1916,7 +1383,6 @@
         </aside>
 
         <div class="maisie-painel">
-
           <div class="maisie-cabecalho">
             <div>
               <p class="classificacao-maisie">Arquivo operacional // acesso liberado</p>
@@ -1975,20 +1441,17 @@
           <section class="conteudo-maisie" id="atributos">
             <div class="bloco-maisie">
               <h3>Roda de Atributos</h3>
-
               <p>
                 A leitura ritualística abaixo representa os cinco atributos principais registrados
                 no dossiê operacional de Maisie Hundown.
               </p>
 
               <div class="roda-atributos-maisie efeito-decorativo" id="roda-maisie" data-efeito="roda">
-
                 <img src="Roda-Maisie-Anel-Externo.png" class="roda-img anel-externo" alt="">
                 <img src="Roda-Maisie-Anel-Interno.png" class="roda-img anel-interno" alt="">
                 <img src="Roda-Maisie-Nucleo.png" class="roda-img nucleo" alt="">
 
                 <div class="micro-particulas-roda" id="micro-particulas-roda"></div>
-
                 <div class="raio-selecao-maisie" id="raio-selecao-maisie"></div>
 
                 <div class="linha-atributo-maisie l1" data-linha="agi"></div>
@@ -2196,7 +1659,6 @@
           </section>
 
           <section class="conteudo-maisie" id="descricao">
-
             <div class="bloco-maisie personalidade-maisie">
               <h3>Personalidade</h3>
               <p>
@@ -2264,12 +1726,10 @@
                 </figure>
               </div>
             </div>
-
           </section>
 
         </div>
       </div>
-
     </section>
   </main>
 
@@ -2437,7 +1897,6 @@
       }
 
       const atributosAberto = abaAtual === "atributos";
-
       rodaMaisie.classList.toggle("pausado", !atributosAberto);
 
       if (atributosAberto) {
@@ -2471,22 +1930,17 @@
 
       const container = document.createElement("div");
       container.className = "efeito-particulas-maisie efeito-decorativo";
-      container.dataset.efeito = "particulas-globais";
       document.body.prepend(container);
 
-      const quantidade = estadoMaisie.mobile ? 10 : 42;
+      const quantidade = estadoMaisie.mobile ? 6 : 18;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
         particula.className = "particula-maisie";
-
         particula.style.left = `${Math.random() * 100}%`;
-        particula.style.animationDuration = `${6 + Math.random() * 10}s`;
+        particula.style.animationDuration = `${9 + Math.random() * 10}s`;
         particula.style.animationDelay = `${Math.random() * 8}s`;
-        particula.style.opacity = `${0.18 + Math.random() * 0.48}`;
-        particula.style.width = `${2 + Math.random() * 3}px`;
-        particula.style.height = particula.style.width;
-
+        particula.style.opacity = `${0.16 + Math.random() * 0.34}`;
         container.appendChild(particula);
       }
 
@@ -2511,17 +1965,15 @@
 
       removerMicroParticulasRodaMaisie();
 
-      const quantidade = estadoMaisie.mobile ? 6 : 28;
+      const quantidade = estadoMaisie.mobile ? 4 : 12;
 
       for (let i = 0; i < quantidade; i++) {
         const particula = document.createElement("span");
-
         particula.style.left = `${10 + Math.random() * 80}%`;
         particula.style.top = `${10 + Math.random() * 80}%`;
-        particula.style.animationDuration = `${3 + Math.random() * 5}s`;
+        particula.style.animationDuration = `${4 + Math.random() * 5}s`;
         particula.style.animationDelay = `${Math.random() * 4}s`;
-        particula.style.opacity = `${0.18 + Math.random() * 0.48}`;
-
+        particula.style.opacity = `${0.16 + Math.random() * 0.38}`;
         container.appendChild(particula);
       }
 
@@ -2573,9 +2025,8 @@
 
       setTimeout(() => {
         fichaMaisie.classList.remove("falha-energia-maisie");
-      }, 320);
+      }, 240);
     }
   </script>
-
 </body>
 </html>
