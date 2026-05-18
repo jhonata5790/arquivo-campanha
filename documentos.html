@@ -3,602 +3,388 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Documentos | Arquivo da Campanha</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .documentos-pagina {
-      --doc-vermelho: #b51624;
-      --doc-roxo: #8b4dff;
-      --doc-amarelo: #d8bd74;
-      --doc-verde: #6f8f4e;
-      --doc-metal: #8a8a8a;
-      --doc-texto: #e8dfd2;
-      --doc-fraco: #a89f94;
-
-      border: 1px solid rgba(216, 189, 116, 0.22);
-      border-radius: 28px;
-      padding: 30px;
-      background:
-        radial-gradient(circle at 12% 12%, rgba(181, 22, 36, 0.20), transparent 30%),
-        radial-gradient(circle at 88% 10%, rgba(139, 77, 255, 0.16), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(216, 189, 116, 0.10), transparent 36%),
-        linear-gradient(135deg, rgba(5, 5, 7, 0.98), rgba(13, 10, 8, 0.98));
-      box-shadow:
-        0 0 44px rgba(181, 22, 36, 0.16),
-        inset 0 0 70px rgba(0, 0, 0, 0.68);
+    .painel-documentos {
       position: relative;
       overflow: hidden;
     }
 
-    .documentos-pagina::before {
-      content: "";
+    .painel-documentos::before {
+      content: "DOCUMENTOS // EVIDÊNCIAS // ORDO REALITAS";
       position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-
-    .documentos-pagina::after {
-      content: "DOCUMENTOS // ARQUIVOS // ACESSO RESTRITO";
-      position: absolute;
-      right: -142px;
+      right: -128px;
       top: 50%;
       transform: rotate(90deg);
-      color: rgba(216, 189, 116, 0.12);
-      letter-spacing: 6px;
+      color: rgba(124, 60, 255, 0.10);
+      letter-spacing: 5px;
       font-size: 11px;
       pointer-events: none;
     }
 
-    .documentos-pagina > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .classificacao {
-      color: #ff3045;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-    }
-
-    .documentos-hero {
-      min-height: 460px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: stretch;
-      padding-bottom: 30px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid rgba(216, 189, 116, 0.18);
-    }
-
-    .documentos-hero-texto {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      padding: 30px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.035), rgba(181,22,36,0.06)),
-        rgba(0,0,0,0.28);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .arquivo-central {
       position: relative;
       overflow: hidden;
-    }
-
-    .documentos-hero-texto::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--doc-vermelho), var(--doc-roxo), var(--doc-amarelo));
-    }
-
-    .documentos-hero-texto .classificacao {
-      margin-bottom: 18px;
-    }
-
-    .documentos-hero-texto h2 {
-      font-size: clamp(44px, 7vw, 92px);
-      line-height: 0.92;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--doc-amarelo);
-      text-shadow:
-        0 0 18px rgba(181, 22, 36, 0.36),
-        0 0 36px rgba(139, 77, 255, 0.20);
+      border: 1px solid rgba(124, 60, 255, 0.22);
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(124, 60, 255, 0.14), transparent 34%),
+        radial-gradient(circle at 82% 16%, rgba(181, 31, 53, 0.12), transparent 34%),
+        rgba(0,0,0,0.46);
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
       margin-bottom: 22px;
     }
 
-    .documentos-hero-texto p {
-      color: var(--doc-fraco);
-      line-height: 1.75;
-      font-size: 16px;
-      max-width: 780px;
-    }
-
-    .documentos-hero-texto p + p {
-      margin-top: 14px;
-    }
-
-    .documentos-selo {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      min-height: 420px;
-      background:
-        radial-gradient(circle at center, rgba(181,22,36,0.18), transparent 34%),
-        radial-gradient(circle at center, rgba(139,77,255,0.13), transparent 58%),
-        rgba(0,0,0,0.36);
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .documentos-selo::before {
-      content: "";
-      position: absolute;
-      width: 310px;
-      height: 310px;
-      border-radius: 50%;
-      border: 1px solid rgba(216, 189, 116, 0.26);
-      box-shadow:
-        0 0 0 28px rgba(181, 22, 36, 0.04),
-        0 0 0 58px rgba(139, 77, 255, 0.03),
-        0 0 52px rgba(181, 22, 36, 0.28);
-    }
-
-    .documentos-selo::after {
-      content: "DOC";
-      color: var(--doc-amarelo);
-      font-size: clamp(58px, 7vw, 92px);
-      letter-spacing: 8px;
-      font-weight: bold;
-      text-shadow:
-        0 0 22px rgba(181, 22, 36, 0.75),
-        0 0 46px rgba(139, 77, 255, 0.40);
-      z-index: 1;
-    }
-
-    .documentos-selo-dados {
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      z-index: 2;
-    }
-
-    .doc-mini-dado {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 12px;
-      padding: 12px;
-      background: rgba(0,0,0,0.46);
-      text-align: center;
-    }
-
-    .doc-mini-dado span {
-      display: block;
-      color: var(--doc-fraco);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 9px;
-      margin-bottom: 6px;
-    }
-
-    .doc-mini-dado strong {
-      color: var(--doc-amarelo);
-      font-size: 13px;
-      text-transform: uppercase;
-    }
-
-    .documentos-secao {
-      margin-top: 28px;
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 22px;
-      padding: 24px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.18)),
-        rgba(0,0,0,0.20);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .documentos-secao::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: rgba(216, 189, 116, 0.5);
-    }
-
-    .documentos-secao h2 {
-      color: var(--doc-amarelo);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: clamp(26px, 4vw, 46px);
-      margin-bottom: 14px;
-    }
-
-    .documentos-secao p {
-      color: var(--doc-fraco);
-      line-height: 1.72;
-      font-size: 15px;
-      max-width: 980px;
-    }
-
-    .abas-documentos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 26px;
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 18px;
-      padding: 14px;
-      background: rgba(0,0,0,0.26);
-    }
-
-    .aba-documento {
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 12px;
-      padding: 12px 16px;
-      background: rgba(255,255,255,0.035);
-      color: var(--doc-texto);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .aba-documento:hover {
-      color: var(--doc-amarelo);
-      border-color: var(--doc-amarelo);
-      transform: translateY(-2px);
-    }
-
-    .aba-documento.ativa {
-      color: var(--doc-amarelo);
-      border-color: rgba(181, 22, 36, 0.65);
-      background:
-        linear-gradient(135deg, rgba(181,22,36,0.24), rgba(139,77,255,0.10)),
-        rgba(0,0,0,0.30);
-      box-shadow: 0 0 18px rgba(181, 22, 36, 0.16);
-    }
-
-    .conteudo-documento {
-      display: none;
-    }
-
-    .conteudo-documento.ativo {
-      display: block;
-      animation: aparecerDocumento 0.35s ease;
-    }
-
-    @keyframes aparecerDocumento {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .documentos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 22px;
-    }
-
-    .doc-card {
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      border-radius: 18px;
-      padding: 18px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.028), rgba(0,0,0,0.16)),
-        rgba(0,0,0,0.28);
-      min-height: 240px;
-      position: relative;
-      overflow: hidden;
-      transition: 0.25s;
-      cursor: pointer;
-      color: inherit;
-      font-family: inherit;
-      text-align: left;
-    }
-
-    .doc-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(216, 189, 116, 0.40);
-      box-shadow: 0 0 22px rgba(216, 189, 116, 0.10);
-    }
-
-    .doc-card::before {
+    .arquivo-central::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.24;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.36;
       pointer-events: none;
     }
 
-    .doc-card.liberado::before {
-      background: radial-gradient(circle at top, rgba(111,143,78,0.65), transparent 48%);
-    }
-
-    .doc-card.miyara::before {
-      background:
-        radial-gradient(circle at top left, rgba(181,22,36,0.48), transparent 42%),
-        radial-gradient(circle at top right, rgba(216,189,116,0.24), transparent 46%);
-    }
-
-    .doc-card.bloqueado::before {
-      background: radial-gradient(circle at top, rgba(181,22,36,0.65), transparent 48%);
-    }
-
-    .doc-card.corrompido::before {
-      background: radial-gradient(circle at top, rgba(139,77,255,0.65), transparent 48%);
-    }
-
-    .doc-card.analise::before {
-      background: radial-gradient(circle at top, rgba(216,189,116,0.48), transparent 48%);
-    }
-
-    .doc-card.selecionado {
-      border-color: var(--doc-amarelo);
-      box-shadow:
-        0 0 24px rgba(216, 189, 116, 0.16),
-        inset 0 0 24px rgba(216, 189, 116, 0.06);
-    }
-
-    .doc-card > * {
+    .arquivo-central > * {
       position: relative;
       z-index: 1;
     }
 
-    .doc-status {
-      display: inline-block;
-      border: 1px solid rgba(216, 189, 116, 0.18);
-      border-radius: 999px;
-      padding: 6px 10px;
-      color: var(--doc-amarelo);
-      background: rgba(0,0,0,0.34);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 9px;
-      margin-bottom: 14px;
+    .arquivo-topo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
     }
 
-    .doc-card h3 {
-      color: var(--doc-amarelo);
+    .arquivo-topo h3 {
+      color: var(--amarelo);
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 21px;
-      margin-bottom: 10px;
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 0.95;
+      margin-bottom: 12px;
     }
 
-    .doc-card p {
-      color: var(--doc-fraco);
-      font-size: 14px;
-      line-height: 1.62;
+    .arquivo-topo p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+      max-width: 850px;
     }
 
-    .doc-imagem {
-      width: 100%;
-      height: 210px;
-      border-radius: 14px;
-      object-fit: cover;
-      object-position: top center;
-      border: 1px solid rgba(216, 189, 116, 0.16);
-      margin-bottom: 14px;
-      background: rgba(0,0,0,0.40);
-      filter: saturate(0.9) contrast(1.05);
-    }
-
-    .doc-meta {
-      display: grid;
-      gap: 8px;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(216, 189, 116, 0.12);
-    }
-
-    .doc-meta div {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--doc-fraco);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 10px;
-    }
-
-    .doc-meta strong {
-      color: var(--doc-texto);
-      font-weight: normal;
+    .arquivo-status {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(216, 189, 116, 0.055);
+      min-width: 210px;
       text-align: right;
     }
 
-    .detalhe-documento {
-      margin-top: 22px;
-      border: 1px solid rgba(181, 22, 36, 0.30);
-      border-radius: 18px;
-      padding: 20px;
-      background:
-        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
-        rgba(0,0,0,0.34);
-      min-height: 170px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .detalhe-documento::before {
-      content: "LEITURA DO ARQUIVO";
-      position: absolute;
-      right: 18px;
-      top: 14px;
-      color: rgba(216, 189, 116, 0.12);
-      letter-spacing: 4px;
+    .arquivo-status span {
+      display: block;
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       font-size: 10px;
-      pointer-events: none;
+      margin-bottom: 8px;
     }
 
-    .detalhe-documento h3 {
-      color: var(--doc-amarelo);
+    .arquivo-status strong {
+      color: var(--amarelo);
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 24px;
-      margin-bottom: 12px;
-      padding-right: 130px;
-    }
-
-    .detalhe-documento p {
-      color: var(--doc-fraco);
-      line-height: 1.72;
+      letter-spacing: 1.8px;
       font-size: 15px;
-      margin-top: 10px;
     }
 
-    .documento-aberto {
-      margin-top: 18px;
-      border: 1px solid rgba(216, 189, 116, 0.18);
+    .arquivo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .arquivo-dado {
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 16px;
-      padding: 18px;
-      background:
-        linear-gradient(135deg, rgba(216,189,116,0.05), rgba(0,0,0,0.22)),
-        rgba(0,0,0,0.28);
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--doc-texto);
-      line-height: 1.78;
+      padding: 14px;
+      background: rgba(0,0,0,0.30);
     }
 
-    .documento-aberto p {
-      color: var(--doc-texto);
-      font-size: 15px;
-    }
-
-    .documento-aberto .secao-doc {
-      color: var(--doc-amarelo);
-      font-family: Arial, sans-serif;
+    .arquivo-dado span {
+      display: block;
+      color: var(--roxo-claro);
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1.4px;
+      font-size: 10px;
+      margin-bottom: 7px;
+    }
+
+    .arquivo-dado strong {
+      color: var(--texto);
+      display: block;
+      line-height: 1.35;
       font-size: 13px;
-      margin-top: 18px;
+    }
+
+    .documento-card-custom {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .documento-card-custom::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(124,60,255,0.16), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(181,31,53,0.10), transparent 32%);
+    }
+
+    .documento-card-custom.liberado::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(216,189,116,0.12), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.13), transparent 32%);
+    }
+
+    .documento-card-custom.corrompido::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(181,31,53,0.20), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.12), transparent 32%);
+    }
+
+    .documento-card-custom.bloqueado::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(80,80,90,0.12), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(181,31,53,0.10), transparent 32%);
+    }
+
+    .documento-topo {
+      display: grid;
+      gap: 12px;
+    }
+
+    .documento-identidade {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .documento-identidade h3 {
       margin-bottom: 6px;
     }
 
-    .documento-aberto .censurado {
-      display: inline-block;
-      min-width: 90px;
-      height: 14px;
-      background: rgba(0,0,0,0.88);
-      border: 1px solid rgba(181,22,36,0.22);
-      vertical-align: middle;
-      margin: 0 4px;
-    }
-
-    .terminal-documentos {
-      margin-top: 28px;
-      border: 1px solid rgba(181, 22, 36, 0.32);
-      border-radius: 20px;
-      padding: 22px;
-      background:
-        linear-gradient(135deg, rgba(181,22,36,0.08), rgba(139,77,255,0.06)),
-        rgba(0,0,0,0.36);
-      font-family: monospace;
-    }
-
-    .terminal-documentos span {
-      display: block;
-      color: #ff3045;
-      margin-bottom: 12px;
-      letter-spacing: 2px;
+    .documento-codigo {
+      flex: 0 0 auto;
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 999px;
+      padding: 8px 10px;
+      color: var(--amarelo);
+      background: rgba(216, 189, 116, 0.06);
+      font-size: 10px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .documento-mini-dados {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .documento-mini-dado {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 8px;
+    }
+
+    .documento-mini-dado:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .documento-mini-dado span {
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 10px;
+    }
+
+    .documento-mini-dado strong {
+      color: var(--texto);
       font-size: 12px;
+      text-align: right;
     }
 
-    .terminal-documentos p {
-      color: var(--doc-texto);
+    .documento-acoes {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .documento-preview {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.026), rgba(124,60,255,0.035)),
+        rgba(0,0,0,0.38);
+      margin-top: 18px;
+    }
+
+    .documento-preview h4 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
+    }
+
+    .documento-preview p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+    }
+
+    .documento-preview blockquote {
+      margin-top: 14px;
+      border-left: 3px solid rgba(216, 189, 116, 0.55);
+      padding: 12px 14px;
+      color: var(--texto);
+      background: rgba(0,0,0,0.26);
+      border-radius: 0 14px 14px 0;
       line-height: 1.7;
-      font-size: 14px;
     }
 
-    @media (max-width: 1080px) {
-      .documentos-hero {
+    .arquivo-alerta {
+      border: 1px solid rgba(181, 31, 53, 0.28);
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(181, 31, 53, 0.13), transparent 34%),
+        rgba(0,0,0,0.36);
+      margin-top: 18px;
+    }
+
+    .arquivo-alerta h4 {
+      color: #ff8da0;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+
+    .arquivo-alerta p {
+      color: var(--texto-fraco);
+      line-height: 1.7;
+    }
+
+    .lista-evidencias {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .evidencia-item {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(0,0,0,0.32);
+    }
+
+    .evidencia-item span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .evidencia-item h4 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .evidencia-item p {
+      color: var(--texto-fraco);
+      line-height: 1.68;
+    }
+
+    @media (max-width: 1100px) {
+      .arquivo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .arquivo-topo {
         grid-template-columns: 1fr;
       }
 
-      .documentos-grid {
-        grid-template-columns: 1fr 1fr;
+      .arquivo-status {
+        text-align: left;
       }
     }
 
-    @media (max-width: 720px) {
-      .documentos-pagina {
-        padding: 18px;
-      }
-
-      .documentos-hero-texto h2 {
-        font-size: 40px;
-      }
-
-      .documentos-selo-dados {
-        grid-template-columns: 1fr;
-      }
-
-      .abas-documentos {
-        flex-direction: column;
-      }
-
-      .aba-documento {
-        width: 100%;
-      }
-
-      .documentos-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .detalhe-documento h3 {
-        padding-right: 0;
-      }
-
-      .detalhe-documento::before {
+    @media (max-width: 760px) {
+      .painel-documentos::before {
         display: none;
+      }
+
+      .arquivo-central {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .arquivo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .documento-identidade {
+        display: grid;
+      }
+
+      .documento-codigo {
+        width: max-content;
+      }
+
+      .documento-card-custom {
+        min-height: auto;
+      }
+
+      .documento-acoes {
+        display: grid;
+      }
+
+      .documento-acoes .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="fundo-paranormal"></div>
 
   <header>
     <div>
       <h1>Arquivo da Campanha</h1>
-      <p>Documentos e registros confidenciais</p>
+      <p>Sistema interno da Ordo Realitas</p>
     </div>
 
     <nav>
       <a href="index.html">Início</a>
-      <a href="ordo.html">Ordo Realitas</a>
       <a href="locais.html">Locais</a>
       <a href="personagens.html">Personagens</a>
       <a href="missoes.html">Missões</a>
@@ -607,561 +393,525 @@
   </header>
 
   <main>
+    <section class="hero-principal painel-documentos aparecer">
+      <small>Arquivo de evidências // Ordo Realitas</small>
 
-    <section class="documentos-pagina">
+      <h2>Documentos</h2>
 
-      <section class="documentos-hero">
+      <p>
+        Central de consulta para relatórios, registros, evidências, imagens, anotações e arquivos internos
+        conectados à missão Corações do Outro Lado. Alguns documentos podem estar incompletos, bloqueados
+        ou corrompidos por interferência paranormal.
+      </p>
 
-        <div class="documentos-hero-texto">
-          <p class="classificacao">Arquivo interno // documentos registrados</p>
-
-          <h2>Documentos<br>da Campanha</h2>
-
-          <p>
-            Esta seção reúne relatórios, registros recuperados, arquivos bloqueados,
-            anotações internas e documentos ligados aos eventos de Corações do Outro Lado.
-          </p>
-
-          <p>
-            Alguns documentos foram liberados parcialmente. Outros permanecem corrompidos,
-            censurados ou aguardando análise por agentes autorizados da Ordo Realitas.
-          </p>
-        </div>
-
-        <div class="documentos-selo">
-          <div class="documentos-selo-dados">
-            <div class="doc-mini-dado">
-              <span>Arquivos</span>
-              <strong>Parciais</strong>
-            </div>
-
-            <div class="doc-mini-dado">
-              <span>Acesso</span>
-              <strong>Restrito</strong>
-            </div>
-
-            <div class="doc-mini-dado">
-              <span>Estado</span>
-              <strong>Instável</strong>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <div class="abas-documentos">
-        <button class="aba-documento ativa" data-documento="relatorios">Relatórios</button>
-        <button class="aba-documento" data-documento="pistas">Pistas</button>
-        <button class="aba-documento" data-documento="bloqueados">Bloqueados</button>
-        <button class="aba-documento" data-documento="corrompidos">Corrompidos</button>
+      <div class="selos mt-3">
+        <span class="selo roxo">Evidências iniciais</span>
+        <span class="selo amarelo">Acesso parcial</span>
+        <span class="selo vermelho">Arquivos instáveis</span>
       </div>
-
-      <section class="conteudo-documento ativo" id="relatorios">
-
-        <section class="documentos-secao">
-          <p class="classificacao">Relatórios liberados // leitura parcial</p>
-          <h2>Relatórios da Ordem</h2>
-
-          <p>
-            Relatórios são documentos internos usados para organizar operações, registrar
-            ocorrências e manter histórico dos eventos sem entregar todas as informações
-            sensíveis aos agentes de campo.
-          </p>
-
-          <div class="documentos-grid">
-
-            <button
-              class="doc-card miyara"
-              data-titulo="Caso Zero: Desaparecimento de Miyara"
-              data-texto="Primeiro documento oficial liberado sobre Corações do Outro Lado.||A Ordo Realitas iniciou uma investigação em Santa Luzia após relatos de desaparecimentos, alterações emocionais intensas e sinais associados ao elemento de Sangue.||Miyara, estudante da faculdade de Nembo, tornou-se a pessoa desaparecida principal do caso."
-              data-conteudo="
-              <p class='secao-doc'>Arquivo da Ordo Realitas</p>
-              <p><strong>CASO:</strong> Corações do Outro Lado</p>
-              <p><strong>Classificação:</strong> Investigação em andamento</p>
-              <p><strong>Local:</strong> Santa Luzia</p>
-              <p><strong>Status:</strong> Aberto</p>
-              <p><strong>Nível de risco inicial:</strong> Médio</p>
-              <p><strong>Nível de risco real:</strong> Indeterminado</p>
-              <p><strong>Elemento suspeito:</strong> Sangue</p>
-              <p><strong>Agentes designados:</strong> Maisie Hundown, Roselyn Tate e Lilian</p>
-
-              <p class='secao-doc'>1. Resumo do Caso</p>
-              <p>A Ordo Realitas iniciou uma investigação em Santa Luzia após o surgimento de relatos envolvendo alterações emocionais intensas, desaparecimentos, comportamento agressivo repentino e sinais físicos associados ao elemento de Sangue.</p>
-              <p>Os primeiros registros indicam que os eventos começaram pouco depois do desaparecimento de uma estudante local chamada Miyara, aluna da faculdade de Nembo.</p>
-              <p>A relação direta entre o desaparecimento da jovem e os episódios paranormais ainda não foi confirmada, mas a proximidade temporal entre os acontecimentos tornou Miyara uma figura central na investigação.</p>
-              <p>Até o momento, não há confirmação de culto ativo, criatura identificada ou ritual em andamento.</p>
-
-              <p class='secao-doc'>2. Pessoa Desaparecida Principal</p>
-              <p><strong>Nome:</strong> Miyara</p>
-              <p><strong>Ocupação:</strong> Estudante da faculdade de Nembo</p>
-              <p><strong>Local:</strong> Santa Luzia</p>
-              <p><strong>Status:</strong> Desaparecida</p>
-              <p><strong>Grau de importância:</strong> Alto</p>
-              <p>Miyara era uma estudante local com interesse incomum pelo Outro Lado. Relatos indicam que ela pesquisava temas ligados ao paranormal de forma independente, mantendo anotações pessoais sobre símbolos, lendas locais e possíveis manifestações.</p>
-              <p>Segundo informações preliminares, Miyara não possuía muitos vínculos sociais próximos. Ela era descrita como uma pessoa emocionalmente intensa, reservada e curiosa.</p>
-              <p>Miyara também cuidava de dois cachorros, chamados Lupe e Thor. Após seu desaparecimento, ambos também não foram localizados.</p>
-
-              <p class='secao-doc'>3. Últimas Informações Conhecidas</p>
-              <p>Antes de desaparecer, Miyara teria apresentado mudanças sutis de comportamento.</p>
-              <p>Relatos não confirmados indicam inquietação, instabilidade emocional, distração durante conversas, obsessão por determinados pontos da cidade, interesse por registros antigos de Santa Luzia e uso frequente de um caderno de anotações.</p>
-              <p>A última movimentação provável de Miyara aponta para a região central de Santa Luzia, próxima à Árvore Mãe, principal ponto turístico da vila.</p>
-              <p>Não há confirmação visual de que ela tenha chegado ao local.</p>
-
-              <p class='secao-doc'>4. Animais Desaparecidos</p>
-              <p><strong>Nomes:</strong> Lupe e Thor</p>
-              <p><strong>Espécie:</strong> Cães</p>
-              <p><strong>Dona/cuidadora:</strong> Miyara</p>
-              <p><strong>Status:</strong> Desaparecidos</p>
-              <p>O desaparecimento dos animais ocorreu no mesmo período do desaparecimento de Miyara.</p>
-              <p>A Ordem ainda não sabe se Lupe e Thor acompanharam Miyara, fugiram após algum evento anormal, foram afetados pela manifestação, foram levados por terceiros, estão mortos ou ainda circulam pela região.</p>
-              <p>A ausência dos animais é considerada um detalhe relevante, pois manifestações de Sangue frequentemente afetam seres vivos com comportamento instintivo de maneira mais rápida e visível.</p>
-
-              <p class='secao-doc'>5. Sinais Paranormais Relatados</p>
-              <p>A população local relatou sons semelhantes a batimentos vindos de paredes, pisos ou objetos; sensação de pressão no peito; alterações repentinas de humor; surtos de agressividade; crises de choro ou raiva sem causa aparente; símbolos orgânicos surgindo em superfícies; marcas semelhantes a veias, raízes ou rachaduras vermelhas; sensação de estar sendo observado por algo vivo; relatos de vozes internas; e aumento de conflitos familiares ou afetivos.</p>
-              <p>Até o momento, os relatos não seguem padrão totalmente previsível.</p>
-
-              <p class='secao-doc'>6. Hipótese Inicial da Ordem</p>
-              <p>A principal hipótese da Ordo Realitas é que Santa Luzia esteja passando por uma manifestação paranormal ligada a vínculos emocionais intensos.</p>
-              <p>A manifestação parece reagir a sentimentos fortes, especialmente culpa, raiva, luto, desejo, dependência, medo de abandono, obsessão, impulso protetor e afeto extremo.</p>
-              <p>A Ordem considera possível que o fenômeno esteja se alimentando de emoções humanas ou usando emoções como meio de propagação.</p>
-
-              <p class='secao-doc'>7. Suspeita de Elemento</p>
-              <p><strong>Elemento mais provável:</strong> Sangue</p>
-              <p>A suspeita se baseia em manifestações ligadas a instinto, intensificação emocional, agressividade repentina, símbolos orgânicos, relatos de batimentos, possíveis alterações corporais em vítimas, comportamento coletivo instável e presença de marcas semelhantes a veias.</p>
-              <p>Apesar disso, a Ordem ainda não descarta a influência secundária de outros elementos.</p>
-
-              <p class='secao-doc'>8. Áreas de Interesse</p>
-              <p><strong>Faculdade de Nembo:</strong> local onde Miyara estudava. Pode conter registros, colegas, professores, materiais de pesquisa ou informações sobre seu comportamento antes do desaparecimento.</p>
-              <p><strong>Casa de Miyara:</strong> local prioritário para investigação. Pode conter anotações, objetos pessoais, marcas de invasão, sinais paranormais ou pistas sobre seus últimos passos.</p>
-              <p><strong>Região Central de Santa Luzia:</strong> área próxima ao último trajeto provável de Miyara.</p>
-              <p><strong>Árvore Mãe:</strong> principal ponto turístico da vila. Aparece em relatos, comentários e possíveis anotações ligadas à desaparecida.</p>
-              <p><strong>Antiga Igreja da Vila:</strong> construção abandonada há semanas. Ainda não há informações suficientes para determinar sua relação com o caso.</p>
-
-              <p class='secao-doc'>9. Objetivos da Equipe</p>
-              <p>Investigar o desaparecimento de Miyara; localizar Lupe e Thor, se possível; confirmar ou descartar atividade paranormal na Árvore Mãe; investigar a antiga igreja da vila; recolher anotações, gravações ou objetos ligados à desaparecida; identificar civis afetados; determinar se há culto, ritual ou criatura envolvida; conter a manifestação antes que ela se espalhe; e reportar qualquer alteração emocional anormal entre os próprios agentes.</p>
-
-              <p class='secao-doc'>10. Observação Final</p>
-              <p>A manifestação parece responder não apenas à presença humana, mas à intensidade emocional dos envolvidos.</p>
-              <p>Recomenda-se que os agentes mantenham distância psicológica das vítimas até que a natureza do fenômeno seja compreendida.</p>
-              <p><strong>Nota interna:</strong> Caso sejam encontrados sinais de alteração corporal, comportamento coletivo agressivo ou perda de consciência em civis, o nível de risco da missão deve ser reavaliado imediatamente.</p>
-              "
-            >
-              <img src="Miyara.png" alt="Registro visual de Miyara" class="doc-imagem">
-
-              <span class="doc-status">Documento 001</span>
-              <h3>Caso Zero: Miyara</h3>
-              <p>
-                Relatório inicial sobre o desaparecimento de Miyara e os primeiros sinais de
-                contaminação associados ao elemento de Sangue em Santa Luzia.
-              </p>
-
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Relatório</strong></div>
-                <div><span>Acesso</span><strong>Parcial</strong></div>
-                <div><span>Status</span><strong>Aberto</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card liberado"
-              data-titulo="Relatório Inicial da Campanha"
-              data-texto="Documento-base criado para registrar o início do arquivo da campanha.||Contém apenas informações públicas: campanha ativa, estrutura principal do site, setores liberados e indicação de que novos registros serão adicionados conforme a história avançar."
-              data-conteudo="
-              <p>RELATÓRIO INICIAL — CORAÇÕES DO OUTRO LADO</p>
-              <p>O Arquivo da Campanha foi aberto para organizar registros relacionados à operação principal.</p>
-              <p>Personagens, locais, missões e documentos serão adicionados conforme forem liberados.</p>
-              <p>Observação: nem todo registro disponível neste arquivo representa a verdade completa. Algumas informações foram removidas para preservar segurança operacional.</p>
-              "
-            >
-              <span class="doc-status">Liberado</span>
-              <h3>Relatório Inicial</h3>
-              <p>
-                Documento-base da campanha, usado para registrar o estado inicial do arquivo.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Relatório</strong></div>
-                <div><span>Acesso</span><strong>Parcial</strong></div>
-                <div><span>Status</span><strong>Disponível</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card analise"
-              data-titulo="Registro da Base da Ordo"
-              data-texto="Relatório estrutural sobre a base da Ordo Realitas.||Inclui setores conhecidos, áreas de suporte, zonas restritas e observações sobre a planta incompleta do local."
-              data-conteudo="
-              <p>REGISTRO ESTRUTURAL — BASE DA ORDO REALITAS</p>
-              <p>A base foi catalogada como centro operacional, abrigo, arquivo e ponto de contenção.</p>
-              <p>Os setores principais registrados incluem Sala de Comando, alas de função, Enfermaria, Arsenal e Prisão Subterrânea.</p>
-              <p>Nota: a planta completa não está disponível. Algumas áreas foram omitidas ou deslocadas por segurança.</p>
-              "
-            >
-              <span class="doc-status">Em análise</span>
-              <h3>Registro da Base</h3>
-              <p>
-                Documento sobre a estrutura interna da base da Ordo Realitas.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Estrutural</strong></div>
-                <div><span>Acesso</span><strong>Parcial</strong></div>
-                <div><span>Status</span><strong>Revisão</strong></div>
-              </div>
-            </button>
-
-          </div>
-
-          <div class="detalhe-documento" id="detalhe-documento-relatorios">
-            <h3>Nenhum documento selecionado</h3>
-            <p>Clique em um relatório para abrir a leitura parcial do arquivo.</p>
-          </div>
-        </section>
-
-      </section>
-
-      <section class="conteudo-documento" id="pistas">
-
-        <section class="documentos-secao">
-          <p class="classificacao">Pistas recuperadas // aguardando sessão</p>
-          <h2>Pistas e Evidências</h2>
-
-          <p>
-            Esta aba será usada para guardar pistas encontradas pelos jogadores, documentos
-            recuperados em cena, imagens, símbolos, mensagens e fragmentos importantes da
-            investigação.
-          </p>
-
-          <div class="documentos-grid">
-
-            <button
-              class="doc-card analise"
-              data-titulo="Fragmento de Símbolo"
-              data-texto="Registro reservado para um símbolo encontrado durante investigação.||A análise ainda não foi liberada. O arquivo permanece preparado para receber conteúdo futuro."
-              data-conteudo="
-              <p>FRAGMENTO VISUAL — ANÁLISE PENDENTE</p>
-              <p>O símbolo ainda não foi anexado ao sistema.</p>
-              <p>Classificação atual: aguardando descoberta em sessão.</p>
-              "
-            >
-              <span class="doc-status">Aguardando</span>
-              <h3>Fragmento de Símbolo</h3>
-              <p>
-                Espaço reservado para símbolos, marcas ou desenhos encontrados em investigação.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Pista</strong></div>
-                <div><span>Acesso</span><strong>Pendente</strong></div>
-                <div><span>Status</span><strong>Vazio</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card analise"
-              data-titulo="Depoimento Recuperado"
-              data-texto="Área preparada para depoimentos de testemunhas, relatos de sobreviventes ou mensagens encontradas durante a campanha."
-              data-conteudo="
-              <p>DEPOIMENTO — REGISTRO NÃO ANEXADO</p>
-              <p>Nenhum depoimento foi liberado para leitura até o momento.</p>
-              <p>O arquivo será atualizado quando uma testemunha relevante for registrada.</p>
-              "
-            >
-              <span class="doc-status">Aguardando</span>
-              <h3>Depoimento</h3>
-              <p>
-                Registro futuro para falas, relatos e testemunhos importantes.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Testemunho</strong></div>
-                <div><span>Acesso</span><strong>Pendente</strong></div>
-                <div><span>Status</span><strong>Vazio</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card analise"
-              data-titulo="Fotografia de Campo"
-              data-texto="Área reservada para imagens encontradas em missão, fotos de locais, registros visuais e evidências recuperadas."
-              data-conteudo="
-              <p>FOTOGRAFIA DE CAMPO — SEM ANEXO</p>
-              <p>Nenhuma imagem de campo foi liberada.</p>
-              <p>Quando uma fotografia importante for encontrada, ela poderá ser adicionada a este setor.</p>
-              "
-            >
-              <span class="doc-status">Aguardando</span>
-              <h3>Fotografia de Campo</h3>
-              <p>
-                Registro visual futuro para evidências e locais importantes.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Imagem</strong></div>
-                <div><span>Acesso</span><strong>Pendente</strong></div>
-                <div><span>Status</span><strong>Vazio</strong></div>
-              </div>
-            </button>
-
-          </div>
-
-          <div class="detalhe-documento" id="detalhe-documento-pistas">
-            <h3>Nenhuma pista selecionada</h3>
-            <p>Clique em uma pista para abrir o registro preparado.</p>
-          </div>
-        </section>
-
-      </section>
-
-      <section class="conteudo-documento" id="bloqueados">
-
-        <section class="documentos-secao">
-          <p class="classificacao">Arquivos bloqueados // acesso negado</p>
-          <h2>Documentos Bloqueados</h2>
-
-          <p>
-            Arquivos bloqueados existem no sistema, mas seu conteúdo ainda não deve ser
-            exibido. Esta aba ajuda a criar mistério sem entregar informações antes da hora.
-          </p>
-
-          <div class="documentos-grid">
-
-            <button
-              class="doc-card bloqueado"
-              data-titulo="Arquivo de Santa Luzia"
-              data-texto="Registro urbano ainda bloqueado.||O arquivo parece conter referências ao mapa de Santa Luzia, mas o conteúdo completo não foi liberado."
-              data-conteudo="
-              <p>ACESSO NEGADO — SANTA LUZIA</p>
-              <p>O arquivo solicitado existe, mas ainda não está disponível.</p>
-              <p>Motivo: mapa urbano aguardando liberação.</p>
-              <p>Trechos recuperados: <span class='censurado'></span> centro <span class='censurado'></span> ocorrência <span class='censurado'></span></p>
-              "
-            >
-              <span class="doc-status">Bloqueado</span>
-              <h3>Santa Luzia</h3>
-              <p>
-                Arquivo urbano ainda não liberado para leitura completa.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Local</strong></div>
-                <div><span>Acesso</span><strong>Negado</strong></div>
-                <div><span>Status</span><strong>Bloqueado</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card bloqueado"
-              data-titulo="Relatório de Agentes"
-              data-texto="Documento reservado para agentes dos jogadores e NPCs futuros.||Parte do conteúdo está bloqueada até que as fichas sejam finalizadas."
-              data-conteudo="
-              <p>ACESSO NEGADO — RELATÓRIO DE AGENTES</p>
-              <p>O conteúdo deste relatório depende da finalização de novos dossiês.</p>
-              <p>Trechos recuperados: Trindade registrada. Agentes adicionais aguardando autorização.</p>
-              "
-            >
-              <span class="doc-status">Bloqueado</span>
-              <h3>Relatório de Agentes</h3>
-              <p>
-                Documento reservado para registros futuros de personagens.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Dossiê</strong></div>
-                <div><span>Acesso</span><strong>Negado</strong></div>
-                <div><span>Status</span><strong>Pendente</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card bloqueado"
-              data-titulo="Registro da Ameaça Principal"
-              data-texto="Arquivo de ameaça ainda totalmente bloqueado.||O sistema reconhece a existência do registro, mas impede a leitura por risco de spoiler e instabilidade narrativa."
-              data-conteudo="
-              <p>ACESSO NEGADO — AMEAÇA PRINCIPAL</p>
-              <p>Classificação: restrita.</p>
-              <p>Motivo: informação crítica da campanha.</p>
-              <p>Leitura parcial indisponível.</p>
-              "
-            >
-              <span class="doc-status">Restrito</span>
-              <h3>Ameaça Principal</h3>
-              <p>
-                Arquivo crítico da campanha. Conteúdo bloqueado por segurança narrativa.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Ameaça</strong></div>
-                <div><span>Acesso</span><strong>Restrito</strong></div>
-                <div><span>Status</span><strong>Selado</strong></div>
-              </div>
-            </button>
-
-          </div>
-
-          <div class="detalhe-documento" id="detalhe-documento-bloqueados">
-            <h3>Nenhum arquivo bloqueado selecionado</h3>
-            <p>Clique em um arquivo para visualizar o aviso de acesso.</p>
-          </div>
-        </section>
-
-      </section>
-
-      <section class="conteudo-documento" id="corrompidos">
-
-        <section class="documentos-secao">
-          <p class="classificacao">Erro de leitura // arquivos instáveis</p>
-          <h2>Arquivos Corrompidos</h2>
-
-          <p>
-            Alguns registros não estão apenas bloqueados. Eles parecem danificados, alterados
-            ou afetados por interferência paranormal. A leitura desses arquivos pode mudar
-            conforme a campanha avança.
-          </p>
-
-          <div class="documentos-grid">
-
-            <button
-              class="doc-card corrompido"
-              data-titulo="Mensagem Fragmentada"
-              data-texto="Uma mensagem incompleta foi encontrada no sistema.||O conteúdo parece ter sido salvo, apagado e reescrito várias vezes."
-              data-conteudo="
-              <p>MENSAGEM FRAGMENTADA</p>
-              <p>...não confiem no primeiro relatório...</p>
-              <p>...o coração não era metáfora...</p>
-              <p>...se a porta aparecer onde não deveria, não abram...</p>
-              <p>Fim do fragmento.</p>
-              "
-            >
-              <span class="doc-status">Corrompido</span>
-              <h3>Mensagem Fragmentada</h3>
-              <p>
-                Registro instável com trechos recuperados e falhas de leitura.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Mensagem</strong></div>
-                <div><span>Acesso</span><strong>Instável</strong></div>
-                <div><span>Status</span><strong>Corrompido</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card corrompido"
-              data-titulo="Documento Sem Origem"
-              data-texto="Este arquivo não possui autor, data, origem ou setor responsável.||Mesmo assim, ele continua reaparecendo no sistema."
-              data-conteudo="
-              <p>DOCUMENTO SEM ORIGEM</p>
-              <p>Autor: não identificado.</p>
-              <p>Data: inexistente.</p>
-              <p>Origem: <span class='censurado'></span></p>
-              <p>Observação recuperada: o arquivo foi apagado três vezes. Ele voltou quatro.</p>
-              "
-            >
-              <span class="doc-status">Corrompido</span>
-              <h3>Sem Origem</h3>
-              <p>
-                Arquivo sem metadados confiáveis, reaparecendo após exclusão.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Desconhecido</strong></div>
-                <div><span>Acesso</span><strong>Instável</strong></div>
-                <div><span>Status</span><strong>Persistente</strong></div>
-              </div>
-            </button>
-
-            <button
-              class="doc-card corrompido"
-              data-titulo="Registro de Áudio Transcrito"
-              data-texto="Transcrição parcial de um áudio danificado.||A gravação original não pode ser reproduzida sem causar falhas no sistema."
-              data-conteudo="
-              <p>TRANSCRIÇÃO PARCIAL</p>
-              <p>[ruído]</p>
-              <p>— Eu ouvi do outro lado da parede.</p>
-              <p>[falha]</p>
-              <p>— Não era uma voz. Era como se o prédio inteiro estivesse respirando.</p>
-              <p>[fim abrupto]</p>
-              "
-            >
-              <span class="doc-status">Corrompido</span>
-              <h3>Áudio Transcrito</h3>
-              <p>
-                Trecho recuperado de uma gravação danificada.
-              </p>
-              <div class="doc-meta">
-                <div><span>Tipo</span><strong>Áudio</strong></div>
-                <div><span>Acesso</span><strong>Parcial</strong></div>
-                <div><span>Status</span><strong>Falha</strong></div>
-              </div>
-            </button>
-
-          </div>
-
-          <div class="detalhe-documento" id="detalhe-documento-corrompidos">
-            <h3>Nenhum arquivo corrompido selecionado</h3>
-            <p>Clique em um arquivo para abrir os fragmentos recuperados.</p>
-          </div>
-        </section>
-
-      </section>
-
-      <section class="terminal-documentos">
-        <span>Nota interna // sistema de arquivos</span>
-        <p>
-          Um documento não precisa estar completo para ser perigoso. Às vezes, uma linha
-          censurada revela mais do que um relatório inteiro.
-        </p>
-      </section>
-
     </section>
 
+    <section class="arquivo-central">
+      <div class="arquivo-topo">
+        <div>
+          <span class="etiqueta">Estado do arquivo</span>
+          <h3>Banco de documentos</h3>
+          <p>
+            A Ordo Realitas ainda está reunindo dados sobre o caso. Os registros atuais representam informações
+            preliminares, úteis para orientar os agentes recém-recrutados antes e durante a primeira missão oficial.
+          </p>
+
+          <div class="tags mt-2">
+            <span class="tag roxo">Corações do Outro Lado</span>
+            <span class="tag amarelo">Caso Miyara</span>
+            <span class="tag vermelho">Dados incompletos</span>
+          </div>
+        </div>
+
+        <div class="arquivo-status">
+          <span>Classificação geral</span>
+          <strong>Acesso monitorado</strong>
+        </div>
+      </div>
+
+      <div class="arquivo-grid">
+        <div class="arquivo-dado">
+          <span>Documentos liberados</span>
+          <strong>Registros iniciais</strong>
+        </div>
+
+        <div class="arquivo-dado">
+          <span>Arquivo principal</span>
+          <strong>Miyara</strong>
+        </div>
+
+        <div class="arquivo-dado">
+          <span>Conteúdo bloqueado</span>
+          <strong>Dependente da missão</strong>
+        </div>
+
+        <div class="arquivo-dado">
+          <span>Interferência</span>
+          <strong>Possível atividade paranormal</strong>
+        </div>
+      </div>
+
+      <div class="arquivo-alerta">
+        <h4>Alerta de integridade</h4>
+        <p>
+          Registros marcados como corrompidos, bloqueados ou instáveis podem conter lacunas intencionais.
+          O conteúdo será atualizado conforme os jogadores descobrirem pistas, acessarem novas áreas ou
+          tiverem suas patentes alteradas.
+        </p>
+      </div>
+    </section>
+
+    <section class="abas-documentos" data-area-filtros>
+      <button class="filtro ativo" data-filtro="todos">Todos</button>
+      <button class="filtro" data-filtro="liberado">Liberados</button>
+      <button class="filtro" data-filtro="caso-miyara">Caso Miyara</button>
+      <button class="filtro" data-filtro="relatorio">Relatórios</button>
+      <button class="filtro" data-filtro="corrompido">Corrompidos</button>
+      <button class="filtro" data-filtro="bloqueado">Bloqueados</button>
+    </section>
+
+    <section class="hero">
+      <small>Documentos principais</small>
+      <h2>Arquivos liberados</h2>
+      <p>
+        Estes registros estão disponíveis para consulta inicial. Eles não revelam toda a verdade do caso,
+        mas dão aos agentes uma base para começar a investigação.
+      </p>
+    </section>
+
+    <section class="documentos-grid">
+      <article class="documento-card documento-card-custom liberado" data-categoria="liberado caso-miyara relatorio">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Relatório preliminar</span>
+              <h3>Caso Miyara</h3>
+              <p>
+                Primeiro documento de referência sobre a vítima inicial da missão. Reúne informações que a Ordo
+                considera seguras o suficiente para os agentes recém-recrutados consultarem.
+              </p>
+            </div>
+
+            <span class="documento-codigo">DOC-MIY-001</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag amarelo">Liberado</span>
+            <span class="tag roxo">Caso Miyara</span>
+            <span class="tag">Preliminar</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Relatório de caso</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Disponível</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Missão</span>
+              <strong>Corações do Outro Lado</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#relatorio-miyara">Ler resumo</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom liberado" data-categoria="liberado relatorio">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Registro de recrutamento</span>
+              <h3>Dossiês dos agentes</h3>
+              <p>
+                Documento interno que registra que os personagens dos jogadores entram na campanha como recrutas,
+                sem histórico oficial de missões pela Ordo Realitas.
+              </p>
+            </div>
+
+            <span class="documento-codigo">DOC-REC-001</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag amarelo">Liberado</span>
+            <span class="tag roxo">Recrutas</span>
+            <span class="tag">Ordo Realitas</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Nota interna</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Validado</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Aplicação</span>
+              <strong>Personagens dos jogadores</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="personagens.html">Ver recrutas</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom corrompido documento-corrompido" data-categoria="corrompido caso-miyara" data-corrompido="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Arquivo instável</span>
+              <h3>Registro visual de Miyara</h3>
+              <p>
+                Material visual relacionado ao estado de Miyara após contato com o fenômeno. O arquivo apresenta
+                interferência e não deve ser tratado como registro comum.
+              </p>
+            </div>
+
+            <span class="documento-codigo">IMG-MIY-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag vermelho">Corrompido</span>
+            <span class="tag roxo">Visual</span>
+            <span class="tag">Sensível</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Imagem / evidência</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Instável</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Acesso</span>
+              <strong>Parcial</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Arquivo instável</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom bloqueado" data-categoria="bloqueado caso-miyara" data-bloqueado="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Acesso restrito</span>
+              <h3>Dados pós-transformação</h3>
+              <p>
+                Informações completas sobre o que ocorreu com Miyara permanecem bloqueadas. O conteúdo será
+                liberado apenas quando a investigação confirmar a natureza do fenômeno.
+              </p>
+            </div>
+
+            <span class="documento-codigo">DOC-MIY-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag vermelho">Bloqueado</span>
+            <span class="tag roxo">Paranormal</span>
+            <span class="tag">Aguardando descoberta</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Relatório restrito</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Não liberado</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Condição</span>
+              <strong>Avanço em campo</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Acesso negado</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="hero mt-3" id="relatorio-miyara">
+      <small>Prévia de documento</small>
+      <h2>Relatório Miyara</h2>
+      <p>
+        Resumo de consulta rápida para os agentes. A versão completa pode ser expandida depois com imagens,
+        anexos, carimbos, assinaturas, trechos censurados e falhas visuais.
+      </p>
+    </section>
+
+    <section class="documento-preview">
+      <h4>DOC-MIY-001 — Relatório preliminar</h4>
+      <p>
+        Miyara é registrada como a primeira vítima conectada à missão Corações do Outro Lado. A Ordo ainda
+        não possui todas as respostas sobre o processo que levou ao estado atual do caso, mas considera o
+        registro importante o suficiente para orientar a primeira investigação dos recrutas.
+      </p>
+
+      <blockquote>
+        “As informações disponíveis neste arquivo foram filtradas para evitar exposição desnecessária a dados
+        ainda não confirmados. Agentes devem priorizar observação, coleta de evidências e preservação de testemunhas.”
+      </blockquote>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Arquivos pendentes</small>
+      <h2>Registros futuros</h2>
+      <p>
+        Espaços preparados para documentos que serão adicionados conforme a campanha avançar. Eles podem representar
+        novas pistas, relatórios de sessão, fotos, gravações, símbolos, mensagens ou arquivos corrompidos.
+      </p>
+    </section>
+
+    <section class="documentos-grid">
+      <article class="documento-card documento-card-custom bloqueado" data-categoria="bloqueado relatorio" data-bloqueado="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Arquivo futuro</span>
+              <h3>Relatório de sessão</h3>
+              <p>
+                Registro reservado para resumir os acontecimentos de cada sessão, decisões dos jogadores,
+                descobertas e consequências narrativas.
+              </p>
+            </div>
+
+            <span class="documento-codigo">SES-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag">Futuro</span>
+            <span class="tag vermelho">Bloqueado</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Relatório narrativo</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Não iniciado</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Liberação</span>
+              <strong>Após sessão</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Aguardando dados</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom bloqueado" data-categoria="bloqueado" data-bloqueado="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Arquivo futuro</span>
+              <h3>Transcrição de áudio</h3>
+              <p>
+                Espaço reservado para gravações, mensagens, ligações, ruídos paranormais ou transcrições
+                de material coletado em campo.
+              </p>
+            </div>
+
+            <span class="documento-codigo">AUD-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag roxo">Áudio</span>
+            <span class="tag vermelho">Bloqueado</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Transcrição</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Indisponível</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Condição</span>
+              <strong>Descoberta em jogo</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Arquivo bloqueado</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom bloqueado documento-corrompido" data-categoria="corrompido bloqueado" data-bloqueado="true" data-corrompido="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Arquivo danificado</span>
+              <h3>Símbolo não identificado</h3>
+              <p>
+                Registro preparado para símbolos, sigilos, marcas ou padrões visuais encontrados em cenas
+                futuras. O arquivo ainda não possui conteúdo confirmado.
+              </p>
+            </div>
+
+            <span class="documento-codigo">SIG-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag vermelho">Corrompido</span>
+            <span class="tag roxo">Sigilo</span>
+            <span class="tag">Desconhecido</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Símbolo / padrão</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Sem leitura</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Risco</span>
+              <strong>Não classificado</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Falha de leitura</a>
+        </div>
+      </article>
+
+      <article class="documento-card documento-card-custom bloqueado" data-categoria="bloqueado relatorio" data-bloqueado="true">
+        <div class="documento-topo">
+          <div class="documento-identidade">
+            <div>
+              <span class="etiqueta">Sistema futuro</span>
+              <h3>Arquivos por patente</h3>
+              <p>
+                Documentos que poderão ser liberados de acordo com a patente dos agentes, progresso da missão
+                ou autorização narrativa da Ordo.
+              </p>
+            </div>
+
+            <span class="documento-codigo">PAT-???</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag amarelo">Patente</span>
+            <span class="tag vermelho">Restrito</span>
+          </div>
+
+          <div class="documento-mini-dados">
+            <div class="documento-mini-dado">
+              <span>Tipo</span>
+              <strong>Sistema de acesso</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Status</span>
+              <strong>Em desenvolvimento</strong>
+            </div>
+
+            <div class="documento-mini-dado">
+              <span>Liberação</span>
+              <strong>Futura</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="documento-acoes">
+          <a class="btn" href="#">Sistema pendente</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Resumo de evidências</small>
+      <h2>Fila de investigação</h2>
+      <p>
+        Esta área pode ser atualizada rapidamente depois de cada sessão, funcionando como uma lista de pistas
+        importantes que os jogadores já encontraram ou ainda precisam confirmar.
+      </p>
+    </section>
+
+    <section class="lista-evidencias">
+      <article class="evidencia-item">
+        <span>Evidência 01</span>
+        <h4>Miyara como ponto inicial</h4>
+        <p>
+          A primeira vítima da missão é o principal ponto de partida da investigação. Seu caso deve conectar
+          locais, documentos, testemunhas e possíveis manifestações.
+        </p>
+      </article>
+
+      <article class="evidencia-item">
+        <span>Evidência 02</span>
+        <h4>Arquivos incompletos</h4>
+        <p>
+          Parte dos dados ainda está oculta porque a Ordo não sabe tudo, ou porque os agentes ainda não chegaram
+          longe o suficiente para desbloquear essas informações.
+        </p>
+      </article>
+
+      <article class="evidencia-item">
+        <span>Evidência 03</span>
+        <h4>Recrutas em avaliação</h4>
+        <p>
+          Os documentos também servem para registrar como Maisie, Vivian e Roselyn serão vistas pela Ordo após
+          a primeira missão oficial.
+        </p>
+      </article>
+    </section>
   </main>
 
   <footer>
-    <p>
-      Arquivos documentais da campanha. Parte do conteúdo foi bloqueada, censurada ou corrompida.
-    </p>
+    <p>Arquivo da Campanha — Documentos, evidências e registros internos da Ordo Realitas</p>
   </footer>
 
-  <script>
-    const abasDocumentos = document.querySelectorAll(".aba-documento");
-    const conteudosDocumentos = document.querySelectorAll(".conteudo-documento");
-
-    abasDocumentos.forEach((aba) => {
-      aba.addEventListener("click", () => {
-        const alvo = aba.dataset.documento;
-
-        abasDocumentos.forEach((item) => item.classList.remove("ativa"));
-        conteudosDocumentos.forEach((conteudo) => conteudo.classList.remove("ativo"));
-
-        aba.classList.add("ativa");
-
-        const conteudoAtivo = document.getElementById(alvo);
-        if (conteudoAtivo) {
-          conteudoAtivo.classList.add("ativo");
-        }
-      });
-    });
-
-    const cardsDocumento = document.querySelectorAll(".doc-card");
-
-    cardsDocumento.forEach((card) => {
-      card.addEventListener("click", () => {
-        const blocoAtual = card.closest(".conteudo-documento");
-        if (!blocoAtual) return;
-
-        const detalhe = blocoAtual.querySelector(".detalhe-documento");
-        if (!detalhe) return;
-
-        const cardsDoBloco = blocoAtual.querySelectorAll(".doc-card");
-        cardsDoBloco.forEach((item) => item.classList.remove("selecionado"));
-        card.classList.add("selecionado");
-
-        const titulo = card.dataset.titulo || "Documento";
-        const texto = card.dataset.texto || "Nenhum resumo disponível.";
-        const conteudo = card.dataset.conteudo || "Conteúdo indisponível.";
-
-        detalhe.innerHTML = `
-          <h3>${titulo}</h3>
-          ${texto.split("||").map(paragrafo => `<p>${paragrafo.trim()}</p>`).join("")}
-          <div class="documento-aberto">
-            ${conteudo.trim()}
-          </div>
-        `;
-      });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
