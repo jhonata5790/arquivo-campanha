@@ -441,6 +441,11 @@
       animation: aparecerMaisie 0.35s ease;
     }
 
+    .conteudo-maisie:not(.ativo),
+    .conteudo-maisie:not(.ativo) * {
+      animation-play-state: paused !important;
+    }
+
     @keyframes aparecerMaisie {
       from {
         opacity: 0;
@@ -528,13 +533,6 @@
         background 0.28s ease;
     }
 
-    .card-info-maisie:nth-child(1) { animation-delay: 0.08s; }
-    .card-info-maisie:nth-child(2) { animation-delay: 0.12s; }
-    .card-info-maisie:nth-child(3) { animation-delay: 0.16s; }
-    .card-info-maisie:nth-child(4) { animation-delay: 0.20s; }
-    .card-info-maisie:nth-child(5) { animation-delay: 0.24s; }
-    .card-info-maisie:nth-child(6) { animation-delay: 0.28s; }
-
     .card-info-maisie span {
       display: block;
       color: var(--maisie-roxo);
@@ -601,7 +599,7 @@
     }
 
     /* ============================ */
-    /* RODA DE ATRIBUTOS — RESPONSIVA */
+    /* RODA DE ATRIBUTOS */
     /* ============================ */
 
     .roda-atributos-maisie {
@@ -1103,30 +1101,11 @@
       color: rgba(255, 245, 220, 0.98);
     }
 
-    .atributo-for {
-      left: 15%;
-      top: 40%;
-    }
-
-    .atributo-agi {
-      left: 50%;
-      top: 14%;
-    }
-
-    .atributo-int {
-      left: 85%;
-      top: 40%;
-    }
-
-    .atributo-pre {
-      left: 28%;
-      top: 81%;
-    }
-
-    .atributo-vig {
-      left: 72%;
-      top: 81%;
-    }
+    .atributo-for { left: 15%; top: 40%; }
+    .atributo-agi { left: 50%; top: 14%; }
+    .atributo-int { left: 85%; top: 40%; }
+    .atributo-pre { left: 28%; top: 81%; }
+    .atributo-vig { left: 72%; top: 81%; }
 
     .micro-particulas-roda {
       position: absolute;
@@ -1490,6 +1469,84 @@
     }
 
     /* ============================ */
+    /* SISTEMA GLOBAL DE PERFORMANCE */
+    /* ============================ */
+
+    .efeito-pausado,
+    .efeito-pausado *,
+    .efeito-fora-da-aba,
+    .efeito-fora-da-aba *,
+    body.pagina-inativa-maisie .animacao-controlada,
+    body.pagina-inativa-maisie .animacao-controlada *,
+    body.performance-total-maisie .animacao-controlada,
+    body.performance-total-maisie .animacao-controlada * {
+      animation-play-state: paused !important;
+    }
+
+    .efeito-pausado .micro-particulas-roda,
+    .efeito-fora-da-aba .micro-particulas-roda,
+    body.pagina-inativa-maisie .micro-particulas-roda {
+      display: none !important;
+    }
+
+    body.modo-mobile-maisie .maisie-painel,
+    body.modo-mobile-maisie .bloco-maisie,
+    body.modo-mobile-maisie .atributo-maisie > span {
+      backdrop-filter: none !important;
+    }
+
+    body.modo-mobile-maisie .maisie-retrato-box::before,
+    body.modo-mobile-maisie .maisie-retrato-box::after {
+      display: none;
+    }
+
+    body.modo-mobile-maisie .ficha-maisie {
+      background-attachment: scroll;
+    }
+
+    body.modo-mobile-maisie .roda-img.anel-externo {
+      animation-duration: 120s;
+    }
+
+    body.modo-mobile-maisie .roda-img.anel-interno {
+      animation-duration: 95s;
+    }
+
+    body.modo-mobile-maisie .roda-img.nucleo {
+      animation-duration: 5.5s;
+    }
+
+    body.modo-mobile-maisie .linha-atributo-maisie::after {
+      animation-duration: 4s;
+    }
+
+    body.modo-mobile-maisie .linha-atributo-maisie.ativa::after {
+      animation-duration: 1.8s;
+    }
+
+    body.modo-mobile-maisie .raio-selecao-maisie::before {
+      animation-duration: 1.4s;
+    }
+
+    body.modo-mobile-maisie .falha-energia-maisie {
+      animation: none;
+    }
+
+    body.modo-mobile-maisie .efeito-particulas-maisie {
+      opacity: 0.5;
+    }
+
+    body.performance-total-maisie .efeito-particulas-maisie,
+    body.performance-total-maisie .micro-particulas-roda {
+      display: none !important;
+    }
+
+    body.performance-total-maisie .maisie-retrato-box::before,
+    body.performance-total-maisie .maisie-retrato-box::after {
+      display: none !important;
+    }
+
+    /* ============================ */
     /* TABLET */
     /* ============================ */
 
@@ -1676,7 +1733,6 @@
         grid-template-columns: 1fr;
       }
 
-      /* roda mobile real, não lista */
       .roda-atributos-maisie {
         width: min(360px, 100%);
         aspect-ratio: 1 / 1;
@@ -1692,13 +1748,6 @@
       .roda-atributos-maisie::before {
         display: block;
         inset: 9%;
-      }
-
-      .roda-img,
-      .linha-atributo-maisie,
-      .raio-selecao-maisie,
-      .micro-particulas-roda {
-        display: block;
       }
 
       .linha-atributo-maisie {
@@ -1728,22 +1777,10 @@
       }
 
       .roda-centro-maisie {
-        position: absolute;
-        left: 50%;
-        top: 50%;
         width: 74px;
         height: 74px;
-        transform: translate(-50%, -50%);
-        border: none;
-        background: transparent;
-        padding: 0;
-        margin: 0;
         font-size: 8px;
         letter-spacing: 1px;
-      }
-
-      .roda-centro-maisie.carregado {
-        animation: centroCarregadoMaisie 0.6s ease;
       }
 
       .roda-centro-maisie strong {
@@ -1758,13 +1795,8 @@
       }
 
       .atributo-maisie {
-        position: absolute;
         width: 78px;
         height: 78px;
-        min-height: auto;
-        border: none;
-        background: transparent;
-        transform: translate(-50%, -50%);
       }
 
       .atributo-maisie:hover {
@@ -1806,31 +1838,6 @@
       .atributo-maisie .sigla {
         font-size: 10px;
         letter-spacing: 0.08em;
-      }
-
-      .atributo-for {
-        left: 15%;
-        top: 40%;
-      }
-
-      .atributo-agi {
-        left: 50%;
-        top: 14%;
-      }
-
-      .atributo-int {
-        left: 85%;
-        top: 40%;
-      }
-
-      .atributo-pre {
-        left: 28%;
-        top: 81%;
-      }
-
-      .atributo-vig {
-        left: 72%;
-        top: 81%;
       }
     }
 
@@ -1887,11 +1894,6 @@
       .roda-centro-maisie span {
         display: none;
       }
-
-      .detalhe-atributo-maisie,
-      .detalhe-lista-maisie {
-        font-size: 14px;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1941,12 +1943,12 @@
   </header>
 
   <main>
-    <section class="ficha-maisie">
+    <section class="ficha-maisie animacao-controlada" data-efeito="pagina">
 
       <div class="maisie-topo">
 
         <aside class="maisie-lateral">
-          <div class="maisie-retrato-box">
+          <div class="maisie-retrato-box animacao-controlada" data-efeito="retrato">
             <img src="Maisie.png" alt="Retrato de corpo inteiro de Maisie Hundown">
           </div>
 
@@ -2022,7 +2024,7 @@
                 no dossiê operacional de Maisie Hundown.
               </p>
 
-              <div class="roda-atributos-maisie" id="roda-maisie">
+              <div class="roda-atributos-maisie animacao-controlada efeito-fora-da-aba" id="roda-maisie" data-efeito="roda" data-aba-efeito="atributos">
 
                 <img src="Roda-Maisie-Anel-Externo.png" class="roda-img anel-externo" alt="">
                 <img src="Roda-Maisie-Anel-Interno.png" class="roda-img anel-interno" alt="">
@@ -2294,12 +2296,12 @@
               <h3>Galeria do arquivo</h3>
 
               <div class="galeria-maisie">
-                <figure>
+                <figure class="animacao-controlada" data-efeito="imagem">
                   <img src="Maisie.png" alt="Imagem de corpo inteiro de Maisie">
                   <figcaption>Registro corporal</figcaption>
                 </figure>
 
-                <figure>
+                <figure class="animacao-controlada" data-efeito="imagem">
                   <img src="Maisie-dossie.png" alt="Ficha visual de Maisie">
                   <figcaption>Ficha visual operacional</figcaption>
                 </figure>
@@ -2319,15 +2321,27 @@
   </footer>
 
   <script>
+    const estadoMaisie = {
+      mobile: window.matchMedia("(max-width: 720px)").matches,
+      telaMuitoPequena: window.matchMedia("(max-width: 420px)").matches,
+      movimentoReduzido: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+      abaAtual: "informacoes",
+      paginaVisivel: !document.hidden,
+      efeitosVisiveis: new WeakMap(),
+      particulasGlobaisAtivas: false,
+      particulasRodaAtivas: false
+    };
+
     const abasMaisie = document.querySelectorAll(".aba-maisie");
     const conteudosMaisie = document.querySelectorAll(".conteudo-maisie");
     const fichaMaisie = document.querySelector(".ficha-maisie");
     const centroRodaMaisie = document.getElementById("centro-roda-maisie");
     const raioSelecaoMaisie = document.getElementById("raio-selecao-maisie");
     const linhasAtributoMaisie = document.querySelectorAll(".linha-atributo-maisie");
+    const rodaMaisie = document.getElementById("roda-maisie");
 
-    criarParticulasMaisie();
-    criarMicroParticulasRodaMaisie();
+    iniciarPerformanceMaisie();
+    atualizarEstadoDeAbaMaisie("informacoes");
 
     abasMaisie.forEach((aba) => {
       aba.addEventListener("click", () => {
@@ -2344,6 +2358,8 @@
           conteudoAtivo.classList.add("ativo");
         }
 
+        estadoMaisie.abaAtual = alvo;
+        atualizarEstadoDeAbaMaisie(alvo);
         causarFalhaEnergiaMaisie();
       });
     });
@@ -2393,6 +2409,194 @@
       });
     });
 
+    ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
+    ativarDetalhesMaisie(".ritual-item", "detalhe-ritual-maisie");
+    ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
+
+    function iniciarPerformanceMaisie() {
+      if (estadoMaisie.mobile) {
+        document.body.classList.add("modo-mobile-maisie");
+      }
+
+      if (estadoMaisie.movimentoReduzido) {
+        document.body.classList.add("performance-total-maisie");
+      }
+
+      observarElementosAnimadosMaisie();
+      observarVisibilidadeDaPaginaMaisie();
+      gerenciarParticulasGlobaisMaisie();
+      gerenciarParticulasRodaMaisie();
+    }
+
+    function observarElementosAnimadosMaisie() {
+      const elementos = document.querySelectorAll(".animacao-controlada");
+
+      if (!("IntersectionObserver" in window)) {
+        elementos.forEach((elemento) => {
+          elemento.classList.remove("efeito-pausado");
+          estadoMaisie.efeitosVisiveis.set(elemento, true);
+        });
+
+        return;
+      }
+
+      const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada) => {
+          const elemento = entrada.target;
+          const visivel = entrada.isIntersecting;
+
+          estadoMaisie.efeitosVisiveis.set(elemento, visivel);
+
+          if (visivel) {
+            elemento.classList.remove("efeito-pausado");
+          } else {
+            elemento.classList.add("efeito-pausado");
+          }
+
+          gerenciarParticulasGlobaisMaisie();
+          gerenciarParticulasRodaMaisie();
+        });
+      }, {
+        root: null,
+        threshold: estadoMaisie.mobile ? 0.08 : 0.14,
+        rootMargin: estadoMaisie.mobile ? "80px 0px 80px 0px" : "120px 0px 120px 0px"
+      });
+
+      elementos.forEach((elemento) => {
+        estadoMaisie.efeitosVisiveis.set(elemento, false);
+        observador.observe(elemento);
+      });
+    }
+
+    function observarVisibilidadeDaPaginaMaisie() {
+      document.addEventListener("visibilitychange", () => {
+        estadoMaisie.paginaVisivel = !document.hidden;
+
+        document.body.classList.toggle("pagina-inativa-maisie", !estadoMaisie.paginaVisivel);
+
+        gerenciarParticulasGlobaisMaisie();
+        gerenciarParticulasRodaMaisie();
+      });
+    }
+
+    function atualizarEstadoDeAbaMaisie(abaAtual) {
+      const elementosComAba = document.querySelectorAll("[data-aba-efeito]");
+
+      elementosComAba.forEach((elemento) => {
+        const abaDoElemento = elemento.dataset.abaEfeito;
+        const ativo = abaDoElemento === abaAtual;
+
+        elemento.classList.toggle("efeito-fora-da-aba", !ativo);
+      });
+
+      gerenciarParticulasGlobaisMaisie();
+      gerenciarParticulasRodaMaisie();
+    }
+
+    function elementoEstaAtivoMaisie(elemento) {
+      if (!elemento) return false;
+      if (!estadoMaisie.paginaVisivel) return false;
+      if (document.body.classList.contains("performance-total-maisie")) return false;
+      if (elemento.classList.contains("efeito-fora-da-aba")) return false;
+      if (elemento.classList.contains("efeito-pausado")) return false;
+
+      return true;
+    }
+
+    function gerenciarParticulasGlobaisMaisie() {
+      const deveAtivar = estadoMaisie.paginaVisivel &&
+        !estadoMaisie.movimentoReduzido &&
+        !document.body.classList.contains("performance-total-maisie");
+
+      if (deveAtivar && !estadoMaisie.particulasGlobaisAtivas) {
+        criarParticulasMaisie();
+      }
+
+      if (!deveAtivar && estadoMaisie.particulasGlobaisAtivas) {
+        removerParticulasMaisie();
+      }
+    }
+
+    function gerenciarParticulasRodaMaisie() {
+      const deveAtivar = elementoEstaAtivoMaisie(rodaMaisie) &&
+        estadoMaisie.abaAtual === "atributos" &&
+        !estadoMaisie.movimentoReduzido;
+
+      if (deveAtivar && !estadoMaisie.particulasRodaAtivas) {
+        criarMicroParticulasRodaMaisie();
+      }
+
+      if (!deveAtivar && estadoMaisie.particulasRodaAtivas) {
+        removerMicroParticulasRodaMaisie();
+      }
+    }
+
+    function criarParticulasMaisie() {
+      removerParticulasMaisie();
+
+      const container = document.createElement("div");
+      container.className = "efeito-particulas-maisie animacao-controlada";
+      container.dataset.efeito = "particulas-globais";
+      document.body.prepend(container);
+
+      const quantidade = estadoMaisie.mobile ? 10 : 36;
+
+      for (let i = 0; i < quantidade; i++) {
+        const particula = document.createElement("span");
+        particula.className = "particula-maisie";
+
+        particula.style.left = `${Math.random() * 100}%`;
+        particula.style.animationDuration = `${7 + Math.random() * 10}s`;
+        particula.style.animationDelay = `${Math.random() * 8}s`;
+        particula.style.opacity = `${0.18 + Math.random() * 0.42}`;
+        particula.style.width = `${2 + Math.random() * 3}px`;
+        particula.style.height = particula.style.width;
+
+        container.appendChild(particula);
+      }
+
+      estadoMaisie.particulasGlobaisAtivas = true;
+    }
+
+    function removerParticulasMaisie() {
+      document.querySelectorAll(".efeito-particulas-maisie").forEach((container) => {
+        container.remove();
+      });
+
+      estadoMaisie.particulasGlobaisAtivas = false;
+    }
+
+    function criarMicroParticulasRodaMaisie() {
+      removerMicroParticulasRodaMaisie();
+
+      const container = document.getElementById("micro-particulas-roda");
+      if (!container) return;
+
+      const quantidade = estadoMaisie.mobile ? 6 : 24;
+
+      for (let i = 0; i < quantidade; i++) {
+        const particula = document.createElement("span");
+
+        particula.style.left = `${10 + Math.random() * 80}%`;
+        particula.style.top = `${10 + Math.random() * 80}%`;
+        particula.style.animationDuration = `${3 + Math.random() * 5}s`;
+        particula.style.animationDelay = `${Math.random() * 4}s`;
+        particula.style.opacity = `${0.18 + Math.random() * 0.42}`;
+
+        container.appendChild(particula);
+      }
+
+      estadoMaisie.particulasRodaAtivas = true;
+    }
+
+    function removerMicroParticulasRodaMaisie() {
+      const container = document.getElementById("micro-particulas-roda");
+      if (!container) return;
+
+      container.innerHTML = "";
+      estadoMaisie.particulasRodaAtivas = false;
+    }
+
     function ativarDetalhesMaisie(selector, detalheId) {
       const itens = document.querySelectorAll(selector);
       const detalhe = document.getElementById(detalheId);
@@ -2410,10 +2614,6 @@
       });
     }
 
-    ativarDetalhesMaisie(".habilidade-item", "detalhe-habilidade-maisie");
-    ativarDetalhesMaisie(".ritual-item", "detalhe-ritual-maisie");
-    ativarDetalhesMaisie(".inventario-item", "detalhe-inventario-maisie");
-
     function atualizarDetalheMaisie(elemento) {
       if (!elemento) return;
 
@@ -2424,6 +2624,9 @@
 
     function causarFalhaEnergiaMaisie() {
       if (!fichaMaisie) return;
+      if (estadoMaisie.mobile) return;
+      if (!estadoMaisie.paginaVisivel) return;
+      if (estadoMaisie.movimentoReduzido) return;
 
       fichaMaisie.classList.remove("falha-energia-maisie");
       void fichaMaisie.offsetWidth;
@@ -2432,48 +2635,6 @@
       setTimeout(() => {
         fichaMaisie.classList.remove("falha-energia-maisie");
       }, 320);
-    }
-
-    function criarParticulasMaisie() {
-      const container = document.createElement("div");
-      container.className = "efeito-particulas-maisie";
-      document.body.prepend(container);
-
-      const quantidade = window.innerWidth < 720 ? 18 : 42;
-
-      for (let i = 0; i < quantidade; i++) {
-        const particula = document.createElement("span");
-        particula.className = "particula-maisie";
-
-        particula.style.left = `${Math.random() * 100}%`;
-        particula.style.animationDuration = `${6 + Math.random() * 9}s`;
-        particula.style.animationDelay = `${Math.random() * 8}s`;
-        particula.style.opacity = `${0.22 + Math.random() * 0.45}`;
-        particula.style.width = `${2 + Math.random() * 3}px`;
-        particula.style.height = particula.style.width;
-
-        container.appendChild(particula);
-      }
-    }
-
-    function criarMicroParticulasRodaMaisie() {
-      const container = document.getElementById("micro-particulas-roda");
-      if (!container) return;
-
-      const larguraPequena = window.innerWidth < 720;
-      const quantidade = larguraPequena ? 10 : 26;
-
-      for (let i = 0; i < quantidade; i++) {
-        const particula = document.createElement("span");
-
-        particula.style.left = `${10 + Math.random() * 80}%`;
-        particula.style.top = `${10 + Math.random() * 80}%`;
-        particula.style.animationDuration = `${3 + Math.random() * 5}s`;
-        particula.style.animationDelay = `${Math.random() * 4}s`;
-        particula.style.opacity = `${0.20 + Math.random() * 0.45}`;
-
-        container.appendChild(particula);
-      }
     }
   </script>
 
