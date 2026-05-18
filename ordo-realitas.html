@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+
+  <script>
+    if (sessionStorage.getItem("acessoOrdoRealitas") !== "autorizado") {
+      window.location.replace("index.html");
+    }
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ordo Realitas | Sistema Interno</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -485,7 +492,7 @@
     </div>
 
     <nav>
-      <a href="index.html">Sair</a>
+      <a href="index.html" id="sair-ordo">Sair</a>
       <a href="personagens.html">Dossiês</a>
       <a href="documentos.html">Documentos</a>
       <a href="missoes.html">Missões</a>
@@ -1027,5 +1034,13 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <script>
+    const sairOrdo = document.getElementById("sair-ordo");
+
+    sairOrdo?.addEventListener("click", () => {
+      sessionStorage.removeItem("acessoOrdoRealitas");
+    });
+  </script>
 </body>
 </html>
