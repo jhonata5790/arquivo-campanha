@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordo Realitas | Sistema Interno</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .pagina-ordo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pagina-ordo::before {
+      content: "SISTEMA INTERNO // ORDO REALITAS // ACESSO RESTRITO";
+      position: absolute;
+      right: -165px;
+      top: 50%;
+      transform: rotate(90deg);
+      color: rgba(124, 60, 255, 0.10);
+      letter-spacing: 5px;
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .alerta-restrito {
+      border: 1px solid rgba(181, 31, 53, 0.32);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 22px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(181, 31, 53, 0.15), transparent 34%),
+        linear-gradient(135deg, rgba(124,60,255,0.05), rgba(0,0,0,0.38)),
+        rgba(0,0,0,0.46);
+      box-shadow: var(--sombra-card), var(--sombra-vermelha);
+    }
+
+    .alerta-restrito h3 {
+      color: #ff8da0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .alerta-restrito p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+    }
+
+    .painel-interno-ordo {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(124, 60, 255, 0.24);
+      border-radius: 30px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(124, 60, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 84% 18%, rgba(216, 189, 116, 0.10), transparent 34%),
+        linear-gradient(135deg, rgba(0,0,0,0.58), rgba(8,4,16,0.72));
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
+      margin-bottom: 22px;
+    }
+
+    .painel-interno-ordo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.36;
+      pointer-events: none;
+    }
+
+    .painel-interno-ordo > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ordo-cabecalho {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: start;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .ordo-cabecalho h2 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: clamp(38px, 8vw, 82px);
+      line-height: 0.92;
+      margin-bottom: 14px;
+      text-shadow: 0 0 24px rgba(124, 60, 255, 0.24);
+    }
+
+    .ordo-cabecalho p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+      max-width: 850px;
+    }
+
+    .ordo-status {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 18px;
+      padding: 15px;
+      min-width: 230px;
+      background: rgba(216, 189, 116, 0.055);
+      text-align: right;
+    }
+
+    .ordo-status span,
+    .mini-card-ordo span,
+    .setor-ordo span,
+    .protocolo-ordo span,
+    .patente-card span,
+    .lider-card span,
+    .arquivo-restrito span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    .ordo-status strong {
+      display: block;
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .mini-grid-ordo {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card-ordo {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.30);
+    }
+
+    .mini-card-ordo strong {
+      color: var(--texto);
+      display: block;
+      line-height: 1.35;
+      font-size: 13px;
+    }
+
+    .terminal-ordo {
+      border: 1px solid rgba(124, 60, 255, 0.24);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 22px;
+      background:
+        linear-gradient(135deg, rgba(124,60,255,0.07), rgba(0,0,0,0.32)),
+        rgba(0,0,0,0.54);
+      font-family: "Courier New", ui-monospace, monospace;
+    }
+
+    .terminal-ordo h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      font-family: inherit;
+    }
+
+    .terminal-ordo p {
+      color: var(--texto-fraco);
+      line-height: 1.75;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .terminal-ordo b {
+      color: var(--amarelo);
+    }
+
+    .grid-lideres {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .lider-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 24px;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.030), rgba(124,60,255,0.035)),
+        rgba(0,0,0,0.44);
+      min-height: 320px;
+      transition: 0.22s ease;
+    }
+
+    .lider-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .lider-card.klint::before {
+      background:
+        radial-gradient(circle at 18% 16%, rgba(216,189,116,0.11), transparent 34%),
+        radial-gradient(circle at 80% 14%, rgba(124,60,255,0.10), transparent 34%);
+    }
+
+    .lider-card.yuna::before {
+      background:
+        radial-gradient(circle at 18% 16%, rgba(124,60,255,0.16), transparent 34%),
+        radial-gradient(circle at 80% 14%, rgba(180,180,200,0.10), transparent 34%);
+    }
+
+    .lider-card.lisa::before {
+      background:
+        radial-gradient(circle at 18% 16%, rgba(139,214,133,0.10), transparent 34%),
+        radial-gradient(circle at 80% 14%, rgba(216,189,116,0.10), transparent 34%);
+    }
+
+    .lider-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .lider-card:hover,
+    .setor-ordo:hover,
+    .protocolo-ordo:hover,
+    .patente-card:hover,
+    .arquivo-restrito:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 60, 255, 0.36);
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
+    }
+
+    .lider-card h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .lider-card p {
+      color: var(--texto-fraco);
+      line-height: 1.68;
+      margin-bottom: 14px;
+    }
+
+    .lider-dados {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .lider-dado {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 8px;
+    }
+
+    .lider-dado:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .lider-dado small {
+      color: var(--texto-fraco);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 10px;
+    }
+
+    .lider-dado strong {
+      color: var(--texto);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .setores-ordo-grid,
+    .protocolos-grid,
+    .patentes-grid,
+    .arquivos-restritos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .setor-ordo,
+    .protocolo-ordo,
+    .patente-card,
+    .arquivo-restrito {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 24px;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.026), rgba(124,60,255,0.030)),
+        rgba(0,0,0,0.42);
+      transition: 0.22s ease;
+    }
+
+    .setor-ordo h3,
+    .protocolo-ordo h3,
+    .patente-card h3,
+    .arquivo-restrito h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
+    }
+
+    .setor-ordo p,
+    .protocolo-ordo p,
+    .patente-card p,
+    .arquivo-restrito p {
+      color: var(--texto-fraco);
+      line-height: 1.68;
+    }
+
+    .nivel-patente {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .nivel-ponto {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(124, 60, 255, 0.35);
+      border: 1px solid rgba(198, 173, 255, 0.35);
+      box-shadow: 0 0 10px rgba(124, 60, 255, 0.20);
+    }
+
+    .nivel-ponto.ativo {
+      background: var(--amarelo);
+      border-color: rgba(255, 232, 166, 0.65);
+      box-shadow: 0 0 14px rgba(216, 189, 116, 0.40);
+    }
+
+    .arquivo-restrito.bloqueado {
+      border-color: rgba(181, 31, 53, 0.24);
+    }
+
+    .arquivo-restrito.bloqueado::after {
+      content: "RESTRITO";
+      position: absolute;
+      right: -36px;
+      top: 24px;
+      transform: rotate(35deg);
+      color: rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 7px 38px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .registro-final-ordo {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 24px;
+      padding: 22px;
+      margin-top: 22px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(216, 189, 116, 0.08), transparent 34%),
+        rgba(0,0,0,0.42);
+    }
+
+    .registro-final-ordo h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .registro-final-ordo p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+    }
+
+    @media (max-width: 1100px) {
+      .ordo-cabecalho {
+        grid-template-columns: 1fr;
+      }
+
+      .ordo-status {
+        text-align: left;
+      }
+
+      .mini-grid-ordo,
+      .grid-lideres,
+      .setores-ordo-grid,
+      .protocolos-grid,
+      .patentes-grid,
+      .arquivos-restritos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .pagina-ordo::before {
+        display: none;
+      }
+
+      .painel-interno-ordo {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .ordo-cabecalho h2 {
+        font-size: 38px;
+        letter-spacing: 2px;
+      }
+
+      .mini-grid-ordo,
+      .grid-lideres,
+      .setores-ordo-grid,
+      .protocolos-grid,
+      .patentes-grid,
+      .arquivos-restritos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lider-card,
+      .setor-ordo,
+      .protocolo-ordo,
+      .patente-card,
+      .arquivo-restrito {
+        min-height: auto;
+        padding: 16px;
+        border-radius: 18px;
+      }
+
+      .lider-card:hover,
+      .setor-ordo:hover,
+      .protocolo-ordo:hover,
+      .patente-card:hover,
+      .arquivo-restrito:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fundo-paranormal"></div>
+
+  <header>
+    <div>
+      <h1>Sistema Interno</h1>
+      <p>Ordo Realitas — acesso restrito</p>
+    </div>
+
+    <nav>
+      <a href="index.html">Sair</a>
+      <a href="personagens.html">Dossiês</a>
+      <a href="documentos.html">Documentos</a>
+      <a href="missoes.html">Missões</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-principal pagina-ordo aparecer">
+      <small>Credencial aceita // Sistema interno</small>
+
+      <h2>Ordo Realitas</h2>
+
+      <p>
+        Acesso concedido ao painel interno da organização. Esta área reúne informações estruturais
+        sobre a Ordo Realitas, sua hierarquia, setores operacionais, protocolos de campo e regras de
+        liberação de arquivos para agentes recém-recrutados.
+      </p>
+
+      <div class="selos mt-3">
+        <span class="selo roxo">Acesso restrito</span>
+        <span class="selo amarelo">Sistema interno</span>
+        <span class="selo vermelho">Monitoramento ativo</span>
+      </div>
+    </section>
+
+    <section class="alerta-restrito">
+      <h3>Registro confidencial</h3>
+      <p>
+        Este painel não aparece no menu público do Arquivo da Campanha. O acesso é narrativo e representa
+        uma área interna da Ordo Realitas. Informações aqui podem ser atualizadas conforme patentes, eventos
+        de campanha e decisões do mestre.
+      </p>
+    </section>
+
+    <section class="painel-interno-ordo">
+      <div class="ordo-cabecalho">
+        <div>
+          <span class="etiqueta">Organização</span>
+          <h2>Ordo Realitas</h2>
+          <p>
+            A Ordo Realitas atua na contenção, investigação e neutralização de ameaças paranormais.
+            Para agentes recém-recrutados, a organização funciona ao mesmo tempo como abrigo, comando,
+            arquivo, tribunal silencioso e ponto de partida para missões que pessoas comuns jamais deveriam conhecer.
+          </p>
+
+          <div class="tags mt-2">
+            <span class="tag roxo">Investigação paranormal</span>
+            <span class="tag amarelo">Comando operacional</span>
+            <span class="tag vermelho">Risco constante</span>
+          </div>
+        </div>
+
+        <div class="ordo-status">
+          <span>Status do acesso</span>
+          <strong>Credencial temporária autorizada</strong>
+        </div>
+      </div>
+
+      <div class="mini-grid-ordo">
+        <div class="mini-card-ordo">
+          <span>Função</span>
+          <strong>Conter o Outro Lado</strong>
+        </div>
+
+        <div class="mini-card-ordo">
+          <span>Estrutura</span>
+          <strong>Comando, setores e agentes</strong>
+        </div>
+
+        <div class="mini-card-ordo">
+          <span>Acesso</span>
+          <strong>Dependente de patente</strong>
+        </div>
+
+        <div class="mini-card-ordo">
+          <span>Estado atual</span>
+          <strong>Recrutas em avaliação</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="terminal-ordo">
+      <h3>Terminal interno</h3>
+      <p><b>&gt;</b> Credencial reconhecida.</p>
+      <p><b>&gt;</b> Carregando estrutura interna da Ordo Realitas...</p>
+      <p><b>&gt;</b> Recrutas vinculados à missão Corações do Outro Lado detectados.</p>
+      <p><b>&gt;</b> Histórico oficial dos recrutas: inexistente antes da primeira missão.</p>
+      <p><b>&gt;</b> Sistema de patentes: em preparação.</p>
+    </section>
+
+    <section class="hero">
+      <small>Comando</small>
+      <h2>Trindade da Ordem</h2>
+      <p>
+        A base operacional da campanha é sustentada por figuras centrais que coordenam, analisam e estruturam
+        a atuação dos agentes. Para os recrutas, esses nomes representam autoridade, orientação e pressão.
+      </p>
+    </section>
+
+    <section class="grid-lideres">
+      <article class="lider-card klint">
+        <span>Líder da Ordo</span>
+        <h3>Klint</h3>
+        <p>
+          Figura quase lendária dentro da organização. Klint carrega o peso de enviar agentes para missões
+          perigosas e entende que, às vezes, perder alguns é a única forma de impedir uma tragédia maior.
+        </p>
+
+        <div class="tags">
+          <span class="tag amarelo">Comando</span>
+          <span class="tag roxo">Mentor</span>
+          <span class="tag vermelho">Peso de liderança</span>
+        </div>
+
+        <div class="lider-dados">
+          <div class="lider-dado">
+            <small>Função</small>
+            <strong>Líder geral</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Status</small>
+            <strong>Ativo</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Acesso</small>
+            <strong>Restrito</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="lider-card yuna">
+        <span>Semi-Líder Ocultista</span>
+        <h3>Yuna</h3>
+        <p>
+          Reservada, distante e especializada em análise paranormal. Yuna é chamada quando artefatos,
+          manifestações, símbolos ou rupturas do Outro Lado exigem alguém que entende o que não deveria ser entendido.
+        </p>
+
+        <div class="tags">
+          <span class="tag roxo">Ocultismo</span>
+          <span class="tag">Morte</span>
+          <span class="tag amarelo">NEX 60%</span>
+        </div>
+
+        <div class="lider-dados">
+          <div class="lider-dado">
+            <small>Função</small>
+            <strong>Análise paranormal</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Status</small>
+            <strong>Ativa</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Contato</small>
+            <strong>Limitado</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="lider-card lisa">
+        <span>Semi-Líder Especialista</span>
+        <h3>Lisa</h3>
+        <p>
+          Comunicativa, intensa e prática. Lisa coordena agentes, organiza missões e mantém a estrutura funcionando
+          quando o caos ameaça engolir os setores da Ordem.
+        </p>
+
+        <div class="tags">
+          <span class="tag roxo">Especialista</span>
+          <span class="tag">Coordenação</span>
+          <span class="tag amarelo">NEX 60%</span>
+        </div>
+
+        <div class="lider-dados">
+          <div class="lider-dado">
+            <small>Função</small>
+            <strong>Treinamento e comando</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Status</small>
+            <strong>Ativa</strong>
+          </div>
+
+          <div class="lider-dado">
+            <small>Postura</small>
+            <strong>Direta</strong>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Estrutura</small>
+      <h2>Setores internos</h2>
+      <p>
+        A Ordo funciona por setores que distribuem agentes, recursos e informações. Estes setores podem ser
+        expandidos no site conforme novas mecânicas de patente, treinamento e acesso forem implementadas.
+      </p>
+    </section>
+
+    <section class="setores-ordo-grid">
+      <article class="setor-ordo">
+        <span>Setor 01</span>
+        <h3>Comando</h3>
+        <p>
+          Define missões, autoriza operações, distribui equipes e assume a responsabilidade pelas decisões
+          mais pesadas da organização.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag amarelo">Klint</span>
+          <span class="tag vermelho">Decisão crítica</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 02</span>
+        <h3>Ocultismo</h3>
+        <p>
+          Analisa rituais, símbolos, elementos, artefatos, manifestações e qualquer fenômeno que ultrapasse
+          a compreensão comum.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag roxo">Yuna</span>
+          <span class="tag">Outro Lado</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 03</span>
+        <h3>Operações</h3>
+        <p>
+          Organiza treinamento, logística, briefing, extração, avaliação de campo e suporte direto para os agentes.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag roxo">Lisa</span>
+          <span class="tag amarelo">Coordenação</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 04</span>
+        <h3>Arquivos</h3>
+        <p>
+          Mantém relatórios, dossiês, documentos, evidências e registros de missões concluídas ou em andamento.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag">Documentos</span>
+          <span class="tag vermelho">Acesso controlado</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 05</span>
+        <h3>Contenção</h3>
+        <p>
+          Área responsável por armazenar, isolar ou neutralizar objetos, pessoas e manifestações consideradas instáveis.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Restrito</span>
+          <span class="tag roxo">Alto risco</span>
+        </div>
+      </article>
+
+      <article class="setor-ordo">
+        <span>Setor 06</span>
+        <h3>Recrutamento</h3>
+        <p>
+          Identifica sobreviventes, especialistas e pessoas marcadas pelo paranormal que podem se tornar agentes.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag amarelo">Avaliação</span>
+          <span class="tag">Novos agentes</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Acesso e progressão</small>
+      <h2>Sistema de patentes</h2>
+      <p>
+        A campanha pode usar patentes como forma narrativa de liberar documentos, setores, missões e informações.
+        Por enquanto, os personagens dos jogadores entram como recrutas.
+      </p>
+    </section>
+
+    <section class="patentes-grid">
+      <article class="patente-card">
+        <span>Patente inicial</span>
+        <h3>Recruta</h3>
+        <p>
+          Agente recém-integrado. Possui acesso a dossiês básicos, missão inicial e documentos filtrados.
+        </p>
+
+        <div class="nivel-patente">
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto"></div>
+          <div class="nivel-ponto"></div>
+          <div class="nivel-ponto"></div>
+        </div>
+
+        <div class="tags">
+          <span class="tag amarelo">Atual</span>
+          <span class="tag">Jogadores</span>
+        </div>
+      </article>
+
+      <article class="patente-card">
+        <span>Patente futura</span>
+        <h3>Agente</h3>
+        <p>
+          Acesso expandido a relatórios, pistas completas e arquivos liberados após desempenho em campo.
+        </p>
+
+        <div class="nivel-patente">
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto"></div>
+          <div class="nivel-ponto"></div>
+        </div>
+
+        <div class="tags">
+          <span class="tag roxo">Futuro</span>
+          <span class="tag">Missões</span>
+        </div>
+      </article>
+
+      <article class="patente-card">
+        <span>Patente futura</span>
+        <h3>Operador</h3>
+        <p>
+          Acesso a setores internos, arquivos restritos e possíveis registros sensíveis de ameaças paranormais.
+        </p>
+
+        <div class="nivel-patente">
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto"></div>
+        </div>
+
+        <div class="tags">
+          <span class="tag vermelho">Restrito</span>
+          <span class="tag">Alto risco</span>
+        </div>
+      </article>
+
+      <article class="patente-card">
+        <span>Patente futura</span>
+        <h3>Elite</h3>
+        <p>
+          Acesso a documentos críticos, entidades, protocolos secretos e decisões estratégicas da Ordem.
+        </p>
+
+        <div class="nivel-patente">
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+          <div class="nivel-ponto ativo"></div>
+        </div>
+
+        <div class="tags">
+          <span class="tag amarelo">Máximo</span>
+          <span class="tag vermelho">Confidencial</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Protocolos</small>
+      <h2>Conduta de campo</h2>
+      <p>
+        Protocolos da Ordo existem para manter agentes vivos, impedir exposição pública e evitar que o paranormal
+        encontre brechas maiores para atravessar a Realidade.
+      </p>
+    </section>
+
+    <section class="protocolos-grid">
+      <article class="protocolo-ordo">
+        <span>Protocolo 01</span>
+        <h3>Observar antes de agir</h3>
+        <p>
+          Em manifestações desconhecidas, agentes devem registrar padrões, evitar contato desnecessário e não presumir
+          que entendem o fenômeno.
+        </p>
+      </article>
+
+      <article class="protocolo-ordo">
+        <span>Protocolo 02</span>
+        <h3>Proteger civis</h3>
+        <p>
+          Preservar testemunhas e evitar exposição pública é prioridade. O pânico coletivo pode ampliar danos e dificultar contenção.
+        </p>
+      </article>
+
+      <article class="protocolo-ordo">
+        <span>Protocolo 03</span>
+        <h3>Registrar evidências</h3>
+        <p>
+          Documentos, símbolos, relatos, imagens e rastros devem ser anexados ao arquivo sempre que possível.
+        </p>
+      </article>
+
+      <article class="protocolo-ordo">
+        <span>Protocolo 04</span>
+        <h3>Não confiar no impossível</h3>
+        <p>
+          O Outro Lado distorce percepção, memória e lógica. Toda certeza deve ser tratada como provisória.
+        </p>
+      </article>
+
+      <article class="protocolo-ordo">
+        <span>Protocolo 05</span>
+        <h3>Recuar ainda é sobreviver</h3>
+        <p>
+          Missões não são vencidas por heroísmo vazio. Às vezes, voltar vivo com uma pista é melhor que morrer com uma resposta.
+        </p>
+      </article>
+
+      <article class="protocolo-ordo">
+        <span>Protocolo 06</span>
+        <h3>Relatar alterações</h3>
+        <p>
+          Agentes que sofrerem efeitos paranormais, mudanças físicas, lapsos ou sonhos recorrentes devem ser avaliados.
+        </p>
+      </article>
+    </section>
+
+    <section class="hero mt-3">
+      <small>Arquivos internos</small>
+      <h2>Registros restritos</h2>
+      <p>
+        Estes registros existem no sistema, mas ainda não estão liberados para os agentes. Podem ser ativados
+        futuramente por senha, patente, missão ou evento narrativo.
+      </p>
+    </section>
+
+    <section class="arquivos-restritos-grid">
+      <article class="arquivo-restrito bloqueado" data-bloqueado="true">
+        <span>Arquivo restrito</span>
+        <h3>Entidades catalogadas</h3>
+        <p>
+          Banco de ameaças paranormais, criaturas, manifestações e padrões hostis encontrados pela Ordo.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Bloqueado</span>
+          <span class="tag roxo">Ameaças</span>
+        </div>
+      </article>
+
+      <article class="arquivo-restrito bloqueado" data-bloqueado="true">
+        <span>Arquivo restrito</span>
+        <h3>Rituais proibidos</h3>
+        <p>
+          Registros de rituais considerados perigosos demais para agentes sem autorização superior.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag vermelho">Confidencial</span>
+          <span class="tag">Ocultismo</span>
+        </div>
+      </article>
+
+      <article class="arquivo-restrito bloqueado" data-bloqueado="true">
+        <span>Arquivo restrito</span>
+        <h3>Protocolos de contenção</h3>
+        <p>
+          Procedimentos usados quando uma manifestação não pode ser destruída, apenas isolada.
+        </p>
+
+        <div class="tags mt-2">
+          <span class="tag amarelo">Patente necessária</span>
+          <span class="tag vermelho">Contenção</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="registro-final-ordo">
+      <h3>Nota final do sistema</h3>
+      <p>
+        O acesso à Ordo Realitas representa uma camada interna do site. A partir daqui, o sistema pode evoluir
+        para senhas por patente, documentos desbloqueáveis, registros por missão e páginas secretas conectadas
+        a pistas escondidas no Arquivo da Campanha.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Sistema Interno — Ordo Realitas — Acesso narrativo restrito</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
