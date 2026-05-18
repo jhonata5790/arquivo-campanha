@@ -25,8 +25,135 @@
       pointer-events: none;
     }
 
+    .central-personagens {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(124, 60, 255, 0.22);
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(124, 60, 255, 0.14), transparent 34%),
+        radial-gradient(circle at 82% 16%, rgba(181, 31, 53, 0.10), transparent 34%),
+        rgba(0,0,0,0.46);
+      box-shadow: var(--sombra-card), var(--sombra-roxa);
+      margin-bottom: 22px;
+    }
+
+    .central-personagens::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.36;
+      pointer-events: none;
+    }
+
+    .central-personagens > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .central-topo {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .central-topo h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 0.95;
+      margin-bottom: 12px;
+    }
+
+    .central-topo p {
+      color: var(--texto-fraco);
+      line-height: 1.72;
+      max-width: 850px;
+    }
+
+    .central-status {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(216, 189, 116, 0.055);
+      min-width: 220px;
+      text-align: right;
+    }
+
+    .central-status span,
+    .personagem-dado span,
+    .personagem-card span.etiqueta-card,
+    .painel-resumo-personagem span {
+      display: block;
+      color: var(--roxo-claro);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 10px;
+      margin-bottom: 7px;
+    }
+
+    .central-status strong {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .central-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .painel-resumo-personagem {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,0.30);
+    }
+
+    .painel-resumo-personagem strong {
+      color: var(--texto);
+      display: block;
+      line-height: 1.35;
+      font-size: 13px;
+    }
+
+    .aviso-personagens {
+      border: 1px solid rgba(216, 189, 116, 0.24);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 18px;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(216, 189, 116, 0.08), transparent 34%),
+        rgba(0,0,0,0.38);
+    }
+
+    .aviso-personagens h3 {
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      margin-bottom: 10px;
+    }
+
+    .aviso-personagens p {
+      color: var(--texto-fraco);
+      line-height: 1.7;
+    }
+
     .personagem-card {
-      min-height: 320px;
+      min-height: 360px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -45,7 +172,7 @@
     }
 
     .personagem-identidade h3 {
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .personagem-codigo {
@@ -82,10 +209,8 @@
     }
 
     .personagem-dado span {
+      margin-bottom: 0;
       color: var(--texto-fraco);
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: 10px;
     }
 
     .personagem-dado strong {
@@ -119,31 +244,94 @@
         radial-gradient(circle at 82% 12%, rgba(124,60,255,0.10), transparent 32%);
     }
 
-    .aviso-personagens {
-      border: 1px solid rgba(216, 189, 116, 0.24);
-      border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 18px;
+    .personagem-card.maisie::before {
       background:
-        radial-gradient(circle at 10% 18%, rgba(216, 189, 116, 0.08), transparent 34%),
-        rgba(0,0,0,0.38);
+        radial-gradient(circle at 16% 15%, rgba(124,60,255,0.24), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(70,170,255,0.16), transparent 32%);
     }
 
-    .aviso-personagens h3 {
-      color: var(--amarelo);
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      margin-bottom: 10px;
+    .personagem-card.vivian::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(124,60,255,0.16), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(216,189,116,0.08), transparent 32%);
     }
 
-    .aviso-personagens p {
-      color: var(--texto-fraco);
-      line-height: 1.7;
+    .personagem-card.roselyn::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(180,180,200,0.12), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.14), transparent 32%);
+    }
+
+    .personagem-card.klint::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(216,189,116,0.13), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.10), transparent 32%);
+    }
+
+    .personagem-card.yuna::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(124,60,255,0.20), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(180,180,200,0.10), transparent 32%);
+    }
+
+    .personagem-card.lisa::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(139,214,133,0.13), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(216,189,116,0.10), transparent 32%);
+    }
+
+    .personagem-card.blender::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(181,31,53,0.22), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(216,189,116,0.10), transparent 32%);
+    }
+
+    .personagem-card.miyara::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(20,20,24,0.38), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(181,31,53,0.15), transparent 32%);
+    }
+
+    .personagem-card.ameaca::before {
+      background:
+        radial-gradient(circle at 16% 15%, rgba(181,31,53,0.18), transparent 34%),
+        radial-gradient(circle at 82% 12%, rgba(124,60,255,0.13), transparent 32%);
+    }
+
+    .personagem-card.bloqueado {
+      filter: grayscale(0.35);
+    }
+
+    .secao-personagem-grupo {
+      margin-top: 24px;
+    }
+
+    @media (max-width: 1100px) {
+      .central-topo {
+        grid-template-columns: 1fr;
+      }
+
+      .central-status {
+        text-align: left;
+      }
+
+      .central-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 760px) {
       .painel-personagens::before {
         display: none;
+      }
+
+      .central-personagens {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .central-grid {
+        grid-template-columns: 1fr;
       }
 
       .personagem-card {
@@ -206,6 +394,53 @@
       </div>
     </section>
 
+    <section class="central-personagens">
+      <div class="central-topo">
+        <div>
+          <span class="etiqueta">Banco de dossiês</span>
+          <h3>Registro de personagens</h3>
+          <p>
+            Esta página organiza os personagens da campanha em grupos: recrutas dos jogadores, núcleo da Ordo Realitas,
+            NPCs relevantes e arquivos ainda bloqueados. Os dossiês podem ser expandidos conforme novas páginas forem
+            criadas.
+          </p>
+
+          <div class="tags mt-2">
+            <span class="tag roxo">Corações do Outro Lado</span>
+            <span class="tag amarelo">Primeira missão oficial</span>
+            <span class="tag vermelho">Arquivos restritos</span>
+          </div>
+        </div>
+
+        <div class="central-status">
+          <span>Estado do banco</span>
+          <strong>Dossiês parcialmente liberados</strong>
+        </div>
+      </div>
+
+      <div class="central-grid">
+        <div class="painel-resumo-personagem">
+          <span>Recrutas</span>
+          <strong>Maisie, Vivian e Roselyn</strong>
+        </div>
+
+        <div class="painel-resumo-personagem">
+          <span>Núcleo da Ordo</span>
+          <strong>Klint, Yuna, Lisa e Blender</strong>
+        </div>
+
+        <div class="painel-resumo-personagem">
+          <span>Caso principal</span>
+          <strong>Miyara</strong>
+        </div>
+
+        <div class="painel-resumo-personagem">
+          <span>Acesso</span>
+          <strong>Dependente de progresso</strong>
+        </div>
+      </div>
+    </section>
+
     <section class="aviso-personagens">
       <h3>Nota de linha do tempo</h3>
       <p>
@@ -223,7 +458,7 @@
       <button class="filtro" data-filtro="bloqueado">Bloqueados</button>
     </section>
 
-    <section class="hero">
+    <section class="hero secao-personagem-grupo">
       <small>Agentes dos jogadores</small>
       <h2>Recrutas</h2>
       <p>
@@ -237,7 +472,7 @@
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Dossiê liberado</span>
+              <span class="etiqueta-card">Dossiê liberado</span>
               <h3>Maisie Hundown</h3>
               <p>
                 Ocultista recém-recrutada, marcada por Energia, tecnologia própria e histórico paranormal
@@ -277,11 +512,11 @@
         </div>
       </article>
 
-      <article class="personagem-card recruta bloqueado" data-categoria="recrutas bloqueado" data-bloqueado="true">
+      <article class="personagem-card vivian recruta bloqueado" data-categoria="recrutas bloqueado" data-bloqueado="true">
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Dossiê em montagem</span>
+              <span class="etiqueta-card">Dossiê em montagem</span>
               <h3>Vivian</h3>
               <p>
                 Arquivo reservado para a personagem Vivian. A ficha completa, aparência, histórico e dados
@@ -320,11 +555,11 @@
         </div>
       </article>
 
-      <article class="personagem-card recruta bloqueado" data-categoria="recrutas bloqueado" data-bloqueado="true">
+      <article class="personagem-card roselyn recruta bloqueado" data-categoria="recrutas bloqueado" data-bloqueado="true">
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Dossiê em montagem</span>
+              <span class="etiqueta-card">Dossiê em montagem</span>
               <h3>Roselyn</h3>
               <p>
                 Arquivo reservado para Roselyn. A personagem possui material recebido, mas o dossiê completo
@@ -364,21 +599,21 @@
       </article>
     </section>
 
-    <section class="hero mt-3">
+    <section class="hero secao-personagem-grupo">
       <small>Estrutura interna</small>
-      <h2>Ordo Realitas</h2>
+      <h2>Núcleo da Ordo</h2>
       <p>
         Figuras importantes para o funcionamento da organização. Estes registros ajudam a contextualizar
-        a hierarquia, os setores e a forma como os novos agentes serão orientados.
+        a hierarquia, os setores e a forma como os novos agentes serão orientados, cobrados e testados.
       </p>
     </section>
 
     <section class="personagens-grid">
-      <article class="personagem-card ordem" data-categoria="ordem">
+      <article class="personagem-card ordem klint" data-categoria="ordem">
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Liderança</span>
+              <span class="etiqueta-card">Liderança</span>
               <h3>Klint</h3>
               <p>
                 Líder da Ordo Realitas. Figura respeitada, temida e marcada pelo peso de enviar agentes
@@ -392,6 +627,7 @@
           <div class="tags">
             <span class="tag amarelo">Comando</span>
             <span class="tag roxo">Ordo Realitas</span>
+            <span class="tag vermelho">Restrito</span>
           </div>
 
           <div class="personagem-dados">
@@ -413,7 +649,7 @@
         </div>
 
         <div class="personagem-acoes">
-          <a class="btn" href="#">Arquivo futuro</a>
+          <a class="btn" href="ordo-realitas.html">Ver no sistema interno</a>
         </div>
       </article>
 
@@ -421,7 +657,7 @@
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Semi-Líder Ocultista</span>
+              <span class="etiqueta-card">Semi-Líder Ocultista</span>
               <h3>Yuna</h3>
               <p>
                 Ocultista reservada e extremamente distante, especializada em análise paranormal,
@@ -457,7 +693,7 @@
         </div>
 
         <div class="personagem-acoes">
-          <a class="btn" href="#">Arquivo futuro</a>
+          <a class="btn" href="ordo-realitas.html">Ver no sistema interno</a>
         </div>
       </article>
 
@@ -465,7 +701,7 @@
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Semi-Líder Especialista</span>
+              <span class="etiqueta-card">Semi-Líder Especialista</span>
               <h3>Lisa</h3>
               <p>
                 Especialista responsável por coordenação, treinamento e organização operacional.
@@ -501,14 +737,58 @@
         </div>
 
         <div class="personagem-acoes">
-          <a class="btn" href="#">Arquivo futuro</a>
+          <a class="btn" href="ordo-realitas.html">Ver no sistema interno</a>
+        </div>
+      </article>
+
+      <article class="personagem-card ordem blender" data-categoria="ordem">
+        <div class="personagem-topo">
+          <div class="personagem-identidade">
+            <div>
+              <span class="etiqueta-card">Semi-Líder Combatente</span>
+              <h3>Blender</h3>
+              <p>
+                Combatente porra-louca, grosseiro, alto e impulsivo. Ri em situações perigosas,
+                xinga enquanto luta e valoriza coragem, resistência e quem aguenta porrada.
+              </p>
+            </div>
+
+            <span class="personagem-codigo">BLE-060</span>
+          </div>
+
+          <div class="tags">
+            <span class="tag vermelho">Combatente</span>
+            <span class="tag">Lutador</span>
+            <span class="tag amarelo">NEX 60%</span>
+          </div>
+
+          <div class="personagem-dados">
+            <div class="personagem-dado">
+              <span>Rank</span>
+              <strong>Semi-Líder</strong>
+            </div>
+
+            <div class="personagem-dado">
+              <span>Área</span>
+              <strong>Combate</strong>
+            </div>
+
+            <div class="personagem-dado">
+              <span>Status</span>
+              <strong>Ativo / vai pra rua</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="personagem-acoes">
+          <a class="btn" href="ordo-realitas.html">Ver no sistema interno</a>
         </div>
       </article>
     </section>
 
-    <section class="hero mt-3">
+    <section class="hero secao-personagem-grupo">
       <small>Arquivos narrativos</small>
-      <h2>Outras figuras</h2>
+      <h2>NPCs e casos</h2>
       <p>
         Registros adicionais conectados à investigação, vítimas, testemunhas ou entidades serão liberados conforme
         a campanha avançar e a Ordo reunir evidências suficientes.
@@ -516,11 +796,11 @@
     </section>
 
     <section class="personagens-grid">
-      <article class="personagem-card npc bloqueado" data-categoria="npc bloqueado" data-bloqueado="true">
+      <article class="personagem-card npc miyara bloqueado" data-categoria="npc bloqueado" data-bloqueado="true">
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Vítima inicial</span>
+              <span class="etiqueta-card">Vítima inicial</span>
               <h3>Miyara</h3>
               <p>
                 Registro conectado ao primeiro caso da missão. Parte das informações permanece sob análise
@@ -534,6 +814,7 @@
           <div class="tags">
             <span class="tag vermelho">Caso sensível</span>
             <span class="tag roxo">Arquivo parcial</span>
+            <span class="tag">Corações do Outro Lado</span>
           </div>
 
           <div class="personagem-dados">
@@ -555,15 +836,15 @@
         </div>
 
         <div class="personagem-acoes">
-          <a class="btn" href="#">Acesso restrito</a>
+          <a class="btn" href="documentos.html">Ver documentos</a>
         </div>
       </article>
 
-      <article class="personagem-card npc bloqueado" data-categoria="npc bloqueado" data-bloqueado="true">
+      <article class="personagem-card npc ameaca bloqueado" data-categoria="npc bloqueado" data-bloqueado="true">
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Arquivo não liberado</span>
+              <span class="etiqueta-card">Arquivo não liberado</span>
               <h3>Entidades / Ameaças</h3>
               <p>
                 Manifestações, criaturas e agentes hostis serão registrados apenas após confirmação em campo
@@ -576,7 +857,7 @@
 
           <div class="tags">
             <span class="tag vermelho">Bloqueado</span>
-            <span class="tag">Aguardando descoberta</span>
+            <span class="tag roxo">Aguardando descoberta</span>
           </div>
 
           <div class="personagem-dados">
@@ -606,7 +887,7 @@
         <div class="personagem-topo">
           <div class="personagem-identidade">
             <div>
-              <span class="etiqueta">Expansão futura</span>
+              <span class="etiqueta-card">Expansão futura</span>
               <h3>Testemunhas</h3>
               <p>
                 Pessoas comuns, sobreviventes, suspeitos e contatos civis serão adicionados conforme surgirem
